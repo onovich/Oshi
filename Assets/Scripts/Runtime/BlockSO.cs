@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Text;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor.Examples;
 using Sirenix.Utilities;
 using UnityEditor;
 using UnityEngine;
@@ -11,6 +9,7 @@ public class BlockSO : SerializedScriptableObject {
 
     [TableMatrix(DrawElementMethod = "DrawBlock", HorizontalTitle = "Block Shape", SquareCells = true)]
     public bool[,] shape = new bool[5, 5]; // 直接初始化为5x5数组
+    BlockTM tm;
 
     static bool DrawBlock(Rect rect, bool value) {
         if (Event.current.type == EventType.MouseDown &&
@@ -29,13 +28,37 @@ public class BlockSO : SerializedScriptableObject {
 
     }
 
-    [Button("Print")]
+    [Button("TestData")]
     public void Print() {
-        for (int i = 0; i < shape.GetLength(0); i++) {
-            for (int j = 0; j < shape.GetLength(1); j++) {
-                Debug.Log(shape[i, j]);
+        StringBuilder sb = new StringBuilder();
+        if (tm == null || tm.shape == null || tm.shape.GetLength(0) != 5 || tm.shape.GetLength(1) != 5) {
+            Debug.LogError("tm is null");
+            return;
+        }
+        for (int i = 0; i < tm.shape.GetLength(1); i++) {
+            for (int j = 0; j < tm.shape.GetLength(0); j++) {
+                sb.Append(shape[j, i]).Append(" ");
+            }
+            if (i < shape.GetLength(1) - 1) {
+                sb.AppendLine();
             }
         }
+        Debug.Log(sb.ToString());
+    }
+
+    [Button("Bake")]
+    public void Bake() {
+
+        tm.shape = new bool[5, 5];
+        for (int i = 0; i < shape.GetLength(1); i++) {
+            for (int j = 0; j < shape.GetLength(0); j++) {
+                tm.shape[j, i] = shape[j, i];
+            }
+        }
+
+        UnityEditor.EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+
     }
 
 }
