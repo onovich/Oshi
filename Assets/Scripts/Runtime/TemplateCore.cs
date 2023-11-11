@@ -5,15 +5,13 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class TemplateCore {
+public static class TemplateCore {
 
-    Dictionary<int, BlockTM> blockTMs;
-
-    public async Task Load() {
+    public static async Task Load(TemplateCoreContext ctx) {
 
         var blocks = await Addressables.LoadAssetsAsync<BlockSO>("TM_Block", null).Task;
         foreach (var item in blocks) {
-            blockTMs.Add(item.typeID, item.tm);
+            ctx.BlockTM_Add(item.typeID, item.tm);
         }
 
     }
