@@ -8,7 +8,7 @@ using UnityEngine;
 public class BlockSO : SerializedScriptableObject {
 
     [TableMatrix(DrawElementMethod = "DrawBlock", HorizontalTitle = "Block Shape", SquareCells = true)]
-    public bool[,] shape = new bool[5, 5]; // 直接初始化为5x5数组
+    public bool[,] shape;
     public BlockTM tm;
     public int typeID;
 
@@ -27,6 +27,11 @@ public class BlockSO : SerializedScriptableObject {
 
         return value;
 
+    }
+
+    [Button("Init")]
+    public void Clear() {
+        shape = new bool[4, 4];
     }
 
     [Button("TestData")]
