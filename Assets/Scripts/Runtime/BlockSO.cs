@@ -9,7 +9,8 @@ public class BlockSO : SerializedScriptableObject {
 
     [TableMatrix(DrawElementMethod = "DrawBlock", HorizontalTitle = "Block Shape", SquareCells = true)]
     public bool[,] shape = new bool[5, 5]; // 直接初始化为5x5数组
-    BlockTM tm;
+    public BlockTM tm;
+    public int typeID;
 
     static bool DrawBlock(Rect rect, bool value) {
         if (Event.current.type == EventType.MouseDown &&
