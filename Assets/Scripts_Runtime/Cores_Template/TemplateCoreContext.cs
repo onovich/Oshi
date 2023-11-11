@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Alter {
 
@@ -14,8 +16,13 @@ namespace Alter {
             blockTMs.Add(key, BlockTM);
         }
 
-        bool BlockTM_TryGet(int key, out BlockTM BlockTM) {
+        public bool BlockTM_TryGet(int key, out BlockTM BlockTM) {
             return blockTMs.TryGetValue(key, out BlockTM);
+        }
+
+        public BlockTM BlockTM_GetRandom(Random rd) {
+            int index = rd.Next(blockTMs.Count);
+            return blockTMs.Values.ElementAt(index);
         }
 
     }

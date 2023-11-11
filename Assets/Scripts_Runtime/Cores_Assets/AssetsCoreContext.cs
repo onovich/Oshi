@@ -19,7 +19,7 @@ namespace Alter {
             return entities.TryGetValue(key, out Entity);
         }
 
-        public void Entity_Block(string key) {
+        public void Entity_RemoveBlock(string key) {
             entities.Remove(key);
         }
 

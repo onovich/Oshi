@@ -58,6 +58,7 @@ namespace Alter {
         public void Bake() {
 
             tm = new BlockTM();
+            tm.typeID = typeID;
             tm.shape = new bool[5, 5];
             for (int i = 0; i < shape.GetLength(1); i++) {
                 for (int j = 0; j < shape.GetLength(0); j++) {
