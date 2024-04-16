@@ -9,9 +9,6 @@ namespace Alter {
         public int typeID;
         public Vector2Int mapSize;
 
-        public WaveModel leftWaveModel;
-        public WaveModel rightWaveModel;
-
         public Vector2 spawnPoint;
 
         public float timer;
