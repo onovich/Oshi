@@ -12,11 +12,7 @@ namespace Chouten {
         public WaveModel leftWaveModel;
         public WaveModel rightWaveModel;
 
-        public Vector2 middlePos;
-        public Vector2 leftBound;
-        public Vector2 rightBound;
-
-        [SerializeField] Transform ground;
+        public Vector2 spawnPoint;
 
         public float timer;
 
@@ -26,10 +22,6 @@ namespace Chouten {
 
         public void IncTimer(float dt) {
             timer += dt;
-        }
-
-        public void SetGroundPos(Vector2 pos) {
-            ground.position = pos;
         }
 
         public void TearDown() {

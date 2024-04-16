@@ -5,20 +5,14 @@ namespace Chouten.Modifier {
 
     public class SpawnPointEditorEntity : MonoBehaviour {
 
-        public void Rename(int index) {
-            string side = "";
-            if (index == 0) {
-                side = "Left";
-            } else if (index == 1) {
-                side = "Middle";
-            } else if (index == 2) {
-                side = "Right";
-            }
-            this.gameObject.name = $"Spawn Point {side}";
+        public void Rename() {
+            this.gameObject.name = $"Spawn Point";
         }
 
-        public Vector2 GetPos() {
-            return transform.position;
+        public Vector2Int GetPos() {
+            var posInt = transform.position.RoundToVector2Int();
+            transform.position = posInt.ToVector3Int();
+            return posInt;
         }
 
         public Vector2Int GetSizeInt() {

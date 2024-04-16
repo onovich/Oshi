@@ -18,24 +18,9 @@ namespace Chouten {
             map.Ctor();
             map.typeID = typeID;
             map.mapSize = mapTM.mapSize;
-            map.SetGroundPos(mapTM.middlePoint);
 
-            // Set Bound
-            map.middlePos = mapTM.middlePoint;
-            map.leftBound = mapTM.leftBound;
-            map.rightBound = mapTM.rightBound;
-
-            // SetWave
-            map.leftWaveModel = new WaveModel {
-                typeID = mapTM.leftWaveTM.typeID,
-                spawnTimeArr = mapTM.leftWaveTM.spawnTimeArr,
-                roleTypeIDArr = mapTM.leftWaveTM.roleTypeIDArr
-            };
-            map.rightWaveModel = new WaveModel {
-                typeID = mapTM.rightWaveTM.typeID,
-                spawnTimeArr = mapTM.rightWaveTM.spawnTimeArr,
-                roleTypeIDArr = mapTM.rightWaveTM.roleTypeIDArr
-            };
+            // Set Point
+            map.spawnPoint = mapTM.spawnPoint;
 
             return map;
         }
@@ -63,12 +48,9 @@ namespace Chouten {
 
             // Set Attr
             role.moveSpeed = roleTM.moveSpeed;
-            role.attackDistance = roleTM.attackDistance;
             role.hpMax = roleTM.hpMax;
             role.hp = role.hpMax;
             role.typeName = roleTM.typeName;
-            role.damageFrame = roleTM.damageFrame;
-            role.skillTotalFrame = roleTM.skillTotalFrame;
 
             // Rename
             role.gameObject.name = $"{role.typeName} - {role.entityID}";

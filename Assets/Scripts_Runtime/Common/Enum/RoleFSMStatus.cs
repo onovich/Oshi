@@ -4,9 +4,7 @@ namespace Chouten {
         
         None,
         Idle,
-        Casting,
-        Leaving,
-        Dead,
+        Dead,   
 
     }
 

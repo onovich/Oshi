@@ -10,15 +10,7 @@ namespace Chouten {
         public int typeID;
 
         public Vector2Int mapSize;
-
-        // Wave
-        public WaveTM leftWaveTM;
-        public WaveTM rightWaveTM;
-
-        // Point
-        public Vector2 middlePoint;
-        public Vector2 leftBound;
-        public Vector2 rightBound;
+        public Vector2Int spawnPoint;
 
         // Camera
         public Vector2 cameraConfinerWorldMax;

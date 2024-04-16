@@ -59,9 +59,6 @@ namespace Chouten {
                 // Game
                 GameGameDomain.ApplyGameTime(ctx, dt);
 
-                // Wave
-                GameWaveDomain.ApplySpawnWaveEnemies(ctx, map, dt);
-
                 // Roles
                 var roleLen = ctx.roleRepo.TakeAll(out var roleArr);
                 for (int i = 0; i < roleLen; i++) {

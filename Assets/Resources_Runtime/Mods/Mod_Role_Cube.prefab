@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 3433530738972530475}
   - component: {fileID: 3927939327069252055}
   m_Layer: 0
-  m_Name: Mod_Role_Onovich
+  m_Name: Mod_Role_Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

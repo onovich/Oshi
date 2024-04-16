@@ -15,14 +15,9 @@ namespace Chouten {
         public float moveSpeed;
         public Vector2 Velocity => rb.velocity;
         public Vector2 faceDir;
-        public float attackDistance;
         public int hpMax;
         public int hp;
         
-        // Skill
-        public int skillTotalFrame;
-        public int damageFrame;
-
         // State
         public bool needTearDown;
 
@@ -63,19 +58,6 @@ namespace Chouten {
         // Attr
         public float Attr_GetMoveSpeed() {
             return moveSpeed;
-        }
-
-        // Cast
-        public void Cast_ApplyCast() {
-            if (inputCom.skillAxis == Vector2.zero) {
-                return;
-            }
-            Cast();
-        }
-
-        public void Cast() {
-            roleMod.PlayAttack();
-            fsmCom.EnterCasting(skillTotalFrame, damageFrame);
         }
 
         // Move
