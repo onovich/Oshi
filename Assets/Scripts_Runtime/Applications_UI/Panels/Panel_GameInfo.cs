@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using MortiseFrame.Loom;
 using System.Collections.Generic;
 
-namespace Chouten.UI {
+namespace Alter.UI {
 
     public class Panel_GameInfo : MonoBehaviour, IPanel {
 

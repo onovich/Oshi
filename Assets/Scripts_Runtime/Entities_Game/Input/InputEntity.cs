@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Chouten {
+namespace Alter {
 
     public class InputEntity {
 

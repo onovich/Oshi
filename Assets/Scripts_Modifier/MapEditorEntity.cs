@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Chouten.Modifier {
+namespace Alter.Modifier {
 
     public class MapEditorEntity : MonoBehaviour {
 

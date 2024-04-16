@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using Chouten.UI;
+using Alter.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Chouten {
+namespace Alter {
     public static class VFXApp {
 
         public static void Init(VFXAppContext ctx) {

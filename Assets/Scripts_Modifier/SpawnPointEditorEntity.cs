@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 
-namespace Chouten.Modifier {
+namespace Alter.Modifier {
 
     public class SpawnPointEditorEntity : MonoBehaviour {
 

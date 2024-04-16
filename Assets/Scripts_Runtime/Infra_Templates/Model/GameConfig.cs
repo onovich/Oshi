@@ -2,9 +2,9 @@ using System;
 using MortiseFrame.Swing;
 using UnityEngine;
 
-namespace Chouten {
+namespace Alter {
 
-    [CreateAssetMenu(fileName = "SO_GameConfig", menuName = "Chouten/GameConfig")]
+    [CreateAssetMenu(fileName = "SO_GameConfig", menuName = "Alter/GameConfig")]
     public class GameConfig : ScriptableObject {
 
         // Game

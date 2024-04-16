@@ -1,4 +1,4 @@
-namespace Chouten {
+namespace Alter {
 
     public enum RoleFSMStatus {
         

@@ -1,7 +1,7 @@
 using MortiseFrame.Swing;
 using UnityEngine;
 
-namespace Chouten {
+namespace Alter {
 
     public static class GameRoleFSMController {
 

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Chouten.UI {
+namespace Alter.UI {
 
     public static class PanelGameInfoDomain {
 

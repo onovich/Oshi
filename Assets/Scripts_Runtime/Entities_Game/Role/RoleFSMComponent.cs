@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace Chouten {
+namespace Alter {
 
     public class RoleFSMComponent {
 

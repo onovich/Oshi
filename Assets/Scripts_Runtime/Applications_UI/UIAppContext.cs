@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MortiseFrame.Loom;
 using UnityEngine;
-using Chouten.UI;
+using Alter.UI;
 
-namespace Chouten {
+namespace Alter {
 
     public class UIAppContext {
 

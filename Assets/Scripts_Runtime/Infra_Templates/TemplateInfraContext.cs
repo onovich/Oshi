@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Chouten {
+namespace Alter {
 
     public class TemplateInfraContext {
 

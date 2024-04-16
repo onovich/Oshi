@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using MortiseFrame.Loom;
 
-namespace Chouten.UI {
+namespace Alter.UI {
 
     public class Panel_GameOver : MonoBehaviour, IPanel {
 

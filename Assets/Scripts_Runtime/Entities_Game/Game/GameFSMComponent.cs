@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace Chouten {
+namespace Alter {
 
     public class GameFSMComponent {
 

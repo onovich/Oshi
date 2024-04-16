@@ -1,6 +1,6 @@
 using System;
 
-namespace Chouten{
+namespace Alter{
 
     public class LoginEventCenter {
 

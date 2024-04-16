@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Chouten {
+namespace Alter {
 
     public struct RoleInputComponent {
 

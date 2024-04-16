@@ -5,7 +5,7 @@ using TenonKit.Prism;
 using TenonKit.Vista.Camera2D;
 using UnityEngine;
 
-namespace Chouten {
+namespace Alter {
 
     public static class CameraApp {
 

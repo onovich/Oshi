@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace Chouten {
+namespace Alter {
 
     public class Main : MonoBehaviour {
 

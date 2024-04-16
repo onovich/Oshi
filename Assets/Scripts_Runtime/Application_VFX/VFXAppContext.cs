@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using TenonKit.Prism;
 using UnityEngine;
 
-namespace Chouten {
+namespace Alter {
 
     public class VFXAppContext {
 

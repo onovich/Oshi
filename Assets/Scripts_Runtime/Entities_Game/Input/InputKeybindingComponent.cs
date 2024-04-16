@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Chouten {
+namespace Alter {
 
     public struct InputKeybindingComponent {
 

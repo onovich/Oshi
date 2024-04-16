@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Chouten {
+namespace Alter {
 
-    [CreateAssetMenu(fileName = "SO_Map", menuName = "Chouten/MapTM")]
+    [CreateAssetMenu(fileName = "SO_Map", menuName = "Alter/MapTM")]
     public class MapTM : ScriptableObject {
 
         public int typeID;

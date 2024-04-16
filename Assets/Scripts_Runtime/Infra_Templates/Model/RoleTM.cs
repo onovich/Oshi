@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Chouten {
+namespace Alter {
 
-    [CreateAssetMenu(fileName = "SO_Role", menuName = "Chouten/RoleTM")]
+    [CreateAssetMenu(fileName = "SO_Role", menuName = "Alter/RoleTM")]
     public class RoleTM : ScriptableObject {
 
         public int typeID;

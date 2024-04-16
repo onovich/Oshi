@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 
-namespace Chouten {
+namespace Alter {
 
     public static class TemplateInfra {
 

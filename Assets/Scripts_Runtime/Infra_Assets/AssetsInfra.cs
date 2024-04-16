@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.AddressableAssets;
 
-namespace Chouten
+namespace Alter
 {
 
     public static class AssetsInfra

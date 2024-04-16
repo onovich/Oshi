@@ -1,6 +1,6 @@
 using System;
 
-namespace Chouten.UI {
+namespace Alter.UI {
 
     public class UIEventCenter {
 

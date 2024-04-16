@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Runtime.CompilerServices;
 
-namespace Chouten {
+namespace Alter {
 
     public static class GLog {
 

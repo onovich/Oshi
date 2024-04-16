@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-namespace Chouten.Modifier {
+namespace Alter.Modifier {
 
     public class ImageOutlineEditor : EditorWindow {
         private Texture2D selectedImage;
