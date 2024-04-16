@@ -123,27 +123,6 @@ namespace Alter {
             roleMod = mod;
         }
 
-        // Anim
-        public void Anim_PlayIdle() {
-            roleMod.PlayIdle();
-        }
-
-        public void Anim_PlayAttack() {
-            roleMod.PlayAttack();
-        }
-
-        public void Anim_PlayAttackFail() {
-            roleMod.PlayAttackFail();
-        }
-
-        public void Anim_PlayHurt() {
-            roleMod.PlayHurt();
-        }
-
-        public void Anim_SetMovement(float speed) {
-            roleMod.Anim_SetMovement(speed);
-        }
-
         // VFX
         public void TearDown() {
             roleMod.TearDown();
