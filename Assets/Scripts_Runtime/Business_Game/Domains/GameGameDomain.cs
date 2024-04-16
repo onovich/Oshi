@@ -36,7 +36,7 @@ namespace Alter {
             CameraApp.Init(ctx.cameraContext, owner.transform, Vector2.zero, mapTM.cameraConfinerWorldMax, mapTM.cameraConfinerWorldMin);
 
             // UI
-            UIApp.GameInfo_Open(ctx.uiContext, owner.hpMax);
+            UIApp.GameInfo_Open(ctx.uiContext);
 
             // Cursor
 

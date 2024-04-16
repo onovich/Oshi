@@ -100,7 +100,6 @@ namespace Alter {
 
                 // UI
                 UIApp.GameInfo_RefreshTime(ctx.uiContext, game.fsmComponent.gaming_gameTime);
-                UIApp.GameInfo_RefreshHP(ctx.uiContext, owner.hp);
 
             }
             // VFX

@@ -43,12 +43,8 @@ namespace Alter {
         }
 
         // Panel - GameInfo
-        public static void GameInfo_Open(UIAppContext ctx, int hpMax) {
-            PanelGameInfoDomain.Open(ctx, hpMax);
-        }
-
-        public static void GameInfo_RefreshHP(UIAppContext ctx, int hp) {
-            PanelGameInfoDomain.RefreshHP(ctx, hp);
+        public static void GameInfo_Open(UIAppContext ctx) {
+            PanelGameInfoDomain.Open(ctx);
         }
 
         public static void GameInfo_RefreshTime(UIAppContext ctx, float time) {
