@@ -19,7 +19,7 @@ namespace Alter {
         public int hp;
 
         // Size
-        public Vector2 size;
+        public Vector2Int size;
 
         // Move
         public float moveDurationSec;
@@ -85,7 +85,7 @@ namespace Alter {
         }
 
         // Size
-        public void Size_SetSize(Vector2 size) {
+        public void Size_SetSize(Vector2Int size) {
             spr.size = size;
             this.size = size;
         }

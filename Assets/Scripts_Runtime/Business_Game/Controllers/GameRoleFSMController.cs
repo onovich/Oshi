@@ -25,6 +25,14 @@ namespace Alter {
 
         static void FixedTickFSM_Any(GameBusinessContext ctx, RoleEntity role, float fixdt) {
             role.Pos_RecordLastFramePos();
+
+            // In Spike
+            var succ = GameRoleDomain.CheckInSpike(ctx, role);
+            if (succ) {
+                role.FSM_EnterDead();
+                return;
+            }
+
         }
 
         static void FixedTickFSM_Idle(GameBusinessContext ctx, RoleEntity role, float fixdt) {
@@ -47,6 +55,7 @@ namespace Alter {
             succ = GameRoleDomain.CheckPushNeed(ctx, role);
             if (!succ) {
                 role.FSM_EnterMoving(role.moveDurationSec);
+                return;
             }
 
             succ = GameRoleDomain.CheckPushable(ctx, role, out var block);

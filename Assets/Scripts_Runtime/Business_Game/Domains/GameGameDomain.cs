@@ -114,12 +114,16 @@ namespace Alter {
 
         public static void ApplyGameResult(GameBusinessContext ctx) {
             var owner = ctx.Role_GetOwner();
+            var game = ctx.gameEntity;
+            var config = ctx.templateInfraContext.Config_Get();
+
+            if (owner == null) {
+                game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
+                return;
+            }
             if (owner.fsmCom.status != RoleFSMStatus.Idle) {
                 return;
             }
-
-            var game = ctx.gameEntity;
-            var config = ctx.templateInfraContext.Config_Get();
 
             // Check Role Dead
             var dead = CheckRoleDead(ctx);
@@ -140,7 +144,6 @@ namespace Alter {
             if (inGoal) {
                 game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Win);
             }
-
         }
 
         static bool CheckRoleDead(GameBusinessContext ctx) {

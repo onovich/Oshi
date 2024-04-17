@@ -93,6 +93,14 @@ namespace Alter {
             return has;
         }
 
+        public static bool CheckInSpike(GameBusinessContext ctx, RoleEntity role) {
+            var inSpike = false;
+            GridUtils.ForEachGridBySize(role.PosInt, role.size, (grid) => {
+                inSpike |= (ctx.spikeRepo.Has(grid));
+            });
+            return inSpike;
+        }
+
         public static bool CheckPushable(GameBusinessContext ctx, RoleEntity role, out BlockEntity block) {
             var has = ctx.blockRepo.TryGetBlockByPos(role.Pos_GetNextGrid(), out block);
             if (has == false) {
