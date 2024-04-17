@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Alter {
 
-    public class BlockEntity : MonoBehaviour {
+    public class WallEntity : MonoBehaviour {
 
         // Base Info
         public int entityIndex;
@@ -44,7 +44,7 @@ namespace Alter {
 
         // Rename
         public void Rename() {
-            this.name = $"Block - {typeID} - {entityIndex}";
+            this.name = $"Wall - {typeID} - {entityIndex}";
         }
 
         public void TearDown() {

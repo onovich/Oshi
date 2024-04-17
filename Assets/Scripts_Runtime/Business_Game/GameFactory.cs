@@ -28,11 +28,46 @@ namespace Alter {
             return map;
         }
 
+        public static WallEntity Wall_Spawn(TemplateInfraContext templateInfraContext,
+                                 AssetsInfraContext assetsInfraContext,
+                                 int typeID,
+                                 int index,
+                                 Vector2Int pos,
+                                 Vector2Int size) {
+
+            var has = templateInfraContext.Wall_TryGet(typeID, out var wallTM);
+            if (!has) {
+                GLog.LogError($"Wall {typeID} not found");
+            }
+
+            var prefab = assetsInfraContext.Entity_GetWall();
+            var wall = GameObject.Instantiate(prefab).GetComponent<WallEntity>();
+            wall.Ctor();
+
+            // Base Info
+            wall.typeID = typeID;
+            wall.entityIndex = index;
+            wall.typeName = wallTM.typeName;
+
+            // Rename
+            wall.gameObject.name = $"Wall - {wall.typeName} - {wall.entityIndex}";
+
+            // Set Pos
+            wall.Pos_SetPos(pos);
+
+            // Set Size
+            wall.Size_SetSize(size);
+
+            return wall;
+        }
+
         public static BlockEntity Block_Spawn(TemplateInfraContext templateInfraContext,
                                  AssetsInfraContext assetsInfraContext,
                                  IDRecordService idRecordService,
                                  int typeID,
-                                 Vector2 pos) {
+                                 int index,
+                                 Vector2Int pos,
+                                 Vector2Int size) {
 
             var has = templateInfraContext.Block_TryGet(typeID, out var blockTM);
             if (!has) {
@@ -45,12 +80,17 @@ namespace Alter {
 
             // Base Info
             block.typeID = typeID;
+            block.entityIndex = index;
+            block.typeName = blockTM.typeName;
 
             // Rename
-            block.gameObject.name = $"Block - {block.typeID}";
+            block.gameObject.name = $"Block - {block.typeName} - {block.entityIndex}";
 
             // Set Pos
             block.Pos_SetPos(pos);
+
+            // Set Size
+            block.Size_SetSize(size);
 
             return block;
         }

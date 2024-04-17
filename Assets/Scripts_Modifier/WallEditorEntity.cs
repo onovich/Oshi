@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace Alter.Modifier {
 
-    public class BlockEditorEntity : MonoBehaviour {
+    public class WallEditorEntity : MonoBehaviour {
 
-        [SerializeField] public BlockTM blockTM;
+        [SerializeField] public WallTM wallTM;
 
         public Vector2Int GetPosInt() {
             var posInt = transform.position.RoundToVector2Int();

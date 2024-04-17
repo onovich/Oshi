@@ -48,6 +48,14 @@ namespace Alter {
             return prefab;
         }
 
+        public GameObject Entity_GetWall() {
+            var has = Entity_TryGet("Entity_Wall", out var prefab);
+            if (!has) {
+                GLog.LogError($"Entity Wall not found");
+            }
+            return prefab;
+        }
+
         public GameObject Entity_GetSpike() {
             var has = Entity_TryGet("Entity_Spike", out var prefab);
             if (!has) {

@@ -17,10 +17,14 @@ namespace Alter {
         Dictionary<int, BlockTM> blockDict;
         public AsyncOperationHandle blockHandle;
 
+        Dictionary<int, WallTM> wallDict;
+        public AsyncOperationHandle wallHandle;
+
         public TemplateInfraContext() {
             mapDict = new Dictionary<int, MapTM>();
             roleDict = new Dictionary<int, RoleTM>();
             blockDict = new Dictionary<int, BlockTM>();
+            wallDict = new Dictionary<int, WallTM>();
         }
 
         // Game
@@ -71,11 +75,25 @@ namespace Alter {
             return has;
         }
 
+        // Wall
+        public void Wall_Add(WallTM wall) {
+            wallDict.Add(wall.typeID, wall);
+        }
+
+        public bool Wall_TryGet(int typeID, out WallTM wall) {
+            var has = wallDict.TryGetValue(typeID, out wall);
+            if (!has) {
+                GLog.LogError($"Wall {typeID} not found");
+            }
+            return has;
+        }
+
         // Clear
         public void Clear() {
             mapDict.Clear();
             roleDict.Clear();
             blockDict.Clear();
+            wallDict.Clear();
         }
 
     }

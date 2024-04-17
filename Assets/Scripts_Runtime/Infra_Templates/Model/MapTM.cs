@@ -13,8 +13,16 @@ namespace Alter {
         public Vector2Int spawnPoint;
 
         // Block
+        public int[] blockIndexArr;
         public BlockTM[] blockTMArr;
         public Vector2Int[] blockPosArr;
+        public Vector2Int[] blockSizeArr;
+
+        // Wall
+        public int[] wallIndexArr;
+        public WallTM[] wallTMArr;
+        public Vector2Int[] wallPosArr;
+        public Vector2Int[] wallSizeArr;
 
         // Camera
         public Vector2 cameraConfinerWorldMax;

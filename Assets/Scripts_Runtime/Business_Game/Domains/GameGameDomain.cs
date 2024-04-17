@@ -35,10 +35,27 @@ namespace Alter {
             // Block
             var blockTMArr = mapTM.blockTMArr;
             var blockPosArr = mapTM.blockPosArr;
+            var blockSizeArr = mapTM.blockSizeArr;
+            var blockIndexArr = mapTM.blockIndexArr;
             for (int i = 0; i < blockTMArr.Length; i++) {
                 var blockTM = blockTMArr[i];
                 var pos = blockPosArr[i];
-                var block = GameBlockDomain.Spawn(ctx, blockTM.typeID, pos);
+                var size = blockSizeArr[i];
+                var index = blockIndexArr[i];
+                var _ = GameBlockDomain.Spawn(ctx, blockTM.typeID, index, pos, size);
+            }
+
+            // Wall
+            var wallTMArr = mapTM.wallTMArr;
+            var wallPosArr = mapTM.wallPosArr;
+            var wallSizeArr = mapTM.wallSizeArr;
+            var wallIndexArr = mapTM.wallIndexArr;
+            for (int i = 0; i < wallTMArr.Length; i++) {
+                var wallTM = wallTMArr[i];
+                var pos = wallPosArr[i];
+                var size = wallSizeArr[i];
+                var index = wallIndexArr[i];
+                var _ = GameWallDomain.Spawn(ctx, wallTM.typeID, index, pos, size);
             }
 
             // Camera
@@ -105,6 +122,20 @@ namespace Alter {
             for (int i = 0; i < roleLen; i++) {
                 var role = roleArr[i];
                 GameRoleDomain.UnSpawn(ctx, role);
+            }
+
+            // Block
+            int blockLen = ctx.blockRepo.TakeAll(out var blockArr);
+            for (int i = 0; i < blockLen; i++) {
+                var block = blockArr[i];
+                GameBlockDomain.UnSpawn(ctx, block);
+            }
+
+            // Wall
+            int wallLen = ctx.wallRepo.TakeAll(out var wallArr);
+            for (int i = 0; i < wallLen; i++) {
+                var wall = wallArr[i];
+                GameWallDomain.UnSpawn(ctx, wall);
             }
 
             // UI

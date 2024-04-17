@@ -41,6 +41,15 @@ namespace Alter {
                 ctx.blockHandle = handle;
             }
 
+            {
+                var handle = Addressables.LoadAssetsAsync<WallTM>("TM_Wall", null);
+                var wallList = await handle.Task;
+                foreach (var tm in wallList) {
+                    ctx.Wall_Add(tm);
+                }
+                ctx.wallHandle = handle;
+            }
+
         }
 
         public static void Release(TemplateInfraContext ctx) {
@@ -55,6 +64,9 @@ namespace Alter {
             }
             if (ctx.blockHandle.IsValid()) {
                 Addressables.Release(ctx.blockHandle);
+            }
+            if (ctx.wallHandle.IsValid()) {
+                Addressables.Release(ctx.wallHandle);
             }
         }
 
