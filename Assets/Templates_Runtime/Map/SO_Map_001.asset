@@ -36,5 +36,12 @@ MonoBehaviour:
   - {x: -8, y: -2}
   goalSizeArr:
   - {x: 1, y: 2}
+  spikeIndexArr: 01000000
+  spikeTMArr:
+  - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}
+  spikePosArr:
+  - {x: -5, y: -2}
+  spikeSizeArr:
+  - {x: 2, y: 2}
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}

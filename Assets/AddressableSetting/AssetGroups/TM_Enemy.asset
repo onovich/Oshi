@@ -10,22 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: TM_Spike
+  m_Name: TM_Enemy
   m_EditorClassIdentifier: 
-  m_GroupName: TM_Spike
+  m_GroupName: TM_Enemy
   m_Data:
     m_SerializedData: []
-  m_GUID: 8cc5a0e8e9b44419196c1d3e7bf2f811
-  m_SerializeEntries:
-  - m_GUID: ad54a4f9fe71e492a8d7534cbc9f484c
-    m_Address: SO_Spike_001
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - TM_Spike
-    FlaggedDuringContentUpdateRestriction: 0
+  m_GUID: 1e8944205dde1490f9cc01e04fc495cb
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bcda1c8e574105f42bf63fc8b4423c66, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 1e76a8b052aec462a86afd7f6b57731d, type: 2}
-    - {fileID: 11400000, guid: 4916fcab2c8b24caebca8cbe5db11518, type: 2}
+    - {fileID: 11400000, guid: f44dd75fb72c94be994b5f00202bf2b0, type: 2}
+    - {fileID: 11400000, guid: db71df1e2a5944328b187fe4353cf801, type: 2}

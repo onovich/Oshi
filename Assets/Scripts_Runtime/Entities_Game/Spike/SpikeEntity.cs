@@ -8,11 +8,13 @@ namespace Alter {
         // Base Info
         public int entityIndex;
         public int typeID;
+        public string typeName;
 
         // Render
-        [SerializeField] public Transform body;
         [SerializeField] SpriteRenderer spr;
-        [SerializeField] BoxCollider2D boxCollider;
+
+        // Size
+        public Vector2Int sizeInt;
 
         // Pos
         public Vector2 Pos => transform.position;
@@ -31,10 +33,9 @@ namespace Alter {
         }
 
         // Size
-        public void Size_SetSize(Vector2 size) {
+        public void Size_SetSize(Vector2Int size) {
             spr.size = size;
-            size.y *= 0.5f;
-            boxCollider.size = size;
+            this.sizeInt = size;
         }
 
         // Mesh
@@ -42,9 +43,8 @@ namespace Alter {
             this.spr.sprite = sp;
         }
 
-        // Rename
-        public void Rename() {
-            this.name = $"Spike - {typeID} - {entityIndex}";
+        public void Mesh_SetMaterial(Material mat) {
+            this.spr.material = mat;
         }
 
         public void TearDown() {

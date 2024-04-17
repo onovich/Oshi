@@ -59,6 +59,15 @@ namespace Alter {
                 ctx.goalHandle = handle;
             }
 
+            {
+                var handle = Addressables.LoadAssetsAsync<SpikeTM>("TM_Spike", null);
+                var spikeList = await handle.Task;
+                foreach (var tm in spikeList) {
+                    ctx.Spike_Add(tm);
+                }
+                ctx.spikeHandle = handle;
+            }
+
         }
 
         public static void Release(TemplateInfraContext ctx) {
@@ -79,6 +88,9 @@ namespace Alter {
             }
             if (ctx.goalHandle.IsValid()) {
                 Addressables.Release(ctx.goalHandle);
+            }
+            if (ctx.spikeHandle.IsValid()) {
+                Addressables.Release(ctx.spikeHandle);
             }
         }
 

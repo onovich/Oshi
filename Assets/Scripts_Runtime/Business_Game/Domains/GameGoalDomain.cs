@@ -16,9 +16,9 @@ namespace Alter {
             return goal;
         }
 
-        public static void UnSpawn(GameBusinessContext ctx, WallEntity wall) {
-            ctx.wallRepo.Remove(wall);
-            wall.TearDown();
+        public static void UnSpawn(GameBusinessContext ctx, GoalEntity goal) {
+            ctx.goalRepo.Remove(goal);
+            goal.TearDown();
         }
 
     }

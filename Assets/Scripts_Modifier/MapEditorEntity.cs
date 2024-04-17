@@ -17,6 +17,7 @@ namespace Alter.Modifier {
         [SerializeField] Transform blockGroup;
         [SerializeField] Transform wallGroup;
         [SerializeField] Transform goalGroup;
+        [SerializeField] Transform spikeGroup;
 
         [Button("Bake")]
         void Bake() {
@@ -25,6 +26,7 @@ namespace Alter.Modifier {
             BakeBlock();
             BakeWall();
             BakeGoal();
+            BakeSpike();
 
             EditorUtility.SetDirty(mapTM);
             AssetDatabase.SaveAssets();
@@ -108,6 +110,27 @@ namespace Alter.Modifier {
             mapTM.goalPosArr = goalPosArr.ToArray();
             mapTM.goalIndexArr = goalIndexArr.ToArray();
             mapTM.goalSizeArr = goalSizeArr.ToArray();
+        }
+
+        void BakeSpike() {
+            var editors = spikeGroup.GetComponentsInChildren<SpikeEditorEntity>();
+            var spikeTMArr = new List<SpikeTM>();
+            var spikePosArr = new List<Vector2Int>();
+            var spikeIndexArr = new List<int>();
+            var spikeSizeArr = new List<Vector2Int>();
+            var index = 0;
+            foreach (var editor in editors) {
+                index += 1;
+                spikeTMArr.Add(editor.spikeTM);
+                spikePosArr.Add(editor.GetPosInt());
+                spikeIndexArr.Add(index);
+                spikeSizeArr.Add(editor.GetSizeInt());
+                editor.Rename(index);
+            }
+            mapTM.spikeTMArr = spikeTMArr.ToArray();
+            mapTM.spikePosArr = spikePosArr.ToArray();
+            mapTM.spikeIndexArr = spikeIndexArr.ToArray();
+            mapTM.spikeSizeArr = spikeSizeArr.ToArray();
         }
 
         void OnDrawGizmos() {

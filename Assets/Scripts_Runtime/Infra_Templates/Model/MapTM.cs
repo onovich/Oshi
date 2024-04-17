@@ -30,6 +30,12 @@ namespace Alter {
         public Vector2Int[] goalPosArr;
         public Vector2Int[] goalSizeArr;
 
+        // Spike
+        public int[] spikeIndexArr;
+        public SpikeTM[] spikeTMArr;
+        public Vector2Int[] spikePosArr;
+        public Vector2Int[] spikeSizeArr;
+
         // Camera
         public Vector2 cameraConfinerWorldMax;
         public Vector2 cameraConfinerWorldMin;

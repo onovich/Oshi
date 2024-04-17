@@ -7,15 +7,29 @@ namespace Alter {
     public class SpikeRepository {
 
         Dictionary<int, SpikeEntity> all;
+        Dictionary<Vector2Int, SpikeEntity> posMap;
         SpikeEntity[] temp;
 
         public SpikeRepository() {
             all = new Dictionary<int, SpikeEntity>();
+            posMap = new Dictionary<Vector2Int, SpikeEntity>();
             temp = new SpikeEntity[1000];
         }
 
         public void Add(SpikeEntity spike) {
             all.Add(spike.entityIndex, spike);
+            GridUtils.ForEachGridBySize(spike.PosInt, spike.sizeInt, (grid) => {
+                posMap.Add(grid, spike);
+            });
+        }
+
+        public bool Has(Vector2Int pos) {
+            return posMap.ContainsKey(pos);
+        }
+
+        public bool HasDifferent(Vector2Int pos, int index) {
+            var has = posMap.TryGetValue(pos, out var block);
+            return has && block.entityIndex != index;
         }
 
         public int TakeAll(out SpikeEntity[] spikes) {
@@ -28,8 +42,20 @@ namespace Alter {
             return count;
         }
 
+        public void UpdatePos(Vector2Int oldPos, SpikeEntity spike) {
+            GridUtils.ForEachGridBySize(oldPos, spike.sizeInt, (grid) => {
+                posMap.Remove(grid);
+            });
+            GridUtils.ForEachGridBySize(spike.PosInt, spike.sizeInt, (grid) => {
+                posMap.Add(grid, spike);
+            });
+        }
+
         public void Remove(SpikeEntity spike) {
             all.Remove(spike.entityIndex);
+            GridUtils.ForEachGridBySize(spike.PosInt, spike.sizeInt, (grid) => {
+                posMap.Remove(grid);
+            });
         }
 
         public bool TryGetSpike(int entityID, out SpikeEntity spike) {
@@ -66,6 +92,8 @@ namespace Alter {
 
         public void Clear() {
             all.Clear();
+            posMap.Clear();
+            Array.Clear(temp, 0, temp.Length);
         }
 
     }

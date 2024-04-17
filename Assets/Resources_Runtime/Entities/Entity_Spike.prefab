@@ -94,8 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3433530738972530475}
   - component: {fileID: 3515467737877843973}
+  - component: {fileID: 89453064353480184}
   m_Layer: 0
-  m_Name: Entity_Wall
+  m_Name: Entity_Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +128,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83bcfc699726f46b2b9111e6a2c92331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityIndex: 0
+  typeID: 0
+  typeName: 
+  spr: {fileID: 6311316222096012042}
+  sizeInt: {x: 0, y: 0}
+--- !u!114 &89453064353480184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6850806134477372502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8064afc96d84542458ee353fb7be5ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   entityIndex: 0

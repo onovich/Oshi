@@ -28,6 +28,43 @@ namespace Alter {
             return map;
         }
 
+        public static SpikeEntity Spike_Spawn(TemplateInfraContext templateInfraContext,
+                                 AssetsInfraContext assetsInfraContext,
+                                 int typeID,
+                                 int index,
+                                 Vector2Int pos,
+                                 Vector2Int size) {
+
+            var has = templateInfraContext.Spike_TryGet(typeID, out var spikeTM);
+            if (!has) {
+                GLog.LogError($"Spike {typeID} not found");
+            }
+
+            var prefab = assetsInfraContext.Entity_GetSpike();
+            var spike = GameObject.Instantiate(prefab).GetComponent<SpikeEntity>();
+            spike.Ctor();
+
+            // Base Info
+            spike.typeID = typeID;
+            spike.entityIndex = index;
+            spike.typeName = spikeTM.typeName;
+
+            // Rename
+            spike.gameObject.name = $"Spike - {spike.typeName} - {spike.entityIndex}";
+
+            // Set Pos
+            spike.Pos_SetPos(pos);
+
+            // Set Size
+            spike.Size_SetSize(size);
+
+            // Set Mesh
+            spike.Mesh_Set(spikeTM.mesh);
+            spike.Mesh_SetMaterial(spikeTM.meshMaterial);
+
+            return spike;
+        }
+
         public static GoalEntity Goal_Spawn(TemplateInfraContext templateInfraContext,
                                  AssetsInfraContext assetsInfraContext,
                                  int typeID,

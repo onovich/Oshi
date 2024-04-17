@@ -70,6 +70,19 @@ namespace Alter {
                 var _ = GameGoalDomain.Spawn(ctx, goalTM.typeID, index, pos, size);
             }
 
+            // Spike
+            var spikeTMArr = mapTM.spikeTMArr;
+            var spikePosArr = mapTM.spikePosArr;
+            var spikeSizeArr = mapTM.spikeSizeArr;
+            var spikeIndexArr = mapTM.spikeIndexArr;
+            for (int i = 0; i < spikeTMArr.Length; i++) {
+                var spikeTM = spikeTMArr[i];
+                var pos = spikePosArr[i];
+                var size = spikeSizeArr[i];
+                var index = spikeIndexArr[i];
+                var _ = GameSpikeDomain.Spawn(ctx, spikeTM.typeID, index, pos, size);
+            }
+
             // Camera
             CameraApp.Init(ctx.cameraContext, owner.transform, Vector2.zero, mapTM.cameraConfinerWorldMax, mapTM.cameraConfinerWorldMin);
 
@@ -189,6 +202,20 @@ namespace Alter {
             for (int i = 0; i < wallLen; i++) {
                 var wall = wallArr[i];
                 GameWallDomain.UnSpawn(ctx, wall);
+            }
+
+            // Goal
+            int goalLen = ctx.goalRepo.TakeAll(out var goalArr);
+            for (int i = 0; i < goalLen; i++) {
+                var goal = goalArr[i];
+                GameGoalDomain.UnSpawn(ctx, goal);
+            }
+
+            // Spike
+            int spikeLen = ctx.spikeRepo.TakeAll(out var spikeArr);
+            for (int i = 0; i < spikeLen; i++) {
+                var spike = spikeArr[i];
+                GameSpikeDomain.UnSpawn(ctx, spike);
             }
 
             // Repo

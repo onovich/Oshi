@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using UnityEngine;
 
 namespace Alter {
 
@@ -40,6 +41,7 @@ namespace Alter {
 
         public void GameOver_DecTimer(float dt) {
             gameOver_enterTime -= dt;
+            gameOver_enterTime = Mathf.Max(0, gameOver_enterTime);
         }
 
         public void Reset() {
