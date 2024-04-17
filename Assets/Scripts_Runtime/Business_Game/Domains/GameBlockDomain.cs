@@ -21,6 +21,16 @@ namespace Alter {
             block.TearDown();
         }
 
+        public static bool ApplyCheckGoal(GameBusinessContext ctx, BlockEntity block) {
+            var pos = block.PosInt;
+            var size = block.sizeInt;
+            var inGoal = true;
+            GridUtils.ForEachGridBySize(pos, size, (grid) => {
+                inGoal &= (ctx.goalRepo.Has(grid));
+            });
+            return inGoal;
+        }
+
     }
 
 }

@@ -89,7 +89,7 @@ namespace Alter {
 
             var config = ctx.templateInfraContext.Config_Get();
             if (time <= 0) {
-                fsm.GameOver_Enter(config.gameResetEnterTime, GameResult.Win);
+                fsm.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
             }
         }
 
@@ -118,7 +118,27 @@ namespace Alter {
             var config = ctx.templateInfraContext.Config_Get();
             if (owner == null || owner.needTearDown) {
                 game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
+                return;
             }
+
+            var inGoal = CheckGoal(ctx);
+            if (inGoal) {
+                game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Win);
+            }
+
+        }
+
+        static bool CheckGoal(GameBusinessContext ctx) {
+            var game = ctx.gameEntity;
+            var fsm = game.fsmComponent;
+
+            bool inGoal = true;
+            var config = ctx.templateInfraContext.Config_Get();
+
+            ctx.Block_ForEach((block) => {
+                inGoal &= GameBlockDomain.ApplyCheckGoal(ctx, block);
+            });
+            return inGoal;
         }
 
         public static void ExitGame(GameBusinessContext ctx) {
@@ -149,6 +169,9 @@ namespace Alter {
                 var wall = wallArr[i];
                 GameWallDomain.UnSpawn(ctx, wall);
             }
+
+            // Repo
+            ctx.Reset();
 
             // UI
             UIApp.GameOver_Close(ctx.uiContext);
