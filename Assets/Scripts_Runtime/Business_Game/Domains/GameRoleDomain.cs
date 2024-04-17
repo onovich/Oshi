@@ -29,6 +29,7 @@ namespace Alter {
 
         public static void ApplyMove(GameBusinessContext ctx, RoleEntity role, float dt) {
             role.Move_ApplyMove(dt);
+            role.Move_ApplyConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos);
         }
 
     }

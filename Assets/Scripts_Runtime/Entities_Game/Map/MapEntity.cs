@@ -11,6 +11,7 @@ namespace Alter {
         [SerializeField] SpriteRenderer spr;
 
         public Vector2 spawnPoint;
+        public Vector2 Pos => transform.position;
 
         public float timer;
 

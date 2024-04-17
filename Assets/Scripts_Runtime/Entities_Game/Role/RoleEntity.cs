@@ -17,6 +17,7 @@ namespace Alter {
         public Vector2 faceDir;
         public int hpMax;
         public int hp;
+        public Vector2 halfSize;
 
         // State
         public bool needTearDown;
@@ -63,6 +64,15 @@ namespace Alter {
         // Move
         public void Move_ApplyMove(float fixdt) {
             Move_Apply(inputCom.moveAxis);
+        }
+
+        public void Move_ApplyConstraint(Vector2 constarintSize, Vector2 contraintCenter) {
+            var pos = transform.position;
+            var min = contraintCenter - constarintSize / 2 + contraintCenter + halfSize;
+            var max = contraintCenter + constarintSize / 2 + contraintCenter - halfSize;
+            pos.x = Mathf.Clamp(pos.x, min.x, max.x);
+            pos.y = Mathf.Clamp(pos.y, min.y, max.y);
+            transform.position = pos;
         }
 
         public void Move_Stop() {

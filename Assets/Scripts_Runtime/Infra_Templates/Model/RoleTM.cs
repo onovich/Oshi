@@ -9,6 +9,7 @@ namespace Alter {
         public int typeID;
         public string typeName;
         public AllyStatus allyStatus;
+        public Vector2Int size;
         public float moveSpeed;
         public int hpMax;
         public RoleMod mod;

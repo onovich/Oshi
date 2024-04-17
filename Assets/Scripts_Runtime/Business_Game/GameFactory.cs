@@ -54,6 +54,7 @@ namespace Alter {
             role.hpMax = roleTM.hpMax;
             role.hp = role.hpMax;
             role.typeName = roleTM.typeName;
+            role.halfSize = (Vector2)roleTM.size / 2;
 
             // Rename
             role.gameObject.name = $"{role.typeName} - {role.entityID}";
