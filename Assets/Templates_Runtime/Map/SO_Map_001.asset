@@ -15,5 +15,9 @@ MonoBehaviour:
   typeID: 1
   mapSize: {x: 20, y: 10}
   spawnPoint: {x: 0, y: -1}
+  blockTMArr:
+  - {fileID: 11400000, guid: 0acbcfa6cf33e470ca47effbf466206a, type: 2}
+  blockPosArr:
+  - {x: 3, y: 3}
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}

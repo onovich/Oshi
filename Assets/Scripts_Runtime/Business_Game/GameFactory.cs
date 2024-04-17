@@ -28,6 +28,33 @@ namespace Alter {
             return map;
         }
 
+        public static BlockEntity Block_Spawn(TemplateInfraContext templateInfraContext,
+                                 AssetsInfraContext assetsInfraContext,
+                                 IDRecordService idRecordService,
+                                 int typeID,
+                                 Vector2 pos) {
+
+            var has = templateInfraContext.Block_TryGet(typeID, out var blockTM);
+            if (!has) {
+                GLog.LogError($"Block {typeID} not found");
+            }
+
+            var prefab = assetsInfraContext.Entity_GetBlock();
+            var block = GameObject.Instantiate(prefab).GetComponent<BlockEntity>();
+            block.Ctor();
+
+            // Base Info
+            block.typeID = typeID;
+
+            // Rename
+            block.gameObject.name = $"Block - {block.typeID}";
+
+            // Set Pos
+            block.Pos_SetPos(pos);
+
+            return block;
+        }
+
         public static RoleEntity Role_Spawn(TemplateInfraContext templateInfraContext,
                                  AssetsInfraContext assetsInfraContext,
                                  IDRecordService idRecordService,

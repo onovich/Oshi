@@ -14,11 +14,13 @@ namespace Alter.Modifier {
         [SerializeField] GameObject mapSize;
         [SerializeField] MapTM mapTM;
         [SerializeField] Transform pointGroup;
+        [SerializeField] Transform blockGroup;
 
         [Button("Bake")]
         void Bake() {
             BakeMapInfo();
             BakeSpawnPoint();
+            BakeBlock();
 
             EditorUtility.SetDirty(mapTM);
             AssetDatabase.SaveAssets();
@@ -38,6 +40,18 @@ namespace Alter.Modifier {
             }
             editor.Rename();
             mapTM.spawnPoint = editor.GetPos();
+        }
+
+        void BakeBlock(){
+            var editors = blockGroup.GetComponentsInChildren<BlockEditorEntity>();
+            var blockTMArr = new List<BlockTM>();
+            var blockPosArr = new List<Vector2Int>();
+            foreach (var editor in editors) {
+                blockTMArr.Add(editor.blockTM);
+                blockPosArr.Add(editor.GetPosInt());
+            }
+            mapTM.blockTMArr = blockTMArr.ToArray();
+            mapTM.blockPosArr = blockPosArr.ToArray();
         }
 
         void OnDrawGizmos() {

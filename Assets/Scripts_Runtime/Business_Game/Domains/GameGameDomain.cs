@@ -32,6 +32,15 @@ namespace Alter {
             player.ownerRoleEntityID = owner.entityID;
             ctx.ownerSpawnPoint = spawnPoint;
 
+            // Block
+            var blockTMArr = mapTM.blockTMArr;
+            var blockPosArr = mapTM.blockPosArr;
+            for (int i = 0; i < blockTMArr.Length; i++) {
+                var blockTM = blockTMArr[i];
+                var pos = blockPosArr[i];
+                var block = GameBlockDomain.Spawn(ctx, blockTM.typeID, pos);
+            }
+
             // Camera
             CameraApp.Init(ctx.cameraContext, owner.transform, Vector2.zero, mapTM.cameraConfinerWorldMax, mapTM.cameraConfinerWorldMin);
 
