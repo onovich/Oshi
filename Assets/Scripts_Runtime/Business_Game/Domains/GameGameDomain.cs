@@ -140,7 +140,7 @@ namespace Alter {
             }
 
             // Check Goal
-            var inGoal = CheckGoal(ctx);
+            var inGoal = CheckInGoal(ctx);
             if (inGoal) {
                 game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Win);
             }
@@ -154,7 +154,7 @@ namespace Alter {
             return false;
         }
 
-        static bool CheckGoal(GameBusinessContext ctx) {
+        static bool CheckInGoal(GameBusinessContext ctx) {
             var game = ctx.gameEntity;
             var fsm = game.fsmComponent;
 
@@ -162,7 +162,7 @@ namespace Alter {
             var config = ctx.templateInfraContext.Config_Get();
 
             ctx.Block_ForEach((block) => {
-                inGoal &= GameBlockDomain.ApplyCheckGoal(ctx, block);
+                inGoal &= GameBlockDomain.CheckInGoal(ctx, block);
             });
             return inGoal;
         }

@@ -63,6 +63,13 @@ namespace Alter {
                     GameRoleDomain.CheckAndUnSpawn(ctx, role);
                 }
 
+                // Block
+                var blockLen = ctx.blockRepo.TakeAll(out var blockArr);
+                for (int i = 0; i < blockLen; i++) {
+                    var block = blockArr[i];
+                    GameBlockDomain.CheckAndResetBlock(ctx, block);
+                }
+
                 // Result
                 GameGameDomain.ApplyGameResult(ctx);
             }

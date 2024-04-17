@@ -165,6 +165,7 @@ namespace Alter {
 
             // Set Pos
             block.Pos_SetPos(pos);
+            block.originalPos = pos;
 
             // Set Size
             block.Size_SetSize(size);

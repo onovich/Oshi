@@ -16,6 +16,7 @@ namespace Alter {
         // Pos
         public Vector2 Pos => transform.position;
         public Vector2Int PosInt => Pos_GetPosInt();
+        public Vector2 originalPos;
 
         // Size
         public Vector2Int sizeInt;

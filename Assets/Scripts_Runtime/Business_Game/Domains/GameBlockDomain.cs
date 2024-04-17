@@ -21,7 +21,7 @@ namespace Alter {
             block.TearDown();
         }
 
-        public static bool ApplyCheckGoal(GameBusinessContext ctx, BlockEntity block) {
+        public static bool CheckInGoal(GameBusinessContext ctx, BlockEntity block) {
             var pos = block.PosInt;
             var size = block.sizeInt;
             var inGoal = true;
@@ -29,6 +29,36 @@ namespace Alter {
                 inGoal &= (ctx.goalRepo.Has(grid));
             });
             return inGoal;
+        }
+
+        static bool CheckInSpike(GameBusinessContext ctx, BlockEntity block) {
+            var pos = block.PosInt;
+            var size = block.sizeInt;
+            var inSpike = false;
+            GridUtils.ForEachGridBySize(pos, size, (grid) => {
+                inSpike |= (ctx.spikeRepo.Has(grid));
+            });
+            return inSpike;
+        }
+
+        static void ResetBlock(GameBusinessContext ctx, BlockEntity block) {
+            var originalPos = block.originalPos;
+            var oldPos = block.PosInt;
+            block.Pos_SetPos(originalPos);
+            ctx.blockRepo.UpdatePos(oldPos, block);
+        }
+
+        public static void CheckAndResetBlock(GameBusinessContext ctx, BlockEntity block) {
+            var owner = ctx.Role_GetOwner();
+            if (owner == null || owner.fsmCom.status != RoleFSMStatus.Idle) {
+                return;
+            }
+
+            var inSpike = CheckInSpike(ctx, block);
+            if (inSpike) {
+                ResetBlock(ctx, block);
+            }
+
         }
 
     }
