@@ -83,6 +83,11 @@ namespace Alter {
             role.typeName = roleTM.typeName;
             role.halfSize = (Vector2)roleTM.size / 2;
 
+            // Set Move
+            role.moveDurationSec = roleTM.moveDurationSec;
+            role.moveEasingType = roleTM.moveEasingType;
+            role.moveEasingMode = roleTM.moveEasingMode;
+
             // Rename
             role.gameObject.name = $"{role.typeName} - {role.entityID}";
 

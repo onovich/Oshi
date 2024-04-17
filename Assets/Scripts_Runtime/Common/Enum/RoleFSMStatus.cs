@@ -4,6 +4,7 @@ namespace Alter {
         
         None,
         Idle,
+        Moving,
         Dead,   
 
     }

@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: ec113d2ed3fd86f4d83791aee1a3f345
   m_SerializeEntries:
   - m_GUID: dc729f3a9797af54185e0ee62c313866
-    m_Address: SO_Role_Onovich
+    m_Address: SO_Role_Cube
     m_ReadOnly: 0
     m_SerializedLabels:
     - TM_Role

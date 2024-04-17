@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: SO_Role_Cube
   m_EditorClassIdentifier: 
   typeID: 1
-  typeName: 
+  typeName: Cube
   allyStatus: 1
   size: {x: 1, y: 1}
   moveSpeed: 6.5
   hpMax: 3
+  moveDurationSec: 0.2
+  moveEasingType: 1
+  moveEasingMode: 1
   mod: {fileID: 3927939327069252055, guid: 3cc0f7a37200a448eb809c199c4326aa, type: 3}
   deadVFX: {fileID: 1046417506903995189, guid: 4cc547ee9ad754a728a343efb6c300c0, type: 3}
   deadVFXDuration: 2

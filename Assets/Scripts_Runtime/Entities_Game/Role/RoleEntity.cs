@@ -1,4 +1,5 @@
 using System;
+using MortiseFrame.Swing;
 using UnityEngine;
 
 namespace Alter {
@@ -18,6 +19,11 @@ namespace Alter {
         public int hpMax;
         public int hp;
         public Vector2 halfSize;
+
+        // Move
+        public float moveDurationSec;
+        public EasingType moveEasingType;
+        public EasingMode moveEasingMode;
 
         // State
         public bool needTearDown;
@@ -62,29 +68,23 @@ namespace Alter {
         }
 
         // Move
-        public void Move_ApplyMove(float fixdt) {
-            Move_Apply(inputCom.moveAxis);
-        }
+        public bool Move_CheckMovable(Vector2 constarintSize, Vector2 contraintCenter) {
+            var moveAxisX = inputCom.moveAxis.x;
+            var moveAxisY = inputCom.moveAxis.y;
+            if (moveAxisX == 0 && moveAxisY == 0) {
+                return false;
+            }
 
-        public void Move_ApplyConstraint(Vector2 constarintSize, Vector2 contraintCenter) {
             var pos = transform.position;
             var min = contraintCenter - constarintSize / 2 + contraintCenter + halfSize;
             var max = contraintCenter + constarintSize / 2 + contraintCenter - halfSize;
-            pos.x = Mathf.Clamp(pos.x, min.x, max.x);
-            pos.y = Mathf.Clamp(pos.y, min.y, max.y);
-            transform.position = pos;
-        }
-
-        public void Move_Stop() {
-            Move_Apply(Vector2.zero);
-        }
-
-        void Move_Apply(Vector2 axis) {
-            var velo = rb.velocity;
-            axis.Normalize();
-            velo.x = axis.x * moveSpeed;
-            velo.y = axis.y * moveSpeed;
-            rb.velocity = velo;
+            if (pos.x + moveAxisX >= max.x || pos.x + moveAxisX <= min.x) {
+                return false;
+            }
+            if (pos.y + moveAxisY >= max.y || pos.y + moveAxisY <= min.y) {
+                return false;
+            }
+            return true;
         }
 
         // Color
@@ -102,11 +102,20 @@ namespace Alter {
         }
 
         public void FSM_EnterIdle() {
-            fsmCom.EnterIdle();
+            fsmCom.Idle_Enter();
+        }
+
+        public void FSM_EnterMoving(float duration) {
+            var start = transform.position;
+            if (inputCom.moveAxis.x != 0 && inputCom.moveAxis.y != 0) {
+                return;
+            }
+            var end = new Vector2(start.x + inputCom.moveAxis.x, start.y + inputCom.moveAxis.y);
+            fsmCom.Moving_Enter(duration, start, end);
         }
 
         public void FSM_EnterDead() {
-            fsmCom.EnterDead();
+            fsmCom.Dead_Enter();
         }
 
         // Mod

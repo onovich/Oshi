@@ -1,3 +1,5 @@
+using System;
+using MortiseFrame.Swing;
 using UnityEngine;
 
 namespace Alter {
@@ -27,9 +29,23 @@ namespace Alter {
             role.TearDown();
         }
 
-        public static void ApplyMove(GameBusinessContext ctx, RoleEntity role, float dt) {
-            role.Move_ApplyMove(dt);
-            role.Move_ApplyConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos);
+        public static void ApplyEasingMove(GameBusinessContext ctx, RoleEntity role, float dt, Action onEnd) {
+            var fsm = role.fsmCom;
+            var start = fsm.moving_start;
+            var end = fsm.moving_end;
+            var durationSec = fsm.moving_durationSec;
+            var currentSec = fsm.moving_currentSec;
+            var currentPos = EasingHelper.Easing2D(start, end, currentSec, durationSec, role.moveEasingType, role.moveEasingMode);
+            role.Pos_SetPos(currentPos);
+            fsm.Moving_IncTimer(dt);
+            if (currentSec >= durationSec) {
+                role.Pos_SetPos(end);
+                onEnd.Invoke();
+            }
+        }
+
+        public static bool CheckMovable(GameBusinessContext ctx, RoleEntity role) {
+            return role.Move_CheckMovable(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos);
         }
 
     }
