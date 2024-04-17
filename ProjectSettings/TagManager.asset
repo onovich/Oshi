@@ -50,6 +50,9 @@ TagManager:
   - name: Terrain
     uniqueID: 3378315267
     locked: 0
+  - name: Goal
+    uniqueID: 2459279875
+    locked: 0
   - name: Block
     uniqueID: 3650437459
     locked: 0

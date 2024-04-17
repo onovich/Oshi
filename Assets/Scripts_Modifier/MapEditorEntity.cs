@@ -24,6 +24,7 @@ namespace Alter.Modifier {
             BakeSpawnPoint();
             BakeBlock();
             BakeWall();
+            BakeGoal();
 
             EditorUtility.SetDirty(mapTM);
             AssetDatabase.SaveAssets();
@@ -34,6 +35,7 @@ namespace Alter.Modifier {
             mapTM.typeID = typeID;
             mapTM.mapSize = mapSize.GetComponent<SpriteRenderer>().size.RoundToVector2Int();
             mapSize.GetComponent<SpriteRenderer>().size = mapTM.mapSize;
+            mapSize.transform.position = -(mapTM.mapSize / 2).ToVector3Int();
         }
 
         void BakeSpawnPoint() {
@@ -87,7 +89,7 @@ namespace Alter.Modifier {
             mapTM.wallSizeArr = wallSizeArr.ToArray();
         }
 
-        void BakeGold(){
+        void BakeGoal() {
             var editors = goalGroup.GetComponentsInChildren<GoalEditorEntity>();
             var goalTMArr = new List<GoalTM>();
             var goalPosArr = new List<Vector2Int>();

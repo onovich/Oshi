@@ -28,7 +28,7 @@ namespace Alter {
             return map;
         }
 
-        public static GoalEntity Gole_Spawn(TemplateInfraContext templateInfraContext,
+        public static GoalEntity Goal_Spawn(TemplateInfraContext templateInfraContext,
                                  AssetsInfraContext assetsInfraContext,
                                  int typeID,
                                  int index,

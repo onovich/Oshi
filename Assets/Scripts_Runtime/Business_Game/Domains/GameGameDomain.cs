@@ -57,6 +57,19 @@ namespace Alter {
                 var _ = GameWallDomain.Spawn(ctx, wallTM.typeID, index, pos, size);
             }
 
+            // Goal
+            var goalTMArr = mapTM.goalTMArr;
+            var goalPosArr = mapTM.goalPosArr;
+            var goalSizeArr = mapTM.goalSizeArr;
+            var goalIndexArr = mapTM.goalIndexArr;
+            for (int i = 0; i < goalTMArr.Length; i++) {
+                var goalTM = goalTMArr[i];
+                var pos = goalPosArr[i];
+                var size = goalSizeArr[i];
+                var index = goalIndexArr[i];
+                var _ = GameGoalDomain.Spawn(ctx, goalTM.typeID, index, pos, size);
+            }
+
             // Camera
             CameraApp.Init(ctx.cameraContext, owner.transform, Vector2.zero, mapTM.cameraConfinerWorldMax, mapTM.cameraConfinerWorldMin);
 

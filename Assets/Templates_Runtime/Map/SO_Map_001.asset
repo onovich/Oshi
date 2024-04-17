@@ -29,5 +29,12 @@ MonoBehaviour:
   - {x: 2, y: -2}
   wallSizeArr:
   - {x: 2, y: 2}
+  goalIndexArr: 01000000
+  goalTMArr:
+  - {fileID: 11400000, guid: df7a47281712845798ed4565588d236d, type: 2}
+  goalPosArr:
+  - {x: -8, y: -2}
+  goalSizeArr:
+  - {x: 1, y: 2}
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}

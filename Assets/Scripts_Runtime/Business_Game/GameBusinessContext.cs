@@ -16,6 +16,7 @@ namespace Alter {
         public BlockRepository blockRepo;
         public SpikeRepository spikeRepo;
         public WallRepository wallRepo;
+        public GoalRepository goalRepo;
 
         // App
         public UIAppContext uiContext;
@@ -49,6 +50,7 @@ namespace Alter {
             blockRepo = new BlockRepository();
             spikeRepo = new SpikeRepository();
             wallRepo = new WallRepository();
+            goalRepo = new GoalRepository();
             hitResults = new RaycastHit2D[100];
         }
 
@@ -57,6 +59,8 @@ namespace Alter {
             roleRepo.Clear();
             blockRepo.Clear();
             spikeRepo.Clear();
+            wallRepo.Clear();
+            goalRepo.Clear();
         }
 
         // Role
