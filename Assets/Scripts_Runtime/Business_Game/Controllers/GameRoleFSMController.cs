@@ -32,7 +32,6 @@ namespace Alter {
 
             // Move
             GameRoleDomain.ApplyMove(ctx, role, fixdt);
-
         }
 
         static void FixedTickFSM_Dead(GameBusinessContext ctx, RoleEntity role, float fixdt) {

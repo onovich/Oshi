@@ -6,7 +6,7 @@ namespace Alter {
 
     public class InputEntity {
 
-        public Vector2 skillAxis;
+        public Vector2 moveAxis;
 
         InputKeybindingComponent keybindingCom;
 
@@ -16,11 +16,17 @@ namespace Alter {
 
         public void ProcessInput(Camera camera, float dt) {
 
-            if (keybindingCom.IsKeyDown(InputKeyEnum.MoveLeft)) {
-                skillAxis.x = -1;
+            if (keybindingCom.IsKeyPressing(InputKeyEnum.MoveLeft)) {
+                moveAxis.x = -1;
             }
-            if (keybindingCom.IsKeyDown(InputKeyEnum.MoveRight)) {
-                skillAxis.x = 1;
+            if (keybindingCom.IsKeyPressing(InputKeyEnum.MoveRight)) {
+                moveAxis.x = 1;
+            }
+            if (keybindingCom.IsKeyPressing(InputKeyEnum.MoveUp)) {
+                moveAxis.y = 1;
+            }
+            if (keybindingCom.IsKeyPressing(InputKeyEnum.MoveDown)) {
+                moveAxis.y = -1;
             }
         }
 
@@ -29,7 +35,7 @@ namespace Alter {
         }
 
         public void Reset() {
-            skillAxis = Vector2.zero;
+            moveAxis = Vector2.zero;
         }
 
     }

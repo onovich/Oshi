@@ -10,7 +10,7 @@ namespace Alter {
         public static void Owner_BakeInput(GameBusinessContext ctx, RoleEntity owner) {
             InputEntity inputEntity = ctx.inputEntity;
             ref RoleInputComponent inputCom = ref owner.inputCom;
-            inputCom.skillAxis = inputEntity.skillAxis;
+            inputCom.moveAxis = inputEntity.moveAxis;
         }
 
     }

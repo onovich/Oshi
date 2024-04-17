@@ -58,9 +58,6 @@ namespace Alter {
             // Set Pos
             role.Pos_SetPos(pos);
 
-            // Set Dir
-            role.Move_SetFace(direction);
-
             // Set Mod
             var modPrefab = roleTM.mod;
             var mod = GameObject.Instantiate(modPrefab, role.body).GetComponent<RoleMod>();

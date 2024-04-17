@@ -17,7 +17,7 @@ namespace Alter {
         public Vector2 faceDir;
         public int hpMax;
         public int hp;
-        
+
         // State
         public bool needTearDown;
 
@@ -61,39 +61,20 @@ namespace Alter {
         }
 
         // Move
-        public void Move_ApplyMove(float dt) {
-            float dir = 0f;
-            if (allyStatus == AllyStatus.Player) {
-                dir = inputCom.skillAxis.x;
-            } else if (allyStatus == AllyStatus.Enemy) {
-                dir = faceDir.x;
-                Move_Apply(dir, Attr_GetMoveSpeed(), dt);
-            } else {
-                GLog.LogError($"Move_ApplyMove: unknown allyStatus: {allyStatus}");
-            }
-            Move_SetFace(dir * Vector2.right);
+        public void Move_ApplyMove(float fixdt) {
+            Move_Apply(inputCom.moveAxis);
         }
 
         public void Move_Stop() {
-            Move_Apply(0, 0, 0);
+            Move_Apply(Vector2.zero);
         }
 
-        void Move_Apply(float xAxis, float moveSpeed, float fixdt) {
+        void Move_Apply(Vector2 axis) {
             var velo = rb.velocity;
-            velo.x = xAxis * moveSpeed;
+            axis.Normalize();
+            velo.x = axis.x * moveSpeed;
+            velo.y = axis.y * moveSpeed;
             rb.velocity = velo;
-        }
-
-        public void Move_SetFace(Vector2 moveDir) {
-            if (moveDir != Vector2.zero) {
-                faceDir = moveDir;
-            }
-
-            if (moveDir.x != 0) {
-                body.localScale = new Vector3(Mathf.Abs(body.localScale.x) * -Mathf.Sign(moveDir.x),
-                                              body.localScale.y,
-                                              body.localScale.z);
-            }
         }
 
         // Color
