@@ -43,8 +43,12 @@ namespace Alter {
         }
 
         public void UpdatePos(Vector2Int oldPos, BlockEntity block) {
-            posMap.Remove(oldPos);
-            posMap.Add(block.PosInt, block);
+            GridUtils.ForEachGridBySize(oldPos, block.sizeInt, (grid) => {
+                posMap.Remove(grid);
+            });
+            GridUtils.ForEachGridBySize(block.PosInt, block.sizeInt, (grid) => {
+                posMap.Add(grid, block);
+            });
         }
 
         public void Remove(BlockEntity block) {
