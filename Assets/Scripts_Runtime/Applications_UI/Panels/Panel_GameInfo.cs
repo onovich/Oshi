@@ -9,13 +9,17 @@ namespace Alter.UI {
     public class Panel_GameInfo : MonoBehaviour, IPanel {
 
         [SerializeField] Text timeText;
-        [SerializeField] RectTransform hpRoot;
+        [SerializeField] Text gameStageCounterText;
 
         public void Ctor() {
         }
 
         public void RefreshTime(float time) {
             timeText.text = time.ToString("F0");
+        }
+
+        public void RefreshGameStageCounter(int counter) {
+            gameStageCounterText.text = counter.ToString();
         }
 
     }

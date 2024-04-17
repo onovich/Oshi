@@ -40,6 +40,7 @@ namespace Alter {
             fsm.Moving_IncTimer(dt);
             if (currentSec >= durationSec) {
                 role.Pos_SetPos(end);
+                role.State_IncStageCounter();
                 onEnd.Invoke();
             }
         }

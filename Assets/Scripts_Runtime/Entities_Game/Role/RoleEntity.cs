@@ -27,6 +27,7 @@ namespace Alter {
 
         // State
         public bool needTearDown;
+        public int stageCounter;
 
         // FSM
         public RoleFSMComponent fsmCom;
@@ -51,6 +52,7 @@ namespace Alter {
         public void Ctor() {
             fsmCom = new RoleFSMComponent();
             inputCom = new RoleInputComponent();
+            stageCounter = 0;
         }
 
         // Pos
@@ -65,6 +67,11 @@ namespace Alter {
         // Attr
         public float Attr_GetMoveSpeed() {
             return moveSpeed;
+        }
+
+        // State
+        public void State_IncStageCounter() {
+            stageCounter++;
         }
 
         // Move

@@ -100,6 +100,7 @@ namespace Alter {
 
                 // UI
                 UIApp.GameInfo_RefreshTime(ctx.uiContext, game.fsmComponent.gaming_gameTime);
+                UIApp.GameInfo_RefreshGameStageCounter(ctx.uiContext, owner.stageCounter);
 
             }
             // VFX

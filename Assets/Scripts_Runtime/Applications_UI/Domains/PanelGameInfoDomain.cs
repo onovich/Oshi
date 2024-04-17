@@ -23,6 +23,14 @@ namespace Alter.UI {
             panel.RefreshTime(time);
         }
 
+        public static void RefreshGameStageCounter(UIAppContext ctx, int counter) {
+            var has = ctx.UniquePanel_TryGet<Panel_GameInfo>(out var panel);
+            if (!has) {
+                return;
+            }
+            panel.RefreshGameStageCounter(counter);
+        }
+
         public static void Close(UIAppContext ctx) {
             var has = ctx.UniquePanel_TryGet<Panel_GameOver>(out var panel);
             if (!has) {
