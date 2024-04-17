@@ -19,7 +19,7 @@ MonoBehaviour:
   blockTMArr:
   - {fileID: 11400000, guid: 0acbcfa6cf33e470ca47effbf466206a, type: 2}
   blockPosArr:
-  - {x: 2, y: 3}
+  - {x: 2, y: 2}
   blockSizeArr:
   - {x: 1, y: 2}
   wallIndexArr: 01000000
