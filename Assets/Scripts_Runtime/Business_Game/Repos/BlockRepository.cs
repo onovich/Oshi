@@ -23,6 +23,10 @@ namespace Alter {
             });
         }
 
+        public bool Has(Vector2Int pos) {
+            return posMap.ContainsKey(pos);
+        }
+
         public int TakeAll(out BlockEntity[] blocks) {
             int count = all.Count;
             if (count > temp.Length) {

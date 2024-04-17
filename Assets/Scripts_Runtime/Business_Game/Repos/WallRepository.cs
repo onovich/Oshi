@@ -18,7 +18,13 @@ namespace Alter {
 
         public void Add(WallEntity wall) {
             all.Add(wall.entityIndex, wall);
-            posMap.Add(wall.PosInt, wall);
+            GridUtils.ForEachGridBySize(wall.PosInt, wall.sizeInt, (grid) => {
+                posMap.Add(grid, wall);
+            });
+        }
+
+        public bool Has(Vector2Int pos) {
+            return posMap.ContainsKey(pos);
         }
 
         public int TakeAll(out WallEntity[] walls) {
@@ -38,7 +44,9 @@ namespace Alter {
 
         public void Remove(WallEntity wall) {
             all.Remove(wall.entityIndex);
-            posMap.Remove(wall.PosInt);
+            GridUtils.ForEachGridBySize(wall.PosInt, wall.sizeInt, (grid) => {
+                posMap.Remove(grid);
+            });
         }
 
         public bool TryGetWall(int entityID, out WallEntity wall) {

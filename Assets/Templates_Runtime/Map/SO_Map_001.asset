@@ -21,13 +21,13 @@ MonoBehaviour:
   blockPosArr:
   - {x: 2, y: 3}
   blockSizeArr:
-  - {x: 1, y: 1}
+  - {x: 1, y: 2}
   wallIndexArr: 00000000
   wallTMArr:
   - {fileID: 11400000, guid: 164f8d450169043389c59f12bb12963f, type: 2}
   wallPosArr:
   - {x: 2, y: -2}
   wallSizeArr:
-  - {x: 2, y: 1}
+  - {x: 2, y: 2}
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}

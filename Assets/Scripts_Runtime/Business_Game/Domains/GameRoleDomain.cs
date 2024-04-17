@@ -45,7 +45,10 @@ namespace Alter {
         }
 
         public static bool CheckMovable(GameBusinessContext ctx, RoleEntity role) {
-            return role.Move_CheckMovable(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos);
+            var allow = role.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos);
+            allow &= ctx.blockRepo.Has(role.Pos_GetNextGrid()) == false;
+            allow &= ctx.wallRepo.Has(role.Pos_GetNextGrid()) == false;
+            return allow;
         }
 
     }

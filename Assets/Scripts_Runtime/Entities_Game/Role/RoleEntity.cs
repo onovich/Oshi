@@ -50,6 +50,7 @@ namespace Alter {
 
         // Pos
         public Vector2 Pos => Pos_GetPos();
+        public Vector2Int PosInt => Pos_GetPos().RoundToVector2Int();
 
         public void Ctor() {
             fsmCom = new RoleFSMComponent();
@@ -65,6 +66,14 @@ namespace Alter {
 
         Vector2 Pos_GetPos() {
             return transform.position;
+        }
+
+        public Vector2Int Pos_GetNextGrid() {
+            var axis = inputCom.moveAxis;
+            if (axis.x != 0 && axis.y != 0) {
+                axis = Vector2Int.zero;
+            }
+            return PosInt + inputCom.moveAxis;
         }
 
         // Size
@@ -85,7 +94,7 @@ namespace Alter {
         }
 
         // Move
-        public bool Move_CheckMovable(Vector2 constarintSize, Vector2 contraintCenter) {
+        public bool Move_CheckConstraint(Vector2 constarintSize, Vector2 constraintCenter) {
             var moveAxisX = inputCom.moveAxis.x;
             var moveAxisY = inputCom.moveAxis.y;
             if (moveAxisX == 0 && moveAxisY == 0) {
@@ -93,8 +102,8 @@ namespace Alter {
             }
 
             var pos = transform.position;
-            var min = contraintCenter - constarintSize / 2 + contraintCenter + halfSize;
-            var max = contraintCenter + constarintSize / 2 + contraintCenter - halfSize;
+            var min = constraintCenter - constarintSize / 2 + constraintCenter + halfSize;
+            var max = constraintCenter + constarintSize / 2 + constraintCenter - halfSize;
             if (pos.x + moveAxisX >= max.x || pos.x + moveAxisX <= min.x) {
                 return false;
             }

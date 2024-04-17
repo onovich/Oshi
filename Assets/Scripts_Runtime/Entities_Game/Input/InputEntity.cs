@@ -6,7 +6,7 @@ namespace Alter {
 
     public class InputEntity {
 
-        public Vector2 moveAxis;
+        public Vector2Int moveAxis;
 
         InputKeybindingComponent keybindingCom;
 
@@ -35,7 +35,7 @@ namespace Alter {
         }
 
         public void Reset() {
-            moveAxis = Vector2.zero;
+            moveAxis = Vector2Int.zero;
         }
 
     }
