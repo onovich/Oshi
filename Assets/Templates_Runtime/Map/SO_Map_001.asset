@@ -15,13 +15,16 @@ MonoBehaviour:
   typeID: 1
   mapSize: {x: 20, y: 10}
   spawnPoint: {x: 0, y: -1}
-  blockIndexArr: 01000000
+  blockIndexArr: 0100000002000000
   blockTMArr:
+  - {fileID: 11400000, guid: 0acbcfa6cf33e470ca47effbf466206a, type: 2}
   - {fileID: 11400000, guid: 0acbcfa6cf33e470ca47effbf466206a, type: 2}
   blockPosArr:
   - {x: 2, y: 2}
+  - {x: 4, y: -2}
   blockSizeArr:
   - {x: 1, y: 2}
+  - {x: 2, y: 2}
   wallIndexArr: 01000000
   wallTMArr:
   - {fileID: 11400000, guid: 164f8d450169043389c59f12bb12963f, type: 2}
@@ -33,15 +36,15 @@ MonoBehaviour:
   goalTMArr:
   - {fileID: 11400000, guid: df7a47281712845798ed4565588d236d, type: 2}
   goalPosArr:
-  - {x: -8, y: -2}
+  - {x: -8, y: -5}
   goalSizeArr:
-  - {x: 1, y: 2}
+  - {x: 3, y: 2}
   spikeIndexArr: 01000000
   spikeTMArr:
   - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}
   spikePosArr:
   - {x: -5, y: -2}
   spikeSizeArr:
-  - {x: 2, y: 2}
+  - {x: 1, y: 1}
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}
