@@ -22,6 +22,7 @@ namespace Alter {
 
         public void SetSprSize(Vector2Int size) {
             spr.size = size;
+            spr.transform.position -= new Vector3(size.x / 2, size.y / 2, 0);
         }
 
         public void IncTimer(float dt) {

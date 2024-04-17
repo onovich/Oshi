@@ -34,6 +34,10 @@ namespace Alter {
             }
 
             // Move
+            if (role.inputCom.moveAxis.x == 0 && role.inputCom.moveAxis.y == 0) {
+                return;
+            }
+
             var succ = GameRoleDomain.CheckMovable(ctx, role);
             if (!succ) {
                 return;
@@ -60,6 +64,7 @@ namespace Alter {
 
             // Move & Push
             GameRoleDomain.ApplyEasingMoveAndPush(ctx, role, fixdt, () => {
+                role.State_IncStageCounter();
                 role.FSM_EnterIdle();
             });
 

@@ -106,14 +106,9 @@ namespace Alter {
         public bool Move_CheckConstraint(Vector2 constarintSize, Vector2 constraintCenter) {
             var moveAxisX = inputCom.moveAxis.x;
             var moveAxisY = inputCom.moveAxis.y;
-            if (moveAxisX == 0 && moveAxisY == 0) {
-                return false;
-            }
-
             var pos = transform.position;
-            var min = constraintCenter - constarintSize / 2 + constraintCenter - size;
+            var min = constraintCenter - constarintSize / 2 + constraintCenter - Vector2.one;
             var max = constraintCenter + constarintSize / 2 + constraintCenter;
-
             if (pos.x + moveAxisX >= max.x || pos.x + moveAxisX <= min.x) {
                 return false;
             }

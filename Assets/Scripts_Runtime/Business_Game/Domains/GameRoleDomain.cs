@@ -66,7 +66,6 @@ namespace Alter {
             fsm.Moving_IncTimer(dt);
             if (currentSec >= durationSec) {
                 role.Pos_SetPos(end);
-                role.State_IncStageCounter();
                 onEnd.Invoke();
             }
         }
@@ -105,7 +104,7 @@ namespace Alter {
             GridUtils.ForEachGridBySize(block.PosInt, block.sizeInt, (grid) => {
                 allow &= ctx.wallRepo.Has(grid) == false;
                 allow &= ctx.blockRepo.HasDifferent(grid, _block.entityIndex) == false;
-                allow &= _block.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, role.Pos_GetNextDir());
+                allow &= _block.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, grid, role.Pos_GetNextDir());
             });
 
             return allow;

@@ -35,9 +35,8 @@ namespace Alter {
         }
 
         // Push
-        public bool Move_CheckConstraint(Vector2 constraintSize, Vector2 constraintCenter, Vector2 axis) {
-            var pos = transform.position;
-            var min = constraintCenter - constraintSize / 2 + constraintCenter - sizeInt;
+        public bool Move_CheckConstraint(Vector2 constraintSize, Vector2 constraintCenter, Vector2 pos, Vector2 axis) {
+            var min = constraintCenter - constraintSize / 2 + constraintCenter - Vector2.one;
             var max = constraintCenter + constraintSize / 2 + constraintCenter;
             if (pos.x + axis.x >= max.x || pos.x + axis.x <= min.x) {
                 return false;
