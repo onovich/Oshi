@@ -27,6 +27,11 @@ namespace Alter {
             return posMap.ContainsKey(pos);
         }
 
+        public bool HasDifferent(Vector2Int pos, int index) {
+            var has = posMap.TryGetValue(pos, out var block);
+            return has && block.entityIndex != index;
+        }
+
         public int TakeAll(out WallEntity[] walls) {
             int count = all.Count;
             if (count > temp.Length) {
@@ -37,9 +42,13 @@ namespace Alter {
             return count;
         }
 
-        public void ChangePos(Vector2Int oldPos, WallEntity wall) {
-            posMap.Remove(oldPos);
-            posMap.Add(wall.PosInt, wall);
+        public void UpdatePos(Vector2Int oldPos, WallEntity wall) {
+            GridUtils.ForEachGridBySize(oldPos, wall.sizeInt, (grid) => {
+                posMap.Remove(grid);
+            });
+            GridUtils.ForEachGridBySize(wall.PosInt, wall.sizeInt, (grid) => {
+                posMap.Add(grid, wall);
+            });
         }
 
         public void Remove(WallEntity wall) {
