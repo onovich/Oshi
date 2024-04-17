@@ -19,7 +19,6 @@ namespace Alter {
         public int hp;
 
         // Size
-        public Vector2 halfSize;
         public Vector2 size;
 
         // Move
@@ -88,7 +87,6 @@ namespace Alter {
         // Size
         public void Size_SetSize(Vector2 size) {
             spr.size = size;
-            halfSize = size / 2;
             this.size = size;
         }
 
@@ -118,11 +116,19 @@ namespace Alter {
             return true;
         }
 
-        // Color
-        public void Color_SetAlpha(float alpha) {
+        // Mesh
+        public void Mesh_Set(Sprite sp) {
+            spr.sprite = sp;
+        }
+
+        public void Mesh_SetAlpha(float alpha) {
             var color = spr.color;
             color.a = alpha;
             spr.color = color;
+        }
+
+        public void Mesh_SetMaterial(Material mat) {
+            this.spr.material = mat;
         }
 
         // FSM

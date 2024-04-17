@@ -8,6 +8,8 @@ namespace Alter {
 
         public int typeID;
         public string typeName;
+        public Sprite mesh;
+        public Material meshMaterial;
         
     }
 

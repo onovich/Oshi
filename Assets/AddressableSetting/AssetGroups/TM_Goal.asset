@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: TM_Role
+  m_Name: TM_Goal
   m_EditorClassIdentifier: 
-  m_GroupName: TM_Role
+  m_GroupName: TM_Goal
   m_Data:
     m_SerializedData: []
-  m_GUID: ec113d2ed3fd86f4d83791aee1a3f345
+  m_GUID: a5725797805a942928365f5cbd1ef600
   m_SerializeEntries:
-  - m_GUID: dc729f3a9797af54185e0ee62c313866
-    m_Address: SO_Role_001
+  - m_GUID: df7a47281712845798ed4565588d236d
+    m_Address: SO_Goal_001
     m_ReadOnly: 0
     m_SerializedLabels:
-    - TM_Role
+    - TM_Goal
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bcda1c8e574105f42bf63fc8b4423c66, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 44be2e51b5da59c4a8aeabe3740b5564, type: 2}
-    - {fileID: 11400000, guid: 17c8a4096d78e06428ba4944a8e2cffc, type: 2}
+    - {fileID: 11400000, guid: e4affce59a9b6498da208568a49cf506, type: 2}
+    - {fileID: 11400000, guid: fe809098bf34c43c39e77c696af0dae1, type: 2}

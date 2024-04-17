@@ -20,7 +20,7 @@ namespace Alter {
             timer = 0;
         }
 
-        public void SetSprSize(Vector2Int size) {
+        public void Mesh_SetSize(Vector2Int size) {
             spr.size = size;
             spr.transform.position -= new Vector3(size.x / 2, size.y / 2, 0);
         }

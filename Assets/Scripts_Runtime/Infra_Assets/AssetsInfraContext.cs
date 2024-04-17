@@ -64,6 +64,14 @@ namespace Alter {
             return prefab;
         }
 
+        public GameObject Entity_GetGoal() {
+            var has = Entity_TryGet("Entity_Goal", out var prefab);
+            if (!has) {
+                GLog.LogError($"Entity Goal not found");
+            }
+            return prefab;
+        }
+
     }
 
 }

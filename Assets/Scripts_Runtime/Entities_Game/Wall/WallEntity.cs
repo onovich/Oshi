@@ -11,11 +11,9 @@ namespace Alter {
         public string typeName;
 
         // Render
-        [SerializeField] public Transform body;
         [SerializeField] SpriteRenderer spr;
 
         // Size
-        public Vector2 halfSize;
         public Vector2Int sizeInt;
 
         // Pos
@@ -38,12 +36,15 @@ namespace Alter {
         public void Size_SetSize(Vector2Int size) {
             spr.size = size;
             this.sizeInt = size;
-            halfSize = size / 2;
         }
 
         // Mesh
         public void Mesh_Set(Sprite sp) {
             this.spr.sprite = sp;
+        }
+
+        public void Mesh_SetMaterial(Material mat) {
+            this.spr.material = mat;
         }
 
         public void TearDown() {

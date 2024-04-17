@@ -25,6 +25,8 @@ namespace Alter {
         [Header("Role Render")]
         public GameObject deadVFX;
         public float deadVFXDuration;
+        public Sprite mesh;
+        public Material meshMaterial;
         
     }
 

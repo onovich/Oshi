@@ -20,11 +20,15 @@ namespace Alter {
         Dictionary<int, WallTM> wallDict;
         public AsyncOperationHandle wallHandle;
 
+        Dictionary<int, GoalTM> goalDict;
+        public AsyncOperationHandle goalHandle;
+
         public TemplateInfraContext() {
             mapDict = new Dictionary<int, MapTM>();
             roleDict = new Dictionary<int, RoleTM>();
             blockDict = new Dictionary<int, BlockTM>();
             wallDict = new Dictionary<int, WallTM>();
+            goalDict = new Dictionary<int, GoalTM>();
         }
 
         // Game
@@ -88,12 +92,26 @@ namespace Alter {
             return has;
         }
 
+        // Goal
+        public void Goal_Add(GoalTM goal) {
+            goalDict.Add(goal.typeID, goal);
+        }
+
+        public bool Goal_TryGet(int typeID, out GoalTM goal) {
+            var has = goalDict.TryGetValue(typeID, out goal);
+            if (!has) {
+                GLog.LogError($"Goal {typeID} not found");
+            }
+            return has;
+        }
+
         // Clear
         public void Clear() {
             mapDict.Clear();
             roleDict.Clear();
             blockDict.Clear();
             wallDict.Clear();
+            goalDict.Clear();
         }
 
     }

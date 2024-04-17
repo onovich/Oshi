@@ -50,6 +50,15 @@ namespace Alter {
                 ctx.wallHandle = handle;
             }
 
+            {
+                var handle = Addressables.LoadAssetsAsync<GoalTM>("TM_Goal", null);
+                var goalList = await handle.Task;
+                foreach (var tm in goalList) {
+                    ctx.Goal_Add(tm);
+                }
+                ctx.goalHandle = handle;
+            }
+
         }
 
         public static void Release(TemplateInfraContext ctx) {
@@ -67,6 +76,9 @@ namespace Alter {
             }
             if (ctx.wallHandle.IsValid()) {
                 Addressables.Release(ctx.wallHandle);
+            }
+            if (ctx.goalHandle.IsValid()) {
+                Addressables.Release(ctx.goalHandle);
             }
         }
 

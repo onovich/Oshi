@@ -24,6 +24,12 @@ namespace Alter {
         public Vector2Int[] wallPosArr;
         public Vector2Int[] wallSizeArr;
 
+        // Goal
+        public int[] goalIndexArr;
+        public GoalTM[] goalTMArr;
+        public Vector2Int[] goalPosArr;
+        public Vector2Int[] goalSizeArr;
+
         // Camera
         public Vector2 cameraConfinerWorldMax;
         public Vector2 cameraConfinerWorldMin;

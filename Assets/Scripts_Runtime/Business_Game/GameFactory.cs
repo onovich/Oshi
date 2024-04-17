@@ -19,13 +19,50 @@ namespace Alter {
             map.typeID = typeID;
             map.mapSize = mapTM.mapSize;
 
-            // Set Spr
-            map.SetSprSize(map.mapSize);
+            // Set Mesh
+            map.Mesh_SetSize(map.mapSize);
 
             // Set Point
             map.spawnPoint = mapTM.spawnPoint;
 
             return map;
+        }
+
+        public static GoalEntity Gole_Spawn(TemplateInfraContext templateInfraContext,
+                                 AssetsInfraContext assetsInfraContext,
+                                 int typeID,
+                                 int index,
+                                 Vector2Int pos,
+                                 Vector2Int size) {
+
+            var has = templateInfraContext.Goal_TryGet(typeID, out var goalTM);
+            if (!has) {
+                GLog.LogError($"Goal {typeID} not found");
+            }
+
+            var prefab = assetsInfraContext.Entity_GetGoal();
+            var goal = GameObject.Instantiate(prefab).GetComponent<GoalEntity>();
+            goal.Ctor();
+
+            // Base Info
+            goal.typeID = typeID;
+            goal.entityIndex = index;
+            goal.typeName = goalTM.typeName;
+
+            // Rename
+            goal.gameObject.name = $"Goal - {goal.typeName} - {goal.entityIndex}";
+
+            // Set Pos
+            goal.Pos_SetPos(pos);
+
+            // Set Size
+            goal.Size_SetSize(size);
+
+            // Set Mesh
+            goal.Mesh_Set(goalTM.mesh);
+            goal.Mesh_SetMaterial(goalTM.meshMaterial);
+
+            return goal;
         }
 
         public static WallEntity Wall_Spawn(TemplateInfraContext templateInfraContext,
@@ -57,6 +94,10 @@ namespace Alter {
 
             // Set Size
             wall.Size_SetSize(size);
+
+            // Set Mesh
+            wall.Mesh_Set(wallTM.mesh);
+            wall.Mesh_SetMaterial(wallTM.meshMaterial);
 
             return wall;
         }
@@ -90,6 +131,10 @@ namespace Alter {
 
             // Set Size
             block.Size_SetSize(size);
+
+            // Set Mesh
+            block.Mesh_Set(blockTM.mesh);
+            block.Mesh_SetMaterial(blockTM.meshMaterial);
 
             return block;
         }
@@ -141,6 +186,10 @@ namespace Alter {
             // Set VFX
             role.deadVFXName = roleTM.deadVFX.name;
             role.deadVFXDuration = roleTM.deadVFXDuration;
+
+            // Set Mesh
+            role.Mesh_Set(roleTM.mesh);
+            role.Mesh_SetMaterial(roleTM.meshMaterial);
 
             return role;
         }

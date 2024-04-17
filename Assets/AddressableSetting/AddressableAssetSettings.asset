@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3368427c563dd264aa2611a0613372e2, type: 2}
   - {fileID: 11400000, guid: e19464c8314cc4c4d946f1c618856aa4, type: 2}
   - {fileID: 11400000, guid: 82a184c5b1d2f4156bd82b5f5058044a, type: 2}
+  - {fileID: 11400000, guid: 4c4800b4216404a3d8004e68050dc916, type: 2}
   - {fileID: 11400000, guid: 4e812ad70b4b0452aa6f7c525f79e6ed, type: 2}
   - {fileID: 11400000, guid: 2f1e06fbe335f4d34bba2ff159a5dc36, type: 2}
   - {fileID: 11400000, guid: a38a8ad709262449cafa5666cd3478e0, type: 2}
@@ -105,6 +106,7 @@ MonoBehaviour:
     - TM_Map
     - TM_Spike
     - TM_Wall
+    - TM_Goal
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 2316a715d6a6eb047bed5ac4c42ad64f, type: 2}

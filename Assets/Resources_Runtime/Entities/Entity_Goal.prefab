@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5756515061732775915}
-  - component: {fileID: 9176767415583293252}
+  - component: {fileID: 6311316222096012042}
   m_Layer: 0
-  m_Name: mesh
+  m_Name: bd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3433530738972530475}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &9176767415583293252
+--- !u!212 &6311316222096012042
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0de60ca1eebc54b4882c890d771d5162, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 01787af68450246e3b2912d494821db6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ed8a1a8a05a14ca1beac6994e3e1dcc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,9 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3433530738972530475}
-  - component: {fileID: 2529477388704631507}
+  - component: {fileID: 4116177648458634367}
   m_Layer: 0
-  m_Name: Entity_Role
+  m_Name: Entity_Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ Transform:
   - {fileID: 5756515061732775915}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2529477388704631507
+--- !u!114 &4116177648458634367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,25 +126,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6850806134477372502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2dbfb8a2e82b4c32914a1ff6f058d61, type: 3}
+  m_Script: {fileID: 11500000, guid: bc78c93fad109410fa0ea91677189988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityID: 0
+  entityIndex: 0
   typeID: 0
   typeName: 
-  allyStatus: 0
-  moveSpeed: 0
-  faceDir: {x: 0, y: 0}
-  hpMax: 0
-  hp: 0
-  size: {x: 0, y: 0}
-  moveDurationSec: 0
-  moveEasingType: 0
-  moveEasingMode: 0
-  needTearDown: 0
-  stageCounter: 0
-  spr: {fileID: 9176767415583293252}
-  anim: {fileID: 0}
-  deadVFXName: 
-  deadVFXDuration: 0
-  lastFramePos: {x: 0, y: 0}
+  body: {fileID: 3433530738972530475}
+  spr: {fileID: 6311316222096012042}
+  sizeInt: {x: 0, y: 0}

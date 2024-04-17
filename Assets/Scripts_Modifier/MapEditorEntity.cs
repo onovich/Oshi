@@ -16,6 +16,7 @@ namespace Alter.Modifier {
         [SerializeField] Transform pointGroup;
         [SerializeField] Transform blockGroup;
         [SerializeField] Transform wallGroup;
+        [SerializeField] Transform goalGroup;
 
         [Button("Bake")]
         void Bake() {
@@ -84,6 +85,27 @@ namespace Alter.Modifier {
             mapTM.wallPosArr = wallPosArr.ToArray();
             mapTM.wallIndexArr = wallIndexArr.ToArray();
             mapTM.wallSizeArr = wallSizeArr.ToArray();
+        }
+
+        void BakeGold(){
+            var editors = goalGroup.GetComponentsInChildren<GoalEditorEntity>();
+            var goalTMArr = new List<GoalTM>();
+            var goalPosArr = new List<Vector2Int>();
+            var goalIndexArr = new List<int>();
+            var goalSizeArr = new List<Vector2Int>();
+            var index = 0;
+            foreach (var editor in editors) {
+                index += 1;
+                goalTMArr.Add(editor.goalTM);
+                goalPosArr.Add(editor.GetPosInt());
+                goalIndexArr.Add(index);
+                goalSizeArr.Add(editor.GetSizeInt());
+                editor.Rename(index);
+            }
+            mapTM.goalTMArr = goalTMArr.ToArray();
+            mapTM.goalPosArr = goalPosArr.ToArray();
+            mapTM.goalIndexArr = goalIndexArr.ToArray();
+            mapTM.goalSizeArr = goalSizeArr.ToArray();
         }
 
         void OnDrawGizmos() {
