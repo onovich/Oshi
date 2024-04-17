@@ -14,10 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeID: 1
   mapSize: {x: 20, y: 10}
-  leftWaveTM: {fileID: 11400000, guid: 0ae52a623bf8b4c65a2498bee9da44b4, type: 2}
-  rightWaveTM: {fileID: 11400000, guid: 9f679bb9402d34ab3b9ae6d5e574a115, type: 2}
-  middlePoint: {x: 0, y: -1}
-  leftBound: {x: -6, y: -1}
-  rightBound: {x: 6, y: -1}
+  spawnPoint: {x: 0, y: -1}
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}

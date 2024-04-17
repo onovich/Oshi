@@ -19,6 +19,9 @@ namespace Alter {
             map.typeID = typeID;
             map.mapSize = mapTM.mapSize;
 
+            // Set Spr
+            map.SetSprSize(map.mapSize);
+
             // Set Point
             map.spawnPoint = mapTM.spawnPoint;
 

@@ -8,6 +8,7 @@ namespace Alter {
 
         public int typeID;
         public Vector2Int mapSize;
+        [SerializeField] SpriteRenderer spr;
 
         public Vector2 spawnPoint;
 
@@ -15,6 +16,10 @@ namespace Alter {
 
         public void Ctor() {
             timer = 0;
+        }
+
+        public void SetSprSize(Vector2Int size) {
+            spr.size = size;
         }
 
         public void IncTimer(float dt) {

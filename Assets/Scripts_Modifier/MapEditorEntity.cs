@@ -27,7 +27,8 @@ namespace Alter.Modifier {
 
         void BakeMapInfo() {
             mapTM.typeID = typeID;
-            mapTM.mapSize = mapSize.transform.localScale.RoundToVector2Int();
+            mapTM.mapSize = mapSize.GetComponent<SpriteRenderer>().size.RoundToVector2Int();
+            mapSize.GetComponent<SpriteRenderer>().size = mapTM.mapSize;
         }
 
         void BakeSpawnPoint() {
