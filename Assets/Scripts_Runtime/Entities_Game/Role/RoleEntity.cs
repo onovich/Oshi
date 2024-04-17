@@ -51,6 +51,7 @@ namespace Alter {
         // Pos
         public Vector2 Pos => Pos_GetPos();
         public Vector2Int PosInt => Pos_GetPos().RoundToVector2Int();
+        public Vector2 lastFramePos;
 
         public void Ctor() {
             fsmCom = new RoleFSMComponent();
@@ -62,6 +63,10 @@ namespace Alter {
         // Pos
         public void Pos_SetPos(Vector2 pos) {
             transform.position = pos;
+        }
+
+        public void Pos_RecordLastFramePos() {
+            lastFramePos = transform.position;
         }
 
         Vector2 Pos_GetPos() {
@@ -133,13 +138,13 @@ namespace Alter {
             fsmCom.Idle_Enter();
         }
 
-        public void FSM_EnterMoving(float duration) {
+        public void FSM_EnterMoving(float duration, bool push = false, int blockIndex = 0, Vector2Int blockOldPos = default) {
             var start = transform.position;
             if (inputCom.moveAxis.x != 0 && inputCom.moveAxis.y != 0) {
                 return;
             }
             var end = new Vector2(start.x + inputCom.moveAxis.x, start.y + inputCom.moveAxis.y);
-            fsmCom.Moving_Enter(duration, start, end);
+            fsmCom.Moving_Enter(duration, start, end, push, blockIndex, blockOldPos);
         }
 
         public void FSM_EnterDead() {

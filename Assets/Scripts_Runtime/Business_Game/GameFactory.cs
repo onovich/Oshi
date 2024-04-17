@@ -131,6 +131,7 @@ namespace Alter {
 
             // Set Pos
             role.Pos_SetPos(pos);
+            role.Pos_RecordLastFramePos();
 
             // Set Size
             role.Size_SetSize(roleTM.size);

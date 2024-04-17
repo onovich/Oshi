@@ -27,6 +27,11 @@ namespace Alter {
             return posMap.ContainsKey(pos);
         }
 
+        public bool HasDifferent(Vector2Int pos, int index) {
+            var has = posMap.TryGetValue(pos, out var block);
+            return has && block.entityIndex != index;
+        }
+
         public int TakeAll(out BlockEntity[] blocks) {
             int count = all.Count;
             if (count > temp.Length) {
@@ -37,7 +42,7 @@ namespace Alter {
             return count;
         }
 
-        public void ChangePos(Vector2Int oldPos, BlockEntity block) {
+        public void UpdatePos(Vector2Int oldPos, BlockEntity block) {
             posMap.Remove(oldPos);
             posMap.Add(block.PosInt, block);
         }
@@ -49,8 +54,12 @@ namespace Alter {
             });
         }
 
-        public bool TryGetBlock(int entityID, out BlockEntity block) {
-            return all.TryGetValue(entityID, out block);
+        public bool TryGetBlock(int index, out BlockEntity block) {
+            return all.TryGetValue(index, out block);
+        }
+
+        public bool TryGetBlockByPos(Vector2Int pos, out BlockEntity block) {
+            return posMap.TryGetValue(pos, out block);
         }
 
         public bool IsInRange(int entityID, in Vector2 pos, float range) {

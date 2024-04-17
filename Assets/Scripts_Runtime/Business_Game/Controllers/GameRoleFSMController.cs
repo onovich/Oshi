@@ -24,7 +24,7 @@ namespace Alter {
         }
 
         static void FixedTickFSM_Any(GameBusinessContext ctx, RoleEntity role, float fixdt) {
-
+            role.Pos_RecordLastFramePos();
         }
 
         static void FixedTickFSM_Idle(GameBusinessContext ctx, RoleEntity role, float fixdt) {
@@ -33,12 +33,20 @@ namespace Alter {
                 fsm.idle_isEntering = false;
             }
 
+            // Move
             var succ = GameRoleDomain.CheckMovable(ctx, role);
             if (!succ) {
                 return;
             }
 
-            role.FSM_EnterMoving(role.moveDurationSec);
+            // Push
+            succ = GameRoleDomain.CheckPushable(ctx, role, out var block);
+            if (!succ) {
+                role.FSM_EnterMoving(role.moveDurationSec);
+                return;
+            }
+            role.FSM_EnterMoving(role.moveDurationSec, true, block.entityIndex, block.PosInt);
+
         }
 
         static void FixedTickFSM_Moving(GameBusinessContext ctx, RoleEntity role, float fixdt) {
@@ -47,8 +55,8 @@ namespace Alter {
                 fsm.moving_isEntering = false;
             }
 
-            // Move
-            GameRoleDomain.ApplyEasingMove(ctx, role, fixdt, () => {
+            // Move & Push
+            GameRoleDomain.ApplyEasingMoveAndPush(ctx, role, fixdt, () => {
                 role.FSM_EnterIdle();
             });
 

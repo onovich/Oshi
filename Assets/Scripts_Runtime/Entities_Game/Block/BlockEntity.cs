@@ -35,20 +35,18 @@ namespace Alter {
         }
 
         // Push
-        public bool Move_CheckMovable(Vector2 constarintSize, Vector2 axis, Vector2 contraintCenter) {
-            var moveAxisX = axis.x;
-            var moveAxisY = axis.y;
-            if (moveAxisX == 0 && moveAxisY == 0) {
+        public bool Move_CheckConstraint(Vector2 constraintSize, Vector2 constraintCenter, Vector2 axis) {
+            if (axis.x == 0 && axis.y == 0) {
                 return false;
             }
 
             var pos = transform.position;
-            var min = contraintCenter - constarintSize / 2 + contraintCenter + halfSize;
-            var max = contraintCenter + constarintSize / 2 + contraintCenter - halfSize;
-            if (pos.x + moveAxisX >= max.x || pos.x + moveAxisX <= min.x) {
+            var min = constraintCenter - constraintSize / 2 + constraintCenter + halfSize;
+            var max = constraintCenter + constraintSize / 2 + constraintCenter - halfSize;
+            if (pos.x + axis.x >= max.x || pos.x + axis.x <= min.x) {
                 return false;
             }
-            if (pos.y + moveAxisY >= max.y || pos.y + moveAxisY <= min.y) {
+            if (pos.y + axis.y >= max.y || pos.y + axis.y <= min.y) {
                 return false;
             }
             return true;
