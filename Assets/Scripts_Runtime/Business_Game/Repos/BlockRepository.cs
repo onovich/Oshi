@@ -7,15 +7,18 @@ namespace Alter {
     public class BlockRepository {
 
         Dictionary<int, BlockEntity> all;
+        Dictionary<Vector2Int, BlockEntity> posMap;
         BlockEntity[] temp;
 
         public BlockRepository() {
             all = new Dictionary<int, BlockEntity>();
+            posMap = new Dictionary<Vector2Int, BlockEntity>();
             temp = new BlockEntity[1000];
         }
 
         public void Add(BlockEntity block) {
             all.Add(block.entityIndex, block);
+            posMap.Add(block.PosInt, block);
         }
 
         public int TakeAll(out BlockEntity[] blocks) {
@@ -28,8 +31,14 @@ namespace Alter {
             return count;
         }
 
+        public void ChangePos(Vector2Int oldPos, BlockEntity block) {
+            posMap.Remove(oldPos);
+            posMap.Add(block.PosInt, block);
+        }
+
         public void Remove(BlockEntity block) {
             all.Remove(block.entityIndex);
+            posMap.Remove(block.PosInt);
         }
 
         public bool TryGetBlock(int entityID, out BlockEntity block) {
@@ -66,6 +75,8 @@ namespace Alter {
 
         public void Clear() {
             all.Clear();
+            posMap.Clear();
+            Array.Clear(temp, 0, temp.Length);
         }
 
     }

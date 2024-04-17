@@ -7,15 +7,18 @@ namespace Alter {
     public class WallRepository {
 
         Dictionary<int, WallEntity> all;
+        Dictionary<Vector2Int, WallEntity> posMap;
         WallEntity[] temp;
 
         public WallRepository() {
             all = new Dictionary<int, WallEntity>();
+            posMap = new Dictionary<Vector2Int, WallEntity>();
             temp = new WallEntity[1000];
         }
 
         public void Add(WallEntity wall) {
             all.Add(wall.entityIndex, wall);
+            posMap.Add(wall.PosInt, wall);
         }
 
         public int TakeAll(out WallEntity[] walls) {
@@ -28,8 +31,14 @@ namespace Alter {
             return count;
         }
 
+        public void ChangePos(Vector2Int oldPos, WallEntity wall) {
+            posMap.Remove(oldPos);
+            posMap.Add(wall.PosInt, wall);
+        }
+
         public void Remove(WallEntity wall) {
             all.Remove(wall.entityIndex);
+            posMap.Remove(wall.PosInt);
         }
 
         public bool TryGetWall(int entityID, out WallEntity wall) {
@@ -66,6 +75,8 @@ namespace Alter {
 
         public void Clear() {
             all.Clear();
+            posMap.Clear();
+            Array.Clear(temp, 0, temp.Length);
         }
 
     }
