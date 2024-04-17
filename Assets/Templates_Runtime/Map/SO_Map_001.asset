@@ -28,6 +28,6 @@ MonoBehaviour:
   wallPosArr:
   - {x: 2, y: -2}
   wallSizeArr:
-  - {x: 1, y: 1}
+  - {x: 2, y: 1}
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}

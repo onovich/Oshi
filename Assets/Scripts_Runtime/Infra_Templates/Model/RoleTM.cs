@@ -23,7 +23,6 @@ namespace Alter {
         public EasingMode moveEasingMode;
 
         [Header("Role Render")]
-        public RoleMod mod;
         public GameObject deadVFX;
         public float deadVFXDuration;
         

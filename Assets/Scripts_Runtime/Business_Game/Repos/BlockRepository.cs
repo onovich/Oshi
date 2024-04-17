@@ -18,7 +18,9 @@ namespace Alter {
 
         public void Add(BlockEntity block) {
             all.Add(block.entityIndex, block);
-            posMap.Add(block.PosInt, block);
+            GridUtils.ForEachGridBySize(block.PosInt, block.sizeInt, (grid) => {
+                posMap.Add(grid, block);
+            });
         }
 
         public int TakeAll(out BlockEntity[] blocks) {
@@ -38,7 +40,9 @@ namespace Alter {
 
         public void Remove(BlockEntity block) {
             all.Remove(block.entityIndex);
-            posMap.Remove(block.PosInt);
+            GridUtils.ForEachGridBySize(block.PosInt, block.sizeInt, (grid) => {
+                posMap.Remove(grid);
+            });
         }
 
         public bool TryGetBlock(int entityID, out BlockEntity block) {

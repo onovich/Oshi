@@ -121,7 +121,6 @@ namespace Alter {
             role.hpMax = roleTM.hpMax;
             role.hp = role.hpMax;
             role.typeName = roleTM.typeName;
-            role.halfSize = (Vector2)roleTM.size / 2;
 
             // Set Move
             role.moveDurationSec = roleTM.moveDurationSec;
@@ -134,10 +133,8 @@ namespace Alter {
             // Set Pos
             role.Pos_SetPos(pos);
 
-            // Set Mod
-            var modPrefab = roleTM.mod;
-            var mod = GameObject.Instantiate(modPrefab, role.body).GetComponent<RoleMod>();
-            role.Mod_Set(mod);
+            // Set Size
+            role.Size_SetSize(roleTM.size);
 
             // Set FSM
             role.FSM_EnterIdle();

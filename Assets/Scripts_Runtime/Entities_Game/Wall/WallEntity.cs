@@ -13,7 +13,10 @@ namespace Alter {
         // Render
         [SerializeField] public Transform body;
         [SerializeField] SpriteRenderer spr;
-        [SerializeField] BoxCollider2D boxCollider;
+
+        // Size
+        public Vector2 halfSize;
+        public Vector2Int sizeInt;
 
         // Pos
         public Vector2 Pos => transform.position;
@@ -32,9 +35,10 @@ namespace Alter {
         }
 
         // Size
-        public void Size_SetSize(Vector2 size) {
+        public void Size_SetSize(Vector2Int size) {
             spr.size = size;
-            boxCollider.size = size;
+            this.sizeInt = size;
+            halfSize = size / 2;
         }
 
         // Mesh

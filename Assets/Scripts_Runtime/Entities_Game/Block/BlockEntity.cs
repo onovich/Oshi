@@ -13,11 +13,14 @@ namespace Alter {
         // Render
         [SerializeField] public Transform body;
         [SerializeField] SpriteRenderer spr;
-        [SerializeField] BoxCollider2D boxCollider;
 
         // Pos
         public Vector2 Pos => transform.position;
         public Vector2Int PosInt => Pos_GetPosInt();
+
+        // Size
+        public Vector2 halfSize;
+        public Vector2Int sizeInt;
 
         public void Ctor() {
         }
@@ -31,10 +34,31 @@ namespace Alter {
             return transform.position.RoundToVector3Int().ToVector2Int();
         }
 
+        // Push
+        public bool Move_CheckMovable(Vector2 constarintSize, Vector2 axis, Vector2 contraintCenter) {
+            var moveAxisX = axis.x;
+            var moveAxisY = axis.y;
+            if (moveAxisX == 0 && moveAxisY == 0) {
+                return false;
+            }
+
+            var pos = transform.position;
+            var min = contraintCenter - constarintSize / 2 + contraintCenter + halfSize;
+            var max = contraintCenter + constarintSize / 2 + contraintCenter - halfSize;
+            if (pos.x + moveAxisX >= max.x || pos.x + moveAxisX <= min.x) {
+                return false;
+            }
+            if (pos.y + moveAxisY >= max.y || pos.y + moveAxisY <= min.y) {
+                return false;
+            }
+            return true;
+        }
+
         // Size
-        public void Size_SetSize(Vector2 size) {
+        public void Size_SetSize(Vector2Int size) {
             spr.size = size;
-            boxCollider.size = size;
+            this.sizeInt = size;
+            halfSize = size / 2;
         }
 
         // Mesh

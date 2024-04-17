@@ -14,11 +14,13 @@ namespace Alter {
 
         // Attr
         public float moveSpeed;
-        public Vector2 Velocity => rb.velocity;
         public Vector2 faceDir;
         public int hpMax;
         public int hp;
+
+        // Size
         public Vector2 halfSize;
+        public Vector2 size;
 
         // Move
         public float moveDurationSec;
@@ -35,22 +37,23 @@ namespace Alter {
         // Input
         public RoleInputComponent inputCom;
 
+        // Anim
+        public RoleAnimComponent animCom;
+
         // Render
-        [SerializeField] public Transform body;
-        RoleMod roleMod;
+        [SerializeField] SpriteRenderer spr;
+        [SerializeField] Animator anim;
 
         // VFX
         public string deadVFXName;
         public float deadVFXDuration;
-
-        // Physics
-        [SerializeField] Rigidbody2D rb;
 
         // Pos
         public Vector2 Pos => Pos_GetPos();
 
         public void Ctor() {
             fsmCom = new RoleFSMComponent();
+            animCom = new RoleAnimComponent();
             inputCom = new RoleInputComponent();
             stageCounter = 0;
         }
@@ -62,6 +65,13 @@ namespace Alter {
 
         Vector2 Pos_GetPos() {
             return transform.position;
+        }
+
+        // Size
+        public void Size_SetSize(Vector2 size) {
+            spr.size = size;
+            halfSize = size / 2;
+            this.size = size;
         }
 
         // Attr
@@ -96,7 +106,9 @@ namespace Alter {
 
         // Color
         public void Color_SetAlpha(float alpha) {
-            roleMod.SetColorAlpha(alpha);
+            var color = spr.color;
+            color.a = alpha;
+            spr.color = color;
         }
 
         // FSM
@@ -125,14 +137,8 @@ namespace Alter {
             fsmCom.Dead_Enter();
         }
 
-        // Mod
-        public void Mod_Set(RoleMod mod) {
-            roleMod = mod;
-        }
-
         // VFX
         public void TearDown() {
-            roleMod.TearDown();
             Destroy(this.gameObject);
         }
 
