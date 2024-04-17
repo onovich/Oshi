@@ -10,8 +10,14 @@ namespace Alter.UI {
 
         [SerializeField] Text timeText;
         [SerializeField] Text gameStageCounterText;
+        [SerializeField] Button restartBtn;
+
+        public Action OnRestartBtnClickHandle;
 
         public void Ctor() {
+            restartBtn.onClick.AddListener(() => {
+                OnRestartBtnClickHandle?.Invoke();
+            });
         }
 
         public void RefreshTime(float time) {
@@ -20,6 +26,11 @@ namespace Alter.UI {
 
         public void RefreshGameStageCounter(int counter) {
             gameStageCounterText.text = counter.ToString();
+        }
+
+        public void OnDestroy() {
+            restartBtn.onClick.RemoveAllListeners();
+            OnRestartBtnClickHandle = null;
         }
 
     }

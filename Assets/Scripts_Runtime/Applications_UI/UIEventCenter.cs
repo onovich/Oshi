@@ -26,6 +26,12 @@ namespace Alter.UI {
             GameOver_OnExitGameClickHandle?.Invoke();
         }
 
+        // GameInfo
+        public Action GameInfo_OnRestartBtnClickHandle;
+        public void GameInfo_OnRestartBtnClick() {
+            GameInfo_OnRestartBtnClickHandle?.Invoke();
+        }
+
         // Inventory
         public Action<int> Inventory_OnLeftClickTreasureHandle;
         public void Inventory_OnLeftClickTreasure(int index) {
@@ -54,6 +60,8 @@ namespace Alter.UI {
 
             GameOver_OnRestartGameClickHandle = null;
             GameOver_OnExitGameClickHandle = null;
+
+            GameInfo_OnRestartBtnClickHandle = null;
 
             Inventory_OnLeftClickTreasureHandle = null;
             Inventory_OnRightClickTreasureHandle = null;

@@ -130,6 +130,11 @@ namespace Alter {
                 LoginBusiness.ExitApplication(loginBusinessContext);
             };
 
+            // - GameInfo
+            uiEvt.GameInfo_OnRestartBtnClickHandle += () => {
+                GameBusiness.UIGameInfo_OnRestartBtnClick(gameBusinessContext);
+            };
+
             // - GameOver
             uiEvt.GameOver_OnRestartGameClickHandle += () => {
                 GameBusiness.UIGameOver_OnRestartGame(gameBusinessContext);

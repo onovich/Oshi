@@ -129,6 +129,10 @@ namespace Alter {
         }
 
         // UI
+        public static void UIGameInfo_OnRestartBtnClick(GameBusinessContext ctx) {
+            GameGameDomain.RestartGame(ctx);
+        }
+
         public static void UIGameOver_OnRestartGame(GameBusinessContext ctx) {
             UIApp.GameOver_Close(ctx.uiContext);
             GameGameDomain.RestartGame(ctx);

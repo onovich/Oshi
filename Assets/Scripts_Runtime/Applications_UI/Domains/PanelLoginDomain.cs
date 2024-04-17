@@ -18,7 +18,6 @@ namespace Alter.UI {
             panel.OnClickExitGameHandle += () => {
                 ctx.evt.Login_OnExitGameClick();
             };
-
         }
 
         public static void Close(UIAppContext ctx) {

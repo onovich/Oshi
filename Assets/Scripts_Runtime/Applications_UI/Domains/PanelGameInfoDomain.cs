@@ -13,6 +13,11 @@ namespace Alter.UI {
             }
 
             panel = ctx.uiCore.UniquePanel_Open<Panel_GameInfo>();
+            panel.Ctor();
+
+            panel.OnRestartBtnClickHandle += () => {
+                ctx.evt.GameInfo_OnRestartBtnClick();
+            };
         }
 
         public static void RefreshTime(UIAppContext ctx, float time) {

@@ -50,7 +50,6 @@ namespace Alter {
                 return;
             }
             role.FSM_EnterMoving(role.moveDurationSec, true, block.entityIndex, block.PosInt);
-
         }
 
         static void FixedTickFSM_Moving(GameBusinessContext ctx, RoleEntity role, float fixdt) {

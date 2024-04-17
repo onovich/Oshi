@@ -75,7 +75,6 @@ namespace Alter {
             var lastPos = role.lastFramePos;
             var offset = role.Pos - lastPos;
             var pos = blockEntity.Pos;
-            var oldPos = pos;
             pos += offset;
             blockEntity.Pos_SetPos(pos);
         }
