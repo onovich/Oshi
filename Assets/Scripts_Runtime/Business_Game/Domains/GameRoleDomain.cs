@@ -102,8 +102,8 @@ namespace Alter {
             var allow = true;
             var _block = block;
             GridUtils.ForEachGridBySize(block.PosInt, block.sizeInt, (grid) => {
-                allow &= ctx.wallRepo.Has(grid) == false;
-                allow &= ctx.blockRepo.HasDifferent(grid, _block.entityIndex) == false;
+                allow &= ctx.wallRepo.Has(grid + role.Pos_GetNextDir()) == false;
+                allow &= ctx.blockRepo.HasDifferent(grid + role.Pos_GetNextDir(), _block.entityIndex) == false;
                 allow &= _block.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, grid, role.Pos_GetNextDir());
             });
 
