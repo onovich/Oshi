@@ -27,8 +27,7 @@ namespace Alter {
             var spawnPoint = mapTM.spawnPoint;
             var owner = GameRoleDomain.Spawn(ctx,
                                              config.ownerRoleTypeID,
-                                             spawnPoint,
-                                             Vector2.right);
+                                             spawnPoint);
             player.ownerRoleEntityID = owner.entityID;
             ctx.ownerSpawnPoint = spawnPoint;
 

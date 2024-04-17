@@ -6,13 +6,12 @@ namespace Alter {
 
     public static class GameRoleDomain {
 
-        public static RoleEntity Spawn(GameBusinessContext ctx, int typeID, Vector2 pos, Vector2 dir) {
+        public static RoleEntity Spawn(GameBusinessContext ctx, int typeID, Vector2 pos) {
             var role = GameFactory.Role_Spawn(ctx.templateInfraContext,
                                               ctx.assetsInfraContext,
                                               ctx.idRecordService,
                                               typeID,
-                                              pos,
-                                              dir);
+                                              pos);
 
             ctx.roleRepo.Add(role);
             return role;

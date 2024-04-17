@@ -99,8 +99,7 @@ namespace Alter {
                                  AssetsInfraContext assetsInfraContext,
                                  IDRecordService idRecordService,
                                  int typeID,
-                                 Vector2 pos,
-                                 Vector2 direction) {
+                                 Vector2 pos) {
 
             var has = templateInfraContext.Role_TryGet(typeID, out var roleTM);
             if (!has) {
@@ -128,7 +127,7 @@ namespace Alter {
             role.moveEasingMode = roleTM.moveEasingMode;
 
             // Rename
-            role.gameObject.name = $"{role.typeName} - {role.entityID}";
+            role.gameObject.name = $"Role - {role.typeName} - {role.entityID}";
 
             // Set Pos
             role.Pos_SetPos(pos);

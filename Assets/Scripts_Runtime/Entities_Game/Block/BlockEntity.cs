@@ -66,11 +66,6 @@ namespace Alter {
             this.spr.sprite = sp;
         }
 
-        // Rename
-        public void Rename() {
-            this.name = $"Block - {typeID} - {entityIndex}";
-        }
-
         public void TearDown() {
             Destroy(gameObject);
         }
