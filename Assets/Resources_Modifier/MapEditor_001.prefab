@@ -333,7 +333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5808850939668414603, guid: dad2d2b1a114548d6948c63e2fc564f1, type: 3}
       propertyPath: m_Name
-      value: BlockEditor
+      value: Block - Block - 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -403,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6621689712813785528, guid: 15f169725de7e4524a42f529eaa9f20f, type: 3}
       propertyPath: m_Name
-      value: WallEditor
+      value: Wall - Wall - 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

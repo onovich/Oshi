@@ -81,6 +81,10 @@ namespace Alter {
             return PosInt + inputCom.moveAxis;
         }
 
+        public Vector2Int Pos_GetNextDir() {
+            return inputCom.moveAxis;
+        }
+
         // Size
         public void Size_SetSize(Vector2 size) {
             spr.size = size;

@@ -52,10 +52,12 @@ namespace Alter.Modifier {
             var blockSizeArr = new List<Vector2Int>();
             var index = 0;
             foreach (var editor in editors) {
+                index += 1;
                 blockTMArr.Add(editor.blockTM);
                 blockPosArr.Add(editor.GetPosInt());
-                blockIndexArr.Add(index++);
+                blockIndexArr.Add(index);
                 blockSizeArr.Add(editor.GetSizeInt());
+                editor.Rename(index);
             }
             mapTM.blockTMArr = blockTMArr.ToArray();
             mapTM.blockPosArr = blockPosArr.ToArray();
@@ -71,10 +73,12 @@ namespace Alter.Modifier {
             var wallSizeArr = new List<Vector2Int>();
             var index = 0;
             foreach (var editor in editors) {
+                index += 1;
                 wallTMArr.Add(editor.wallTM);
                 wallPosArr.Add(editor.GetPosInt());
-                wallIndexArr.Add(index++);
+                wallIndexArr.Add(index);
                 wallSizeArr.Add(editor.GetSizeInt());
+                editor.Rename(index);
             }
             mapTM.wallTMArr = wallTMArr.ToArray();
             mapTM.wallPosArr = wallPosArr.ToArray();

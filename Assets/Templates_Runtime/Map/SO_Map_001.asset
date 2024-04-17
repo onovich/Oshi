@@ -15,14 +15,14 @@ MonoBehaviour:
   typeID: 1
   mapSize: {x: 20, y: 10}
   spawnPoint: {x: 0, y: -1}
-  blockIndexArr: 00000000
+  blockIndexArr: 01000000
   blockTMArr:
   - {fileID: 11400000, guid: 0acbcfa6cf33e470ca47effbf466206a, type: 2}
   blockPosArr:
   - {x: 2, y: 3}
   blockSizeArr:
   - {x: 1, y: 2}
-  wallIndexArr: 00000000
+  wallIndexArr: 01000000
   wallTMArr:
   - {fileID: 11400000, guid: 164f8d450169043389c59f12bb12963f, type: 2}
   wallPosArr:

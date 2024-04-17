@@ -17,6 +17,10 @@ namespace Alter.Modifier {
             return posInt;
         }
 
+        public void Rename(int index) {
+            gameObject.name = $"Wall - {wallTM.typeName} - {index}";
+        }
+
         public Vector2Int GetSizeInt() {
             var sizeInt = GetComponent<SpriteRenderer>().size.RoundToVector2Int();
             GetComponent<SpriteRenderer>().size = sizeInt;

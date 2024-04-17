@@ -63,7 +63,6 @@ namespace Alter {
 
         public static BlockEntity Block_Spawn(TemplateInfraContext templateInfraContext,
                                  AssetsInfraContext assetsInfraContext,
-                                 IDRecordService idRecordService,
                                  int typeID,
                                  int index,
                                  Vector2Int pos,

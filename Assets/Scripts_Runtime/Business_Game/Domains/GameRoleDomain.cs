@@ -86,6 +86,15 @@ namespace Alter {
             return allow;
         }
 
+        public static bool CheckPushNeed(GameBusinessContext ctx, RoleEntity role) {
+            var has = ctx.blockRepo.TryGetBlockByPos(role.Pos_GetNextGrid(), out var _);
+            if (has == false) {
+                return false;
+            }
+
+            return has;
+        }
+
         public static bool CheckPushable(GameBusinessContext ctx, RoleEntity role, out BlockEntity block) {
             var has = ctx.blockRepo.TryGetBlockByPos(role.Pos_GetNextGrid(), out block);
             if (has == false) {
@@ -97,9 +106,9 @@ namespace Alter {
             GridUtils.ForEachGridBySize(block.PosInt, block.sizeInt, (grid) => {
                 allow &= ctx.wallRepo.Has(grid) == false;
                 allow &= ctx.blockRepo.HasDifferent(grid, _block.entityIndex) == false;
+                allow &= _block.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, role.Pos_GetNextDir());
             });
 
-            GLog.Log($"CheckPushable: {allow}");
             return allow;
         }
 

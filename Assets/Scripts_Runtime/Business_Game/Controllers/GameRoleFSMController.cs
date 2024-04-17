@@ -40,9 +40,13 @@ namespace Alter {
             }
 
             // Push
-            succ = GameRoleDomain.CheckPushable(ctx, role, out var block);
+            succ = GameRoleDomain.CheckPushNeed(ctx, role);
             if (!succ) {
                 role.FSM_EnterMoving(role.moveDurationSec);
+            }
+
+            succ = GameRoleDomain.CheckPushable(ctx, role, out var block);
+            if (!succ) {
                 return;
             }
             role.FSM_EnterMoving(role.moveDurationSec, true, block.entityIndex, block.PosInt);

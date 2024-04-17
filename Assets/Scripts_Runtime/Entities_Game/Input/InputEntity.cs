@@ -28,6 +28,9 @@ namespace Alter {
             if (keybindingCom.IsKeyPressing(InputKeyEnum.MoveDown)) {
                 moveAxis.y = -1;
             }
+            if (moveAxis.x != 0 && moveAxis.y != 0) {
+                moveAxis.y = 0;
+            }
         }
 
         public void Keybinding_Set(InputKeyEnum key, KeyCode[] keyCodes) {
