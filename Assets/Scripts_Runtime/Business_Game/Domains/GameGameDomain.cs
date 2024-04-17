@@ -80,19 +80,6 @@ namespace Alter {
 
         }
 
-        public static void ApplyGameTime(GameBusinessContext ctx, float dt) {
-            var game = ctx.gameEntity;
-            var fsm = game.fsmComponent;
-
-            fsm.Gaming_DecTimer(dt);
-            var time = fsm.gaming_gameTime;
-
-            var config = ctx.templateInfraContext.Config_Get();
-            if (time <= 0) {
-                fsm.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
-            }
-        }
-
         public static void ApplyGameOver(GameBusinessContext ctx, float dt) {
             var game = ctx.gameEntity;
             var fsm = game.fsmComponent;
@@ -114,18 +101,41 @@ namespace Alter {
 
         public static void ApplyGameResult(GameBusinessContext ctx) {
             var owner = ctx.Role_GetOwner();
+            if (owner.fsmCom.status != RoleFSMStatus.Idle) {
+                return;
+            }
+
             var game = ctx.gameEntity;
             var config = ctx.templateInfraContext.Config_Get();
-            if (owner == null || owner.needTearDown) {
+
+            // Check Role Dead
+            var dead = CheckRoleDead(ctx);
+            if (dead) {
                 game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
                 return;
             }
 
+            // Check Time Finish
+            var timeFinish = CheckTimeFinish(ctx, Time.deltaTime);
+            if (timeFinish) {
+                game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
+                return;
+            }
+
+            // Check Goal
             var inGoal = CheckGoal(ctx);
             if (inGoal) {
                 game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Win);
             }
 
+        }
+
+        static bool CheckRoleDead(GameBusinessContext ctx) {
+            var owner = ctx.Role_GetOwner();
+            if (owner == null || owner.needTearDown) {
+                return true;
+            }
+            return false;
         }
 
         static bool CheckGoal(GameBusinessContext ctx) {
@@ -139,6 +149,17 @@ namespace Alter {
                 inGoal &= GameBlockDomain.ApplyCheckGoal(ctx, block);
             });
             return inGoal;
+        }
+
+        public static bool CheckTimeFinish(GameBusinessContext ctx, float dt) {
+            var game = ctx.gameEntity;
+            var fsm = game.fsmComponent;
+
+            fsm.Gaming_DecTimer(dt);
+            var time = fsm.gaming_gameTime;
+
+            var config = ctx.templateInfraContext.Config_Get();
+            return time <= 0;
         }
 
         public static void ExitGame(GameBusinessContext ctx) {

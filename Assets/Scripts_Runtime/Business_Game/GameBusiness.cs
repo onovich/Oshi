@@ -56,9 +56,6 @@ namespace Alter {
             var map = ctx.currentMapEntity;
             if (status == GameStatus.Gaming) {
 
-                // Game
-                GameGameDomain.ApplyGameTime(ctx, dt);
-
                 // Roles
                 var roleLen = ctx.roleRepo.TakeAll(out var roleArr);
                 for (int i = 0; i < roleLen; i++) {
