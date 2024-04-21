@@ -1,5 +1,5 @@
-# Alter
-Alter, a Sokoban-style logic puzzle game, whose name means "Yi" (representing change and exchange in ancient Chinese). It is currently under development <br/>
-**Alter，类推箱逻辑解密游戏，取名自"易"。正在研发中。**
+# Oshi
+Oshi, a logic puzzle game based on the sokoban concept, is named after the Japanese word "押し" which translates to "push," highlighting the core gameplay mechanic. The game is currently in development. <br/>
+**Oshi，类推箱逻辑解密游戏，取名自"押し"，也即是核心玩法中的"推"。正在研发中。**
 
-![](https://github.com/onovich/Alter/blob/main/Assets/Resources_Sample/cover.jpg)
+![](https://github.com/onovich/Oshi/blob/main/Assets/Resources_Sample/cover.jpg)
