@@ -2,7 +2,7 @@ using System;
 using MortiseFrame.Swing;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
     public static class GameRoleDomain {
 

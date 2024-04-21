@@ -1,6 +1,6 @@
 using System;
 
-namespace Alter{
+namespace Oshi{
 
     public class LoginEventCenter {
 

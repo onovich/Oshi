@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
     public class RoleAnimComponent {
 

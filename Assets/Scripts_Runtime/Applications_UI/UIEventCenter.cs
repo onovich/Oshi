@@ -1,6 +1,6 @@
 using System;
 
-namespace Alter.UI {
+namespace Oshi.UI {
 
     public class UIEventCenter {
 

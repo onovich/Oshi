@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-namespace Alter.Modifier {
+namespace Oshi.Modifier {
 
     public class ImageOutlineEditor : EditorWindow {
         private Texture2D selectedImage;

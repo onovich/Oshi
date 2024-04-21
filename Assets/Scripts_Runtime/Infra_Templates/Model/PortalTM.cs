@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
-    [CreateAssetMenu(fileName = "SO_Portal", menuName = "Alter/PortalTM")]
+    [CreateAssetMenu(fileName = "SO_Portal", menuName = "Oshi/PortalTM")]
     public class PortalTM : ScriptableObject {
 
         public int typeID;

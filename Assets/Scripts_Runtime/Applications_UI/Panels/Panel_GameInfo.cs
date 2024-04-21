@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using MortiseFrame.Loom;
 using System.Collections.Generic;
 
-namespace Alter.UI {
+namespace Oshi.UI {
 
     public class Panel_GameInfo : MonoBehaviour, IPanel {
 

@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
-    [CreateAssetMenu(fileName = "SO_Enemy", menuName = "Alter/EnemyTM")]
+    [CreateAssetMenu(fileName = "SO_Enemy", menuName = "Oshi/EnemyTM")]
     public class EnemyTM : ScriptableObject {
 
         public int typeID;

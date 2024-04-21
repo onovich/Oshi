@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 
-namespace Alter.Modifier {
+namespace Oshi.Modifier {
 
     public class SpawnPointEditorEntity : MonoBehaviour {
 

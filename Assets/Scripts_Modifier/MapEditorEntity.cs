@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Alter.Modifier {
+namespace Oshi.Modifier {
 
     public class MapEditorEntity : MonoBehaviour {
 

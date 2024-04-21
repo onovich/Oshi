@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Alter.UI {
+namespace Oshi.UI {
 
     public static class PanelGameInfoDomain {
 

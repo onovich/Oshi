@@ -1,4 +1,4 @@
-namespace Alter {
+namespace Oshi {
 
     public enum InputKeyEnum {
 

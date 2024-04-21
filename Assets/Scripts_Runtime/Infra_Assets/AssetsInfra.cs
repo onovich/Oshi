@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.AddressableAssets;
 
-namespace Alter
+namespace Oshi
 {
 
     public static class AssetsInfra

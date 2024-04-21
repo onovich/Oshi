@@ -6,7 +6,7 @@ using TenonKit.Vista.Camera2D;
 using UnityEditor;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
     public static class CameraApp {
 

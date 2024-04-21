@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Runtime.CompilerServices;
 
-namespace Alter {
+namespace Oshi {
 
     public static class GLog {
 

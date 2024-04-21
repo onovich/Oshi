@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Alter {
+namespace Oshi {
 
-    [CreateAssetMenu(fileName = "SO_Map", menuName = "Alter/MapTM")]
+    [CreateAssetMenu(fileName = "SO_Map", menuName = "Oshi/MapTM")]
     public class MapTM : ScriptableObject {
 
         public int typeID;

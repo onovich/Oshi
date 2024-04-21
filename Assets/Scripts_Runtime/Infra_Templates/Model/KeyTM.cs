@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
-    [CreateAssetMenu(fileName = "SO_Key", menuName = "Alter/KeyTM")]
+    [CreateAssetMenu(fileName = "SO_Key", menuName = "Oshi/KeyTM")]
     public class KeyTM : ScriptableObject {
 
         public int typeID;

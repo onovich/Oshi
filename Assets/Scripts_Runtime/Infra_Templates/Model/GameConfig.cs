@@ -2,9 +2,9 @@ using System;
 using MortiseFrame.Swing;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
-    [CreateAssetMenu(fileName = "SO_GameConfig", menuName = "Alter/GameConfig")]
+    [CreateAssetMenu(fileName = "SO_GameConfig", menuName = "Oshi/GameConfig")]
     public class GameConfig : ScriptableObject {
 
         // Game

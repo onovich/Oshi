@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
-    [CreateAssetMenu(fileName = "SO_Button", menuName = "Alter/ButtonTM")]
+    [CreateAssetMenu(fileName = "SO_Button", menuName = "Oshi/ButtonTM")]
     public class ButtonTM : ScriptableObject {
 
         public int typeID;

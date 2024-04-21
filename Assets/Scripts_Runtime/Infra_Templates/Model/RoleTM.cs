@@ -2,9 +2,9 @@ using System;
 using MortiseFrame.Swing;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
-    [CreateAssetMenu(fileName = "SO_Role", menuName = "Alter/RoleTM")]
+    [CreateAssetMenu(fileName = "SO_Role", menuName = "Oshi/RoleTM")]
     public class RoleTM : ScriptableObject {
 
         [Header("Role Info")]

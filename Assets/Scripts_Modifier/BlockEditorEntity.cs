@@ -5,7 +5,7 @@ using TriInspector;
 using UnityEditor;
 using UnityEngine;
 
-namespace Alter.Modifier {
+namespace Oshi.Modifier {
 
     public class BlockEditorEntity : MonoBehaviour {
 

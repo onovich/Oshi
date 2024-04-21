@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Alter {
+namespace Oshi {
 
     public class MapEntity : MonoBehaviour {
 

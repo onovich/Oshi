@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 
-namespace Alter {
+namespace Oshi {
 
     public static class TemplateInfra {
 

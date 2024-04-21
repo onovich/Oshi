@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
-    [CreateAssetMenu(fileName = "SO_Boss", menuName = "Alter/BossTM")]
+    [CreateAssetMenu(fileName = "SO_Boss", menuName = "Oshi/BossTM")]
     public class BossTM : ScriptableObject {
 
         public int typeID;

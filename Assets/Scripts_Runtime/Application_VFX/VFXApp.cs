@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using Alter.UI;
+using Oshi.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Alter {
+namespace Oshi {
     public static class VFXApp {
 
         public static void Init(VFXAppContext ctx) {

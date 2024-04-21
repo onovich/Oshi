@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MortiseFrame.Loom;
 using UnityEngine;
-using Alter.UI;
+using Oshi.UI;
 
-namespace Alter {
+namespace Oshi {
 
     public class UIAppContext {
 

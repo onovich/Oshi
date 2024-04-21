@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
     public class GameBusinessContext {
 

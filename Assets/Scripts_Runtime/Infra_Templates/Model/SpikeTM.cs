@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
-    [CreateAssetMenu(fileName = "SO_Spike", menuName = "Alter/SpikeTM")]
+    [CreateAssetMenu(fileName = "SO_Spike", menuName = "Oshi/SpikeTM")]
     public class SpikeTM : ScriptableObject {
 
         public int typeID;

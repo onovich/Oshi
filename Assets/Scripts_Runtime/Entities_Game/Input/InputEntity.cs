@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Alter {
+namespace Oshi {
 
     public class InputEntity {
 

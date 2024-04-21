@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using MortiseFrame.Loom;
 
-namespace Alter.UI {
+namespace Oshi.UI {
 
     public class Panel_Login : MonoBehaviour, IPanel {
 

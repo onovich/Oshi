@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.Tilemaps;
 
-namespace Alter {
+namespace Oshi {
 
     public class AssetsInfraContext {
 

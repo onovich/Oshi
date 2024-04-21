@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Alter{
+namespace Oshi{
 
     public class LoginBusiness {
 

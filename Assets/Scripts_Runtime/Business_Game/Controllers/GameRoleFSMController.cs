@@ -2,7 +2,7 @@ using Codice.CM.Client.Differences;
 using MortiseFrame.Swing;
 using UnityEngine;
 
-namespace Alter {
+namespace Oshi {
 
     public static class GameRoleFSMController {
 
