@@ -58,6 +58,25 @@ namespace Oshi {
             wallTM.shapeArr = shapeList.ToArray();
         }
 
+        void BakeShapeNodes() {
+            var nodeList = new List<Vector2>();
+            for (int i = 0; i < shapes.Length; i++) {
+                var shape = shapes[i];
+                for (int j = 0; j < shape.cells.Length; j++) {
+                    var lb = new Vector2(shape.cells[j].x, shape.cells[j].y);
+                    var lt = new Vector2(lb.x, lb.y + 1);
+                    var rt = new Vector2(lb.x + 1, lb.y + 1);
+                    var rb = new Vector2(lb.x + 1, lb.y);
+                    nodeList.Add(lb);
+                    nodeList.Add(lt);
+                    nodeList.Add(rt);
+                    nodeList.Add(rb);
+                }
+            }
+            var node3List = Vector2SortingHelper.Sort(nodeList);
+            wallTM.shapeNodes = node3List.ToArray();
+        }
+
         [Button("Bake")]
         void Bake() {
             wallTM.typeID = typeID;
@@ -66,8 +85,22 @@ namespace Oshi {
             wallTM.meshColor = color;
             wallTM.meshMaterial = meshMaterial;
             BakeShapes();
+            BakeShapeNodes();
             EditorUtility.SetDirty(wallTM);
             AssetDatabase.SaveAssets();
+        }
+
+        void OnDrawGizmos() {
+            if (wallTM.shapeNodes == null) return;
+            if (wallTM.shapeNodes.Length == 0) return;
+            for (int i = 0; i < wallTM.shapeNodes.Length; i++) {
+                var node = wallTM.shapeNodes[i];
+                var next = wallTM.shapeNodes[(i + 1) % wallTM.shapeNodes.Length];
+                Gizmos.color = UnityEngine.Color.green;
+                Gizmos.DrawLine(node, next);
+                Gizmos.color = UnityEngine.Color.white;
+                Gizmos.DrawCube(node, Vector3.one * 0.1f);
+            }
         }
 
     }

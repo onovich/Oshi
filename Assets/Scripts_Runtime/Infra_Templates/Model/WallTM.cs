@@ -12,6 +12,7 @@ namespace Oshi {
         public Color meshColor;
         public Material meshMaterial;
         public ShapeTM[] shapeArr;
+        public Vector3[] shapeNodes;
         
     }
 
