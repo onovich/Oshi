@@ -29,8 +29,7 @@ namespace Oshi.Modifier {
                 if (shape.cells == null) continue;
                 var pos = GetPosInt();
                 foreach (var cell in shape.cells) {
-                    Gizmos.color = Color.white;
-                    Gizmos.DrawGUITexture(new Rect(cell.x + pos.x, cell.y + pos.y, 1, 1), blockTM.mesh.texture, 0, 0, 1, 1);
+                    Gizmos.DrawGUITexture(new Rect(cell.x + pos.x, cell.y + pos.y, 1, 1), blockTM.mesh.texture, 0, 0, 0, 0);
                 }
             }
         }

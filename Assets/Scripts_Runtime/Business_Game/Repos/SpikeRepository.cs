@@ -18,8 +18,8 @@ namespace Oshi {
 
         public void Add(SpikeEntity spike) {
             all.Add(spike.entityIndex, spike);
-            GridUtils.ForEachGridBySize(spike.PosInt, spike.sizeInt, (grid) => {
-                posMap.Add(grid, spike);
+            spike.cellSlotComponent.ForEach((index, mod) => {
+                posMap.Add(mod.LocalPosInt + spike.PosInt, spike);
             });
         }
 
@@ -43,18 +43,18 @@ namespace Oshi {
         }
 
         public void UpdatePos(Vector2Int oldPos, SpikeEntity spike) {
-            GridUtils.ForEachGridBySize(oldPos, spike.sizeInt, (grid) => {
-                posMap.Remove(grid);
+            spike.cellSlotComponent.ForEach((index, mod) => {
+                posMap.Remove(mod.LocalPosInt + oldPos);
             });
-            GridUtils.ForEachGridBySize(spike.PosInt, spike.sizeInt, (grid) => {
-                posMap.Add(grid, spike);
+            spike.cellSlotComponent.ForEach((index, mod) => {
+                posMap.Add(mod.LocalPosInt + spike.PosInt, spike);
             });
         }
 
         public void Remove(SpikeEntity spike) {
             all.Remove(spike.entityIndex);
-            GridUtils.ForEachGridBySize(spike.PosInt, spike.sizeInt, (grid) => {
-                posMap.Remove(grid);
+            spike.cellSlotComponent.ForEach((index, mod) => {
+                posMap.Remove(mod.LocalPosInt + spike.PosInt);
             });
         }
 

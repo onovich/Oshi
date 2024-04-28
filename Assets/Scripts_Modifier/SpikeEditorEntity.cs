@@ -21,10 +21,17 @@ namespace Oshi.Modifier {
             gameObject.name = $"Spike - {spikeTM.typeName} - {index}";
         }
 
-        public Vector2Int GetSizeInt() {
-            var sizeInt = GetComponent<SpriteRenderer>().size.RoundToVector2Int();
-            GetComponent<SpriteRenderer>().size = sizeInt;
-            return sizeInt;
+        void OnDrawGizmos() {
+            if (spikeTM == null) return;
+            if (spikeTM.shapeArr == null) return;
+            foreach (var shape in spikeTM.shapeArr) {
+                if (shape == null) continue;
+                if (shape.cells == null) continue;
+                var pos = GetPosInt();
+                foreach (var cell in shape.cells) {
+                    Gizmos.DrawGUITexture(new Rect(cell.x + pos.x, cell.y + pos.y, 1, 1), spikeTM.mesh.texture, 0, 0, 0, 0);
+                }
+            }
         }
 
     }

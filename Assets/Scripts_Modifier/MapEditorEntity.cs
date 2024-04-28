@@ -72,20 +72,17 @@ namespace Oshi.Modifier {
             var wallTMArr = new List<WallTM>();
             var wallPosArr = new List<Vector2Int>();
             var wallIndexArr = new List<int>();
-            var wallSizeArr = new List<Vector2Int>();
             var index = 0;
             foreach (var editor in editors) {
                 index += 1;
                 wallTMArr.Add(editor.wallTM);
                 wallPosArr.Add(editor.GetPosInt());
                 wallIndexArr.Add(index);
-                wallSizeArr.Add(editor.GetSizeInt());
                 editor.Rename(index);
             }
             mapTM.wallTMArr = wallTMArr.ToArray();
             mapTM.wallPosArr = wallPosArr.ToArray();
             mapTM.wallIndexArr = wallIndexArr.ToArray();
-            mapTM.wallSizeArr = wallSizeArr.ToArray();
         }
 
         void BakeGoal() {
@@ -93,20 +90,17 @@ namespace Oshi.Modifier {
             var goalTMArr = new List<GoalTM>();
             var goalPosArr = new List<Vector2Int>();
             var goalIndexArr = new List<int>();
-            var goalSizeArr = new List<Vector2Int>();
             var index = 0;
             foreach (var editor in editors) {
                 index += 1;
                 goalTMArr.Add(editor.goalTM);
                 goalPosArr.Add(editor.GetPosInt());
                 goalIndexArr.Add(index);
-                goalSizeArr.Add(editor.GetSizeInt());
                 editor.Rename(index);
             }
             mapTM.goalTMArr = goalTMArr.ToArray();
             mapTM.goalPosArr = goalPosArr.ToArray();
             mapTM.goalIndexArr = goalIndexArr.ToArray();
-            mapTM.goalSizeArr = goalSizeArr.ToArray();
         }
 
         void BakeSpike() {
@@ -114,20 +108,17 @@ namespace Oshi.Modifier {
             var spikeTMArr = new List<SpikeTM>();
             var spikePosArr = new List<Vector2Int>();
             var spikeIndexArr = new List<int>();
-            var spikeSizeArr = new List<Vector2Int>();
             var index = 0;
             foreach (var editor in editors) {
                 index += 1;
                 spikeTMArr.Add(editor.spikeTM);
                 spikePosArr.Add(editor.GetPosInt());
                 spikeIndexArr.Add(index);
-                spikeSizeArr.Add(editor.GetSizeInt());
                 editor.Rename(index);
             }
             mapTM.spikeTMArr = spikeTMArr.ToArray();
             mapTM.spikePosArr = spikePosArr.ToArray();
             mapTM.spikeIndexArr = spikeIndexArr.ToArray();
-            mapTM.spikeSizeArr = spikeSizeArr.ToArray();
         }
 
         void OnDrawGizmos() {

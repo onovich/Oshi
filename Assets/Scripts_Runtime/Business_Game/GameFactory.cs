@@ -32,8 +32,7 @@ namespace Oshi {
                                  AssetsInfraContext assetsInfraContext,
                                  int typeID,
                                  int index,
-                                 Vector2Int pos,
-                                 Vector2Int size) {
+                                 Vector2Int pos) {
 
             var has = templateInfraContext.Spike_TryGet(typeID, out var spikeTM);
             if (!has) {
@@ -55,12 +54,21 @@ namespace Oshi {
             // Set Pos
             spike.Pos_SetPos(pos);
 
-            // Set Size
-            spike.Size_SetSize(size);
-
-            // Set Mesh
-            spike.Mesh_Set(spikeTM.mesh);
-            spike.Mesh_SetMaterial(spikeTM.meshMaterial);
+            // Set Models
+            for (int i = 0; i < spikeTM.shapeArr.Length; i++) {
+                var shapeTM = spikeTM.shapeArr[i];
+                var shape = new Vector2Int[shapeTM.cells.Length];
+                shapeTM.ForEachCells((index, localPos) => {
+                    shape[index] = localPos;
+                });
+                var shapeModel = new ShapeModel {
+                    index = i,
+                    shape = shape,
+                    sizeInt = shapeTM.sizeInt,
+                    centerFloat = shapeTM.GetCenterFloat()
+                };
+                spike.shapeComponent.Add(shapeModel);
+            }
 
             return spike;
         }
@@ -69,8 +77,7 @@ namespace Oshi {
                                  AssetsInfraContext assetsInfraContext,
                                  int typeID,
                                  int index,
-                                 Vector2Int pos,
-                                 Vector2Int size) {
+                                 Vector2Int pos) {
 
             var has = templateInfraContext.Goal_TryGet(typeID, out var goalTM);
             if (!has) {
@@ -92,12 +99,21 @@ namespace Oshi {
             // Set Pos
             goal.Pos_SetPos(pos);
 
-            // Set Size
-            goal.Size_SetSize(size);
-
-            // Set Mesh
-            goal.Mesh_Set(goalTM.mesh);
-            goal.Mesh_SetMaterial(goalTM.meshMaterial);
+            // Set Models
+            for (int i = 0; i < goalTM.shapeArr.Length; i++) {
+                var shapeTM = goalTM.shapeArr[i];
+                var shape = new Vector2Int[shapeTM.cells.Length];
+                shapeTM.ForEachCells((index, localPos) => {
+                    shape[index] = localPos;
+                });
+                var shapeModel = new ShapeModel {
+                    index = i,
+                    shape = shape,
+                    sizeInt = shapeTM.sizeInt,
+                    centerFloat = shapeTM.GetCenterFloat()
+                };
+                goal.shapeComponent.Add(shapeModel);
+            }
 
             return goal;
         }
@@ -106,8 +122,7 @@ namespace Oshi {
                                  AssetsInfraContext assetsInfraContext,
                                  int typeID,
                                  int index,
-                                 Vector2Int pos,
-                                 Vector2Int size) {
+                                 Vector2Int pos) {
 
             var has = templateInfraContext.Wall_TryGet(typeID, out var wallTM);
             if (!has) {
@@ -129,12 +144,21 @@ namespace Oshi {
             // Set Pos
             wall.Pos_SetPos(pos);
 
-            // Set Size
-            wall.Size_SetSize(size);
-
-            // Set Mesh
-            wall.Mesh_Set(wallTM.mesh);
-            wall.Mesh_SetMaterial(wallTM.meshMaterial);
+            // Set Models
+            for (int i = 0; i < wallTM.shapeArr.Length; i++) {
+                var shapeTM = wallTM.shapeArr[i];
+                var shape = new Vector2Int[shapeTM.cells.Length];
+                shapeTM.ForEachCells((index, localPos) => {
+                    shape[index] = localPos;
+                });
+                var shapeModel = new ShapeModel {
+                    index = i,
+                    shape = shape,
+                    sizeInt = shapeTM.sizeInt,
+                    centerFloat = shapeTM.GetCenterFloat()
+                };
+                wall.shapeComponent.Add(shapeModel);
+            }
 
             return wall;
         }
@@ -172,7 +196,6 @@ namespace Oshi {
                 var shape = new Vector2Int[shapeTM.cells.Length];
                 shapeTM.ForEachCells((index, localPos) => {
                     shape[index] = localPos;
-                    Debug.Log($"Factory Shape {index} - {localPos}");
                 });
                 var shapeModel = new ShapeModel {
                     index = i,

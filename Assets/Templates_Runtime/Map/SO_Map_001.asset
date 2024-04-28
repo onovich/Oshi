@@ -27,21 +27,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 164f8d450169043389c59f12bb12963f, type: 2}
   wallPosArr:
   - {x: 2, y: -2}
-  wallSizeArr:
-  - {x: 2, y: 2}
   goalIndexArr: 01000000
   goalTMArr:
   - {fileID: 11400000, guid: df7a47281712845798ed4565588d236d, type: 2}
   goalPosArr:
   - {x: -8, y: -5}
-  goalSizeArr:
-  - {x: 3, y: 2}
   spikeIndexArr: 01000000
   spikeTMArr:
   - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}
   spikePosArr:
   - {x: -5, y: -2}
-  spikeSizeArr:
-  - {x: 1, y: 1}
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}

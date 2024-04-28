@@ -4,15 +4,34 @@ namespace Oshi {
 
     public static class GameGoalDomain {
 
-        public static GoalEntity Spawn(GameBusinessContext ctx, int typeID, int index, Vector2Int pos, Vector2Int size) {
+        public static GoalEntity Spawn(GameBusinessContext ctx, int typeID, int index, Vector2Int pos) {
             var goal = GameFactory.Goal_Spawn(ctx.templateInfraContext,
                                               ctx.assetsInfraContext,
                                               typeID,
                                               index,
-                                              pos,
-                                              size);
+                                              pos);
 
             ctx.goalRepo.Add(goal);
+
+            var has = ctx.templateInfraContext.Goal_TryGet(typeID, out var goalTM);
+            if (!has) {
+                GLog.LogError($"Block {typeID} not found");
+            }
+
+            var shape = goal.shapeComponent.Get(goal.shapeIndex);
+            int cellIndex = 0;
+            shape.ForEachCell((localPos) => {
+                cellIndex++;
+                var cellPos = pos + localPos;
+                var cell = GameCellDomain.Spawn(ctx, cellPos);
+                cell.SetSpr(goalTM.mesh);
+                cell.SetSprColor(goalTM.meshColor);
+                cell.SetSprMaterial(goalTM.meshMaterial);
+                cell.index = cellIndex;
+                goal.cellSlotComponent.Add(cell);
+                cell.SetParent(goal.transform);
+            });
+
             return goal;
         }
 

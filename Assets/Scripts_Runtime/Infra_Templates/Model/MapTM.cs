@@ -21,19 +21,16 @@ namespace Oshi {
         public int[] wallIndexArr;
         public WallTM[] wallTMArr;
         public Vector2Int[] wallPosArr;
-        public Vector2Int[] wallSizeArr;
 
         // Goal
         public int[] goalIndexArr;
         public GoalTM[] goalTMArr;
         public Vector2Int[] goalPosArr;
-        public Vector2Int[] goalSizeArr;
 
         // Spike
         public int[] spikeIndexArr;
         public SpikeTM[] spikeTMArr;
         public Vector2Int[] spikePosArr;
-        public Vector2Int[] spikeSizeArr;
 
         // Camera
         public Vector2 cameraConfinerWorldMax;

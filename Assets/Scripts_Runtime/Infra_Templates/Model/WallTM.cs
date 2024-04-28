@@ -9,7 +9,9 @@ namespace Oshi {
         public int typeID;
         public string typeName;
         public Sprite mesh;
+        public Color meshColor;
         public Material meshMaterial;
+        public ShapeTM[] shapeArr;
         
     }
 

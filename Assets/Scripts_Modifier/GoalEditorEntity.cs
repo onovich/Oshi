@@ -21,10 +21,17 @@ namespace Oshi.Modifier {
             gameObject.name = $"Goal - {goalTM.typeName} - {index}";
         }
 
-        public Vector2Int GetSizeInt() {
-            var sizeInt = GetComponent<SpriteRenderer>().size.RoundToVector2Int();
-            GetComponent<SpriteRenderer>().size = sizeInt;
-            return sizeInt;
+        void OnDrawGizmos() {
+            if (goalTM == null) return;
+            if (goalTM.shapeArr == null) return;
+            foreach (var shape in goalTM.shapeArr) {
+                if (shape == null) continue;
+                if (shape.cells == null) continue;
+                var pos = GetPosInt();
+                foreach (var cell in shape.cells) {
+                    Gizmos.DrawGUITexture(new Rect(cell.x + pos.x, cell.y + pos.y, 1, 1), goalTM.mesh.texture, 0, 0, 0, 0);
+                }
+            }
         }
 
     }

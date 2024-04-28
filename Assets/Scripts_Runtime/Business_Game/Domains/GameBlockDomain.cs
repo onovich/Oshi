@@ -30,7 +30,6 @@ namespace Oshi {
                 cell.index = cellIndex;
                 block.cellSlotComponent.Add(cell);
                 cell.SetParent(block.transform);
-                GLog.Log($"Block {block.typeName} - {block.entityIndex} - {cell.index} - {cellPos}");
             });
 
             return block;

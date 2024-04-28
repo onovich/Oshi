@@ -21,10 +21,17 @@ namespace Oshi.Modifier {
             gameObject.name = $"Wall - {wallTM.typeName} - {index}";
         }
 
-        public Vector2Int GetSizeInt() {
-            var sizeInt = GetComponent<SpriteRenderer>().size.RoundToVector2Int();
-            GetComponent<SpriteRenderer>().size = sizeInt;
-            return sizeInt;
+        void OnDrawGizmos() {
+            if (wallTM == null) return;
+            if (wallTM.shapeArr == null) return;
+            foreach (var shape in wallTM.shapeArr) {
+                if (shape == null) continue;
+                if (shape.cells == null) continue;
+                var pos = GetPosInt();
+                foreach (var cell in shape.cells) {
+                    Gizmos.DrawGUITexture(new Rect(cell.x + pos.x, cell.y + pos.y, 1, 1), wallTM.mesh.texture, 0, 0, 0, 0);
+                }
+            }
         }
 
     }

@@ -45,40 +45,34 @@ namespace Oshi {
             // Wall
             var wallTMArr = mapTM.wallTMArr;
             var wallPosArr = mapTM.wallPosArr;
-            var wallSizeArr = mapTM.wallSizeArr;
             var wallIndexArr = mapTM.wallIndexArr;
             for (int i = 0; i < wallTMArr.Length; i++) {
                 var wallTM = wallTMArr[i];
                 var pos = wallPosArr[i];
-                var size = wallSizeArr[i];
                 var index = wallIndexArr[i];
-                var _ = GameWallDomain.Spawn(ctx, wallTM.typeID, index, pos, size);
+                var _ = GameWallDomain.Spawn(ctx, wallTM.typeID, index, pos);
             }
 
             // Goal
             var goalTMArr = mapTM.goalTMArr;
             var goalPosArr = mapTM.goalPosArr;
-            var goalSizeArr = mapTM.goalSizeArr;
             var goalIndexArr = mapTM.goalIndexArr;
             for (int i = 0; i < goalTMArr.Length; i++) {
                 var goalTM = goalTMArr[i];
                 var pos = goalPosArr[i];
-                var size = goalSizeArr[i];
                 var index = goalIndexArr[i];
-                var _ = GameGoalDomain.Spawn(ctx, goalTM.typeID, index, pos, size);
+                var _ = GameGoalDomain.Spawn(ctx, goalTM.typeID, index, pos);
             }
 
             // Spike
             var spikeTMArr = mapTM.spikeTMArr;
             var spikePosArr = mapTM.spikePosArr;
-            var spikeSizeArr = mapTM.spikeSizeArr;
             var spikeIndexArr = mapTM.spikeIndexArr;
             for (int i = 0; i < spikeTMArr.Length; i++) {
                 var spikeTM = spikeTMArr[i];
                 var pos = spikePosArr[i];
-                var size = spikeSizeArr[i];
                 var index = spikeIndexArr[i];
-                var _ = GameSpikeDomain.Spawn(ctx, spikeTM.typeID, index, pos, size);
+                var _ = GameSpikeDomain.Spawn(ctx, spikeTM.typeID, index, pos);
             }
 
             // Camera
