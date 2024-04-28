@@ -18,8 +18,8 @@ namespace Oshi {
 
         public void Add(BlockEntity block) {
             all.Add(block.entityIndex, block);
-            GridUtils.ForEachGridBySize(block.PosInt, block.sizeInt, (grid) => {
-                posMap.Add(grid, block);
+            block.cellSlotComponent.ForEach((index, mod) => {
+                posMap.Add(mod.LocalPosInt + block.PosInt, block);
             });
         }
 
@@ -43,18 +43,18 @@ namespace Oshi {
         }
 
         public void UpdatePos(Vector2Int oldPos, BlockEntity block) {
-            GridUtils.ForEachGridBySize(oldPos, block.sizeInt, (grid) => {
-                posMap.Remove(grid);
+            block.cellSlotComponent.ForEach((index, mod) => {
+                posMap.Remove(mod.LocalPosInt + oldPos);
             });
-            GridUtils.ForEachGridBySize(block.PosInt, block.sizeInt, (grid) => {
-                posMap.Add(grid, block);
+            block.cellSlotComponent.ForEach((index, mod) => {
+                posMap.Add(mod.LocalPosInt + block.PosInt, block);
             });
         }
 
         public void Remove(BlockEntity block) {
             all.Remove(block.entityIndex);
-            GridUtils.ForEachGridBySize(block.PosInt, block.sizeInt, (grid) => {
-                posMap.Remove(grid);
+            block.cellSlotComponent.ForEach((index, mod) => {
+                posMap.Remove(mod.LocalPosInt + block.PosInt);
             });
         }
 

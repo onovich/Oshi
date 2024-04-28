@@ -23,20 +23,18 @@ namespace Oshi {
 
         public static bool CheckInGoal(GameBusinessContext ctx, BlockEntity block) {
             var pos = block.PosInt;
-            var size = block.sizeInt;
             var inGoal = true;
-            GridUtils.ForEachGridBySize(pos, size, (grid) => {
-                inGoal &= (ctx.goalRepo.Has(grid));
+            block.cellSlotComponent.ForEach((index, mod) => {
+                inGoal &= (ctx.goalRepo.Has(mod.LocalPosInt + pos));
             });
             return inGoal;
         }
 
         static bool CheckInSpike(GameBusinessContext ctx, BlockEntity block) {
             var pos = block.PosInt;
-            var size = block.sizeInt;
             var inSpike = false;
-            GridUtils.ForEachGridBySize(pos, size, (grid) => {
-                inSpike |= (ctx.spikeRepo.Has(grid));
+            block.cellSlotComponent.ForEach((index, mod) => {
+                inSpike |= (ctx.spikeRepo.Has(mod.LocalPosInt + pos));
             });
             return inSpike;
         }

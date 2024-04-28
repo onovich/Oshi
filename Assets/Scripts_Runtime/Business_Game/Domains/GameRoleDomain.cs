@@ -109,12 +109,11 @@ namespace Oshi {
 
             var allow = true;
             var _block = block;
-            GridUtils.ForEachGridBySize(block.PosInt, block.sizeInt, (grid) => {
-                allow &= ctx.wallRepo.Has(grid + role.Pos_GetNextDir()) == false;
-                allow &= ctx.blockRepo.HasDifferent(grid + role.Pos_GetNextDir(), _block.entityIndex) == false;
-                allow &= _block.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, grid, role.Pos_GetNextDir());
+            block.cellSlotComponent.ForEach((index, mod) => {
+                allow &= ctx.wallRepo.Has(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir()) == false;
+                allow &= ctx.blockRepo.HasDifferent(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir(), _block.entityIndex) == false;
+                allow &= _block.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, _block.PosInt + mod.LocalPosInt, role.Pos_GetNextDir());
             });
-
             return allow;
         }
 

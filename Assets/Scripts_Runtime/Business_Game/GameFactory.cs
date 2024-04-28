@@ -167,9 +167,6 @@ namespace Oshi {
             block.Pos_SetPos(pos);
             block.originalPos = pos;
 
-            // Set Size
-            block.Size_SetSize(size);
-
             // Set Mesh
             block.Mesh_Set(blockTM.mesh);
             block.Mesh_SetMaterial(blockTM.meshMaterial);

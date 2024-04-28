@@ -10,18 +10,17 @@ namespace Oshi {
         public int typeID;
         public string typeName;
 
-        // Render
-        [SerializeField] SpriteRenderer spr;
+        // Cell
+        [SerializeField] Transform cellRoot;
+        public CellSlotComponent cellSlotComponent;
 
         // Pos
         public Vector2 Pos => transform.position;
         public Vector2Int PosInt => Pos_GetPosInt();
         public Vector2 originalPos;
 
-        // Size
-        public Vector2Int sizeInt;
-
         public void Ctor() {
+            cellSlotComponent = new CellSlotComponent();
         }
 
         // Pos
@@ -46,22 +45,24 @@ namespace Oshi {
             return true;
         }
 
-        // Size
-        public void Size_SetSize(Vector2Int size) {
-            spr.size = size;
-            this.sizeInt = size;
-        }
-
         // Mesh
         public void Mesh_Set(Sprite sp) {
-            this.spr.sprite = sp;
+            cellSlotComponent.ForEach((index, mod) => {
+                mod.spr.sprite = sp;
+            });
         }
 
         public void Mesh_SetMaterial(Material mat) {
-            this.spr.material = mat;
+            cellSlotComponent.ForEach((index, mod) => {
+                mod.spr.material = mat;
+            });
         }
 
         public void TearDown() {
+            cellSlotComponent.ForEach((index, mod) => {
+                Destroy(mod.gameObject);
+            });
+            cellSlotComponent.Clear();
             Destroy(gameObject);
         }
 
