@@ -160,6 +160,9 @@ namespace Oshi {
                 wall.shapeComponent.Add(shapeModel);
             }
 
+            // Set Line
+            wall.Line_SetPoints(wallTM.shapeNodes);
+
             return wall;
         }
 

@@ -14,6 +14,9 @@ namespace Oshi {
         [SerializeField] Transform cellRoot;
         public CellSlotComponent cellSlotComponent;
 
+        // Line
+        [SerializeField] LineRenderer lineRenderer;
+
         // Shape
         public ShapeComponent shapeComponent;
         public int shapeIndex;
@@ -35,6 +38,18 @@ namespace Oshi {
 
         Vector2Int Pos_GetPosInt() {
             return transform.position.RoundToVector3Int().ToVector2Int();
+        }
+
+        // Line
+        public void Line_SetPoints(Vector3[] points) {
+            lineRenderer.useWorldSpace = false;
+            lineRenderer.startWidth = 4f / 32;
+            lineRenderer.endWidth = 4f / 32;
+            lineRenderer.positionCount = points.Length;
+            for (int i = 0; i < points.Length; i++) {
+                lineRenderer.SetPosition(i, points[i]);
+            }
+            lineRenderer.loop = true;
         }
 
         public void TearDown() {

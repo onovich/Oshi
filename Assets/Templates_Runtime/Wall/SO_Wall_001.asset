@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeID: 1
   typeName: Wall
-  mesh: {fileID: 21300000, guid: 0dbc3f7b63f8e46b58886bdca83262cd, type: 3}
+  mesh: {fileID: 0}
   meshColor: {r: 1, g: 1, b: 1, a: 1}
   meshMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   shapeArr:
   - {fileID: 11400000, guid: 52b721e4c97134108b8692cf3eda4874, type: 2}
   shapeNodes:
-  - {x: 0, y: 2, z: 0}
-  - {x: 0, y: 3, z: 0}
-  - {x: 2, y: 3, z: 0}
-  - {x: 2, y: 1, z: 0}
-  - {x: 3, y: 1, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
-  - {x: 1, y: 2, z: 0}
+  - {x: 0.0625, y: 2.0625, z: 0}
+  - {x: 0.0625, y: 2.9375, z: 0}
+  - {x: 1.9375, y: 2.9375, z: 0}
+  - {x: 1.9375, y: 0.9375, z: 0}
+  - {x: 2.9375, y: 0.9375, z: 0}
+  - {x: 2.9375, y: 0.0625, z: 0}
+  - {x: 1.0625, y: 0.0625, z: 0}
+  - {x: 1.0625, y: 2.0625, z: 0}

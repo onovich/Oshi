@@ -22,16 +22,16 @@ namespace Oshi {
                 cellIndex++;
                 var cellPos = pos + localPos;
                 var cell = GameCellDomain.Spawn(ctx, cellPos);
-                cell.SetSpr(wallTM.mesh);
-                cell.SetSprColor(wallTM.meshColor);
-                cell.SetSprMaterial(wallTM.meshMaterial);
+                if (wallTM.mesh != null) cell.SetSpr(wallTM.mesh);
+                if (wallTM.mesh != null) cell.SetSprColor(wallTM.meshColor);
+                if (wallTM.mesh != null) cell.SetSprMaterial(wallTM.meshMaterial);
                 cell.index = cellIndex;
                 wall.cellSlotComponent.Add(cell);
                 cell.SetParent(wall.transform);
             });
 
             ctx.wallRepo.Add(wall);
-                return wall;
+            return wall;
         }
 
         public static void UnSpawn(GameBusinessContext ctx, WallEntity wall) {
