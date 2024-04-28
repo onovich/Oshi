@@ -13,6 +13,22 @@ namespace Oshi {
                                               size);
 
             ctx.blockRepo.Add(block);
+
+            var has = ctx.templateInfraContext.Block_TryGet(typeID, out var blockTM);
+            if (!has) {
+                GLog.LogError($"Block {typeID} not found");
+            }
+
+            var shape = block.shapeComponent.Get(block.shapeIndex);
+            shape.ForEachCell((localPos) => {
+                var cellPos = pos + localPos;
+                var cell = GameCellDomain.Spawn(ctx, cellPos);
+                block.cellSlotComponent.Add(cell);
+                cell.SetSpr(blockTM.mesh);
+                cell.SetSprColor(blockTM.meshColor);
+                cell.SetSprMaterial(blockTM.meshMaterial);
+            });
+
             return block;
         }
 
