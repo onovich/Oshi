@@ -10,7 +10,7 @@ namespace Oshi {
 
         public static List<Vector3> Sort(List<Vector2> vectors) {
             vectors = RemoveDuplicates(vectors);
-            vectors = SortVectorsByOrthogonalAdjacency(vectors);
+            vectors = SortVectorsByNearistAxis(vectors);
             return Vector2ToVector3(vectors);
         }
 
@@ -26,7 +26,8 @@ namespace Oshi {
                 .ToList();
         }
 
-        static List<Vector2> SortVectorsByOrthogonalAdjacency(List<Vector2> vectors) {
+        // 旅行商问题(TSP)的变种: 从一个点出发，经过所有点，最后回到出发点，使得总路径最短(约束: 只走直线)
+        static List<Vector2> SortVectorsByNearistAxis(List<Vector2> vectors) {
             if (vectors.Count == 0)
                 return new List<Vector2>();
 
@@ -36,7 +37,7 @@ namespace Oshi {
             vectors.RemoveAt(0);
 
             while (vectors.Count > 0) {
-                Vector2 next = FindNextOrthogonalPoint(current, vectors);
+                Vector2 next = FindNextPointInNearistAxis(current, vectors);
                 sorted.Add(next);
                 vectors.Remove(next);
                 current = next;
@@ -45,7 +46,7 @@ namespace Oshi {
             return sorted;
         }
 
-        static Vector2 FindNextOrthogonalPoint(Vector2 current, List<Vector2> vectors) {
+        static Vector2 FindNextPointInNearistAxis(Vector2 current, List<Vector2> vectors) {
             Vector2? closestMatch = null;
             float minDistance = float.MaxValue;
 
@@ -57,7 +58,7 @@ namespace Oshi {
                 }
             }
 
-            return closestMatch ?? vectors[0]; // Fallback to the first point if no orthogonal match found
+            return closestMatch ?? vectors[0];
         }
     }
 
