@@ -170,9 +170,10 @@ namespace Oshi {
             // Set Models
             for (int i = 0; i < blockTM.shapeArr.Length; i++) {
                 var shapeTM = blockTM.shapeArr[i];
-                var shape = new Vector2Int[shapeTM.sizeInt.x * shapeTM.sizeInt.y];
+                var shape = new Vector2Int[shapeTM.cells.Length];
                 shapeTM.ForEachCells((index, localPos) => {
                     shape[index] = localPos;
+                    Debug.Log($"Factory Shape {index} - {localPos}");
                 });
                 var shapeModel = new ShapeModel {
                     index = i,

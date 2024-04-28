@@ -20,13 +20,18 @@ namespace Oshi {
             }
 
             var shape = block.shapeComponent.Get(block.shapeIndex);
+            int cellIndex = 0;
             shape.ForEachCell((localPos) => {
+                cellIndex++;
                 var cellPos = pos + localPos;
                 var cell = GameCellDomain.Spawn(ctx, cellPos);
-                block.cellSlotComponent.Add(cell);
                 cell.SetSpr(blockTM.mesh);
                 cell.SetSprColor(blockTM.meshColor);
                 cell.SetSprMaterial(blockTM.meshMaterial);
+                cell.index = cellIndex;
+                block.cellSlotComponent.Add(cell);
+                cell.SetParent(block.transform);
+                GLog.Log($"Block {block.typeName} - {block.entityIndex} - {cell.index} - {cellPos}");
             });
 
             return block;
