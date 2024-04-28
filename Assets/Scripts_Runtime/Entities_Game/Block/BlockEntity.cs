@@ -14,6 +14,10 @@ namespace Oshi {
         [SerializeField] Transform cellRoot;
         public CellSlotComponent cellSlotComponent;
 
+        // Shape
+        public ShapeComponent shapeComponent;
+        public int shapeIndex;
+
         // Pos
         public Vector2 Pos => transform.position;
         public Vector2Int PosInt => Pos_GetPosInt();
@@ -21,6 +25,8 @@ namespace Oshi {
 
         public void Ctor() {
             cellSlotComponent = new CellSlotComponent();
+            shapeComponent = new ShapeComponent();
+            shapeIndex = 0;
         }
 
         // Pos
@@ -43,19 +49,6 @@ namespace Oshi {
                 return false;
             }
             return true;
-        }
-
-        // Mesh
-        public void Mesh_Set(Sprite sp) {
-            cellSlotComponent.ForEach((index, mod) => {
-                mod.spr.sprite = sp;
-            });
-        }
-
-        public void Mesh_SetMaterial(Material mat) {
-            cellSlotComponent.ForEach((index, mod) => {
-                mod.spr.material = mat;
-            });
         }
 
         public void TearDown() {

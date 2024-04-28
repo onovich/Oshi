@@ -167,11 +167,37 @@ namespace Oshi {
             block.Pos_SetPos(pos);
             block.originalPos = pos;
 
-            // Set Mesh
-            block.Mesh_Set(blockTM.mesh);
-            block.Mesh_SetMaterial(blockTM.meshMaterial);
+            // Set Models
+            for (int i = 0; i < blockTM.shapeArr.Length; i++) {
+                var shapeTM = blockTM.shapeArr[i];
+                var shape = new Vector2Int[shapeTM.sizeInt.x * shapeTM.sizeInt.y];
+                shapeTM.ForEachCells((index, localPos) => {
+                    shape[index] = localPos;
+                });
+                var shapeModel = new ShapeModel {
+                    index = i,
+                    shape = shape,
+                    sizeInt = shapeTM.sizeInt,
+                    centerFloat = shapeTM.GetCenterFloat()
+                };
+                block.shapeComponent.Add(shapeModel);
+            }
 
             return block;
+        }
+
+        public static CellMod Cell_Spawn(IDRecordService idRecordService,
+                                               AssetsInfraContext assetsInfraContext,
+                                               Vector2Int pos) {
+
+            var prefab = assetsInfraContext.Mod_GetCell();
+            var cell = GameObject.Instantiate(prefab).GetComponent<CellMod>();
+            cell.Ctor();
+
+            // Set Pos
+            cell.Pos_SetPosInt(pos);
+
+            return cell;
         }
 
         public static RoleEntity Role_Spawn(TemplateInfraContext templateInfraContext,

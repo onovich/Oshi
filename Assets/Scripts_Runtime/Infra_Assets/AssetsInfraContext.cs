@@ -72,6 +72,14 @@ namespace Oshi {
             return prefab;
         }
 
+        public GameObject Mod_GetCell() {
+            var has = Entity_TryGet("Mod_Cell", out var prefab);
+            if (!has) {
+                GLog.LogError($"Mod Cell not found");
+            }
+            return prefab;
+        }
+
     }
 
 }
