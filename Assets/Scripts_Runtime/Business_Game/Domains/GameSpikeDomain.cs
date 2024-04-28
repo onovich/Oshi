@@ -11,8 +11,6 @@ namespace Oshi {
                                               index,
                                               pos);
 
-            ctx.spikeRepo.Add(spike);
-
             var has = ctx.templateInfraContext.Spike_TryGet(typeID, out var spikeTM);
             if (!has) {
                 GLog.LogError($"Block {typeID} not found");
@@ -32,6 +30,7 @@ namespace Oshi {
                 cell.SetParent(spike.transform);
             });
 
+            ctx.spikeRepo.Add(spike);
             return spike;
         }
 

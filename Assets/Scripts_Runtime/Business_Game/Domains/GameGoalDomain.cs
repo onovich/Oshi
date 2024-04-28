@@ -11,8 +11,6 @@ namespace Oshi {
                                               index,
                                               pos);
 
-            ctx.goalRepo.Add(goal);
-
             var has = ctx.templateInfraContext.Goal_TryGet(typeID, out var goalTM);
             if (!has) {
                 GLog.LogError($"Block {typeID} not found");
@@ -32,6 +30,7 @@ namespace Oshi {
                 cell.SetParent(goal.transform);
             });
 
+            ctx.goalRepo.Add(goal);
             return goal;
         }
 

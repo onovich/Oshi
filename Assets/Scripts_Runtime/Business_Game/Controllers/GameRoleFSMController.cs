@@ -57,7 +57,6 @@ namespace Oshi {
                 role.FSM_EnterMoving(role.moveDurationSec);
                 return;
             }
-
             succ = GameRoleDomain.CheckPushable(ctx, role, out var block);
             if (!succ) {
                 return;

@@ -11,8 +11,6 @@ namespace Oshi {
                                               index,
                                               pos);
 
-            ctx.blockRepo.Add(block);
-
             var has = ctx.templateInfraContext.Block_TryGet(typeID, out var blockTM);
             if (!has) {
                 GLog.LogError($"Block {typeID} not found");
@@ -32,6 +30,7 @@ namespace Oshi {
                 cell.SetParent(block.transform);
             });
 
+            ctx.blockRepo.Add(block);
             return block;
         }
 

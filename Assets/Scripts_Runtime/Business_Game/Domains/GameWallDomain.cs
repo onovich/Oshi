@@ -11,8 +11,6 @@ namespace Oshi {
                                               index,
                                               pos);
 
-            ctx.wallRepo.Add(wall);
-
             var has = ctx.templateInfraContext.Wall_TryGet(typeID, out var wallTM);
             if (!has) {
                 GLog.LogError($"Block {typeID} not found");
@@ -32,7 +30,8 @@ namespace Oshi {
                 cell.SetParent(wall.transform);
             });
 
-            return wall;
+            ctx.wallRepo.Add(wall);
+                return wall;
         }
 
         public static void UnSpawn(GameBusinessContext ctx, WallEntity wall) {
