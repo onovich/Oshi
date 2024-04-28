@@ -4,13 +4,12 @@ namespace Oshi {
 
     public static class GameBlockDomain {
 
-        public static BlockEntity Spawn(GameBusinessContext ctx, int typeID, int index, Vector2Int pos, Vector2Int size) {
+        public static BlockEntity Spawn(GameBusinessContext ctx, int typeID, int index, Vector2Int pos) {
             var block = GameFactory.Block_Spawn(ctx.templateInfraContext,
                                               ctx.assetsInfraContext,
                                               typeID,
                                               index,
-                                              pos,
-                                              size);
+                                              pos);
 
             ctx.blockRepo.Add(block);
 

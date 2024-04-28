@@ -143,8 +143,7 @@ namespace Oshi {
                                  AssetsInfraContext assetsInfraContext,
                                  int typeID,
                                  int index,
-                                 Vector2Int pos,
-                                 Vector2Int size) {
+                                 Vector2Int pos) {
 
             var has = templateInfraContext.Block_TryGet(typeID, out var blockTM);
             if (!has) {

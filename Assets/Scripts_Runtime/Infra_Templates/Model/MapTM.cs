@@ -16,7 +16,6 @@ namespace Oshi {
         public int[] blockIndexArr;
         public BlockTM[] blockTMArr;
         public Vector2Int[] blockPosArr;
-        public Vector2Int[] blockSizeArr;
 
         // Wall
         public int[] wallIndexArr;

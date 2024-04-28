@@ -22,9 +22,6 @@ MonoBehaviour:
   blockPosArr:
   - {x: 2, y: 2}
   - {x: 4, y: -2}
-  blockSizeArr:
-  - {x: 1, y: 2}
-  - {x: 2, y: 2}
   wallIndexArr: 01000000
   wallTMArr:
   - {fileID: 11400000, guid: 164f8d450169043389c59f12bb12963f, type: 2}

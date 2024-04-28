@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
-using TriInspector;
+using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -54,20 +54,17 @@ namespace Oshi.Modifier {
             var blockTMArr = new List<BlockTM>();
             var blockPosArr = new List<Vector2Int>();
             var blockIndexArr = new List<int>();
-            var blockSizeArr = new List<Vector2Int>();
             var index = 0;
             foreach (var editor in editors) {
                 index += 1;
                 blockTMArr.Add(editor.blockTM);
                 blockPosArr.Add(editor.GetPosInt());
                 blockIndexArr.Add(index);
-                blockSizeArr.Add(editor.GetSizeInt());
                 editor.Rename(index);
             }
             mapTM.blockTMArr = blockTMArr.ToArray();
             mapTM.blockPosArr = blockPosArr.ToArray();
             mapTM.blockIndexArr = blockIndexArr.ToArray();
-            mapTM.blockSizeArr = blockSizeArr.ToArray();
         }
 
         void BakeWall() {

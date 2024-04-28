@@ -34,14 +34,12 @@ namespace Oshi {
             // Block
             var blockTMArr = mapTM.blockTMArr;
             var blockPosArr = mapTM.blockPosArr;
-            var blockSizeArr = mapTM.blockSizeArr;
             var blockIndexArr = mapTM.blockIndexArr;
             for (int i = 0; i < blockTMArr.Length; i++) {
                 var blockTM = blockTMArr[i];
                 var pos = blockPosArr[i];
-                var size = blockSizeArr[i];
                 var index = blockIndexArr[i];
-                var _ = GameBlockDomain.Spawn(ctx, blockTM.typeID, index, pos, size);
+                var _ = GameBlockDomain.Spawn(ctx, blockTM.typeID, index, pos);
             }
 
             // Wall
