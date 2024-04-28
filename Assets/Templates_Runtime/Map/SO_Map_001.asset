@@ -16,8 +16,8 @@ MonoBehaviour:
   typeName: Test
   limitedByTime: 0
   gameTotalTime: 0
-  limitedByStep: 1
-  gameTotalStep: 10
+  limitedByStep: 0
+  gameTotalStep: 0
   ownerRoleTypeID: 1
   mapSize: {x: 20, y: 10}
   spawnPoint: {x: 0, y: -1}
