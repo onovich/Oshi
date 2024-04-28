@@ -11,25 +11,24 @@ namespace Oshi {
     public class MapEntity : MonoBehaviour {
 
         public int typeID;
+        public string typeName;
         public Vector2Int mapSize;
         [SerializeField] SpriteRenderer spr;
 
         public Vector2 spawnPoint;
         public Vector2 Pos => transform.position;
 
-        public float timer;
+        public bool limitedByTime;
+        public float gameTotalTime;
+        public bool limitedByStep;
+        public int gameTotalStep;
 
         public void Ctor() {
-            timer = 0;
         }
 
         public void Mesh_SetSize(Vector2Int size) {
             spr.size = size;
             spr.transform.position -= new Vector3(size.x / 2, size.y / 2, 0);
-        }
-
-        public void IncTimer(float dt) {
-            timer += dt;
         }
 
         public void TearDown() {

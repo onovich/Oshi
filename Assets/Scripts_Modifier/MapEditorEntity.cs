@@ -10,9 +10,22 @@ namespace Oshi.Modifier {
 
     public class MapEditorEntity : MonoBehaviour {
 
+        [Header("Map Info")]
         [SerializeField] int typeID;
+        [SerializeField] string typeName;
         [SerializeField] GameObject mapSize;
         [SerializeField] MapTM mapTM;
+
+        [Header("Time Config")]
+        [SerializeField] bool limitedByTime;
+        [SerializeField] float gameTotalTime;
+        [SerializeField] bool limitedByStep;
+        [SerializeField] int gameTotalStep;
+
+        [Header("Role Config")]
+        [SerializeField] RoleTM ownerRole;
+
+        [Header("Entity Group")]
         [SerializeField] Transform pointGroup;
         [SerializeField] Transform blockGroup;
         [SerializeField] Transform wallGroup;
@@ -35,6 +48,12 @@ namespace Oshi.Modifier {
 
         void BakeMapInfo() {
             mapTM.typeID = typeID;
+            mapTM.typeName = typeName;
+            mapTM.limitedByTime = limitedByTime;
+            mapTM.gameTotalTime = gameTotalTime;
+            mapTM.limitedByStep = limitedByStep;
+            mapTM.gameTotalStep = gameTotalStep;
+            mapTM.ownerRoleTypeID = ownerRole.typeID;
             mapTM.mapSize = mapSize.GetComponent<SpriteRenderer>().size.RoundToVector2Int();
             mapSize.GetComponent<SpriteRenderer>().size = mapTM.mapSize;
             mapSize.transform.position = -(mapTM.mapSize / 2).ToVector3Int();

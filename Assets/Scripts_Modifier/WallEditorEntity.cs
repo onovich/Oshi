@@ -24,14 +24,25 @@ namespace Oshi.Modifier {
         void OnDrawGizmos() {
             if (wallTM == null) return;
             if (wallTM.shapeArr == null) return;
-            foreach (var shape in wallTM.shapeArr) {
-                if (shape == null) continue;
-                if (shape.cells == null) continue;
-                var pos = GetPosInt();
-                foreach (var cell in shape.cells) {
-                    Gizmos.DrawGUITexture(new Rect(cell.x + pos.x, cell.y + pos.y, 1, 1), wallTM.mesh.texture, 0, 0, 0, 0);
+            if (wallTM.mesh != null) {
+                foreach (var shape in wallTM.shapeArr) {
+                    if (shape == null) continue;
+                    if (shape.cells == null) continue;
+                    var pos = GetPosInt();
+                    foreach (var cell in shape.cells) {
+                        Gizmos.DrawGUITexture(new Rect(cell.x + pos.x, cell.y + pos.y, 1, 1), wallTM.mesh.texture, 0, 0, 0, 0);
+                    }
                 }
             }
+            for (int i = 0; i < wallTM.shapeNodes.Length; i++) {
+                Vector3 node = wallTM.shapeNodes[i] + transform.position;
+                var next = wallTM.shapeNodes[(i + 1) % wallTM.shapeNodes.Length] + transform.position;
+                Gizmos.color = Color.green;
+                Gizmos.DrawCube(node, Vector3.one * 0.1f);
+                Gizmos.color = Color.white;
+                Gizmos.DrawLine(node, next);
+            }
+
         }
 
     }

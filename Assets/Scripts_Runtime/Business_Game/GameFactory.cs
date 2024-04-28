@@ -18,6 +18,13 @@ namespace Oshi {
             map.Ctor();
             map.typeID = typeID;
             map.mapSize = mapTM.mapSize;
+            map.typeName = mapTM.typeName;
+
+            // Set Limit
+            map.limitedByTime = mapTM.limitedByTime;
+            map.gameTotalTime = mapTM.gameTotalTime;
+            map.limitedByStep = mapTM.limitedByStep;
+            map.gameTotalStep = mapTM.gameTotalStep;
 
             // Set Mesh
             map.Mesh_SetSize(map.mapSize);

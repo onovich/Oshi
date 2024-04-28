@@ -8,17 +8,17 @@ namespace Oshi {
 
             var config = ctx.templateInfraContext.Config_Get();
 
-            // Game
-            var game = ctx.gameEntity;
-            game.fsmComponent.Gaming_Enter(config.gameTotalTime);
-
             // Map
             var mapTypeID = config.originalMapTypeID;
-            var map = GameMapDomain.Spawn(ctx, mapTypeID);
             var has = ctx.templateInfraContext.Map_TryGet(mapTypeID, out var mapTM);
             if (!has) {
                 GLog.LogError($"MapTM Not Found {mapTypeID}");
             }
+            var map = GameMapDomain.Spawn(ctx, mapTypeID);
+
+            // Game
+            var game = ctx.gameEntity;
+            game.fsmComponent.Gaming_Enter(map.gameTotalTime);
 
             // Role
             var player = ctx.playerEntity;
@@ -26,7 +26,7 @@ namespace Oshi {
             // - Owner
             var spawnPoint = mapTM.spawnPoint;
             var owner = GameRoleDomain.Spawn(ctx,
-                                             config.ownerRoleTypeID,
+                                             mapTM.ownerRoleTypeID,
                                              spawnPoint);
             player.ownerRoleEntityID = owner.entityID;
             ctx.ownerSpawnPoint = spawnPoint;
@@ -80,6 +80,8 @@ namespace Oshi {
 
             // UI
             UIApp.GameInfo_Open(ctx.uiContext);
+            UIApp.GameInfo_ShowStep(ctx.uiContext, map.limitedByStep);
+            UIApp.GameInfo_ShowTime(ctx.uiContext, map.limitedByTime);
 
             // Cursor
 
@@ -92,6 +94,7 @@ namespace Oshi {
             fsm.GameOver_DecTimer(dt);
 
             var enterTime = fsm.gameOver_enterTime;
+            var map = ctx.currentMapEntity;
             if (enterTime <= 0) {
                 UIApp.GameOver_Open(ctx.uiContext, fsm.gameOver_result);
             }
@@ -131,6 +134,13 @@ namespace Oshi {
                 return;
             }
 
+            // Check Step
+            var stepFinish = CheckStepFinish(ctx);
+            if (stepFinish) {
+                game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
+                return;
+            }
+
             // Check Goal
             var inGoal = CheckInGoal(ctx);
             if (inGoal) {
@@ -160,14 +170,29 @@ namespace Oshi {
         }
 
         public static bool CheckTimeFinish(GameBusinessContext ctx, float dt) {
+            var map = ctx.currentMapEntity;
+            if (!map.limitedByTime) {
+                return false;
+            }
             var game = ctx.gameEntity;
             var fsm = game.fsmComponent;
 
             fsm.Gaming_DecTimer(dt);
             var time = fsm.gaming_gameTime;
 
-            var config = ctx.templateInfraContext.Config_Get();
             return time <= 0;
+        }
+
+        public static bool CheckStepFinish(GameBusinessContext ctx) {
+            var map = ctx.currentMapEntity;
+            if (!map.limitedByStep) {
+                return false;
+            }
+            var totalStep = map.gameTotalStep;
+            var owner = ctx.Role_GetOwner();
+            var step = owner.step;
+
+            return totalStep - step <= 0;
         }
 
         public static void ExitGame(GameBusinessContext ctx) {

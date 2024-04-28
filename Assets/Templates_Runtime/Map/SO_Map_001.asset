@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: SO_Map_001
   m_EditorClassIdentifier: 
   typeID: 1
+  typeName: Test
+  limitedByTime: 0
+  gameTotalTime: 0
+  limitedByStep: 1
+  gameTotalStep: 10
+  ownerRoleTypeID: 1
   mapSize: {x: 20, y: 10}
   spawnPoint: {x: 0, y: -1}
   blockIndexArr: 0100000002000000

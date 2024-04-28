@@ -20,6 +20,14 @@ namespace Oshi.UI {
             };
         }
 
+        public static void ShowTime(UIAppContext ctx, bool show) {
+            var has = ctx.UniquePanel_TryGet<Panel_GameInfo>(out var panel);
+            if (!has) {
+                return;
+            }
+            panel.ShowTime(show);
+        }
+
         public static void RefreshTime(UIAppContext ctx, float time) {
             var has = ctx.UniquePanel_TryGet<Panel_GameInfo>(out var panel);
             if (!has) {
@@ -28,7 +36,15 @@ namespace Oshi.UI {
             panel.RefreshTime(time);
         }
 
-        public static void RefreshGameStageCounter(UIAppContext ctx, int counter) {
+        public static void ShowStep(UIAppContext ctx, bool show) {
+            var has = ctx.UniquePanel_TryGet<Panel_GameInfo>(out var panel);
+            if (!has) {
+                return;
+            }
+            panel.ShowStep(show);
+        }
+
+        public static void RefreshGameStep(UIAppContext ctx, int counter) {
             var has = ctx.UniquePanel_TryGet<Panel_GameInfo>(out var panel);
             if (!has) {
                 return;

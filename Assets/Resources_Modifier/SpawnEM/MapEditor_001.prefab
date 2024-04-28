@@ -181,8 +181,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeID: 1
+  typeName: Test
   mapSize: {fileID: 7115896714514695303}
   mapTM: {fileID: 11400000, guid: 2d742814c19784e2aa3b933b9a5ec791, type: 2}
+  limitedByTime: 0
+  gameTotalTime: 0
+  limitedByStep: 1
+  gameTotalStep: 10
+  ownerRole: {fileID: 11400000, guid: dc729f3a9797af54185e0ee62c313866, type: 2}
   pointGroup: {fileID: 1107259945692854076}
   blockGroup: {fileID: 1744669803390319805}
   wallGroup: {fileID: 2760128786156540856}

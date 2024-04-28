@@ -28,7 +28,7 @@ namespace Oshi {
 
         // State
         public bool needTearDown;
-        public int stageCounter;
+        public int step;
 
         // FSM
         public RoleFSMComponent fsmCom;
@@ -56,7 +56,7 @@ namespace Oshi {
             fsmCom = new RoleFSMComponent();
             animCom = new RoleAnimComponent();
             inputCom = new RoleInputComponent();
-            stageCounter = 0;
+            step = 0;
         }
 
         // Pos
@@ -97,7 +97,7 @@ namespace Oshi {
 
         // State
         public void State_IncStageCounter() {
-            stageCounter++;
+            step++;
         }
 
         // Move

@@ -10,11 +10,9 @@ namespace Oshi {
         // Game
         [Header("Game Config")]
         public float gameResetEnterTime;
-        public float gameTotalTime;
 
-        // Role
-        [Header("Role Config")]
-        public int ownerRoleTypeID;
+        // Map
+        [Header("Map Config")]
         public int originalMapTypeID;
 
         // Camera

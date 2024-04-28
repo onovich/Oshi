@@ -97,15 +97,21 @@ namespace Oshi {
             var game = ctx.gameEntity;
             var status = game.fsmComponent.status;
             var owner = ctx.Role_GetOwner();
+            var map = ctx.currentMapEntity;
             if (status == GameStatus.Gaming) {
 
                 // Camera
                 CameraApp.LateTick(ctx.cameraContext, dt);
 
-                // UI
-                UIApp.GameInfo_RefreshTime(ctx.uiContext, game.fsmComponent.gaming_gameTime);
-                UIApp.GameInfo_RefreshGameStageCounter(ctx.uiContext, owner.stageCounter);
+                // Game Info
+                var totalStep = map.gameTotalStep;
+                var showTime = map.limitedByTime;
+                var step = owner.step;
+                var showStep = map.limitedByStep;
 
+                // UI
+                if (showTime) UIApp.GameInfo_RefreshTime(ctx.uiContext, game.fsmComponent.gaming_gameTime);
+                if (showStep) UIApp.GameInfo_RefreshStep(ctx.uiContext, totalStep - step);
             }
             // VFX
             VFXApp.LateTick(ctx.vfxContext, dt);

@@ -47,12 +47,21 @@ namespace Oshi {
             PanelGameInfoDomain.Open(ctx);
         }
 
+
+        public static void GameInfo_ShowTime(UIAppContext ctx, bool show) {
+            PanelGameInfoDomain.ShowTime(ctx, show);
+        }
+
         public static void GameInfo_RefreshTime(UIAppContext ctx, float time) {
             PanelGameInfoDomain.RefreshTime(ctx, time);
         }
 
-        public static void GameInfo_RefreshGameStageCounter(UIAppContext ctx, int counter) {
-            PanelGameInfoDomain.RefreshGameStageCounter(ctx, counter);
+        public static void GameInfo_ShowStep(UIAppContext ctx, bool show) {
+            PanelGameInfoDomain.ShowStep(ctx, show);
+        }
+
+        public static void GameInfo_RefreshStep(UIAppContext ctx, int counter) {
+            PanelGameInfoDomain.RefreshGameStep(ctx, counter);
         }
 
         public static void GameInfo_Close(UIAppContext ctx) {
