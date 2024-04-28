@@ -28,20 +28,24 @@ MonoBehaviour:
   blockPosArr:
   - {x: 2, y: 2}
   - {x: 4, y: -2}
+  blockPathSpawnTMArr: []
   wallIndexArr: 01000000
   wallTMArr:
   - {fileID: 11400000, guid: 164f8d450169043389c59f12bb12963f, type: 2}
   wallPosArr:
   - {x: 2, y: -2}
+  wallPathSpawnTMArr: []
   goalIndexArr: 01000000
   goalTMArr:
   - {fileID: 11400000, guid: df7a47281712845798ed4565588d236d, type: 2}
   goalPosArr:
   - {x: -8, y: 1}
+  goalPathSpawnTMArr: []
   spikeIndexArr: 01000000
   spikeTMArr:
   - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}
   spikePosArr:
   - {x: -5, y: -2}
+  spikePathSpawnTMArr: []
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}

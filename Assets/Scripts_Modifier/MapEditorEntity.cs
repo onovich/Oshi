@@ -31,10 +31,12 @@ namespace Oshi.Modifier {
         [SerializeField] Transform wallGroup;
         [SerializeField] Transform goalGroup;
         [SerializeField] Transform spikeGroup;
+        [SerializeField] Transform pathGroup;
 
         [Button("Bake")]
         void Bake() {
             BakeMapInfo();
+            BakePath();
             BakeSpawnPoint();
             BakeBlock();
             BakeWall();
@@ -57,6 +59,18 @@ namespace Oshi.Modifier {
             mapTM.mapSize = mapSize.GetComponent<SpriteRenderer>().size.RoundToVector2Int();
             mapSize.GetComponent<SpriteRenderer>().size = mapTM.mapSize;
             mapSize.transform.position = -(mapTM.mapSize / 2).ToVector3Int();
+        }
+
+        void BakePath() {
+            var editors = pathGroup.GetComponentsInChildren<PathEditorEntity>();
+            if (editors.Length == 0) return;
+            var pathSpawnTMArr = new List<PathSpawnTM>();
+            foreach (var editor in editors) {
+                var pathSpawnTM = new PathSpawnTM();
+                pathSpawnTM.pathNodeArr = editor.GetPathNodeArr();
+                pathSpawnTMArr.Add(pathSpawnTM);
+                editor.Rename(mapTM.typeName);
+            }
         }
 
         void BakeSpawnPoint() {

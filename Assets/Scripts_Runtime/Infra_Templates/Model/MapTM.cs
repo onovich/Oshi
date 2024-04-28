@@ -27,21 +27,25 @@ namespace Oshi {
         public int[] blockIndexArr;
         public BlockTM[] blockTMArr;
         public Vector2Int[] blockPosArr;
+        public PathSpawnTM[] blockPathSpawnTMArr;
 
         [Header("Wall")]
         public int[] wallIndexArr;
         public WallTM[] wallTMArr;
         public Vector2Int[] wallPosArr;
+        public PathSpawnTM[] wallPathSpawnTMArr;
 
         [Header("Goal")]
         public int[] goalIndexArr;
         public GoalTM[] goalTMArr;
         public Vector2Int[] goalPosArr;
+        public PathSpawnTM[] goalPathSpawnTMArr;
 
         [Header("Spike")]
         public int[] spikeIndexArr;
         public SpikeTM[] spikeTMArr;
         public Vector2Int[] spikePosArr;
+        public PathSpawnTM[] spikePathSpawnTMArr;
 
         [Header("Camera")]
         public Vector2 cameraConfinerWorldMax;
