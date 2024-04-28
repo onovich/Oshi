@@ -65,11 +65,13 @@ namespace Oshi.Modifier {
             var editors = pathGroup.GetComponentsInChildren<PathEditorEntity>();
             if (editors.Length == 0) return;
             var pathSpawnTMArr = new List<PathSpawnTM>();
+            var index = 0;
             foreach (var editor in editors) {
+                index++;
                 var pathSpawnTM = new PathSpawnTM();
                 pathSpawnTM.pathNodeArr = editor.GetPathNodeArr();
                 pathSpawnTMArr.Add(pathSpawnTM);
-                editor.Rename(mapTM.typeName);
+                editor.Rename(index, mapTM.typeName);
             }
         }
 

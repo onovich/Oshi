@@ -227,6 +227,7 @@ MonoBehaviour:
   wallGroup: {fileID: 2760128786156540856}
   goalGroup: {fileID: 1493230028731654426}
   spikeGroup: {fileID: 1135912169792734435}
+  pathGroup: {fileID: 4841474027690527634}
 --- !u!1 &7115896714514695303
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9176782129684361860, guid: dc63135441e934cf6af9f69d5e3a19a6, type: 3}
       propertyPath: m_Name
-      value: PathEditor
+      value: Path - 1 - Test
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -675,7 +676,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3283731454935581554, guid: 54d1316f8f5cc40c4852000b25a29f3d, type: 3}
       propertyPath: m_Name
-      value: PathNodeEditorElement (1)
+      value: Path - 1 - Test - N - 1
       objectReference: {fileID: 0}
     - target: {fileID: 3942262401260791464, guid: 54d1316f8f5cc40c4852000b25a29f3d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -869,7 +870,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3283731454935581554, guid: 54d1316f8f5cc40c4852000b25a29f3d, type: 3}
       propertyPath: m_Name
-      value: PathNodeEditorElement
+      value: Path - 1 - Test - N - 0
       objectReference: {fileID: 0}
     - target: {fileID: 3942262401260791464, guid: 54d1316f8f5cc40c4852000b25a29f3d, type: 3}
       propertyPath: m_LocalPosition.x

@@ -14,11 +14,11 @@ namespace Oshi.Modifier {
             return pathNodeArr;
         }
 
-        public void Rename(string parent) {
-            this.name = "Path - " + parent;
+        public void Rename(int index, string parent) {
+            this.name = "Path - " + index + " - " + parent;
             for (int i = 0; i < transform.childCount; i++) {
                 var child = transform.GetChild(i);
-                child.name = $"{this.name} - Node - {i}";
+                child.name = $"{this.name} - N - {i}";
             }
         }
 
