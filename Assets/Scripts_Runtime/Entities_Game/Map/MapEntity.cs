@@ -37,7 +37,7 @@ namespace Oshi {
         }
 
 #if UNITY_EDITOR
-        void OnDrawGizmos() {
+        public void DrawGizmos() {
             GUIStyle style = new GUIStyle();
             var color = Color.white;
             color.a = 0.5f;

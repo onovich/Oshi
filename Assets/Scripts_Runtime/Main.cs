@@ -10,6 +10,7 @@ namespace Oshi {
     public class Main : MonoBehaviour {
 
         [SerializeField] bool drawCameraGizmos;
+        [SerializeField] bool drawMapGizmos;
 
         InputEntity inputEntity;
 
@@ -177,9 +178,12 @@ namespace Oshi {
             // UIApp.TearDown(uiAppContext);
         }
 
+#if UNITY_EDITOR
         void OnDrawGizmos() {
-            GameBusiness.OnDrawGizmos(gameBusinessContext, drawCameraGizmos);
+            GameBusiness.OnDrawCameraGizmos(gameBusinessContext, drawCameraGizmos);
+            GameBusiness.OnDrawMapGizmos(gameBusinessContext, drawMapGizmos);
         }
+#endif
 
     }
 

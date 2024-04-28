@@ -55,10 +55,11 @@ namespace Oshi {
             ctx.cameraCore.EnableDeadZone(mainCameraID, enable);
         }
 
-        // Gizmos
+#if UNITY_EDITOR
         public static void OnDrawGizmos(CameraAppContext ctx) {
             ctx.cameraCore.DrawGizmos();
         }
+#endif
 
     }
 

@@ -119,7 +119,8 @@ namespace Oshi {
             }
         }
 
-        public static void OnDrawGizmos(GameBusinessContext ctx, bool drawCameraGizmos) {
+#if UNITY_EDITOR
+        public static void OnDrawCameraGizmos(GameBusinessContext ctx, bool drawCameraGizmos) {
             if (ctx == null) {
                 return;
             }
@@ -131,6 +132,20 @@ namespace Oshi {
                 }
             }
         }
+
+        public static void OnDrawMapGizmos(GameBusinessContext ctx, bool drawMapGizmos) {
+            if (ctx == null) {
+                return;
+            }
+            var game = ctx.gameEntity;
+            var status = game.fsmComponent.status;
+            if (status == GameStatus.Gaming) {
+                if (drawMapGizmos) {
+                    GameMapDomain.OnDrawGizmos(ctx);
+                }
+            }
+        }
+#endif
 
         // UI
         public static void UIGameInfo_OnRestartBtnClick(GameBusinessContext ctx) {

@@ -14,6 +14,16 @@ namespace Oshi {
             ctx.currentMapEntity = null;
         }
 
+#if UNITY_EDITOR
+        public static void OnDrawGizmos(GameBusinessContext ctx) {
+            var map = ctx.currentMapEntity;
+            if (map == null) {
+                return;
+            }
+            map.DrawGizmos();
+        }
+#endif
+
     }
 
 }
