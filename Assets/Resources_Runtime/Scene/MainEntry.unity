@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawCameraGizmos: 0
-  drawMapGizmos: 1
+  drawMapGizmos: 0
 --- !u!1 &1802965980
 GameObject:
   m_ObjectHideFlags: 0
