@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0e876113ffa40a8b883d7137b8ab12, type: 3}
   m_Name: TM_Shape_005
   m_EditorClassIdentifier: 
-  sizeInt: {x: 3, y: 3}
+  sizeInt: {x: 5, y: 4}
   cells:
-  - {x: 0, y: 1}
+  - {x: 0, y: 3}
+  - {x: 1, y: 3}
   - {x: 1, y: 2}
   - {x: 1, y: 1}
-  - {x: 1, y: 0}
   - {x: 2, y: 2}
   - {x: 2, y: 1}
+  - {x: 3, y: 2}
+  - {x: 3, y: 1}
+  - {x: 3, y: 0}
+  - {x: 4, y: 0}
