@@ -45,8 +45,8 @@ MonoBehaviour:
   - {x: -5, y: -2}
   pathSpawnTMArr:
   - pathNodeArr:
-    - {x: 8, y: 3}
-    - {x: 8, y: -2}
+    - {x: -5, y: -2}
+    - {x: -5, y: -4}
   pathTravelerTypeArr: 04000000
   pathTravelerIndexArr: 01000000
   cameraConfinerWorldMax: {x: 30, y: 20}

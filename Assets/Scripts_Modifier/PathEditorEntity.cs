@@ -23,6 +23,12 @@ namespace Oshi.Modifier {
                 var child = transform.GetChild(i);
                 child.name = $"{this.name} - N - {i}";
             }
+            var offset = transform.GetChild(0).position - traveler.transform.position;
+            for (int i = 0; i < transform.childCount; i++) {
+                var child = transform.GetChild(i);
+                child.position -= offset;
+                child.position = child.position.RoundToVector2Int().ToVector3Int();
+            }
         }
 
         public EntityType GetTravelerType() {
@@ -54,13 +60,24 @@ namespace Oshi.Modifier {
             var pathNodeArr = GetPathNodeArr();
             for (int i = 0; i < pathNodeArr.Length; i++) {
                 var pos = pathNodeArr[i];
-                Gizmos.color = i == 0 ? Color.white : Color.red;
+                Gizmos.color = i == 0 ? Color.yellow : Color.yellow;
                 var size = i == 0 ? Vector3.one * .2f : Vector3.one * .1f;
                 Gizmos.DrawCube(pos.ToVector3Int(), size);
                 var next = pathNodeArr[(i + 1) % pathNodeArr.Length];
-                Gizmos.color = Color.blue;
+                Gizmos.color = Color.yellow;
                 Gizmos.DrawLine(pos.ToVector3Int(), next.ToVector3Int());
             }
+
+            if (traveler == null) return;
+            var block = traveler.GetComponent<BlockEditorEntity>();
+            var wall = traveler.GetComponent<WallEditorEntity>();
+            var goal = traveler.GetComponent<GoalEditorEntity>();
+            var spike = traveler.GetComponent<SpikeEditorEntity>();
+            var offset = pathNodeArr[pathNodeArr.Length - 1] - pathNodeArr[0];
+            if (block != null) block.OnDrawGhost(offset);
+            if (wall != null) wall.OnDrawGhost(offset);
+            if (goal != null) goal.OnDrawGhost(offset);
+            if (spike != null) spike.OnDrawGhost(offset);
         }
 
     }

@@ -45,7 +45,20 @@ namespace Oshi.Modifier {
                 Gizmos.color = Color.white;
                 Gizmos.DrawLine(node, next);
             }
+        }
 
+        public void OnDrawGhost(Vector2Int offset) {
+            if (wallTM == null) return;
+            if (wallTM.shapeArr == null) return;
+            foreach (var shape in wallTM.shapeArr) {
+                if (shape == null) continue;
+                if (shape.cells == null) continue;
+                var pos = GetPosInt() + offset + new Vector2(.5f, .5f);
+                foreach (var cell in shape.cells) {
+                    Gizmos.color = new Color(1, 1, 1, 0.5f);
+                    Gizmos.DrawCube(new Vector3(cell.x + pos.x, cell.y + pos.y, 0), Vector3.one);
+                }
+            }
         }
 
     }
