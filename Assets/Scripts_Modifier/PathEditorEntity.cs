@@ -6,6 +6,8 @@ namespace Oshi.Modifier {
     public class PathEditorEntity : MonoBehaviour {
 
         [SerializeField] public GameObject traveler;
+        [SerializeField] public bool isCircleLoop;
+        [SerializeField] public bool isPingPongLoop;
 
         public Vector2Int[] GetPathNodeArr() {
             var pathNodeArr = new Vector2Int[transform.childCount];

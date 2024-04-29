@@ -7,15 +7,12 @@ namespace Oshi {
     [CreateAssetMenu(fileName = "SO_GameConfig", menuName = "Oshi/GameConfig")]
     public class GameConfig : ScriptableObject {
 
-        // Game
         [Header("Game Config")]
         public float gameResetEnterTime;
 
-        // Map
         [Header("Map Config")]
         public int originalMapTypeID;
 
-        // Camera
         [Header("DeadZone Config")]
         public Vector2 cameraDeadZoneNormalizedSize;
 
