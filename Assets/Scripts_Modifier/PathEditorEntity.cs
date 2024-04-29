@@ -5,6 +5,8 @@ namespace Oshi.Modifier {
 
     public class PathEditorEntity : MonoBehaviour {
 
+        [SerializeField] public GameObject traveler;
+
         public Vector2Int[] GetPathNodeArr() {
             var pathNodeArr = new Vector2Int[transform.childCount];
             for (int i = 0; i < transform.childCount; i++) {
@@ -14,12 +16,37 @@ namespace Oshi.Modifier {
             return pathNodeArr;
         }
 
-        public void Rename(int index, string parent) {
-            this.name = "Path - " + index + " - " + parent;
+        public void Rename(int index) {
+            var travelerName = GetTravelerType().ToString();
+            this.name = "Path - " + index + " - " + travelerName;
             for (int i = 0; i < transform.childCount; i++) {
                 var child = transform.GetChild(i);
                 child.name = $"{this.name} - N - {i}";
             }
+        }
+
+        public EntityType GetTravelerType() {
+            var block = traveler.GetComponent<BlockEditorEntity>();
+            var wall = traveler.GetComponent<WallEditorEntity>();
+            var goal = traveler.GetComponent<GoalEditorEntity>();
+            var spike = traveler.GetComponent<SpikeEditorEntity>();
+            if (block != null) return block.type;
+            if (wall != null) return wall.type;
+            if (goal != null) return goal.type;
+            if (spike != null) return spike.type;
+            return EntityType.None;
+        }
+
+        public int GetTravlerIndex() {
+            var block = traveler.GetComponent<BlockEditorEntity>();
+            var wall = traveler.GetComponent<WallEditorEntity>();
+            var goal = traveler.GetComponent<GoalEditorEntity>();
+            var spike = traveler.GetComponent<SpikeEditorEntity>();
+            if (block != null) return block.index;
+            if (wall != null) return wall.index;
+            if (goal != null) return goal.index;
+            if (spike != null) return spike.index;
+            return -1;
         }
 
         void OnDrawGizmos() {

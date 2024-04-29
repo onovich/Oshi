@@ -10,6 +10,8 @@ namespace Oshi.Modifier {
     public class GoalEditorEntity : MonoBehaviour {
 
         [SerializeField] public GoalTM goalTM;
+        public EntityType type => EntityType.Goal;
+        public int index;
 
         public Vector2Int GetPosInt() {
             var posInt = transform.position.RoundToVector2Int();
@@ -18,6 +20,7 @@ namespace Oshi.Modifier {
         }
 
         public void Rename(int index) {
+            this.index = index;
             gameObject.name = $"Goal - {goalTM.typeName} - {index}";
         }
 

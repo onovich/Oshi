@@ -10,6 +10,8 @@ namespace Oshi.Modifier {
     public class SpikeEditorEntity : MonoBehaviour {
 
         [SerializeField] public SpikeTM spikeTM;
+        public EntityType type => EntityType.Spike;
+        public int index;
 
         public Vector2Int GetPosInt() {
             var posInt = transform.position.RoundToVector2Int();
@@ -18,6 +20,7 @@ namespace Oshi.Modifier {
         }
 
         public void Rename(int index) {
+            this.index = index;
             gameObject.name = $"Spike - {spikeTM.typeName} - {index}";
         }
 

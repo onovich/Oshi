@@ -36,12 +36,12 @@ namespace Oshi.Modifier {
         [Button("Bake")]
         void Bake() {
             BakeMapInfo();
-            BakePath();
             BakeSpawnPoint();
             BakeBlock();
             BakeWall();
             BakeGoal();
             BakeSpike();
+            BakePath();
 
             EditorUtility.SetDirty(mapTM);
             AssetDatabase.SaveAssets();
@@ -65,14 +65,23 @@ namespace Oshi.Modifier {
             var editors = pathGroup.GetComponentsInChildren<PathEditorEntity>();
             if (editors.Length == 0) return;
             var pathSpawnTMArr = new List<PathSpawnTM>();
+            var pathTravelerTypeArr = new List<EntityType>();
+            var pathTravelerIndexArr = new List<int>();
             var index = 0;
             foreach (var editor in editors) {
                 index++;
                 var pathSpawnTM = new PathSpawnTM();
                 pathSpawnTM.pathNodeArr = editor.GetPathNodeArr();
                 pathSpawnTMArr.Add(pathSpawnTM);
-                editor.Rename(index, mapTM.typeName);
+                editor.Rename(index);
+                var travelerType = editor.GetTravelerType();
+                var travlerIndex = editor.GetTravlerIndex();
+                pathTravelerTypeArr.Add(travelerType);
+                pathTravelerIndexArr.Add(travlerIndex);
             }
+            mapTM.pathSpawnTMArr = pathSpawnTMArr.ToArray();
+            mapTM.pathTravelerTypeArr = pathTravelerTypeArr.ToArray();
+            mapTM.pathTravelerIndexArr = pathTravelerIndexArr.ToArray();
         }
 
         void BakeSpawnPoint() {

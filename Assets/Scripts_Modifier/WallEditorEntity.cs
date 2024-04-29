@@ -10,6 +10,8 @@ namespace Oshi.Modifier {
     public class WallEditorEntity : MonoBehaviour {
 
         [SerializeField] public WallTM wallTM;
+        public EntityType type => EntityType.Wall;
+        public int index;
 
         public Vector2Int GetPosInt() {
             var posInt = transform.position.RoundToVector2Int();
@@ -18,6 +20,7 @@ namespace Oshi.Modifier {
         }
 
         public void Rename(int index) {
+            this.index = index;
             gameObject.name = $"Wall - {wallTM.typeName} - {index}";
         }
 
