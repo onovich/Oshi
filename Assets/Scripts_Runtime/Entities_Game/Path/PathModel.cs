@@ -6,6 +6,15 @@ namespace Oshi {
 
     public class PathModel {
 
+        public int index;
+        public int typeID;
+        public EasingType easingType;
+        public EasingMode easingMode;
+        public float speed;
+
+        public EntityType travelerType;
+        public int travelerIndex;
+
         Vector2Int[] pathNodeArr;
         public int currentPathNodeIndex;
         public Vector2 pathCar;
@@ -15,7 +24,22 @@ namespace Oshi {
         public float durationTime;
         public float currentTime;
 
-        public PathModel() { dir = 1; }
+        // FSM
+        PathFSMComponent pathFSMCom;
+
+        public PathModel() {
+            dir = 1;
+            pathFSMCom = new PathFSMComponent();
+        }
+
+        // FSM
+        public PathFSMStatus FSM_GetStatus() {
+            return pathFSMCom.status;
+        }
+
+        public PathFSMComponent FSM_GetComponent() {
+            return pathFSMCom;
+        }
 
         public void Path_SetNodeArr(Vector2Int[] pathNodeArr) {
             this.pathNodeArr = new Vector2Int[pathNodeArr.Length];
@@ -24,7 +48,7 @@ namespace Oshi {
             durationTime = .5f;
         }
 
-        public void PickNextIndex() {
+        public void PushIndexToNext() {
             currentPathNodeIndex += dir;
             currentPathNodeIndex = ClampIndex(currentPathNodeIndex);
         }
@@ -34,7 +58,7 @@ namespace Oshi {
             var nextIndex = currentPathNodeIndex + dir;
             nextIndex = ClampIndex(nextIndex);
             var next = pathNodeArr[nextIndex];
-            var pos = EasingHelper.Easing2D(current, next, currentTime, durationTime, EasingType.Linear, EasingMode.None);
+            var pos = EasingHelper.Easing2D(current, next, currentTime, durationTime, easingType, easingMode);
             currentTime += dt;
 
             pathCar = pos;
@@ -42,7 +66,7 @@ namespace Oshi {
                 onEnd?.Invoke();
             }
         }
-        
+
         int ClampIndex(int index) {
             if (isCircleLoop) {
                 if (index >= pathNodeArr.Length) index = 0;

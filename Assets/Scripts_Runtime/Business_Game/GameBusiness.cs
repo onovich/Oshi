@@ -89,6 +89,13 @@ namespace Oshi {
                     GameRoleFSMController.FixedTickFSM(ctx, role, fixdt);
                 }
 
+                // Path
+                var pathLen = ctx.pathRepo.TakeAll(out var pathArr);
+                for (int i = 0; i < pathLen; i++) {
+                    var path = pathArr[i];
+                    GamePathFSMController.FixedTickFSM(ctx, path, fixdt);
+                }
+
                 Physics2D.Simulate(fixdt);
             }
         }

@@ -5,6 +5,7 @@ namespace Oshi.Modifier {
 
     public class PathEditorEntity : MonoBehaviour {
 
+        [SerializeField] public PathTM pathTM;
         [SerializeField] public GameObject traveler;
         [SerializeField] public bool isCircleLoop;
         [SerializeField] public bool isPingPongLoop;

@@ -64,9 +64,13 @@ namespace Oshi.Modifier {
         void BakePath() {
             var editors = pathGroup.GetComponentsInChildren<PathEditorEntity>();
             if (editors.Length == 0) return;
+            var pathTMArr = new List<PathTM>();
             var pathSpawnTMArr = new List<PathSpawnTM>();
             var pathTravelerTypeArr = new List<EntityType>();
             var pathTravelerIndexArr = new List<int>();
+            var pathIndexArr = new List<int>();
+            var pathIsCircleLoopArr = new List<bool>();
+            var pathIsPingPongLoopArr = new List<bool>();
             var index = 0;
             foreach (var editor in editors) {
                 index++;
@@ -78,10 +82,18 @@ namespace Oshi.Modifier {
                 var travlerIndex = editor.GetTravlerIndex();
                 pathTravelerTypeArr.Add(travelerType);
                 pathTravelerIndexArr.Add(travlerIndex);
+                pathIndexArr.Add(index);
+                pathTMArr.Add(editor.pathTM);
+                pathIsCircleLoopArr.Add(editor.isCircleLoop);
+                pathIsPingPongLoopArr.Add(editor.isPingPongLoop);
             }
             mapTM.pathSpawnTMArr = pathSpawnTMArr.ToArray();
             mapTM.pathTravelerTypeArr = pathTravelerTypeArr.ToArray();
             mapTM.pathTravelerIndexArr = pathTravelerIndexArr.ToArray();
+            mapTM.pathIndexArr = pathIndexArr.ToArray();
+            mapTM.pathTMArr = pathTMArr.ToArray();
+            mapTM.pathIsCircleLoopArr = pathIsCircleLoopArr.ToArray();
+            mapTM.pathIsPingPongLoopArr = pathIsPingPongLoopArr.ToArray();
         }
 
         void BakeSpawnPoint() {

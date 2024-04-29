@@ -163,7 +163,7 @@ namespace Oshi {
             bool inGoal = true;
             var config = ctx.templateInfraContext.Config_Get();
 
-            ctx.Block_ForEach((block) => {
+            ctx.blockRepo.ForEach((block) => {
                 inGoal &= GameBlockDomain.CheckInGoal(ctx, block);
             });
             return inGoal;

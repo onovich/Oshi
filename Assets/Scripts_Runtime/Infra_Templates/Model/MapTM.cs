@@ -44,9 +44,13 @@ namespace Oshi {
         public Vector2Int[] spikePosArr;
 
         [Header("Path")]
+        public int[] pathIndexArr;
+        public PathTM[] pathTMArr;
         public PathSpawnTM[] pathSpawnTMArr;
         public EntityType[] pathTravelerTypeArr;
         public int[] pathTravelerIndexArr;
+        public bool[] pathIsCircleLoopArr;
+        public bool[] pathIsPingPongLoopArr;
 
         [Header("Camera")]
         public Vector2 cameraConfinerWorldMax;

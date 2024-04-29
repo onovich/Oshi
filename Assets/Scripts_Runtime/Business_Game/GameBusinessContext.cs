@@ -17,6 +17,7 @@ namespace Oshi {
         public SpikeRepository spikeRepo;
         public WallRepository wallRepo;
         public GoalRepository goalRepo;
+        public PathRepository pathRepo;
 
         // App
         public UIAppContext uiContext;
@@ -51,6 +52,7 @@ namespace Oshi {
             spikeRepo = new SpikeRepository();
             wallRepo = new WallRepository();
             goalRepo = new GoalRepository();
+            pathRepo = new PathRepository();
             hitResults = new RaycastHit2D[100];
         }
 
@@ -61,40 +63,13 @@ namespace Oshi {
             spikeRepo.Clear();
             wallRepo.Clear();
             goalRepo.Clear();
+            pathRepo.Clear();
         }
 
         // Role
         public RoleEntity Role_GetOwner() {
             roleRepo.TryGetRole(playerEntity.ownerRoleEntityID, out var role);
             return role;
-        }
-
-        public void Role_ForEach(Action<RoleEntity> onAction) {
-            roleRepo.ForEach(onAction);
-        }
-
-        public RoleEntity Role_GetNearestEnemy(RoleEntity role) {
-            RoleEntity nearest = null;
-            var minDistance = float.MaxValue;
-            var rolePos = role.Pos;
-            roleRepo.ForEach((r) => {
-                if (Vector2.Dot(r.faceDir, role.faceDir) >= 0) {
-                    return;
-                }
-                if (r.allyStatus == role.allyStatus.GetOpposite()) {
-                    var distance = Vector2.Distance(rolePos, r.Pos);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        nearest = r;
-                    }
-                }
-            });
-            return nearest;
-        }
-
-        // Block
-        public void Block_ForEach(Action<BlockEntity> onAction) {
-            blockRepo.ForEach(onAction);
         }
 
     }

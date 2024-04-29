@@ -26,6 +26,9 @@ namespace Oshi {
         Dictionary<int, SpikeTM> spikeDict;
         public AsyncOperationHandle spikeHandle;
 
+        Dictionary<int, PathTM> pathDict;
+        public AsyncOperationHandle pathHandle;
+
         public TemplateInfraContext() {
             mapDict = new Dictionary<int, MapTM>();
             roleDict = new Dictionary<int, RoleTM>();
@@ -33,6 +36,7 @@ namespace Oshi {
             wallDict = new Dictionary<int, WallTM>();
             goalDict = new Dictionary<int, GoalTM>();
             spikeDict = new Dictionary<int, SpikeTM>();
+            pathDict = new Dictionary<int, PathTM>();
         }
 
         // Game
@@ -122,6 +126,19 @@ namespace Oshi {
             return has;
         }
 
+        // Path
+        public void Path_Add(PathTM path) {
+            pathDict.Add(path.typeID, path);
+        }
+
+        public bool Path_TryGet(int typeID, out PathTM path) {
+            var has = pathDict.TryGetValue(typeID, out path);
+            if (!has) {
+                GLog.LogError($"Path {typeID} not found");
+            }
+            return has;
+        }
+
         // Clear
         public void Clear() {
             mapDict.Clear();
@@ -130,6 +147,7 @@ namespace Oshi {
             wallDict.Clear();
             goalDict.Clear();
             spikeDict.Clear();
+            pathDict.Clear();
         }
 
     }

@@ -35,6 +35,47 @@ namespace Oshi {
             return map;
         }
 
+        public static PathModel Path_Spawn(TemplateInfraContext templateInfraContext,
+                                           int typeID,
+                                           int index,
+                                           float speed,
+                                           bool isCircleLoop,
+                                           bool isPingPongLoop,
+                                           Vector2Int[] nodes,
+                                           EntityType travelerType,
+                                           int travelerIndex) {
+
+            var has = templateInfraContext.Path_TryGet(typeID, out var pathTM);
+            if (!has) {
+                GLog.LogError($"Path {typeID} not found");
+            }
+
+            var path = new PathModel();
+
+            // Base Info
+            path.typeID = typeID;
+            path.index = index;
+
+            // Attr
+            path.easingMode = pathTM.easingMode;
+            path.easingType = pathTM.easingType;
+            path.speed = speed;
+            path.isCircleLoop = isCircleLoop;
+            path.isPingPongLoop = isPingPongLoop;
+
+            // Set Traveler
+            path.travelerType = travelerType;
+            path.travelerIndex = travelerIndex;
+
+            // Set Nodes
+            path.Path_SetNodeArr(nodes);
+
+            // Set FSM
+            path.FSM_GetComponent().Idle_Enter();
+
+            return path;
+        }
+
         public static SpikeEntity Spike_Spawn(TemplateInfraContext templateInfraContext,
                                  AssetsInfraContext assetsInfraContext,
                                  int typeID,
