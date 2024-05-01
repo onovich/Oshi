@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3527060180567912238}
-  - component: {fileID: 4527994836551481998}
+  - component: {fileID: 1068809394899768895}
   m_Layer: 0
-  m_Name: BlockEM_001
+  m_Name: GoalEM_000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4527994836551481998
+--- !u!114 &1068809394899768895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1128079099802362847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b9e81d3c649b40d2a11b3204fae9a0e, type: 3}
+  m_Script: {fileID: 11500000, guid: 47eb60fa06be141f5b0694a078f9f74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
@@ -53,11 +53,11 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  blockTM: {fileID: 11400000, guid: dfc506ff2918241ca81377e85f305f72, type: 2}
-  typeID: 1
-  typeName: Block
-  mesh: {fileID: 21300000, guid: 40eb3a4c3bff143cababfb54f86881bd, type: 3}
+  goalTM: {fileID: 11400000, guid: df7a47281712845798ed4565588d236d, type: 2}
+  typeID: 0
+  typeName: Goal
+  mesh: {fileID: 21300000, guid: 12544add50bbb4a08b9e06686edf2061, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   meshMaterial: {fileID: 2100000, guid: 53e7422ec9caf46d68abbc371e4a5eac, type: 2}
   shapes:
-  - {fileID: 11400000, guid: 79f3df2fa04514cd58ad45b84d29c54d, type: 2}
+  - {fileID: 11400000, guid: f50c02579e9b54e4d8965637b743b2ab, type: 2}

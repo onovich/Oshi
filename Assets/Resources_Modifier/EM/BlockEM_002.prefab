@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3527060180567912238}
   - component: {fileID: 4527994836551481998}
   m_Layer: 0
-  m_Name: BlockEM_001
+  m_Name: BlockEM_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,11 +53,11 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  blockTM: {fileID: 11400000, guid: dfc506ff2918241ca81377e85f305f72, type: 2}
-  typeID: 1
+  blockTM: {fileID: 11400000, guid: e8d44d48c66c940558d8e74cb3dc1f56, type: 2}
+  typeID: 2
   typeName: Block
   mesh: {fileID: 21300000, guid: 40eb3a4c3bff143cababfb54f86881bd, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   meshMaterial: {fileID: 2100000, guid: 53e7422ec9caf46d68abbc371e4a5eac, type: 2}
   shapes:
-  - {fileID: 11400000, guid: 79f3df2fa04514cd58ad45b84d29c54d, type: 2}
+  - {fileID: 11400000, guid: 52b721e4c97134108b8692cf3eda4874, type: 2}

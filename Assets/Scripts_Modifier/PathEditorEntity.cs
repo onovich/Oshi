@@ -62,6 +62,7 @@ namespace Oshi.Modifier {
         void OnDrawGizmos() {
             if (transform.childCount == 0) return;
             var pathNodeArr = GetPathNodeArr();
+            if (pathNodeArr == null) return;
             for (int i = 0; i < pathNodeArr.Length; i++) {
                 var pos = pathNodeArr[i];
                 var halfSize = GetTravelerSize(traveler) / 2;

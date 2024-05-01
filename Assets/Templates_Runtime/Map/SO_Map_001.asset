@@ -21,45 +21,31 @@ MonoBehaviour:
   limitedByStep: 0
   gameTotalStep: 0
   ownerRoleTypeID: 1
-  mapSize: {x: 20, y: 10}
-  spawnPoint: {x: 0, y: 0}
-  blockIndexArr: 0100000002000000
+  mapSize: {x: 10, y: 4}
+  spawnPoint: {x: -3, y: 0}
+  blockIndexArr: 01000000
   blockTMArr:
-  - {fileID: 11400000, guid: 0acbcfa6cf33e470ca47effbf466206a, type: 2}
-  - {fileID: 11400000, guid: 0acbcfa6cf33e470ca47effbf466206a, type: 2}
+  - {fileID: 11400000, guid: dfc506ff2918241ca81377e85f305f72, type: 2}
   blockPosArr:
-  - {x: 2, y: 2}
-  - {x: 4, y: -2}
-  wallIndexArr: 01000000
-  wallTMArr:
-  - {fileID: 11400000, guid: 164f8d450169043389c59f12bb12963f, type: 2}
-  wallPosArr:
-  - {x: 2, y: -2}
+  - {x: 0, y: 0}
+  wallIndexArr: 
+  wallTMArr: []
+  wallPosArr: []
   goalIndexArr: 01000000
   goalTMArr:
-  - {fileID: 11400000, guid: df7a47281712845798ed4565588d236d, type: 2}
+  - {fileID: 11400000, guid: 0e8401c5cafb24133817156681f17394, type: 2}
   goalPosArr:
-  - {x: -8, y: 1}
-  spikeIndexArr: 0100000002000000
-  spikeTMArr:
-  - {fileID: 11400000, guid: 1accb5851771b4545959661a3a2dce79, type: 2}
-  - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}
-  spikePosArr:
-  - {x: -5, y: -2}
-  - {x: -7, y: -1}
-  pathIndexArr: 01000000
-  pathTMArr:
-  - {fileID: 11400000, guid: ae875a6e88f13409680f258d73af9ac5, type: 2}
-  pathSpawnTMArr:
-  - pathNodeArr:
-    - {x: -5, y: -2, z: 0}
-    - {x: -5, y: -4, z: 0}
-    - {x: 0, y: -4, z: 0}
-  pathTravelerTypeArr: 04000000
-  pathTravelerIndexArr: 01000000
-  pathIsCircleLoopArr: 00
-  pathIsPingPongLoopArr: 01
-  pathTravelerHalfSizeArr:
-  - {x: 1, y: 0.5}
+  - {x: 3, y: 0}
+  spikeIndexArr: 
+  spikeTMArr: []
+  spikePosArr: []
+  pathIndexArr: 
+  pathTMArr: []
+  pathSpawnTMArr: []
+  pathTravelerTypeArr: 
+  pathTravelerIndexArr: 
+  pathIsCircleLoopArr: 
+  pathIsPingPongLoopArr: 
+  pathTravelerHalfSizeArr: []
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}

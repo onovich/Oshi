@@ -63,7 +63,17 @@ namespace Oshi.Modifier {
 
         void BakePath() {
             var editors = pathGroup.GetComponentsInChildren<PathEditorEntity>();
-            if (editors.Length == 0) return;
+            if (editors == null || editors.Length == 0) {
+                mapTM.pathSpawnTMArr = null;
+                mapTM.pathTravelerTypeArr = null;
+                mapTM.pathTravelerIndexArr = null;
+                mapTM.pathIndexArr = null;
+                mapTM.pathTMArr = null;
+                mapTM.pathIsCircleLoopArr = null;
+                mapTM.pathIsPingPongLoopArr = null;
+                mapTM.pathTravelerHalfSizeArr = null;
+                return;
+            }
             var pathTMArr = new List<PathTM>();
             var pathSpawnTMArr = new List<PathSpawnTM>();
             var pathTravelerTypeArr = new List<EntityType>();
@@ -110,6 +120,12 @@ namespace Oshi.Modifier {
 
         void BakeBlock() {
             var editors = blockGroup.GetComponentsInChildren<BlockEditorEntity>();
+            if (editors == null || editors.Length == 0) {
+                mapTM.blockTMArr = null;
+                mapTM.blockPosArr = null;
+                mapTM.blockIndexArr = null;
+                return;
+            }
             var blockTMArr = new List<BlockTM>();
             var blockPosArr = new List<Vector2Int>();
             var blockIndexArr = new List<int>();
@@ -128,6 +144,12 @@ namespace Oshi.Modifier {
 
         void BakeWall() {
             var editors = wallGroup.GetComponentsInChildren<WallEditorEntity>();
+            if (editors == null || editors.Length == 0) {
+                mapTM.wallTMArr = null;
+                mapTM.wallPosArr = null;
+                mapTM.wallIndexArr = null;
+                return;
+            }
             var wallTMArr = new List<WallTM>();
             var wallPosArr = new List<Vector2Int>();
             var wallIndexArr = new List<int>();
@@ -164,6 +186,12 @@ namespace Oshi.Modifier {
 
         void BakeSpike() {
             var editors = spikeGroup.GetComponentsInChildren<SpikeEditorEntity>();
+            if (editors == null || editors.Length == 0) {
+                mapTM.spikeTMArr = null;
+                mapTM.spikePosArr = null;
+                mapTM.spikeIndexArr = null;
+                return;
+            }
             var spikeTMArr = new List<SpikeTM>();
             var spikePosArr = new List<Vector2Int>();
             var spikeIndexArr = new List<int>();

@@ -18,4 +18,4 @@ MonoBehaviour:
   meshColor: {r: 1, g: 1, b: 1, a: 1}
   meshMaterial: {fileID: 2100000, guid: 53e7422ec9caf46d68abbc371e4a5eac, type: 2}
   shapeArr:
-  - {fileID: 11400000, guid: f50c02579e9b54e4d8965637b743b2ab, type: 2}
+  - {fileID: 11400000, guid: 79f3df2fa04514cd58ad45b84d29c54d, type: 2}

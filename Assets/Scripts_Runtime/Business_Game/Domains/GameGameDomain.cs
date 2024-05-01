@@ -45,11 +45,13 @@ namespace Oshi {
             var wallTMArr = mapTM.wallTMArr;
             var wallPosArr = mapTM.wallPosArr;
             var wallIndexArr = mapTM.wallIndexArr;
-            for (int i = 0; i < wallTMArr.Length; i++) {
-                var wallTM = wallTMArr[i];
-                var pos = wallPosArr[i];
-                var index = wallIndexArr[i];
-                var _ = GameWallDomain.Spawn(ctx, wallTM.typeID, index, pos);
+            if (wallTMArr != null) {
+                for (int i = 0; i < wallTMArr.Length; i++) {
+                    var wallTM = wallTMArr[i];
+                    var pos = wallPosArr[i];
+                    var index = wallIndexArr[i];
+                    var _ = GameWallDomain.Spawn(ctx, wallTM.typeID, index, pos);
+                }
             }
 
             // Goal
@@ -67,11 +69,13 @@ namespace Oshi {
             var spikeTMArr = mapTM.spikeTMArr;
             var spikePosArr = mapTM.spikePosArr;
             var spikeIndexArr = mapTM.spikeIndexArr;
-            for (int i = 0; i < spikeTMArr.Length; i++) {
-                var spikeTM = spikeTMArr[i];
-                var pos = spikePosArr[i];
-                var index = spikeIndexArr[i];
-                var _ = GameSpikeDomain.Spawn(ctx, spikeTM.typeID, index, pos);
+            if (spikeTMArr != null) {
+                for (int i = 0; i < spikeTMArr.Length; i++) {
+                    var spikeTM = spikeTMArr[i];
+                    var pos = spikePosArr[i];
+                    var index = spikeIndexArr[i];
+                    var _ = GameSpikeDomain.Spawn(ctx, spikeTM.typeID, index, pos);
+                }
             }
 
             // Path
@@ -83,27 +87,29 @@ namespace Oshi {
             var pathIsCircleLoopArr = mapTM.pathIsCircleLoopArr;
             var pathIsPingPongLoopArr = mapTM.pathIsPingPongLoopArr;
             var pathTravelerHalfSizeArr = mapTM.pathTravelerHalfSizeArr;
-            for (int i = 0; i < pathTMArr.Length; i++) {
-                var pathTM = pathTMArr[i];
-                if (pathTM == null) {
-                    GLog.LogError($"PathTM Not Found: {i}");
+            if (pathTMArr != null) {
+                for (int i = 0; i < pathTMArr.Length; i++) {
+                    var pathTM = pathTMArr[i];
+                    if (pathTM == null) {
+                        GLog.LogError($"PathTM Not Found: {i}");
+                    }
+                    var index = pathIndexArr[i];
+                    var spawn = pathSpawnTMArr[i];
+                    var travelerType = pathTravelerTypeArr[i];
+                    var travelerIndex = pathTravelerIndexArr[i];
+                    var isCircleLoop = pathIsCircleLoopArr[i];
+                    var isPingPongLoop = pathIsPingPongLoopArr[i];
+                    var travelerHalfSize = pathTravelerHalfSizeArr[i];
+                    var _ = GamePathDomain.Spawn(ctx,
+                                                 pathTM.typeID,
+                                                 index,
+                                                 isCircleLoop,
+                                                 isPingPongLoop,
+                                                 spawn.pathNodeArr,
+                                                 travelerType,
+                                                 travelerIndex,
+                                                 travelerHalfSize);
                 }
-                var index = pathIndexArr[i];
-                var spawn = pathSpawnTMArr[i];
-                var travelerType = pathTravelerTypeArr[i];
-                var travelerIndex = pathTravelerIndexArr[i];
-                var isCircleLoop = pathIsCircleLoopArr[i];
-                var isPingPongLoop = pathIsPingPongLoopArr[i];
-                var travelerHalfSize = pathTravelerHalfSizeArr[i];
-                var _ = GamePathDomain.Spawn(ctx,
-                                             pathTM.typeID,
-                                             index,
-                                             isCircleLoop,
-                                             isPingPongLoop,
-                                             spawn.pathNodeArr,
-                                             travelerType,
-                                             travelerIndex,
-                                             travelerHalfSize);
             }
 
             // Camera

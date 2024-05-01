@@ -18,7 +18,19 @@ MonoBehaviour:
   m_GUID: a5725797805a942928365f5cbd1ef600
   m_SerializeEntries:
   - m_GUID: df7a47281712845798ed4565588d236d
+    m_Address: SO_Goal_000
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Goal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e8401c5cafb24133817156681f17394
     m_Address: SO_Goal_001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Goal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1706fe522db0e448ab2f2f33fa18182f
+    m_Address: SO_Goal_002
     m_ReadOnly: 0
     m_SerializedLabels:
     - TM_Goal
