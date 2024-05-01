@@ -7,16 +7,32 @@ namespace Oshi {
     public class RoleRepository {
 
         Dictionary<int, RoleEntity> all;
-
+        Dictionary<Vector2Int, RoleEntity> posMap;
         RoleEntity[] temp;
 
         public RoleRepository() {
             all = new Dictionary<int, RoleEntity>();
+            posMap = new Dictionary<Vector2Int, RoleEntity>();
             temp = new RoleEntity[1000];
+        }
+
+        public bool Has(Vector2Int pos) {
+            return posMap.ContainsKey(pos);
+        }
+
+        public bool HasDifferent(Vector2Int pos, int index) {
+            var has = posMap.TryGetValue(pos, out var role);
+            return has && role.entityID != index;
+        }
+
+        public void UpdatePos(Vector2Int oldPos, RoleEntity role) {
+            posMap.Remove(oldPos);
+            posMap.Add(role.PosInt, role);
         }
 
         public void Add(RoleEntity role) {
             all.Add(role.entityID, role);
+            posMap.Add(role.PosInt, role);
         }
 
         public int TakeAll(out RoleEntity[] roles) {
@@ -31,6 +47,7 @@ namespace Oshi {
 
         public void Remove(RoleEntity role) {
             all.Remove(role.entityID);
+            posMap.Remove(role.PosInt);
         }
 
         public bool TryGetRole(int entityID, out RoleEntity role) {
@@ -70,6 +87,8 @@ namespace Oshi {
 
         public void Clear() {
             all.Clear();
+            posMap.Clear();
+            Array.Clear(temp, 0, temp.Length);
         }
 
     }

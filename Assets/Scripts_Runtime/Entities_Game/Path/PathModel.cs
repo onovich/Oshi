@@ -51,6 +51,7 @@ namespace Oshi {
             return pathFSMCom;
         }
 
+        // Node
         public void Path_SetNodeArr(Vector2Int[] pathNodeArr) {
             this.pathNodeArr = new Vector2Int[pathNodeArr.Length];
             Array.Copy(pathNodeArr, this.pathNodeArr, pathNodeArr.Length);
@@ -58,11 +59,16 @@ namespace Oshi {
             durationTime = .5f;
         }
 
-        public void PushIndexToNext() {
-            currentPathNodeIndex += nodeIndexDir;
-            currentPathNodeIndex = ClampIndex(currentPathNodeIndex);
+        public Vector2Int GetCurrentNode() {
+            return pathNodeArr[currentPathNodeIndex];
         }
 
+        public Vector2Int GetNextNode() {
+            var nextIndex = GetNextIndex();
+            return pathNodeArr[nextIndex];
+        }
+
+        // Car
         public void Tick_MoveCarToNext(float dt, out bool isEnd) {
             isEnd = false;
             var current = pathNodeArr[currentPathNodeIndex];
@@ -78,6 +84,17 @@ namespace Oshi {
             }
         }
 
+        // Index
+        public int GetNextIndex() {
+            var nextIndex = currentPathNodeIndex + nodeIndexDir;
+            nextIndex = ClampIndex(nextIndex);
+            return nextIndex;
+        }
+
+        public void PushIndexToNext() {
+            currentPathNodeIndex += nodeIndexDir;
+            currentPathNodeIndex = ClampIndex(currentPathNodeIndex);
+        }
         int ClampIndex(int index) {
             if (isCircleLoop) {
                 if (index >= pathNodeArr.Length) index = 0;

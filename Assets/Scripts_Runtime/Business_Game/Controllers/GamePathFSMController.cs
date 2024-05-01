@@ -37,6 +37,13 @@ namespace Oshi {
             if (fsm.moving_isEntering) {
                 fsm.moving_isEntering = false;
             }
+            var allow = GamePathDomain.CheckTravelerMovable(ctx, path);
+            if (!allow) {
+                fsm.Idle_Enter();
+                isEnd = true;
+                return;
+            }
+
             path.Tick_MoveCarToNext(fixdt, out isEnd);
             if (isEnd) {
                 path.PushIndexToNext();

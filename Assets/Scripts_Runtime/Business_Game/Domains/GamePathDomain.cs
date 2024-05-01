@@ -27,6 +27,41 @@ namespace Oshi {
             return path;
         }
 
+        public static bool CheckTravelerMovable(GameBusinessContext ctx,
+                                           PathModel path) {
+            var allow = true;
+            var travelerType = path.travelerType;
+            var travelerIndex = path.travelerIndex;
+
+            // Spike
+            if (travelerType == EntityType.Spike) {
+                var has = ctx.spikeRepo.TryGetSpike(travelerIndex, out var spike);
+                if (!has) {
+                    throw new Exception($"Block not found: {travelerIndex}");
+                }
+                var start = path.GetCurrentNode();
+                var end = path.GetNextNode();
+                var count = GridUtils.GetCoveredStraightGrid(start, end, GridUtils.temp);
+                for (int i = 0; i < count; i++) {
+                    var point = GridUtils.temp[i];
+                    allow &= CheckSpikeMovable(ctx, path, spike, point);
+                }
+            }
+            return allow;
+        }
+
+        static bool CheckSpikeMovable(GameBusinessContext ctx,
+                                      PathModel path,
+                                      SpikeEntity spike,
+                                      Vector2Int point) {
+            var allow = true;
+            allow &= !ctx.spikeRepo.HasDifferent(point, spike.entityIndex);
+            allow &= !ctx.blockRepo.Has(point);
+            allow &= !ctx.wallRepo.Has(point);
+            allow &= !ctx.roleRepo.Has(point);
+            return allow;
+        }
+
         public static void ApplyCarryTraveler(GameBusinessContext ctx,
                                          PathModel path) {
             var travelerType = path.travelerType;
