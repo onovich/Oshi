@@ -73,13 +73,6 @@ namespace Oshi {
                 role.FSM_EnterIdle();
                 onEnd?.Invoke();
             });
-
-            // Dead
-            var die = GameRoleDomain.CheckOwnerDead(ctx, role);
-            if (die) {
-                role.FSM_EnterDead();
-                return;
-            }
         }
 
         static void FixedTickFSM_Dead(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {

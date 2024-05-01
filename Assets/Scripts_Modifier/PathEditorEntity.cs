@@ -66,7 +66,12 @@ namespace Oshi.Modifier {
                 Gizmos.color = i == 0 ? Color.yellow : Color.yellow;
                 var size = i == 0 ? Vector3.one * .2f : Vector3.one * .1f;
                 Gizmos.DrawCube(pos.ToVector3Int(), size);
-                var next = pathNodeArr[(i + 1) % pathNodeArr.Length];
+                var next = Vector2Int.zero;
+                if (isCircleLoop) {
+                    next = pathNodeArr[(i + 1) % pathNodeArr.Length];
+                } else {
+                    next = i == pathNodeArr.Length - 1 ? pathNodeArr[i] : pathNodeArr[i + 1];
+                }
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawLine(pos.ToVector3Int(), next.ToVector3Int());
             }

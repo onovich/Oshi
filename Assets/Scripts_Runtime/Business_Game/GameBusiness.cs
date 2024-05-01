@@ -94,6 +94,7 @@ namespace Oshi {
                     game.fsmComponent.PlayerTurn_Enter();
                 }
             }
+            GameRoleDomain.CheckAndApplyAllRoleDead(ctx);
 
             // Roles
             var roleLen = ctx.roleRepo.TakeAll(out var roleArr);

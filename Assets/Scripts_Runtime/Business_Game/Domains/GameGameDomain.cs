@@ -134,8 +134,8 @@ namespace Oshi {
             var game = ctx.gameEntity;
             var config = ctx.templateInfraContext.Config_Get();
 
-            // Check Role Dead
-            var dead = CheckRoleDead(ctx);
+            // Check Role Unspawned
+            var dead = CheckOwnerUnspawned(ctx);
             if (dead) {
                 game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
                 return;
@@ -162,9 +162,9 @@ namespace Oshi {
             }
         }
 
-        static bool CheckRoleDead(GameBusinessContext ctx) {
+        static bool CheckOwnerUnspawned(GameBusinessContext ctx) {
             var owner = ctx.Role_GetOwner();
-            if (owner == null || owner.fsmCom.status == RoleFSMStatus.Dead) {
+            if (owner == null) {
                 return true;
             }
             return false;

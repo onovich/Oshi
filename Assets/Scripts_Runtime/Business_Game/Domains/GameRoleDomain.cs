@@ -93,8 +93,20 @@ namespace Oshi {
             return has;
         }
 
-        public static bool CheckOwnerDead(GameBusinessContext ctx, RoleEntity role) {
-            return CheckInSpike(ctx, role);
+        public static void CheckAndApplyAllRoleDead(GameBusinessContext ctx) {
+            var roleLen = ctx.roleRepo.TakeAll(out var roleArr);
+            for (int i = 0; i < roleLen; i++) {
+                var role = roleArr[i];
+                CheckAndApplyDead(ctx, role);
+            }
+        }
+
+        public static void CheckAndApplyDead(GameBusinessContext ctx, RoleEntity role) {
+            var die = CheckInSpike(ctx, role);
+            if (die) {
+                role.FSM_EnterDead();
+                return;
+            }
         }
 
         static bool CheckInSpike(GameBusinessContext ctx, RoleEntity role) {
