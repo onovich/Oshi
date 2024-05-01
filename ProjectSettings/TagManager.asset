@@ -65,6 +65,6 @@ TagManager:
   - name: VFX
     uniqueID: 981059655
     locked: 0
-  - name: Cell
+  - name: Wall
     uniqueID: 258716687
     locked: 0

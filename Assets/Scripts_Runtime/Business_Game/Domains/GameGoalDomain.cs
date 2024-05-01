@@ -23,6 +23,7 @@ namespace Oshi {
                 var cellPos = pos + localPos;
                 var cell = GameCellDomain.Spawn(ctx, cellPos);
                 cell.SetSpr(goalTM.mesh);
+                cell.SetSortingLayer(SortingLayerConst.Goal);
                 cell.SetSprColor(goalTM.meshColor);
                 cell.SetSprMaterial(goalTM.meshMaterial);
                 cell.index = cellIndex;

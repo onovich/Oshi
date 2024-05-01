@@ -29,6 +29,10 @@ namespace Oshi {
             transform.SetParent(parent, true);
         }
 
+        public void SetSortingLayer(string sortingLayerName) {
+            spr.sortingLayerName = sortingLayerName;
+        }
+
         public void SetSpr(Sprite spr) {
             this.spr.sprite = spr;
         }

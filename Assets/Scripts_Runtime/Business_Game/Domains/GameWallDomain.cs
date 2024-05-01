@@ -22,9 +22,12 @@ namespace Oshi {
                 cellIndex++;
                 var cellPos = pos + localPos;
                 var cell = GameCellDomain.Spawn(ctx, cellPos);
-                if (wallTM.mesh != null) cell.SetSpr(wallTM.mesh);
-                if (wallTM.mesh != null) cell.SetSprColor(wallTM.meshColor);
-                if (wallTM.mesh != null) cell.SetSprMaterial(wallTM.meshMaterial);
+                if (wallTM.mesh != null) {
+                    cell.SetSpr(wallTM.mesh);
+                    cell.SetSortingLayer(SortingLayerConst.Wall);
+                    cell.SetSprColor(wallTM.meshColor);
+                    cell.SetSprMaterial(wallTM.meshMaterial);
+                }
                 cell.index = cellIndex;
                 wall.cellSlotComponent.Add(cell);
                 cell.SetParent(wall.transform);
