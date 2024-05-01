@@ -77,29 +77,11 @@ namespace Oshi {
 
             // Path
             var pathTMArr = mapTM.pathTMArr;
-            if (pathTMArr == null) {
-                GLog.LogError("PathTMArr Not Found");
-            }
             var pathIndexArr = mapTM.pathIndexArr;
-            if (pathIndexArr == null) {
-                GLog.LogError("PathIndexArr Not Found");
-            }
             var pathSpawnTMArr = mapTM.pathSpawnTMArr;
-            if (pathSpawnTMArr == null) {
-                GLog.LogError("PathSpawnTMArr Not Found");
-            }
             var pathTravelerTypeArr = mapTM.pathTravelerTypeArr;
-            if (pathTravelerTypeArr == null) {
-                GLog.LogError("PathTravelerTypeArr Not Found");
-            }
             var pathTravelerIndexArr = mapTM.pathTravelerIndexArr;
-            if (pathTravelerIndexArr == null) {
-                GLog.LogError("PathTravelerIndexArr Not Found");
-            }
             var pathIsCircleLoopArr = mapTM.pathIsCircleLoopArr;
-            if (pathIsCircleLoopArr == null) {
-                GLog.LogError("PathIsCircleLoopArr Not Found");
-            }
             var pathIsPingPongLoopArr = mapTM.pathIsPingPongLoopArr;
             for (int i = 0; i < pathTMArr.Length; i++) {
                 var pathTM = pathTMArr[i];
