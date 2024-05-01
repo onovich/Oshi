@@ -11,17 +11,20 @@ namespace Oshi {
                                        int index,
                                        bool isCircleLoop,
                                        bool isPingPongLoop,
-                                       Vector2Int[] nodes,
+                                       Vector3[] nodes,
                                        EntityType travelerType,
-                                       int travelerIndex) {
+                                       int travelerIndex,
+                                       Vector2 travelerHalfSize) {
             var path = GameFactory.Path_Spawn(ctx.templateInfraContext,
+                                              ctx.assetsInfraContext,
                                               typeID,
                                               index,
                                               isCircleLoop,
                                               isPingPongLoop,
                                               nodes,
                                               travelerType,
-                                              travelerIndex);
+                                              travelerIndex,
+                                              travelerHalfSize);
 
             ctx.pathRepo.Add(path);
             return path;
@@ -95,6 +98,11 @@ namespace Oshi {
             var oldPos = spike.PosInt;
             spike.Pos_SetPos(car);
             ctx.spikeRepo.UpdatePos(oldPos, spike);
+        }
+
+        public static void UnSpawn(GameBusinessContext ctx, PathModel path) {
+            ctx.pathRepo.Remove(path);
+            path.TearDown();
         }
 
     }

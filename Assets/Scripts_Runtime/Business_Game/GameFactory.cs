@@ -36,20 +36,24 @@ namespace Oshi {
         }
 
         public static PathModel Path_Spawn(TemplateInfraContext templateInfraContext,
+                                           AssetsInfraContext assetsInfraContext,
                                            int typeID,
                                            int index,
                                            bool isCircleLoop,
                                            bool isPingPongLoop,
-                                           Vector2Int[] nodes,
+                                           Vector3[] nodes,
                                            EntityType travelerType,
-                                           int travelerIndex) {
+                                           int travelerIndex,
+                                           Vector2 travelerHalfSize) {
 
             var has = templateInfraContext.Path_TryGet(typeID, out var pathTM);
             if (!has) {
                 GLog.LogError($"Path {typeID} not found");
             }
 
-            var path = new PathModel();
+            var prefab = assetsInfraContext.Entity_GetPath();
+            var path = GameObject.Instantiate(prefab).GetComponent<PathModel>();
+            path.Ctor();
 
             // Base Info
             path.typeID = typeID;
@@ -68,6 +72,12 @@ namespace Oshi {
 
             // Set Nodes
             path.Path_SetNodeArr(nodes);
+
+            // Set Line
+            path.Line_SetMaterial(pathTM.lineMaterial);
+            path.Line_SetColor(pathTM.lineColor);
+            path.Line_SetWidth(pathTM.lineWidth);
+            path.Line_SetPositions(nodes, travelerHalfSize);
 
             return path;
         }

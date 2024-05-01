@@ -37,13 +37,13 @@ namespace Oshi.Modifier {
             }
         }
 
-        public void OnDrawGhost(Vector2Int offset) {
+        public void OnDrawGhost(Vector3 offset) {
             if (spikeTM == null) return;
             if (spikeTM.shapeArr == null) return;
             foreach (var shape in spikeTM.shapeArr) {
                 if (shape == null) continue;
                 if (shape.cells == null) continue;
-                var pos = GetPosInt() + offset + new Vector2(.5f, .5f);
+                var pos = GetPosInt().ToVector3Int() + offset + new Vector3(.5f, .5f, 0f);
                 foreach (var cell in shape.cells) {
                     Gizmos.color = new Color(1, 1, 1, 0.5f);
                     Gizmos.DrawCube(new Vector3(cell.x + pos.x, cell.y + pos.y, 0), Vector3.one);

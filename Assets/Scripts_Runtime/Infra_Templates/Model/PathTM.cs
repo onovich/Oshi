@@ -11,6 +11,10 @@ namespace Oshi {
         public EasingType easingType;
         public EasingMode easingMode;
         public float movingDuration;
+        public Color lineColor;
+        public Material lineMaterial;
+        public float lineWidth;
+
     }
 
 }

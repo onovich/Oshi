@@ -10,11 +10,12 @@ namespace Oshi.Modifier {
         [SerializeField] public bool isCircleLoop;
         [SerializeField] public bool isPingPongLoop;
 
-        public Vector2Int[] GetPathNodeArr() {
-            var pathNodeArr = new Vector2Int[transform.childCount];
+        public Vector3[] GetPathNodeArr() {
+            var pathNodeArr = new Vector3[transform.childCount];
             for (int i = 0; i < transform.childCount; i++) {
                 var child = transform.GetChild(i);
-                pathNodeArr[i] = child.position.RoundToVector2Int();
+                pathNodeArr[i] = child.position.RoundToVector2Int().ToVector3Int();
+                child.transform.position = pathNodeArr[i];
             }
             return pathNodeArr;
         }
@@ -65,15 +66,15 @@ namespace Oshi.Modifier {
                 var pos = pathNodeArr[i];
                 Gizmos.color = i == 0 ? Color.yellow : Color.yellow;
                 var size = i == 0 ? Vector3.one * .2f : Vector3.one * .1f;
-                Gizmos.DrawCube(pos.ToVector3Int(), size);
-                var next = Vector2Int.zero;
+                Gizmos.DrawCube(pos, size);
+                var next = Vector3.zero;
                 if (isCircleLoop) {
                     next = pathNodeArr[(i + 1) % pathNodeArr.Length];
                 } else {
                     next = i == pathNodeArr.Length - 1 ? pathNodeArr[i] : pathNodeArr[i + 1];
                 }
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawLine(pos.ToVector3Int(), next.ToVector3Int());
+                Gizmos.DrawLine(pos, next);
             }
 
             if (traveler == null) return;

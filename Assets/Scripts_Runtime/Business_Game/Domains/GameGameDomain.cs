@@ -83,6 +83,7 @@ namespace Oshi {
             var pathTravelerIndexArr = mapTM.pathTravelerIndexArr;
             var pathIsCircleLoopArr = mapTM.pathIsCircleLoopArr;
             var pathIsPingPongLoopArr = mapTM.pathIsPingPongLoopArr;
+            var pathTravelerHalfSizeArr = mapTM.pathTravelerHalfSizeArr;
             for (int i = 0; i < pathTMArr.Length; i++) {
                 var pathTM = pathTMArr[i];
                 if (pathTM == null) {
@@ -94,7 +95,16 @@ namespace Oshi {
                 var travelerIndex = pathTravelerIndexArr[i];
                 var isCircleLoop = pathIsCircleLoopArr[i];
                 var isPingPongLoop = pathIsPingPongLoopArr[i];
-                var _ = GamePathDomain.Spawn(ctx, pathTM.typeID, index, isCircleLoop, isPingPongLoop, spawn.pathNodeArr, travelerType, travelerIndex);
+                var travelerHalfSize = pathTravelerHalfSizeArr[i];
+                var _ = GamePathDomain.Spawn(ctx,
+                                             pathTM.typeID,
+                                             index,
+                                             isCircleLoop,
+                                             isPingPongLoop,
+                                             spawn.pathNodeArr,
+                                             travelerType,
+                                             travelerIndex,
+                                             travelerHalfSize);
             }
 
             // Camera
@@ -250,6 +260,13 @@ namespace Oshi {
             for (int i = 0; i < spikeLen; i++) {
                 var spike = spikeArr[i];
                 GameSpikeDomain.UnSpawn(ctx, spike);
+            }
+
+            // Path
+            int pathLen = ctx.pathRepo.TakeAll(out var pathArr);
+            for (int i = 0; i < pathLen; i++) {
+                var path = pathArr[i];
+                GamePathDomain.UnSpawn(ctx, path);
             }
 
             // Repo

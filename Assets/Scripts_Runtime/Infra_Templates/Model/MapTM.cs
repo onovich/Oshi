@@ -51,6 +51,7 @@ namespace Oshi {
         public int[] pathTravelerIndexArr;
         public bool[] pathIsCircleLoopArr;
         public bool[] pathIsPingPongLoopArr;
+        public Vector2[] pathTravelerHalfSizeArr;
 
         [Header("Camera")]
         public Vector2 cameraConfinerWorldMax;

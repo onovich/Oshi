@@ -80,6 +80,14 @@ namespace Oshi {
             return prefab;
         }
 
+        public GameObject Entity_GetPath() {
+            var has = Entity_TryGet("Entity_Path", out var prefab);
+            if (!has) {
+                GLog.LogError($"Entity Path not found");
+            }
+            return prefab;
+        }
+
     }
 
 }

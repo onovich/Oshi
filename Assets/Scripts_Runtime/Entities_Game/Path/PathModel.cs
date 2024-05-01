@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Oshi {
 
-    public class PathModel {
+    public class PathModel : MonoBehaviour {
 
         // Base Info
         public int index;
@@ -19,12 +19,12 @@ namespace Oshi {
         public int travelerIndex;
 
         // Node
-        Vector2Int[] pathNodeArr;
+        Vector3[] pathNodeArr;
         public int currentPathNodeIndex;
         public int nodeIndexDir;
 
         // Car
-        public Vector2 pathCarPos;
+        public Vector3 pathCarPos;
 
         // Loop Type
         public bool isCircleLoop;
@@ -34,24 +34,52 @@ namespace Oshi {
         public float movingDuration;
         public float movingCurrentTime;
 
-        public PathModel() {
+        // Render
+        [SerializeField] LineRenderer lineRenderer;
+
+        public void Ctor() {
             nodeIndexDir = 1;
         }
 
+        // Line Render
+        public void Line_SetMaterial(Material material) {
+            lineRenderer.material = material;
+        }
+
+        public void Line_SetColor(Color color) {
+            lineRenderer.startColor = color;
+            lineRenderer.endColor = color;
+        }
+
+        public void Line_SetWidth(float width) {
+            lineRenderer.startWidth = width;
+            lineRenderer.endWidth = width;
+        }
+
+        public void Line_SetPositions(Vector3[] positions, Vector2 offset) {
+            var lrPosArr = new Vector3[positions.Length];
+            Array.Copy(positions, lrPosArr, positions.Length);
+            lineRenderer.positionCount = lrPosArr.Length;
+            for (int i = 0; i < positions.Length; i++) {
+                lrPosArr[i] += new Vector3(offset.x, offset.y, 0);
+            }
+            lineRenderer.SetPositions(lrPosArr);
+        }
+
         // Node
-        public void Path_SetNodeArr(Vector2Int[] pathNodeArr) {
-            this.pathNodeArr = new Vector2Int[pathNodeArr.Length];
+        public void Path_SetNodeArr(Vector3[] pathNodeArr) {
+            this.pathNodeArr = new Vector3[pathNodeArr.Length];
             Array.Copy(pathNodeArr, this.pathNodeArr, pathNodeArr.Length);
             pathCarPos = pathNodeArr[0];
         }
 
         public Vector2Int GetCurrentNode() {
-            return pathNodeArr[currentPathNodeIndex];
+            return pathNodeArr[currentPathNodeIndex].RoundToVector2Int();
         }
 
         public Vector2Int GetNextNode() {
             var nextIndex = GetNextIndex();
-            return pathNodeArr[nextIndex];
+            return pathNodeArr[nextIndex].RoundToVector2Int();
         }
 
         // Car
@@ -104,6 +132,10 @@ namespace Oshi {
                 if (index < 0) index = 0;
             }
             return index;
+        }
+
+        public void TearDown() {
+            Destroy(gameObject);
         }
 
     }

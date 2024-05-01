@@ -16,3 +16,6 @@ MonoBehaviour:
   easingType: 0
   easingMode: 0
   movingDuration: 0.2
+  lineColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.1
