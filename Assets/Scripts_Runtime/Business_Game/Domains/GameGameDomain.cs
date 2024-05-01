@@ -4,12 +4,11 @@ namespace Oshi {
 
     public static class GameGameDomain {
 
-        public static void NewGame(GameBusinessContext ctx) {
+        public static void NewGame(GameBusinessContext ctx, int mapTypeID) {
 
             var config = ctx.templateInfraContext.Config_Get();
 
             // Map
-            var mapTypeID = config.originalMapTypeID;
             var has = ctx.templateInfraContext.Map_TryGet(mapTypeID, out var mapTM);
             if (!has) {
                 GLog.LogError($"MapTM Not Found {mapTypeID}");
@@ -134,9 +133,9 @@ namespace Oshi {
 
         public static void RestartGame(GameBusinessContext ctx) {
             var game = ctx.gameEntity;
-            var fsm = game.fsmComponent;
+            var mapTypeID = ctx.currentMapEntity.typeID;
             ExitGame(ctx);
-            NewGame(ctx);
+            NewGame(ctx, mapTypeID);
         }
 
         public static void ApplyCheckGameResult(GameBusinessContext ctx) {

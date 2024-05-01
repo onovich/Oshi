@@ -10,6 +10,10 @@ namespace Oshi {
         public int typeID;
         public string typeName;
 
+        [Header("Next Map Config")]
+        public int nextMapTypeID;
+        public bool isLastMap;
+
         [Header("Time Config")]
         public bool limitedByTime;
         public float gameTotalTime;

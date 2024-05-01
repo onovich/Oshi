@@ -8,8 +8,10 @@ namespace Oshi {
 
         }
 
-        public static void StartGame(GameBusinessContext ctx) {
-            GameGameDomain.NewGame(ctx);
+        public static void StartGame(GameBusinessContext ctx, bool isTestMode) {
+            var config = ctx.templateInfraContext.Config_Get();
+            var mapTypeID = isTestMode ? config.testMapTypeID : config.originalMapTypeID;
+            GameGameDomain.NewGame(ctx, mapTypeID);
         }
 
         public static void ExitGame(GameBusinessContext ctx) {

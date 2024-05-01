@@ -11,6 +11,7 @@ namespace Oshi {
 
         [SerializeField] bool drawCameraGizmos;
         [SerializeField] bool drawMapGizmos;
+        [SerializeField] bool isTestMode;
 
         InputEntity inputEntity;
 
@@ -124,7 +125,7 @@ namespace Oshi {
             // - Login
             uiEvt.Login_OnStartGameClickHandle += () => {
                 LoginBusiness.Exit(loginBusinessContext);
-                GameBusiness.StartGame(gameBusinessContext);
+                GameBusiness.StartGame(gameBusinessContext, isTestMode);
             };
 
             uiEvt.Login_OnExitGameClickHandle += () => {

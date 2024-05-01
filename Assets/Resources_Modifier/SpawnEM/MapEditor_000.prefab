@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 3949629460453778079}
   - component: {fileID: 6901749814465627264}
   m_Layer: 0
-  m_Name: MapEditor_001
+  m_Name: MapEditor_000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,10 +214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c0d60a5eb3445efbed17179971a9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeID: 1
+  typeID: 0
   typeName: Test
   mapSize: {fileID: 7115896714514695303}
-  mapTM: {fileID: 11400000, guid: 1bef76939308c4feaaf6b9da6fb9cd80, type: 2}
+  mapTM: {fileID: 11400000, guid: 2d742814c19784e2aa3b933b9a5ec791, type: 2}
   limitedByTime: 0
   gameTotalTime: 0
   limitedByStep: 0

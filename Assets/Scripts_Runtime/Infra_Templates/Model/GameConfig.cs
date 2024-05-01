@@ -11,6 +11,7 @@ namespace Oshi {
         public float gameResetEnterTime;
 
         [Header("Map Config")]
+        public int testMapTypeID;
         public int originalMapTypeID;
 
         [Header("DeadZone Config")]
