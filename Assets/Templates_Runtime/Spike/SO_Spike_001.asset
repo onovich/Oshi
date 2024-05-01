@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeID: 1
   typeName: Spike
-  mesh: {fileID: 21300000, guid: 4bf259eb5e7d7481a87d4f2d9afc933f, type: 3}
+  mesh: {fileID: 21300000, guid: e5f248b876f9f4c63b27d81c32c64db5, type: 3}
   meshColor: {r: 1, g: 1, b: 1, a: 1}
   meshMaterial: {fileID: 2100000, guid: 3f1394b34c56e40c592f45e01e554afa, type: 2}
   shapeArr:
-  - {fileID: 11400000, guid: f39cd326f70b446c890c8be28c309b10, type: 2}
+  - {fileID: 11400000, guid: 79f3df2fa04514cd58ad45b84d29c54d, type: 2}

@@ -38,11 +38,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: df7a47281712845798ed4565588d236d, type: 2}
   goalPosArr:
   - {x: -8, y: 1}
-  spikeIndexArr: 01000000
+  spikeIndexArr: 0100000002000000
   spikeTMArr:
+  - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}
   - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}
   spikePosArr:
   - {x: -5, y: -2}
+  - {x: -7, y: -1}
   pathIndexArr: 01000000
   pathTMArr:
   - {fileID: 11400000, guid: ae875a6e88f13409680f258d73af9ac5, type: 2}
