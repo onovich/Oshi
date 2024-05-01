@@ -146,6 +146,10 @@ namespace Oshi {
                 GameBusiness.UIGameOver_OnExitGameClick(gameBusinessContext);
             };
 
+            uiEvt.GameOver_OnNextLevelClickHandle += () => {
+                GameBusiness.UIGameOver_OnNextLevelClick(gameBusinessContext);
+            };
+
         }
 
         async Task LoadAssets() {

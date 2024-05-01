@@ -10,19 +10,30 @@ namespace Oshi {
 
     public class MapEntity : MonoBehaviour {
 
+        // Base Info
         public int typeID;
         public string typeName;
         public Vector2Int mapSize;
-        [SerializeField] SpriteRenderer spr;
 
+        // Next Map
+        public int nextMapTypeID;
+        public bool isLastMap;
+
+        // Role
         public Vector2 spawnPoint;
-        public Vector2 Pos => transform.position;
 
+        // Limit
         public bool limitedByTime;
         public float gameTotalTime;
 
         public bool limitedByStep;
         public int gameTotalStep;
+
+        // Pos
+        public Vector2 Pos => transform.position;
+
+        // Render
+        [SerializeField] SpriteRenderer spr;
 
         public void Ctor() {
         }

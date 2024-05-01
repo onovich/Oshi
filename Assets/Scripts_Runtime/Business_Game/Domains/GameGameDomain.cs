@@ -133,13 +133,20 @@ namespace Oshi {
             var enterTime = fsm.gameOver_enterTime;
             var map = ctx.currentMapEntity;
             if (enterTime <= 0) {
-                UIApp.GameOver_Open(ctx.uiContext, fsm.gameOver_result);
+                UIApp.GameOver_Open(ctx.uiContext, fsm.gameOver_result, map.isLastMap);
             }
         }
 
         public static void RestartGame(GameBusinessContext ctx) {
             var game = ctx.gameEntity;
             var mapTypeID = ctx.currentMapEntity.typeID;
+            ExitGame(ctx);
+            NewGame(ctx, mapTypeID);
+        }
+
+        public static void NextLevel(GameBusinessContext ctx) {
+            var game = ctx.gameEntity;
+            var mapTypeID = ctx.currentMapEntity.nextMapTypeID;
             ExitGame(ctx);
             NewGame(ctx, mapTypeID);
         }

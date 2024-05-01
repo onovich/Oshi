@@ -34,8 +34,8 @@ namespace Oshi {
         }
 
         // Panel - GameOver
-        public static void GameOver_Open(UIAppContext ctx, GameResult result) {
-            PanelGameOverDomain.Open(ctx, result);
+        public static void GameOver_Open(UIAppContext ctx, GameResult result, bool isLastMap) {
+            PanelGameOverDomain.Open(ctx, result, isLastMap);
         }
 
         public static void GameOver_Close(UIAppContext ctx) {

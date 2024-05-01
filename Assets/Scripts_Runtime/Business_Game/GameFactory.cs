@@ -29,6 +29,10 @@ namespace Oshi {
             // Set Mesh
             map.Mesh_SetSize(map.mapSize);
 
+            // Set Next Map
+            map.nextMapTypeID = mapTM.nextMapTypeID;
+            map.isLastMap = mapTM.isLastMap;
+
             // Set Point
             map.spawnPoint = mapTM.spawnPoint;
 

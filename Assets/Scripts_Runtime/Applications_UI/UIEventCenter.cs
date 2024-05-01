@@ -26,6 +26,11 @@ namespace Oshi.UI {
             GameOver_OnExitGameClickHandle?.Invoke();
         }
 
+        public Action GameOver_OnNextLevelClickHandle;
+        public void GameOver_OnNextLevelClick() {
+            GameOver_OnNextLevelClickHandle?.Invoke();
+        }
+
         // GameInfo
         public Action GameInfo_OnRestartBtnClickHandle;
         public void GameInfo_OnRestartBtnClick() {
@@ -60,6 +65,7 @@ namespace Oshi.UI {
 
             GameOver_OnRestartGameClickHandle = null;
             GameOver_OnExitGameClickHandle = null;
+            GameOver_OnNextLevelClickHandle = null;
 
             GameInfo_OnRestartBtnClickHandle = null;
 

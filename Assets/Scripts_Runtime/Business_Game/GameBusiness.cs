@@ -185,6 +185,11 @@ namespace Oshi {
             GameGameDomain.RestartGame(ctx);
         }
 
+        public static void UIGameOver_OnNextLevelClick(GameBusinessContext ctx) {
+            UIApp.GameOver_Close(ctx.uiContext);
+            GameGameDomain.NextLevel(ctx);
+        }
+
         public static void UIGameOver_OnExitGameClick(GameBusinessContext ctx) {
             ExitGame(ctx);
             Application.Quit();
