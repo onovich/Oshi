@@ -30,10 +30,6 @@ namespace Oshi {
         public bool isCircleLoop;
         public bool isPingPongLoop;
 
-        // Timer
-        public float durationTime;
-        public float currentTime;
-
         // FSM
         PathFSMComponent pathFSMCom;
 
@@ -56,7 +52,6 @@ namespace Oshi {
             this.pathNodeArr = new Vector2Int[pathNodeArr.Length];
             Array.Copy(pathNodeArr, this.pathNodeArr, pathNodeArr.Length);
             pathCarPos = pathNodeArr[0];
-            durationTime = .5f;
         }
 
         public Vector2Int GetCurrentNode() {
@@ -69,7 +64,7 @@ namespace Oshi {
         }
 
         // Car
-        public void Tick_MoveCarToNext(float dt, out bool isEnd) {
+        public void Tick_MoveCarToNext(float dt, float currentTime, float durationTime, out bool isEnd) {
             isEnd = false;
             var current = pathNodeArr[currentPathNodeIndex];
             var nextIndex = currentPathNodeIndex + nodeIndexDir;

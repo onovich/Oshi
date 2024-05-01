@@ -44,7 +44,7 @@ namespace Oshi {
                 return;
             }
 
-            path.Tick_MoveCarToNext(fixdt, out isEnd);
+            path.Tick_MoveCarToNext(fixdt, fsm.moving_currentTime, fsm.moving_duration, out isEnd);
             if (isEnd) {
                 path.PushIndexToNext();
                 fsm.Idle_Enter();

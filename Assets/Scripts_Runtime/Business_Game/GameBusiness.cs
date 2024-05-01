@@ -100,7 +100,7 @@ namespace Oshi {
                     GamePathDomain.ApplyCarryTraveler(ctx, path);
                 }
                 if (pathMoveDone) {
-                    game.fsmComponent.PlayerTurn_Enter(game.fsmComponent.playerTurn_gameTime);
+                    game.fsmComponent.PlayerTurn_Enter();
                     Debug.Log("PathMoveDone");
                 }
             }
@@ -124,7 +124,7 @@ namespace Oshi {
                 var showStep = map.limitedByStep;
 
                 // UI
-                if (showTime) UIApp.GameInfo_RefreshTime(ctx.uiContext, game.fsmComponent.playerTurn_gameTime);
+                if (showTime) UIApp.GameInfo_RefreshTime(ctx.uiContext, map.gameTotalTime);
                 if (showStep) UIApp.GameInfo_RefreshStep(ctx.uiContext, totalStep - step);
             }
             // VFX

@@ -20,6 +20,7 @@ namespace Oshi {
 
         public bool limitedByTime;
         public float gameTotalTime;
+
         public bool limitedByStep;
         public int gameTotalStep;
 
@@ -33,6 +34,10 @@ namespace Oshi {
 
         public void TearDown() {
             Destroy(gameObject);
+        }
+
+        public void DecTimer(float dt) {
+            gameTotalTime -= dt;
         }
 
 #if UNITY_EDITOR
