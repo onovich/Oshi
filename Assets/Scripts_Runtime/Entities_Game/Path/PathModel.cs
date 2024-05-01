@@ -55,17 +55,17 @@ namespace Oshi {
         }
 
         // Car
-        public void Tick_MoveCarToNext(float dt, float currentTime, float durationTime, out bool isEnd) {
+        public void Tick_MoveCarToNext(float dt, out bool isEnd) {
             isEnd = false;
             var current = pathNodeArr[currentPathNodeIndex];
             var nextIndex = currentPathNodeIndex + nodeIndexDir;
             nextIndex = ClampIndex(nextIndex);
             var next = pathNodeArr[nextIndex];
-            var pos = EasingHelper.Easing2D(current, next, currentTime, durationTime, easingType, easingMode);
-            currentTime += dt;
+            var pos = EasingHelper.Easing2D(current, next, movingCurrentTime, movingDuration, easingType, easingMode);
+            movingCurrentTime += dt;
 
             pathCarPos = pos;
-            if (currentTime >= durationTime) {
+            if (movingCurrentTime >= movingDuration) {
                 isEnd = true;
             }
         }

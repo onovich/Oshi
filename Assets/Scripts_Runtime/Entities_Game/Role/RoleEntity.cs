@@ -13,7 +13,6 @@ namespace Oshi {
         public AllyStatus allyStatus;
 
         // Attr
-        public float moveSpeed;
         public Vector2 faceDir;
         public int hpMax;
         public int hp;
@@ -88,11 +87,6 @@ namespace Oshi {
         public void Size_SetSize(Vector2Int size) {
             spr.size = size;
             this.size = size;
-        }
-
-        // Attr
-        public float Attr_GetMoveSpeed() {
-            return moveSpeed;
         }
 
         // State

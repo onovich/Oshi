@@ -14,7 +14,6 @@ namespace Oshi {
 
         [Header("Role Attr")]
         public Vector2Int size;
-        public float moveSpeed;
         public int hpMax;
 
         [Header("Role Move")]

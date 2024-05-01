@@ -60,6 +60,7 @@ namespace Oshi {
             path.easingType = pathTM.easingType;
             path.isCircleLoop = isCircleLoop;
             path.isPingPongLoop = isPingPongLoop;
+            path.movingDuration = pathTM.movingDuration;
 
             // Set Traveler
             path.travelerType = travelerType;
@@ -290,7 +291,6 @@ namespace Oshi {
             role.allyStatus = roleTM.allyStatus;
 
             // Set Attr
-            role.moveSpeed = roleTM.moveSpeed;
             role.hpMax = roleTM.hpMax;
             role.hp = role.hpMax;
             role.typeName = roleTM.typeName;
