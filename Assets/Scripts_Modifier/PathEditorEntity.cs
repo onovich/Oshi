@@ -64,17 +64,18 @@ namespace Oshi.Modifier {
             var pathNodeArr = GetPathNodeArr();
             for (int i = 0; i < pathNodeArr.Length; i++) {
                 var pos = pathNodeArr[i];
+                var halfSize = GetTravelerSize(traveler) / 2;
                 Gizmos.color = i == 0 ? Color.yellow : Color.yellow;
                 var size = i == 0 ? Vector3.one * .2f : Vector3.one * .1f;
-                Gizmos.DrawCube(pos, size);
+                Gizmos.DrawCube(pos + halfSize.ToVector3(), size);
                 var next = Vector3.zero;
                 if (isCircleLoop) {
                     next = pathNodeArr[(i + 1) % pathNodeArr.Length];
                 } else {
                     next = i == pathNodeArr.Length - 1 ? pathNodeArr[i] : pathNodeArr[i + 1];
                 }
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawLine(pos, next);
+                Gizmos.color = pathTM.lineColor;
+                Gizmos.DrawLine(pos + halfSize.ToVector3(), next + halfSize.ToVector3());
             }
 
             if (traveler == null) return;
@@ -87,6 +88,14 @@ namespace Oshi.Modifier {
             if (wall != null) wall.OnDrawGhost(offset);
             if (goal != null) goal.OnDrawGhost(offset);
             if (spike != null) spike.OnDrawGhost(offset);
+        }
+
+        public Vector2 GetTravelerSize(GameObject traveler) {
+            if (traveler.TryGetComponent<BlockEditorEntity>(out var block)) return block.blockTM.shapeArr[0].sizeInt;
+            if (traveler.TryGetComponent<WallEditorEntity>(out var wall)) return wall.wallTM.shapeArr[0].sizeInt;
+            if (traveler.TryGetComponent<GoalEditorEntity>(out var goal)) return goal.goalTM.shapeArr[0].sizeInt;
+            if (traveler.TryGetComponent<SpikeEditorEntity>(out var spike)) return spike.spikeTM.shapeArr[0].sizeInt;
+            return Vector2.zero;
         }
 
     }

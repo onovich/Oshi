@@ -87,7 +87,7 @@ namespace Oshi.Modifier {
                 pathTMArr.Add(editor.pathTM);
                 pathIsCircleLoopArr.Add(editor.isCircleLoop);
                 pathIsPingPongLoopArr.Add(editor.isPingPongLoop);
-                pathTravelerHalfSizeArr.Add(GetSize(editor.traveler) / 2);
+                pathTravelerHalfSizeArr.Add(editor.GetTravelerSize(editor.traveler) / 2);
             }
             mapTM.pathSpawnTMArr = pathSpawnTMArr.ToArray();
             mapTM.pathTravelerTypeArr = pathTravelerTypeArr.ToArray();
@@ -180,16 +180,7 @@ namespace Oshi.Modifier {
             mapTM.spikeIndexArr = spikeIndexArr.ToArray();
         }
 
-        Vector2 GetSize(GameObject go) {
-            if (go.TryGetComponent<BlockEditorEntity>(out var block)) return block.blockTM.shapeArr[0].sizeInt;
-            if (go.TryGetComponent<WallEditorEntity>(out var wall)) return wall.wallTM.shapeArr[0].sizeInt;
-            if (go.TryGetComponent<GoalEditorEntity>(out var goal)) return goal.goalTM.shapeArr[0].sizeInt;
-            if (go.TryGetComponent<SpikeEditorEntity>(out var spike)) return spike.spikeTM.shapeArr[0].sizeInt;
-            return Vector2.zero;
-        }
-
         void OnDrawGizmos() {
-            Gizmos.color = Color.green;
         }
 
     }

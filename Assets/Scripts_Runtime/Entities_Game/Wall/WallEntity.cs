@@ -52,6 +52,7 @@ namespace Oshi {
             lineRenderer.loop = true;
             lineRenderer.material = material;
             lineRenderer.startColor = color;
+            lineRenderer.endColor = color;
         }
 
         public void TearDown() {

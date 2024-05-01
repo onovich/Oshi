@@ -107,11 +107,38 @@ namespace Oshi {
             for (int i = 0; i < wallTM.shapeNodes.Length; i++) {
                 var node = wallTM.shapeNodes[i];
                 var next = wallTM.shapeNodes[(i + 1) % wallTM.shapeNodes.Length];
+                Gizmos.color = lineColor;
+                // Gizmos.DrawLine(node, next);
+                DrawCubeLine(node, next, lineWidth);
                 Gizmos.color = UnityEngine.Color.green;
-                Gizmos.DrawLine(node, next);
-                Gizmos.color = UnityEngine.Color.white;
                 Gizmos.DrawCube(node, Vector3.one * 0.1f);
             }
+        }
+
+        void DrawCubeLine(Vector3 start, Vector3 end, float width) {
+            // 计算线段的中点
+            Vector3 midPoint = (start + end) / 2;
+
+            // 计算线段的长度
+            float lineLength = Vector3.Distance(start, end);
+
+            // 设置Gizmos颜色
+            Gizmos.color = lineColor;
+
+            // 计算线段的方向（从起点指向终点）
+            Vector3 direction = (end - start).normalized;
+
+            // 计算旋转角度，需要将线段的方向从默认的(1,0,0)或Z轴旋转到正确的方向
+            Quaternion rotation = Quaternion.FromToRotation(Vector3.right, direction);
+
+            // 设置Gizmos的变换矩阵以便正确放置和旋转立方体
+            Gizmos.matrix = Matrix4x4.TRS(midPoint, rotation, new Vector3(lineLength, width, width));
+
+            // 绘制立方体，使其长度等于点之间的距离，宽度和高度由传入的 width 决定
+            Gizmos.DrawCube(Vector3.zero, Vector3.one);  // 在局部坐标中绘制立方体
+
+            // 重置Gizmos矩阵
+            Gizmos.matrix = Matrix4x4.identity;
         }
 
     }
