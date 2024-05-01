@@ -96,6 +96,12 @@ namespace Oshi {
                     GamePathFSMController.FixedTickFSM(ctx, path, fixdt);
                 }
 
+                // Path Carry
+                for (int i = 0; i < pathLen; i++) {
+                    var path = pathArr[i];
+                    GamePathDomain.ApplyCarryTraveler(ctx, path);
+                }
+
                 Physics2D.Simulate(fixdt);
             }
         }

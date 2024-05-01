@@ -6,20 +6,31 @@ namespace Oshi {
 
     public class PathModel {
 
+        // Base Info
         public int index;
         public int typeID;
+
+        // Easing
         public EasingType easingType;
         public EasingMode easingMode;
 
+        // Traveler
         public EntityType travelerType;
         public int travelerIndex;
 
+        // Node
         Vector2Int[] pathNodeArr;
         public int currentPathNodeIndex;
-        public Vector2 pathCar;
+        public int nodeIndexDir;
+
+        // Car
+        public Vector2 pathCarPos;
+
+        // Loop Type
         public bool isCircleLoop;
         public bool isPingPongLoop;
-        public int dir;
+
+        // Timer
         public float durationTime;
         public float currentTime;
 
@@ -27,7 +38,7 @@ namespace Oshi {
         PathFSMComponent pathFSMCom;
 
         public PathModel() {
-            dir = 1;
+            nodeIndexDir = 1;
             pathFSMCom = new PathFSMComponent();
         }
 
@@ -43,24 +54,24 @@ namespace Oshi {
         public void Path_SetNodeArr(Vector2Int[] pathNodeArr) {
             this.pathNodeArr = new Vector2Int[pathNodeArr.Length];
             Array.Copy(pathNodeArr, this.pathNodeArr, pathNodeArr.Length);
-            pathCar = pathNodeArr[0];
+            pathCarPos = pathNodeArr[0];
             durationTime = .5f;
         }
 
         public void PushIndexToNext() {
-            currentPathNodeIndex += dir;
+            currentPathNodeIndex += nodeIndexDir;
             currentPathNodeIndex = ClampIndex(currentPathNodeIndex);
         }
 
         public void Tick_MoveCarToNext(float dt, Action onEnd) {
             var current = pathNodeArr[currentPathNodeIndex];
-            var nextIndex = currentPathNodeIndex + dir;
+            var nextIndex = currentPathNodeIndex + nodeIndexDir;
             nextIndex = ClampIndex(nextIndex);
             var next = pathNodeArr[nextIndex];
             var pos = EasingHelper.Easing2D(current, next, currentTime, durationTime, easingType, easingMode);
             currentTime += dt;
 
-            pathCar = pos;
+            pathCarPos = pos;
             if (currentTime >= durationTime) {
                 onEnd?.Invoke();
             }
@@ -73,11 +84,11 @@ namespace Oshi {
             } else if (isPingPongLoop) {
                 if (index >= pathNodeArr.Length) {
                     index = pathNodeArr.Length - 2;
-                    dir = -1;
+                    nodeIndexDir = -1;
                 }
                 if (index < 0) {
                     index = 1;
-                    dir = 1;
+                    nodeIndexDir = 1;
                 }
             } else {
                 if (index >= pathNodeArr.Length) index = pathNodeArr.Length - 1;

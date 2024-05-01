@@ -27,6 +27,28 @@ namespace Oshi {
             return path;
         }
 
+        public static void ApplyCarryTraveler(GameBusinessContext ctx,
+                                         PathModel path) {
+            var travelerType = path.travelerType;
+            var travelerIndex = path.travelerIndex;
+            if (travelerType == EntityType.Spike) {
+                var has = ctx.spikeRepo.TryGetSpike(travelerIndex, out var spike);
+                if (!has) {
+                    throw new Exception($"Block not found: {travelerIndex}");
+                }
+                CarrySpike(ctx, path, spike);
+            }
+        }
+
+        static void CarrySpike(GameBusinessContext ctx,
+                               PathModel path,
+                               SpikeEntity spike) {
+            var car = path.pathCarPos;
+            var oldPos = spike.PosInt;
+            spike.Pos_SetPos(car);
+            ctx.spikeRepo.UpdatePos(oldPos, spike);
+        }
+
     }
 
 }
