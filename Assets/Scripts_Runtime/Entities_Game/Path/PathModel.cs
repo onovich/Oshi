@@ -63,7 +63,8 @@ namespace Oshi {
             currentPathNodeIndex = ClampIndex(currentPathNodeIndex);
         }
 
-        public void Tick_MoveCarToNext(float dt, Action onEnd) {
+        public void Tick_MoveCarToNext(float dt, out bool isEnd) {
+            isEnd = false;
             var current = pathNodeArr[currentPathNodeIndex];
             var nextIndex = currentPathNodeIndex + nodeIndexDir;
             nextIndex = ClampIndex(nextIndex);
@@ -73,7 +74,7 @@ namespace Oshi {
 
             pathCarPos = pos;
             if (currentTime >= durationTime) {
-                onEnd?.Invoke();
+                isEnd = true;
             }
         }
 

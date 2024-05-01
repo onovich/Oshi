@@ -8,8 +8,12 @@ namespace Oshi {
         public GameStatus status;
 
         public bool notInGame_isEntering;
-        public bool gaming_isEntering;
-        public float gaming_gameTime;
+
+        public bool playerTurn_isEntering;
+        public float playerTurn_gameTime;
+
+        public bool envirTurn_isEntering;
+
         public bool gameOver_isEntering;
         public float gameOver_enterTime;
         public GameResult gameOver_result;
@@ -20,15 +24,21 @@ namespace Oshi {
             notInGame_isEntering = true;
         }
 
-        public void Gaming_Enter(float gameTime) {
+        public void PlayerTurn_Enter(float gameTime) {
             Reset();
-            status = GameStatus.Gaming;
-            gaming_isEntering = true;
-            gaming_gameTime = gameTime;
+            status = GameStatus.PlayerTurn;
+            playerTurn_isEntering = true;
+            playerTurn_gameTime = gameTime;
         }
 
-        public void Gaming_DecTimer(float dt) {
-            gaming_gameTime -= dt;
+        public void EnvirTurn_Enter() {
+            Reset();
+            status = GameStatus.EnvirTurn;
+            envirTurn_isEntering = true;
+        }
+
+        public void PlayerTurn_DecTimer(float dt) {
+            playerTurn_gameTime -= dt;
         }
 
         public void GameOver_Enter(float enterTime, GameResult result) {
@@ -46,7 +56,8 @@ namespace Oshi {
 
         public void Reset() {
             notInGame_isEntering = false;
-            gaming_isEntering = false;
+            playerTurn_isEntering = false;
+            envirTurn_isEntering = false;
             gameOver_isEntering = false;
             gameOver_enterTime = 0;
         }

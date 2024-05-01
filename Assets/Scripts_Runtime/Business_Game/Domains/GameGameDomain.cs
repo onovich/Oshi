@@ -18,7 +18,7 @@ namespace Oshi {
 
             // Game
             var game = ctx.gameEntity;
-            game.fsmComponent.Gaming_Enter(map.gameTotalTime);
+            game.fsmComponent.PlayerTurn_Enter(map.gameTotalTime);
 
             // Role
             var player = ctx.playerEntity;
@@ -199,8 +199,8 @@ namespace Oshi {
             var game = ctx.gameEntity;
             var fsm = game.fsmComponent;
 
-            fsm.Gaming_DecTimer(dt);
-            var time = fsm.gaming_gameTime;
+            fsm.PlayerTurn_DecTimer(dt);
+            var time = fsm.playerTurn_gameTime;
 
             return time <= 0;
         }

@@ -1,3 +1,4 @@
+using System;
 using Codice.CM.Client.Differences;
 using MortiseFrame.Swing;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace Oshi {
 
     public static class GameRoleFSMController {
 
-        public static void FixedTickFSM(GameBusinessContext ctx, RoleEntity role, float fixdt) {
+        public static void FixedTickFSM(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {
 
             FixedTickFSM_Any(ctx, role, fixdt);
 
@@ -14,7 +15,7 @@ namespace Oshi {
             if (status == RoleFSMStatus.Idle) {
                 FixedTickFSM_Idle(ctx, role, fixdt);
             } else if (status == RoleFSMStatus.Moving) {
-                FixedTickFSM_Moving(ctx, role, fixdt);
+                FixedTickFSM_Moving(ctx, role, fixdt, onEnd);
             } else if (status == RoleFSMStatus.Dead) {
                 FixedTickFSM_Dead(ctx, role, fixdt);
             } else {
@@ -64,7 +65,7 @@ namespace Oshi {
             role.FSM_EnterMoving(role.moveDurationSec, true, block.entityIndex, block.PosInt);
         }
 
-        static void FixedTickFSM_Moving(GameBusinessContext ctx, RoleEntity role, float fixdt) {
+        static void FixedTickFSM_Moving(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {
             RoleFSMComponent fsm = role.FSM_GetComponent();
             if (fsm.moving_isEntering) {
                 fsm.moving_isEntering = false;
@@ -74,8 +75,8 @@ namespace Oshi {
             GameRoleDomain.ApplyEasingMoveAndPush(ctx, role, fixdt, () => {
                 role.State_IncStageCounter();
                 role.FSM_EnterIdle();
+                onEnd?.Invoke();
             });
-
         }
 
         static void FixedTickFSM_Dead(GameBusinessContext ctx, RoleEntity role, float fixdt) {
