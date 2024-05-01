@@ -91,7 +91,7 @@ namespace Oshi {
                 var pathLen = ctx.pathRepo.TakeAll(out var pathArr);
                 for (int i = 0; i < pathLen; i++) {
                     var path = pathArr[i];
-                    GamePathFSMController.FixedTickFSM(ctx, path, fixdt, out var isEnd);
+                    GamePathDomain.ApplyMoving(ctx, path, fixdt, out var isEnd);
                     pathMoveDone &= isEnd;
                 }
                 // Path Carry

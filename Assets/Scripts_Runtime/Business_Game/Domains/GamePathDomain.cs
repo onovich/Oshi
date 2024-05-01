@@ -27,6 +27,19 @@ namespace Oshi {
             return path;
         }
 
+        public static void ApplyMoving(GameBusinessContext ctx, PathModel path, float fixdt, out bool isEnd) {
+            var allow = GamePathDomain.CheckTravelerMovable(ctx, path);
+            if (!allow) {
+                isEnd = true;
+                return;
+            }
+
+            path.Tick_MoveCarToNext(fixdt, path.movingCurrentTime, path.movingDuration, out isEnd);
+            if (isEnd) {
+                path.PushIndexToNext();
+            }
+        }
+
         public static bool CheckTravelerMovable(GameBusinessContext ctx,
                                            PathModel path) {
             var allow = true;

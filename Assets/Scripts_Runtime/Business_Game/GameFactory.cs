@@ -68,9 +68,6 @@ namespace Oshi {
             // Set Nodes
             path.Path_SetNodeArr(nodes);
 
-            // Set FSM
-            path.FSM_GetComponent().Idle_Enter();
-
             return path;
         }
 

@@ -30,21 +30,12 @@ namespace Oshi {
         public bool isCircleLoop;
         public bool isPingPongLoop;
 
-        // FSM
-        PathFSMComponent pathFSMCom;
+        // Timer
+        public float movingDuration;
+        public float movingCurrentTime;
 
         public PathModel() {
             nodeIndexDir = 1;
-            pathFSMCom = new PathFSMComponent();
-        }
-
-        // FSM
-        public PathFSMStatus FSM_GetStatus() {
-            return pathFSMCom.status;
-        }
-
-        public PathFSMComponent FSM_GetComponent() {
-            return pathFSMCom;
         }
 
         // Node
