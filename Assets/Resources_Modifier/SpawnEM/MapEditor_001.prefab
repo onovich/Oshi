@@ -397,9 +397,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 4841474027690527634}
     m_Modifications:
     - target: {fileID: 2843463380700179418, guid: dc63135441e934cf6af9f69d5e3a19a6, type: 3}
+      propertyPath: pathTM
+      value: 
+      objectReference: {fileID: 11400000, guid: ae875a6e88f13409680f258d73af9ac5, type: 2}
+    - target: {fileID: 2843463380700179418, guid: dc63135441e934cf6af9f69d5e3a19a6, type: 3}
       propertyPath: traveler
       value: 
       objectReference: {fileID: 8896401551822717392}
+    - target: {fileID: 2843463380700179418, guid: dc63135441e934cf6af9f69d5e3a19a6, type: 3}
+      propertyPath: isPingPongLoop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7051904389878715803, guid: dc63135441e934cf6af9f69d5e3a19a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

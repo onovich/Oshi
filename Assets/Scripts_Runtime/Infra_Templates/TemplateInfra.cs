@@ -68,6 +68,15 @@ namespace Oshi {
                 ctx.spikeHandle = handle;
             }
 
+            {
+                var handle = Addressables.LoadAssetsAsync<PathTM>("TM_Path", null);
+                var pathList = await handle.Task;
+                foreach (var tm in pathList) {
+                    ctx.Path_Add(tm);
+                }
+                ctx.pathHandle = handle;
+            }
+
         }
 
         public static void Release(TemplateInfraContext ctx) {
@@ -91,6 +100,9 @@ namespace Oshi {
             }
             if (ctx.spikeHandle.IsValid()) {
                 Addressables.Release(ctx.spikeHandle);
+            }
+            if (ctx.pathHandle.IsValid()) {
+                Addressables.Release(ctx.pathHandle);
             }
         }
 

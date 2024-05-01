@@ -75,6 +75,46 @@ namespace Oshi {
                 var _ = GameSpikeDomain.Spawn(ctx, spikeTM.typeID, index, pos);
             }
 
+            // Path
+            var pathTMArr = mapTM.pathTMArr;
+            if (pathTMArr == null) {
+                GLog.LogError("PathTMArr Not Found");
+            }
+            var pathIndexArr = mapTM.pathIndexArr;
+            if (pathIndexArr == null) {
+                GLog.LogError("PathIndexArr Not Found");
+            }
+            var pathSpawnTMArr = mapTM.pathSpawnTMArr;
+            if (pathSpawnTMArr == null) {
+                GLog.LogError("PathSpawnTMArr Not Found");
+            }
+            var pathTravelerTypeArr = mapTM.pathTravelerTypeArr;
+            if (pathTravelerTypeArr == null) {
+                GLog.LogError("PathTravelerTypeArr Not Found");
+            }
+            var pathTravelerIndexArr = mapTM.pathTravelerIndexArr;
+            if (pathTravelerIndexArr == null) {
+                GLog.LogError("PathTravelerIndexArr Not Found");
+            }
+            var pathIsCircleLoopArr = mapTM.pathIsCircleLoopArr;
+            if (pathIsCircleLoopArr == null) {
+                GLog.LogError("PathIsCircleLoopArr Not Found");
+            }
+            var pathIsPingPongLoopArr = mapTM.pathIsPingPongLoopArr;
+            for (int i = 0; i < pathTMArr.Length; i++) {
+                var pathTM = pathTMArr[i];
+                if (pathTM == null) {
+                    GLog.LogError($"PathTM Not Found: {i}");
+                }
+                var index = pathIndexArr[i];
+                var spawn = pathSpawnTMArr[i];
+                var travelerType = pathTravelerTypeArr[i];
+                var travelerIndex = pathTravelerIndexArr[i];
+                var isCircleLoop = pathIsCircleLoopArr[i];
+                var isPingPongLoop = pathIsPingPongLoopArr[i];
+                var _ = GamePathDomain.Spawn(ctx, pathTM.typeID, index, isCircleLoop, isPingPongLoop, spawn.pathNodeArr, travelerType, travelerIndex);
+            }
+
             // Camera
             CameraApp.Init(ctx.cameraContext, owner.transform, Vector2.zero, mapTM.cameraConfinerWorldMax, mapTM.cameraConfinerWorldMin);
 

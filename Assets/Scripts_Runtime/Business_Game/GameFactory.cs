@@ -38,7 +38,6 @@ namespace Oshi {
         public static PathModel Path_Spawn(TemplateInfraContext templateInfraContext,
                                            int typeID,
                                            int index,
-                                           float speed,
                                            bool isCircleLoop,
                                            bool isPingPongLoop,
                                            Vector2Int[] nodes,
@@ -59,7 +58,6 @@ namespace Oshi {
             // Attr
             path.easingMode = pathTM.easingMode;
             path.easingType = pathTM.easingType;
-            path.speed = speed;
             path.isCircleLoop = isCircleLoop;
             path.isPingPongLoop = isPingPongLoop;
 

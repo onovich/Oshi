@@ -10,7 +10,6 @@ namespace Oshi {
         public int typeID;
         public EasingType easingType;
         public EasingMode easingMode;
-        public float speed;
 
         public EntityType travelerType;
         public int travelerIndex;
