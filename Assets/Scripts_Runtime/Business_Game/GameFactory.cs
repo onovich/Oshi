@@ -215,7 +215,7 @@ namespace Oshi {
             }
 
             // Set Line
-            wall.Line_SetPoints(wallTM.shapeNodes);
+            wall.Line_SetPoints(wallTM.shapeNodes, wallTM.lineMaterial, wallTM.lineColor, wallTM.lineWidth);
 
             return wall;
         }

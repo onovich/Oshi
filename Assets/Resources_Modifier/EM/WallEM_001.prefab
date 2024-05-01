@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -57,7 +57,10 @@ MonoBehaviour:
   typeID: 1
   typeName: Wall
   mesh: {fileID: 0}
-  color: {r: 1, g: 1, b: 1, a: 1}
+  meshColor: {r: 1, g: 1, b: 1, a: 1}
   meshMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineColor: {r: 1, g: 1, b: 1, a: 1}
+  lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  lineWidth: 0.125
   shapes:
   - {fileID: 11400000, guid: 52b721e4c97134108b8692cf3eda4874, type: 2}

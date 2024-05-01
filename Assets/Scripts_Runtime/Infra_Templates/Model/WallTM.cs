@@ -11,6 +11,9 @@ namespace Oshi {
         public Sprite mesh;
         public Color meshColor;
         public Material meshMaterial;
+        public Color lineColor;
+        public Material lineMaterial;
+        public float lineWidth;
         public ShapeTM[] shapeArr;
         public Vector3[] shapeNodes;
         

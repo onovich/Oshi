@@ -20,8 +20,13 @@ namespace Oshi {
 
         [Header("Block Mesh")]
         public Sprite mesh;
-        public UnityEngine.Color color;
+        public UnityEngine.Color meshColor;
         public Material meshMaterial;
+
+        [Header("Block Line")]
+        public UnityEngine.Color lineColor;
+        public Material lineMaterial;
+        public float lineWidth;
 
         [Header("Block Shapes")]
         public ShapeTM[] shapes;
@@ -31,8 +36,11 @@ namespace Oshi {
             typeID = wallTM.typeID;
             typeName = wallTM.typeName;
             mesh = wallTM.mesh;
-            color = wallTM.meshColor;
+            meshColor = wallTM.meshColor;
             meshMaterial = wallTM.meshMaterial;
+            lineColor = wallTM.lineColor;
+            lineMaterial = wallTM.lineMaterial;
+            lineWidth = wallTM.lineWidth;
             GetShapes();
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
@@ -82,8 +90,11 @@ namespace Oshi {
             wallTM.typeID = typeID;
             wallTM.typeName = typeName;
             wallTM.mesh = mesh;
-            wallTM.meshColor = color;
+            wallTM.meshColor = meshColor;
             wallTM.meshMaterial = meshMaterial;
+            wallTM.lineColor = lineColor;
+            wallTM.lineMaterial = lineMaterial;
+            wallTM.lineWidth = lineWidth;
             BakeShapes();
             BakeShapeNodes();
             EditorUtility.SetDirty(wallTM);

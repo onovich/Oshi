@@ -41,15 +41,17 @@ namespace Oshi {
         }
 
         // Line
-        public void Line_SetPoints(Vector3[] points) {
+        public void Line_SetPoints(Vector3[] points, Material material, Color color, float width) {
+            var lrPosArr = new Vector3[points.Length];
+            Array.Copy(points, lrPosArr, points.Length);
             lineRenderer.useWorldSpace = false;
-            lineRenderer.startWidth = 4f / 32;
-            lineRenderer.endWidth = 4f / 32;
-            lineRenderer.positionCount = points.Length;
-            for (int i = 0; i < points.Length; i++) {
-                lineRenderer.SetPosition(i, points[i]);
-            }
+            lineRenderer.startWidth = width;
+            lineRenderer.endWidth = width;
+            lineRenderer.positionCount = lrPosArr.Length;
+            lineRenderer.SetPositions(lrPosArr);
             lineRenderer.loop = true;
+            lineRenderer.material = material;
+            lineRenderer.startColor = color;
         }
 
         public void TearDown() {
