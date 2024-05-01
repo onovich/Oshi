@@ -63,10 +63,10 @@ namespace Oshi {
             var next = pathNodeArr[nextIndex];
             var pos = EasingHelper.Easing2D(current, next, movingCurrentTime, movingDuration, easingType, easingMode);
             movingCurrentTime += dt;
-
             pathCarPos = pos;
             if (movingCurrentTime >= movingDuration) {
                 isEnd = true;
+                pathCarPos = next;
                 ResetMoveState();
             }
         }
