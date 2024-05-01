@@ -93,7 +93,11 @@ namespace Oshi {
             return has;
         }
 
-        public static bool CheckInSpike(GameBusinessContext ctx, RoleEntity role) {
+        public static bool CheckOwnerDead(GameBusinessContext ctx, RoleEntity role) {
+            return CheckInSpike(ctx, role);
+        }
+
+        static bool CheckInSpike(GameBusinessContext ctx, RoleEntity role) {
             var inSpike = false;
             GridUtils.ForEachGridBySize(role.PosInt, role.size, (grid) => {
                 inSpike |= (ctx.spikeRepo.Has(grid));

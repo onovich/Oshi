@@ -148,6 +148,9 @@ namespace Oshi {
         }
 
         public void FSM_EnterDead() {
+            if (fsmCom.status == RoleFSMStatus.Dead) {
+                return;
+            }
             fsmCom.Dead_Enter();
         }
 

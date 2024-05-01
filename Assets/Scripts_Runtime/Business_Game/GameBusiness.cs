@@ -61,18 +61,9 @@ namespace Oshi {
                     var block = blockArr[i];
                     GameBlockDomain.CheckAndResetBlock(ctx, block);
                 }
-                // Result
-                GameGameDomain.ApplyGameResult(ctx);
             }
             if (status == GameStatus.GameOver) {
                 GameGameDomain.ApplyGameOver(ctx, dt);
-            }
-
-            // Roles
-            var roleLen = ctx.roleRepo.TakeAll(out var roleArr);
-            for (int i = 0; i < roleLen; i++) {
-                var role = roleArr[i];
-                GameRoleDomain.CheckAndUnSpawn(ctx, role);
             }
         }
 
@@ -101,9 +92,16 @@ namespace Oshi {
                 }
                 if (pathMoveDone) {
                     game.fsmComponent.PlayerTurn_Enter();
-                    Debug.Log("PathMoveDone");
                 }
             }
+
+            // Roles
+            var roleLen = ctx.roleRepo.TakeAll(out var roleArr);
+            for (int i = 0; i < roleLen; i++) {
+                var role = roleArr[i];
+                GameRoleDomain.CheckAndUnSpawn(ctx, role);
+            }
+
             Physics2D.Simulate(fixdt);
         }
 
@@ -112,6 +110,7 @@ namespace Oshi {
             var status = game.fsmComponent.status;
             var owner = ctx.Role_GetOwner();
             var map = ctx.currentMapEntity;
+
             if (status == GameStatus.PlayerTurn) {
 
                 // Camera
@@ -127,6 +126,12 @@ namespace Oshi {
                 if (showTime) UIApp.GameInfo_RefreshTime(ctx.uiContext, map.gameTotalTime);
                 if (showStep) UIApp.GameInfo_RefreshStep(ctx.uiContext, totalStep - step);
             }
+
+            if (status == GameStatus.EnvirTurn) {
+                // Result
+                GameGameDomain.ApplyCheckGameResult(ctx);
+            }
+
             // VFX
             VFXApp.LateTick(ctx.vfxContext, dt);
         }

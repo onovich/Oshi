@@ -67,7 +67,12 @@ namespace Oshi {
             pathCarPos = pos;
             if (movingCurrentTime >= movingDuration) {
                 isEnd = true;
+                ResetMoveState();
             }
+        }
+
+        public void ResetMoveState() {
+            movingCurrentTime = 0;
         }
 
         // Index

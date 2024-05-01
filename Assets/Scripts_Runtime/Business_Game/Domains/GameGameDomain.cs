@@ -129,18 +129,10 @@ namespace Oshi {
             NewGame(ctx);
         }
 
-        public static void ApplyGameResult(GameBusinessContext ctx) {
+        public static void ApplyCheckGameResult(GameBusinessContext ctx) {
             var owner = ctx.Role_GetOwner();
             var game = ctx.gameEntity;
             var config = ctx.templateInfraContext.Config_Get();
-
-            if (owner == null) {
-                game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
-                return;
-            }
-            if (owner.fsmCom.status != RoleFSMStatus.Idle) {
-                return;
-            }
 
             // Check Role Dead
             var dead = CheckRoleDead(ctx);
@@ -172,7 +164,7 @@ namespace Oshi {
 
         static bool CheckRoleDead(GameBusinessContext ctx) {
             var owner = ctx.Role_GetOwner();
-            if (owner == null || owner.needTearDown) {
+            if (owner == null || owner.fsmCom.status == RoleFSMStatus.Dead) {
                 return true;
             }
             return false;

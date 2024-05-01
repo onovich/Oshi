@@ -9,6 +9,10 @@ namespace Oshi {
 
         public static void FixedTickFSM(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {
 
+            if (role == null) {
+                return;
+            }
+
             FixedTickFSM_Any(ctx, role, fixdt);
 
             RoleFSMStatus status = role.FSM_GetStatus();
@@ -17,7 +21,7 @@ namespace Oshi {
             } else if (status == RoleFSMStatus.Moving) {
                 FixedTickFSM_Moving(ctx, role, fixdt, onEnd);
             } else if (status == RoleFSMStatus.Dead) {
-                FixedTickFSM_Dead(ctx, role, fixdt);
+                FixedTickFSM_Dead(ctx, role, fixdt, onEnd);
             } else {
                 GLog.LogError($"GameRoleFSMController.FixedTickFSM: unknown status: {status}");
             }
@@ -26,14 +30,6 @@ namespace Oshi {
 
         static void FixedTickFSM_Any(GameBusinessContext ctx, RoleEntity role, float fixdt) {
             role.Pos_RecordLastFramePos();
-
-            // In Spike
-            var succ = GameRoleDomain.CheckInSpike(ctx, role);
-            if (succ) {
-                role.FSM_EnterDead();
-                return;
-            }
-
         }
 
         static void FixedTickFSM_Idle(GameBusinessContext ctx, RoleEntity role, float fixdt) {
@@ -77,20 +73,29 @@ namespace Oshi {
                 role.FSM_EnterIdle();
                 onEnd?.Invoke();
             });
+
+            // Dead
+            var die = GameRoleDomain.CheckOwnerDead(ctx, role);
+            if (die) {
+                role.FSM_EnterDead();
+                return;
+            }
         }
 
-        static void FixedTickFSM_Dead(GameBusinessContext ctx, RoleEntity role, float fixdt) {
+        static void FixedTickFSM_Dead(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {
             RoleFSMComponent fsm = role.FSM_GetComponent();
             if (fsm.dead_isEntering) {
                 fsm.dead_isEntering = false;
+
+                // VFX
+                VFXApp.AddVFXToWorld(ctx.vfxContext, role.deadVFXName, role.deadVFXDuration, role.Pos);
+
+                // Camera
+                GameCameraDomain.ShakeOnce(ctx);
+                role.needTearDown = true;
+
+                onEnd?.Invoke();
             }
-
-            // VFX
-            VFXApp.AddVFXToWorld(ctx.vfxContext, role.deadVFXName, role.deadVFXDuration, role.Pos);
-
-            // Camera
-            GameCameraDomain.ShakeOnce(ctx);
-            role.needTearDown = true;
         }
 
     }
