@@ -21,8 +21,8 @@ MonoBehaviour:
   limitedByStep: 0
   gameTotalStep: 0
   ownerRoleTypeID: 1
-  mapSize: {x: 10, y: 4}
-  spawnPoint: {x: -3, y: 0}
+  mapSize: {x: 3, y: 3}
+  spawnPoint: {x: -1, y: 1}
   blockIndexArr: 01000000
   blockTMArr:
   - {fileID: 11400000, guid: dfc506ff2918241ca81377e85f305f72, type: 2}
@@ -35,7 +35,7 @@ MonoBehaviour:
   goalTMArr:
   - {fileID: 11400000, guid: 0e8401c5cafb24133817156681f17394, type: 2}
   goalPosArr:
-  - {x: 3, y: 0}
+  - {x: -1, y: -1}
   spikeIndexArr: 
   spikeTMArr: []
   spikePosArr: []

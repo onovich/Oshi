@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89eadcbc577a4444582344874139f64b, type: 3}
-  m_Name: SO_Wall_001
+  m_Name: SO_Wall_002
   m_EditorClassIdentifier: 
-  typeID: 1
+  typeID: 2
   typeName: Wall
   mesh: {fileID: 0}
   meshColor: {r: 1, g: 1, b: 1, a: 1}
@@ -21,9 +21,9 @@ MonoBehaviour:
   lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   lineWidth: 0.125
   shapeArr:
-  - {fileID: 11400000, guid: 79f3df2fa04514cd58ad45b84d29c54d, type: 2}
+  - {fileID: 11400000, guid: f39cd326f70b446c890c8be28c309b10, type: 2}
   shapeNodes:
-  - {x: 0.0625, y: 0.0625, z: 0}
-  - {x: 0.0625, y: 0.9375, z: 0}
-  - {x: 0.9375, y: 0.9375, z: 0}
+  - {x: 0.0625, y: 1.9375, z: 0}
+  - {x: 0.9375, y: 1.9375, z: 0}
   - {x: 0.9375, y: 0.0625, z: 0}
+  - {x: 0.0625, y: 0.0625, z: 0}

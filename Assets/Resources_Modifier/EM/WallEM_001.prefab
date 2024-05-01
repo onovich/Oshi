@@ -53,7 +53,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  wallTM: {fileID: 11400000, guid: 164f8d450169043389c59f12bb12963f, type: 2}
+  wallTM: {fileID: 11400000, guid: 1466f6e2d1578472f9465f1b6e5420d0, type: 2}
   typeID: 1
   typeName: Wall
   mesh: {fileID: 0}
@@ -63,4 +63,4 @@ MonoBehaviour:
   lineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   lineWidth: 0.125
   shapes:
-  - {fileID: 11400000, guid: 52b721e4c97134108b8692cf3eda4874, type: 2}
+  - {fileID: 11400000, guid: 79f3df2fa04514cd58ad45b84d29c54d, type: 2}

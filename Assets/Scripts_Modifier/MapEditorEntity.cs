@@ -22,9 +22,6 @@ namespace Oshi.Modifier {
         [SerializeField] bool limitedByStep;
         [SerializeField] int gameTotalStep;
 
-        [Header("Role Config")]
-        [SerializeField] RoleTM ownerRole;
-
         [Header("Entity Group")]
         [SerializeField] Transform pointGroup;
         [SerializeField] Transform blockGroup;
@@ -55,7 +52,6 @@ namespace Oshi.Modifier {
             mapTM.gameTotalTime = gameTotalTime;
             mapTM.limitedByStep = limitedByStep;
             mapTM.gameTotalStep = gameTotalStep;
-            mapTM.ownerRoleTypeID = ownerRole.typeID;
             mapTM.mapSize = mapSize.GetComponent<SpriteRenderer>().size.RoundToVector2Int();
             mapSize.GetComponent<SpriteRenderer>().size = mapTM.mapSize;
             mapSize.transform.position = -(mapTM.mapSize / 2).ToVector3Int();
@@ -115,7 +111,8 @@ namespace Oshi.Modifier {
                 Debug.Log("SpawnPointEditor Not Found");
             }
             editor.Rename();
-            mapTM.spawnPoint = editor.GetPos();
+            mapTM.ownerRoleTypeID = editor.roleTM.typeID;
+            mapTM.spawnPoint = editor.GetPosInt();
         }
 
         void BakeBlock() {
