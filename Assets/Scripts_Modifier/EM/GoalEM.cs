@@ -7,7 +7,7 @@ using Sirenix.Utilities;
 using UnityEditor;
 using UnityEngine;
 
-namespace Oshi {
+namespace Oshi.Modifier {
 
     public class GoalEM : SerializedMonoBehaviour {
 

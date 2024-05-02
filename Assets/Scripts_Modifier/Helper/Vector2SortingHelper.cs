@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Oshi {
+namespace Oshi.Modifier {
 
     public static class Vector2SortingHelper {
 
