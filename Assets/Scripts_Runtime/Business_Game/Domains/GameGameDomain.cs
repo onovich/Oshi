@@ -154,8 +154,8 @@ namespace Oshi {
             var game = ctx.gameEntity;
             var fsm = game.fsmComponent;
             if (fsm.gameOver_isEntering) {
-                fsm.GameOver_Enter(fsm.mapOver_result);
                 fsm.gameOver_isEntering = false;
+                UIApp.GameOver_Open(ctx.uiContext, fsm.gameOver_gameResult, true);
             }
         }
 

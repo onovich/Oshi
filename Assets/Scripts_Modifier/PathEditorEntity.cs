@@ -92,6 +92,7 @@ namespace Oshi.Modifier {
         }
 
         public Vector2 GetTravelerSize(GameObject traveler) {
+            if (traveler == null) return Vector2.zero;
             if (traveler.TryGetComponent<BlockEditorEntity>(out var block)) return block.blockTM.shapeArr[0].sizeInt;
             if (traveler.TryGetComponent<WallEditorEntity>(out var wall)) return wall.wallTM.shapeArr[0].sizeInt;
             if (traveler.TryGetComponent<GoalEditorEntity>(out var goal)) return goal.goalTM.shapeArr[0].sizeInt;

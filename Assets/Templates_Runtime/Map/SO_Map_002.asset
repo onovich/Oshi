@@ -21,11 +21,11 @@ MonoBehaviour:
   limitedByStep: 0
   gameTotalStep: 0
   ownerRoleTypeID: 1
-  mapSize: {x: 3, y: 6}
+  mapSize: {x: 3, y: 5}
   spawnPoint: {x: 0, y: 1}
   blockIndexArr: 01000000
   blockTMArr:
-  - {fileID: 11400000, guid: dfc506ff2918241ca81377e85f305f72, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
   blockPosArr:
   - {x: 0, y: 0}
   wallIndexArr: 
@@ -35,7 +35,7 @@ MonoBehaviour:
   goalTMArr:
   - {fileID: 11400000, guid: 0e8401c5cafb24133817156681f17394, type: 2}
   goalPosArr:
-  - {x: -1, y: -3}
+  - {x: -1, y: -2}
   spikeIndexArr: 
   spikeTMArr: []
   spikePosArr: []
@@ -49,9 +49,11 @@ MonoBehaviour:
   pathTravelerHalfSizeArr: []
   terrainWallSpawnPosArr:
   - {x: 0, y: -2, z: 0}
+  - {x: 1, y: -2, z: 0}
   - {x: 1, y: -1, z: 0}
   - {x: 1, y: 0, z: 0}
   terrainWallTMArr:
+  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}

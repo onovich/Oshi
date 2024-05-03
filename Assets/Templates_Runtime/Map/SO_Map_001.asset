@@ -25,7 +25,7 @@ MonoBehaviour:
   spawnPoint: {x: -1, y: 1}
   blockIndexArr: 01000000
   blockTMArr:
-  - {fileID: 11400000, guid: dfc506ff2918241ca81377e85f305f72, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
   blockPosArr:
   - {x: 0, y: 0}
   wallIndexArr: 

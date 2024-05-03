@@ -19,6 +19,7 @@
 3. Boss 可以杀死 Spike、Block、Role，遇到 Wall 、看到 Role时改变方向
 4. Spike 可能有 Pathing 组件，即可移动
 5. Role 多格
+6. FakeBlock 可以推动, 但不需入 Goal
 
 特殊玩法
 1. 三消箱子

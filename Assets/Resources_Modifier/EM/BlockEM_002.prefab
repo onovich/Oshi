@@ -61,4 +61,4 @@ MonoBehaviour:
   meshMaterial_default: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   meshMaterial_bloom: {fileID: 2100000, guid: 53e7422ec9caf46d68abbc371e4a5eac, type: 2}
   shapes:
-  - {fileID: 11400000, guid: 52b721e4c97134108b8692cf3eda4874, type: 2}
+  - {fileID: 11400000, guid: f39cd326f70b446c890c8be28c309b10, type: 2}

@@ -29,6 +29,7 @@ namespace Oshi {
         public GameResult mapOver_result;
 
         public bool gameOver_isEntering;
+        public GameResult gameOver_gameResult;
 
         public void NotInGame_Enter() {
             Reset();
@@ -92,6 +93,7 @@ namespace Oshi {
             Reset();
             status = GameStatus.GameOver;
             gameOver_isEntering = true;
+            gameOver_gameResult = result;
         }
 
         public void Reset() {
