@@ -222,7 +222,6 @@ MonoBehaviour:
   gameTotalTime: 0
   limitedByStep: 0
   gameTotalStep: 0
-  ownerRole: {fileID: 11400000, guid: dc729f3a9797af54185e0ee62c313866, type: 2}
   pointGroup: {fileID: 1107259945692854076}
   blockGroup: {fileID: 1744669803390319805}
   wallGroup: {fileID: 2760128786156540856}
