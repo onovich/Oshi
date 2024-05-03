@@ -10,49 +10,56 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a1e22956f2334251b773b2a1967c65b, type: 3}
-  m_Name: SO_Map_004
+  m_Name: SO_Map_006
   m_EditorClassIdentifier: 
-  typeID: 4
-  typeName: FIRST PUZZLE
-  nextMapTypeID: 3
-  isLastMap: 0
+  typeID: 6
+  typeName: FIRST BLOOD
+  nextMapTypeID: 0
+  isLastMap: 1
   limitedByTime: 0
   gameTotalTime: 0
   limitedByStep: 0
   gameTotalStep: 0
   ownerRoleTypeID: 1
-  mapSize: {x: 7, y: 6}
-  spawnPoint: {x: -1, y: -2}
+  mapSize: {x: 4, y: 5}
+  spawnPoint: {x: -1, y: 1}
   blockIndexArr: 0100000002000000
   blockTMArr:
   - {fileID: 11400000, guid: 469f4cfdb18d54283b6d3e64509319e0, type: 2}
   - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
   blockPosArr:
-  - {x: 1, y: -2}
-  - {x: 2, y: 1}
+  - {x: -1, y: -1}
+  - {x: 0, y: 1}
   wallIndexArr: 
   wallTMArr: []
   wallPosArr: []
   goalIndexArr: 
   goalTMArr: []
   goalPosArr: []
-  spikeIndexArr: 
-  spikeTMArr: []
-  spikePosArr: []
-  pathIndexArr: 
-  pathTMArr: []
-  pathSpawnTMArr: []
-  pathTravelerTypeArr: 
-  pathTravelerIndexArr: 
-  pathIsCircleLoopArr: 
-  pathIsPingPongLoopArr: 
-  pathTravelerHalfSizeArr: []
+  spikeIndexArr: 01000000
+  spikeTMArr:
+  - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}
+  spikePosArr:
+  - {x: -2, y: -1}
+  pathIndexArr: 01000000
+  pathTMArr:
+  - {fileID: 11400000, guid: ae875a6e88f13409680f258d73af9ac5, type: 2}
+  pathSpawnTMArr:
+  - pathNodeArr:
+    - {x: -2, y: -1, z: 0}
+    - {x: -1, y: -1, z: 0}
+  pathTravelerTypeArr: 04000000
+  pathTravelerIndexArr: 01000000
+  pathIsCircleLoopArr: 00
+  pathIsPingPongLoopArr: 01
+  pathTravelerHalfSizeArr:
+  - {x: 0.5, y: 0.5}
   terrainWallSpawnPosArr:
-  - {x: 0, y: -1, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 1, y: 1, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: 1, z: 0}
+  - {x: -2, y: -2, z: 0}
+  - {x: -2, y: 2, z: 0}
+  - {x: -1, y: -2, z: 0}
+  - {x: 1, y: -2, z: 0}
+  - {x: 1, y: -1, z: 0}
   terrainWallTMArr:
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
@@ -62,10 +69,10 @@ MonoBehaviour:
   terrainSpikeSpawnPosArr: []
   terrainSpikeTMArr: []
   terrainGoalSpawnPosArr:
-  - {x: -3, y: 1, z: 0}
-  - {x: -3, y: 2, z: 0}
-  - {x: -2, y: 1, z: 0}
-  - {x: -2, y: 2, z: 0}
+  - {x: -1, y: -1, z: 0}
+  - {x: -1, y: 2, z: 0}
+  - {x: 0, y: -2, z: 0}
+  - {x: 0, y: -1, z: 0}
   terrainGoalTMArr:
   - {fileID: 11400000, guid: 6f6a38ec69ae34874aea5dce4070e428, type: 2}
   - {fileID: 11400000, guid: 6f6a38ec69ae34874aea5dce4070e428, type: 2}
