@@ -44,7 +44,10 @@ namespace Oshi {
             var pos = block.PosInt;
             var inGoal = true;
             block.cellSlotComponent.ForEach((index, mod) => {
+                // Goal
                 inGoal &= (ctx.goalRepo.Has(mod.LocalPosInt + pos));
+                // Terrain Goal
+                inGoal &= (ctx.currentMapEntity.Terrain_HasGoal(mod.LocalPosInt + pos));
             });
             return inGoal;
         }
@@ -53,7 +56,10 @@ namespace Oshi {
             var pos = block.PosInt;
             var inSpike = false;
             block.cellSlotComponent.ForEach((index, mod) => {
+                // Spike
                 inSpike |= (ctx.spikeRepo.Has(mod.LocalPosInt + pos));
+                // Terrain Spike
+                inSpike |= (ctx.currentMapEntity.Terrain_HasSpike(mod.LocalPosInt + pos));
             });
             return inSpike;
         }

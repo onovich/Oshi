@@ -23,7 +23,9 @@ namespace Oshi.Modifier {
         [SerializeField] int gameTotalStep;
 
         [Header("Terrain")]
-        [SerializeField] Tilemap tilemap_terrain;
+        [SerializeField] Tilemap tilemap_terrain_wall;
+        [SerializeField] Tilemap tilemap_terrain_spike;
+        [SerializeField] Tilemap tilemap_terrain_goal;
         List<TerrainTM> terrainTMArr;
 
         [Header("Entity Group")]
@@ -39,7 +41,9 @@ namespace Oshi.Modifier {
             BakeMapInfo();
             BakeSpawnPoint();
             GetAllTerrainTM();
-            BakeTerrain();
+            BakeTerrain_Wall();
+            BakeTerrain_Spike();
+            BakeTerrain_Goal();
             BakeBlock();
             BakeWall();
             BakeGoal();
@@ -63,13 +67,13 @@ namespace Oshi.Modifier {
             mapSize.transform.position = -(mapTM.mapSize / 2).ToVector3Int();
         }
 
-        void BakeTerrain() {
+        void BakeTerrain_Wall() {
             var terrainSpawnPosList = new List<Vector3Int>();
             var terrainList = new List<TerrainTM>();
-            for (int x = tilemap_terrain.cellBounds.x; x < tilemap_terrain.cellBounds.xMax; x++) {
-                for (int y = tilemap_terrain.cellBounds.y; y < tilemap_terrain.cellBounds.yMax; y++) {
+            for (int x = tilemap_terrain_wall.cellBounds.x; x < tilemap_terrain_wall.cellBounds.xMax; x++) {
+                for (int y = tilemap_terrain_wall.cellBounds.y; y < tilemap_terrain_wall.cellBounds.yMax; y++) {
                     var pos = new Vector3Int(x, y, 0);
-                    var tile = tilemap_terrain.GetTile(pos);
+                    var tile = tilemap_terrain_wall.GetTile(pos);
                     if (tile == null) continue;
                     terrainSpawnPosList.Add(pos);
                     var terrainTM = GetTerrainTM(tile);
@@ -80,8 +84,50 @@ namespace Oshi.Modifier {
                     terrainList.Add(terrainTM);
                 }
             }
-            mapTM.terrainSpawnPosArr = terrainSpawnPosList.ToArray();
-            mapTM.terrainTMArr = terrainList.ToArray();
+            mapTM.terrainWallSpawnPosArr = terrainSpawnPosList.ToArray();
+            mapTM.terrainWallTMArr = terrainList.ToArray();
+        }
+
+        void BakeTerrain_Spike() {
+            var terrainSpawnPosList = new List<Vector3Int>();
+            var terrainList = new List<TerrainTM>();
+            for (int x = tilemap_terrain_spike.cellBounds.x; x < tilemap_terrain_spike.cellBounds.xMax; x++) {
+                for (int y = tilemap_terrain_spike.cellBounds.y; y < tilemap_terrain_spike.cellBounds.yMax; y++) {
+                    var pos = new Vector3Int(x, y, 0);
+                    var tile = tilemap_terrain_spike.GetTile(pos);
+                    if (tile == null) continue;
+                    terrainSpawnPosList.Add(pos);
+                    var terrainTM = GetTerrainTM(tile);
+                    if (terrainTM == null) {
+                        Debug.Log("TerrainTM Not Found");
+                        continue;
+                    }
+                    terrainList.Add(terrainTM);
+                }
+            }
+            mapTM.terrainSpikeSpawnPosArr = terrainSpawnPosList.ToArray();
+            mapTM.terrainSpikeTMArr = terrainList.ToArray();
+        }
+
+        void BakeTerrain_Goal() {
+            var terrainSpawnPosList = new List<Vector3Int>();
+            var terrainList = new List<TerrainTM>();
+            for (int x = tilemap_terrain_goal.cellBounds.x; x < tilemap_terrain_goal.cellBounds.xMax; x++) {
+                for (int y = tilemap_terrain_goal.cellBounds.y; y < tilemap_terrain_goal.cellBounds.yMax; y++) {
+                    var pos = new Vector3Int(x, y, 0);
+                    var tile = tilemap_terrain_goal.GetTile(pos);
+                    if (tile == null) continue;
+                    terrainSpawnPosList.Add(pos);
+                    var terrainTM = GetTerrainTM(tile);
+                    if (terrainTM == null) {
+                        Debug.Log("TerrainTM Not Found");
+                        continue;
+                    }
+                    terrainList.Add(terrainTM);
+                }
+            }
+            mapTM.terrainGoalSpawnPosArr = terrainSpawnPosList.ToArray();
+            mapTM.terrainGoalTMArr = terrainList.ToArray();
         }
 
         void BakePath() {

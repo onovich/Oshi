@@ -1,5 +1,10 @@
 游戏玩法：推箱
 
+规范
+静态的 Wall / Spike / Goal 可以用 Terrain 实现, 存在 Map 里
+动态的 Wall / Spike / Goal 需要用 Cell 实现, 存在 Context 里
+这样拆分是为了配置方便, 动态的需求比较少, 但为此要频繁配置 ShapeTM 很麻烦
+
 已实现
 1. Role 可以移动
 2. Block 可以被 Role 推动

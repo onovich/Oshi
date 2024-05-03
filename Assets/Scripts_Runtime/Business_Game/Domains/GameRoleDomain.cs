@@ -80,8 +80,10 @@ namespace Oshi {
 
         public static bool CheckMovable(GameBusinessContext ctx, RoleEntity role) {
             var allow = role.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos);
+            // Wall
             allow &= ctx.wallRepo.Has(role.Pos_GetNextGrid()) == false;
-            allow &= ctx.currentMapEntity.Terrain_Has(role.Pos_GetNextGrid()) == false;
+            // Terrain Wall
+            allow &= ctx.currentMapEntity.Terrain_HasWall(role.Pos_GetNextGrid()) == false;
             return allow;
         }
 
@@ -113,7 +115,10 @@ namespace Oshi {
         static bool CheckInSpike(GameBusinessContext ctx, RoleEntity role) {
             var inSpike = false;
             GridUtils.ForEachGridBySize(role.PosInt, role.size, (grid) => {
+                // Spike
                 inSpike |= (ctx.spikeRepo.Has(grid));
+                // Terrain Spike
+                inSpike |= ctx.currentMapEntity.Terrain_HasSpike(grid);
             });
             return inSpike;
         }
@@ -127,9 +132,13 @@ namespace Oshi {
             var allow = true;
             var _block = block;
             block.cellSlotComponent.ForEach((index, mod) => {
+                // Wall
                 allow &= ctx.wallRepo.Has(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir()) == false;
-                allow &= ctx.currentMapEntity.Terrain_Has(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir()) == false;
+                // Block
                 allow &= ctx.blockRepo.HasDifferent(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir(), _block.entityIndex) == false;
+                // Terrain Wall
+                allow &= ctx.currentMapEntity.Terrain_HasWall(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir()) == false;
+                // Constraint
                 allow &= _block.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, _block.PosInt + mod.LocalPosInt, role.Pos_GetNextDir());
             });
             return allow;

@@ -20,12 +20,31 @@ namespace Oshi {
             game.fsmComponent.PlayerTurn_Enter();
 
             // Terrain
-            var terrainTMArr = mapTM.terrainTMArr;
-            var terrainSpawnPosArr = mapTM.terrainSpawnPosArr;
-            for (int i = 0; i < terrainTMArr.Length; i++) {
-                var terrainTM = terrainTMArr[i];
-                var pos = terrainSpawnPosArr[i];
-                map.Terrain_Set(pos, terrainTM.tileBase, terrainTM.typeID);
+            //// Terrain Wall
+            var terrainWallTMArr = mapTM.terrainWallTMArr;
+            var terrainWallSpawnPosArr = mapTM.terrainWallSpawnPosArr;
+            for (int i = 0; i < terrainWallTMArr.Length; i++) {
+                var terrainTM = terrainWallTMArr[i];
+                var pos = terrainWallSpawnPosArr[i];
+                map.Terrain_SetWall(pos, terrainTM.tileBase, terrainTM.typeID);
+            }
+
+            //// Terrain Spike
+            var terrainSpikeTMArr = mapTM.terrainSpikeTMArr;
+            var terrainSpikeSpawnPosArr = mapTM.terrainSpikeSpawnPosArr;
+            for (int i = 0; i < terrainSpikeTMArr.Length; i++) {
+                var terrainTM = terrainSpikeTMArr[i];
+                var pos = terrainSpikeSpawnPosArr[i];
+                map.Terrain_SetSpike(pos, terrainTM.tileBase, terrainTM.typeID);
+            }
+
+            //// Terrain Goal
+            var terrainGoalTMArr = mapTM.terrainGoalTMArr;
+            var terrainGoalSpawnPosArr = mapTM.terrainGoalSpawnPosArr;
+            for (int i = 0; i < terrainGoalTMArr.Length; i++) {
+                var terrainTM = terrainGoalTMArr[i];
+                var pos = terrainGoalSpawnPosArr[i];
+                map.Terrain_SetGoal(pos, terrainTM.tileBase, terrainTM.typeID);
             }
 
             // Role

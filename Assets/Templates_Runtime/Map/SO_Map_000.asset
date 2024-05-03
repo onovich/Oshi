@@ -61,7 +61,7 @@ MonoBehaviour:
   pathIsPingPongLoopArr: 01
   pathTravelerHalfSizeArr:
   - {x: 1, y: 0.5}
-  terrainSpawnPosArr:
+  terrainWallSpawnPosArr:
   - {x: 5, y: -5, z: 0}
   - {x: 5, y: -4, z: 0}
   - {x: 6, y: -5, z: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
   - {x: 9, y: 2, z: 0}
   - {x: 9, y: 3, z: 0}
   - {x: 9, y: 4, z: 0}
-  terrainTMArr:
+  terrainWallTMArr:
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
@@ -87,5 +87,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
+  terrainSpikeSpawnPosArr: []
+  terrainSpikeTMArr: []
+  terrainGoalSpawnPosArr: []
+  terrainGoalTMArr: []
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}

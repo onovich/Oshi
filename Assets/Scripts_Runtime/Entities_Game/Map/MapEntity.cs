@@ -34,13 +34,19 @@ namespace Oshi {
 
         // Render
         [SerializeField] SpriteRenderer spr;
-        [SerializeField] Tilemap tilemap;
+        [SerializeField] Tilemap tilemap_terrain_wall;
+        [SerializeField] Tilemap tilemap_terrain_spike;
+        [SerializeField] Tilemap tilemap_terrain_goal;
 
         // Terrain
-        public Dictionary<Vector2Int, int> terrainDict;
+        public Dictionary<Vector2Int, int> terrainWallDict;
+        public Dictionary<Vector2Int, int> terrainSpikeDict;
+        public Dictionary<Vector2Int, int> terrainGoalDict;
 
         public void Ctor() {
-            terrainDict = new Dictionary<Vector2Int, int>();
+            terrainWallDict = new Dictionary<Vector2Int, int>();
+            terrainSpikeDict = new Dictionary<Vector2Int, int>();
+            terrainGoalDict = new Dictionary<Vector2Int, int>();
         }
 
         public void Mesh_SetSize(Vector2Int size) {
@@ -49,8 +55,10 @@ namespace Oshi {
         }
 
         public void TearDown() {
-            tilemap.ClearAllTiles();
-            terrainDict.Clear();
+            tilemap_terrain_wall.ClearAllTiles();
+            tilemap_terrain_spike.ClearAllTiles();
+            tilemap_terrain_goal.ClearAllTiles();
+            terrainWallDict.Clear();
             Destroy(gameObject);
         }
 
@@ -58,13 +66,47 @@ namespace Oshi {
             gameTotalTime -= dt;
         }
 
-        public void Terrain_Set(Vector3Int pos, TileBase tile, int typeID) {
-            tilemap.SetTile(pos, tile);
-            terrainDict.Add(new Vector2Int(pos.x, pos.y), typeID);
+        // Terrain
+        public void Terrain_SetWall(Vector3Int pos, TileBase tile, int typeID) {
+            tilemap_terrain_wall.SetTile(pos, tile);
+            terrainWallDict.Add(new Vector2Int(pos.x, pos.y), typeID);
         }
 
-        public bool Terrain_Has(Vector2Int pos) {
-            return terrainDict.ContainsKey(pos);
+        public bool Terrain_HasWall(Vector2Int pos) {
+            return terrainWallDict.ContainsKey(pos);
+        }
+
+        public void Terrain_RemoveWall(Vector2Int pos) {
+            tilemap_terrain_wall.SetTile(new Vector3Int(pos.x, pos.y, 0), null);
+            terrainWallDict.Remove(pos);
+        }
+
+        public void Terrain_SetSpike(Vector3Int pos, TileBase tile, int typeID) {
+            tilemap_terrain_spike.SetTile(pos, tile);
+            terrainSpikeDict.Add(new Vector2Int(pos.x, pos.y), typeID);
+        }
+
+        public bool Terrain_HasSpike(Vector2Int pos) {
+            return terrainSpikeDict.ContainsKey(pos);
+        }
+
+        public void Terrain_RemoveSpike(Vector2Int pos) {
+            tilemap_terrain_spike.SetTile(new Vector3Int(pos.x, pos.y, 0), null);
+            terrainSpikeDict.Remove(pos);
+        }
+
+        public void Terrain_SetGoal(Vector3Int pos, TileBase tile, int typeID) {
+            tilemap_terrain_goal.SetTile(pos, tile);
+            terrainGoalDict.Add(new Vector2Int(pos.x, pos.y), typeID);
+        }
+
+        public bool Terrain_HasGoal(Vector2Int pos) {
+            return terrainGoalDict.ContainsKey(pos);
+        }
+
+        public void Terrain_RemoveGoal(Vector2Int pos) {
+            tilemap_terrain_goal.SetTile(new Vector3Int(pos.x, pos.y, 0), null);
+            terrainGoalDict.Remove(pos);
         }
 
 #if UNITY_EDITOR

@@ -58,8 +58,12 @@ namespace Oshi {
         public Vector2[] pathTravelerHalfSizeArr;
 
         [Header("Terrain")]
-        public Vector3Int[] terrainSpawnPosArr;
-        public TerrainTM[] terrainTMArr;
+        public Vector3Int[] terrainWallSpawnPosArr;
+        public TerrainTM[] terrainWallTMArr;
+        public Vector3Int[] terrainSpikeSpawnPosArr;
+        public TerrainTM[] terrainSpikeTMArr;
+        public Vector3Int[] terrainGoalSpawnPosArr;
+        public TerrainTM[] terrainGoalTMArr;
 
         [Header("Camera")]
         public Vector2 cameraConfinerWorldMax;

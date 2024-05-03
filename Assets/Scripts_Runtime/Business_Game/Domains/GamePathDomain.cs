@@ -71,11 +71,18 @@ namespace Oshi {
                                       SpikeEntity spike,
                                       Vector2Int point) {
             var allow = true;
+            // Spike
             allow &= !ctx.spikeRepo.HasDifferent(point, spike.entityIndex);
+            // Block
             allow &= !ctx.blockRepo.Has(point);
+            // Wall
             allow &= !ctx.wallRepo.Has(point);
+            // Role
             allow &= !ctx.roleRepo.Has(point);
-            allow &= !ctx.currentMapEntity.Terrain_Has(point);
+            // Terrain Wall
+            allow &= !ctx.currentMapEntity.Terrain_HasWall(point);
+            // Terrain Spike
+            allow &= !ctx.currentMapEntity.Terrain_HasSpike(point);
             return allow;
         }
 
