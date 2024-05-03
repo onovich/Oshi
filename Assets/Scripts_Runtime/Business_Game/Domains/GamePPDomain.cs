@@ -27,7 +27,7 @@ namespace Oshi {
             fsm.FadingIn_IncTimer(dt);
         }
 
-        public static void ApplyFadingOut(GameBusinessContext ctx, float dt, Action onEnd) {
+        public static void ApplyFadingOut(GameBusinessContext ctx, float dt, Action<GameResult> onEnd) {
             var game = ctx.gameEntity;
             var fsm = game.fsmComponent;
             var config = ctx.templateInfraContext.Config_Get();
@@ -36,9 +36,10 @@ namespace Oshi {
             var endColor = Color.black;
             var duration = fsm.fadingOut_duration;
             var enterTime = fsm.fadingOut_enterTime;
+            var result = fsm.fadingOut_result;
 
             if (enterTime > duration) {
-                onEnd.Invoke();
+                onEnd.Invoke(result);
                 return;
             }
 

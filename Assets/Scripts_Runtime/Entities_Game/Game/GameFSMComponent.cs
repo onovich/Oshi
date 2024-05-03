@@ -19,10 +19,13 @@ namespace Oshi {
         public bool fadingOut_isEntering;
         public float fadingOut_enterTime;
         public float fadingOut_duration;
+        public GameResult fadingOut_result;
+
+        public bool mapOver_isEntering;
+        public float mapOver_enterTime;
+        public GameResult mapOver_result;
 
         public bool gameOver_isEntering;
-        public float gameOver_enterTime;
-        public GameResult gameOver_result;
 
         public void NotInGame_Enter() {
             Reset();
@@ -54,29 +57,36 @@ namespace Oshi {
             envirTurn_isEntering = true;
         }
 
-        public void FadingOut_Enter(float duration) {
+        public void FadingOut_Enter(float duration, GameResult result) {
             Reset();
             status = GameStatus.FadingOut;
             fadingOut_isEntering = true;
             fadingOut_enterTime = 0f;
             fadingOut_duration = duration;
+            fadingOut_result = result;
         }
 
         public void FadingOut_IncTimer(float dt) {
             fadingOut_enterTime += dt;
         }
 
-        public void GameOver_Enter(float enterTime, GameResult result) {
+        public void MapOver_Enter(float enterTime, GameResult result) {
+            Reset();
+            status = GameStatus.MapOver;
+            mapOver_isEntering = true;
+            mapOver_enterTime = enterTime;
+            mapOver_result = result;
+        }
+
+        public void MapOver_DecTimer(float dt) {
+            mapOver_enterTime -= dt;
+            mapOver_enterTime = Mathf.Max(0, mapOver_enterTime);
+        }
+
+        public void GameOver_Enter(GameResult result) {
             Reset();
             status = GameStatus.GameOver;
             gameOver_isEntering = true;
-            gameOver_enterTime = enterTime;
-            gameOver_result = result;
-        }
-
-        public void GameOver_DecTimer(float dt) {
-            gameOver_enterTime -= dt;
-            gameOver_enterTime = Mathf.Max(0, gameOver_enterTime);
         }
 
         public void Reset() {
@@ -86,9 +96,10 @@ namespace Oshi {
             gameOver_isEntering = false;
             fadingIn_isEntering = false;
             fadingOut_isEntering = false;
-            gameOver_enterTime = 0;
+            mapOver_isEntering = false;
             fadingIn_enterTime = 0;
             fadingOut_enterTime = 0;
+            mapOver_enterTime = 0;
         }
 
     }

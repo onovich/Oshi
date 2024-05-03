@@ -6,6 +6,7 @@ namespace Oshi {
         PlayerTurn,
         EnvirTurn,
         FadingOut,
+        MapOver,
         GameOver,
     }
 

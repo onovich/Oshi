@@ -67,6 +67,9 @@ namespace Oshi {
             if (status == GameStatus.GameOver) {
                 GameGameDomain.ApplyGameOver(ctx, dt);
             }
+            if (status == GameStatus.MapOver) {
+                GameGameDomain.ApplyMapOver(ctx, dt);
+            }
             GameGameDomain.ApplyRestartGame(ctx);
         }
 
@@ -117,6 +120,19 @@ namespace Oshi {
 
             if (status == GameStatus.FadingIn) {
                 GamePPDomain.ApplyFadingIn(ctx, dt);
+            }
+
+            if (status == GameStatus.FadingOut) {
+                GamePPDomain.ApplyFadingOut(ctx, dt, (result) => {
+                    // Restart
+                    if (result == GameResult.Lose) {
+                        GameGameDomain.RestartGame(ctx);
+                    }
+                    // Next Level
+                    if (result == GameResult.Win) {
+                        GameGameDomain.NextLevel(ctx);
+                    }
+                });
             }
 
             if (status == GameStatus.PlayerTurn) {

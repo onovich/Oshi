@@ -151,15 +151,25 @@ namespace Oshi {
         }
 
         public static void ApplyGameOver(GameBusinessContext ctx, float dt) {
+        }
+
+        public static void ApplyMapOver(GameBusinessContext ctx, float dt) {
             var game = ctx.gameEntity;
             var fsm = game.fsmComponent;
 
-            fsm.GameOver_DecTimer(dt);
-
-            var enterTime = fsm.gameOver_enterTime;
+            fsm.MapOver_DecTimer(dt);
+            var enterTime = fsm.mapOver_enterTime;
             var map = ctx.currentMapEntity;
             if (enterTime <= 0) {
-                UIApp.GameOver_Open(ctx.uiContext, fsm.gameOver_result, map.isLastMap);
+                UIApp.GameOver_Open(ctx.uiContext, fsm.mapOver_result, map.isLastMap);
+                // Game Over
+                if (map.isLastMap) {
+                    fsm.GameOver_Enter(fsm.mapOver_result);
+                    return;
+                }
+                // Fading Out
+                var config = ctx.templateInfraContext.Config_Get();
+                fsm.FadingOut_Enter(config.fadingOutDuration, fsm.mapOver_result);
             }
         }
 
@@ -191,28 +201,28 @@ namespace Oshi {
             // Check Role Unspawned
             var dead = CheckOwnerUnspawned(ctx);
             if (dead) {
-                game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
+                game.fsmComponent.MapOver_Enter(config.gameResetEnterTime, GameResult.Lose);
                 return;
             }
 
             // Check Time Finish
             var timeFinish = CheckTimeFinish(ctx, Time.deltaTime);
             if (timeFinish) {
-                game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
+                game.fsmComponent.MapOver_Enter(config.gameResetEnterTime, GameResult.Lose);
                 return;
             }
 
             // Check Step
             var stepFinish = CheckStepFinish(ctx);
             if (stepFinish) {
-                game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Lose);
+                game.fsmComponent.MapOver_Enter(config.gameResetEnterTime, GameResult.Lose);
                 return;
             }
 
             // Check Goal
             var inGoal = CheckInGoal(ctx);
             if (inGoal) {
-                game.fsmComponent.GameOver_Enter(config.gameResetEnterTime, GameResult.Win);
+                game.fsmComponent.MapOver_Enter(config.gameResetEnterTime, GameResult.Win);
             }
         }
 
