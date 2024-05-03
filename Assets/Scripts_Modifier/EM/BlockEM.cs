@@ -21,7 +21,8 @@ namespace Oshi.Modifier {
         [Header("Block Mesh")]
         public Sprite mesh;
         public UnityEngine.Color color;
-        public Material meshMaterial;
+        public Material meshMaterial_default;
+        public Material meshMaterial_bloom;
 
         [Header("Block Shapes")]
         public ShapeTM[] shapes;
@@ -32,7 +33,8 @@ namespace Oshi.Modifier {
             typeName = blockTM.typeName;
             mesh = blockTM.mesh;
             color = blockTM.meshColor;
-            meshMaterial = blockTM.meshMaterial;
+            meshMaterial_default = blockTM.meshMaterial_default;
+            meshMaterial_bloom = blockTM.meshMaterial_bloom;
             GetShapes();
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
@@ -64,7 +66,8 @@ namespace Oshi.Modifier {
             blockTM.typeName = typeName;
             blockTM.mesh = mesh;
             blockTM.meshColor = color;
-            blockTM.meshMaterial = meshMaterial;
+            blockTM.meshMaterial_default = meshMaterial_default;
+            blockTM.meshMaterial_bloom = meshMaterial_bloom;
             BakeShapes();
             EditorUtility.SetDirty(blockTM);
             AssetDatabase.SaveAssets();

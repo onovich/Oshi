@@ -132,6 +132,12 @@ namespace Oshi {
             }
 
             if (status == GameStatus.EnvirTurn) {
+                // Block Bloom
+                var len = ctx.blockRepo.TakeAll(out var blockArr);
+                for (int i = 0; i < len; i++) {
+                    var block = blockArr[i];
+                    GameBlockDomain.ApplyBloom(ctx, block);
+                }
                 // Result
                 GameGameDomain.ApplyCheckGameResult(ctx);
             }

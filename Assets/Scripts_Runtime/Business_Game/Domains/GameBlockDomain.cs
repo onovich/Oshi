@@ -25,12 +25,13 @@ namespace Oshi {
                 cell.SetSpr(blockTM.mesh);
                 cell.SetSortingLayer(SortingLayerConst.Block);
                 cell.SetSprColor(blockTM.meshColor);
-                cell.SetSprMaterial(blockTM.meshMaterial);
+                cell.SetSprMaterial(blockTM.meshMaterial_bloom);
                 cell.index = cellIndex;
                 block.cellSlotComponent.Add(cell);
                 cell.SetParent(block.transform);
             });
 
+            ApplyBloom(ctx, block);
             ctx.blockRepo.Add(block);
             return block;
         }
@@ -40,7 +41,18 @@ namespace Oshi {
             block.TearDown();
         }
 
-        public static bool CheckInGoal(GameBusinessContext ctx, BlockEntity block) {
+        public static void ApplyBloom(GameBusinessContext ctx, BlockEntity block) {
+            block.Render_Bloom((pos) => {
+                var allow = false;
+                // Goal
+                allow |= (ctx.goalRepo.Has(pos));
+                // Terrain Goal
+                allow |= (ctx.currentMapEntity.Terrain_HasGoal(pos));
+                return allow;
+            });
+        }
+
+        public static bool CheckAllInGoal(GameBusinessContext ctx, BlockEntity block) {
             var pos = block.PosInt;
             var inGoal = true;
             block.cellSlotComponent.ForEach((index, mod) => {
@@ -83,7 +95,6 @@ namespace Oshi {
             if (inSpike) {
                 ResetBlock(ctx, block);
             }
-
         }
 
     }

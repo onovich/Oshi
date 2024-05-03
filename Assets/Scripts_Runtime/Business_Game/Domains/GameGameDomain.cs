@@ -234,7 +234,7 @@ namespace Oshi {
             var config = ctx.templateInfraContext.Config_Get();
 
             ctx.blockRepo.ForEach((block) => {
-                inGoal &= GameBlockDomain.CheckInGoal(ctx, block);
+                inGoal &= GameBlockDomain.CheckAllInGoal(ctx, block);
             });
             return inGoal;
         }

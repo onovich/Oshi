@@ -23,6 +23,10 @@ namespace Oshi {
         public Vector2Int PosInt => Pos_GetPosInt();
         public Vector2 originalPos;
 
+        // Render
+        public Material meshMaterial_default;
+        public Material meshMaterial_bloom;
+
         public void Ctor() {
             cellSlotComponent = new CellSlotComponent();
             shapeComponent = new ShapeComponent();
@@ -36,6 +40,17 @@ namespace Oshi {
 
         Vector2Int Pos_GetPosInt() {
             return transform.position.RoundToVector3Int().ToVector2Int();
+        }
+
+        // Render
+        public void Render_Bloom(Func<Vector2Int, bool> isGoal) {
+            cellSlotComponent.ForEach((index, mod) => {
+                if (isGoal(mod.LocalPosInt + PosInt)) {
+                    mod.SetSprMaterial(meshMaterial_bloom);
+                    return;
+                }
+                mod.SetSprMaterial(meshMaterial_default);
+            });
         }
 
         // Push

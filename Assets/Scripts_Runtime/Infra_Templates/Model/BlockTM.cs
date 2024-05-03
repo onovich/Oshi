@@ -10,7 +10,8 @@ namespace Oshi {
         public string typeName;
         public Sprite mesh;
         public Color meshColor;
-        public Material meshMaterial;
+        public Material meshMaterial_default;
+        public Material meshMaterial_bloom;
         public ShapeTM[] shapeArr;
         
     }
