@@ -19,6 +19,15 @@ namespace Oshi {
             var game = ctx.gameEntity;
             game.fsmComponent.PlayerTurn_Enter();
 
+            // Terrain
+            var terrainTMArr = mapTM.terrainTMArr;
+            var terrainSpawnPosArr = mapTM.terrainSpawnPosArr;
+            for (int i = 0; i < terrainTMArr.Length; i++) {
+                var terrainTM = terrainTMArr[i];
+                var pos = terrainSpawnPosArr[i];
+                map.Tilemap_SetTile(pos, terrainTM.tileBase);
+            }
+
             // Role
             var player = ctx.playerEntity;
 

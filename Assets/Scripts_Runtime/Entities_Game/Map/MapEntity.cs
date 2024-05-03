@@ -34,6 +34,7 @@ namespace Oshi {
 
         // Render
         [SerializeField] SpriteRenderer spr;
+        [SerializeField] Tilemap tilemap;
 
         public void Ctor() {
         }
@@ -44,11 +45,16 @@ namespace Oshi {
         }
 
         public void TearDown() {
+            tilemap.ClearAllTiles();
             Destroy(gameObject);
         }
 
         public void DecTimer(float dt) {
             gameTotalTime -= dt;
+        }
+
+        public void Tilemap_SetTile(Vector3Int pos, TileBase tile) {
+            tilemap.SetTile(pos, tile);
         }
 
 #if UNITY_EDITOR

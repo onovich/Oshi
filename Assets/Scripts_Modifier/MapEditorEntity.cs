@@ -22,6 +22,10 @@ namespace Oshi.Modifier {
         [SerializeField] bool limitedByStep;
         [SerializeField] int gameTotalStep;
 
+        [Header("Terrain")]
+        [SerializeField] Tilemap tilemap_terrain;
+        List<TerrainTM> terrainTMArr;
+
         [Header("Entity Group")]
         [SerializeField] Transform pointGroup;
         [SerializeField] Transform blockGroup;
@@ -34,6 +38,8 @@ namespace Oshi.Modifier {
         void Bake() {
             BakeMapInfo();
             BakeSpawnPoint();
+            GetAllTerrainTM();
+            BakeTerrain();
             BakeBlock();
             BakeWall();
             BakeGoal();
@@ -55,6 +61,27 @@ namespace Oshi.Modifier {
             mapTM.mapSize = mapSize.GetComponent<SpriteRenderer>().size.RoundToVector2Int();
             mapSize.GetComponent<SpriteRenderer>().size = mapTM.mapSize;
             mapSize.transform.position = -(mapTM.mapSize / 2).ToVector3Int();
+        }
+
+        void BakeTerrain() {
+            var terrainSpawnPosList = new List<Vector3Int>();
+            var terrainList = new List<TerrainTM>();
+            for (int x = tilemap_terrain.cellBounds.x; x < tilemap_terrain.cellBounds.xMax; x++) {
+                for (int y = tilemap_terrain.cellBounds.y; y < tilemap_terrain.cellBounds.yMax; y++) {
+                    var pos = new Vector3Int(x, y, 0);
+                    var tile = tilemap_terrain.GetTile(pos);
+                    if (tile == null) continue;
+                    terrainSpawnPosList.Add(pos);
+                    var terrainTM = GetTerrainTM(tile);
+                    if (terrainTM == null) {
+                        Debug.Log("TerrainTM Not Found");
+                        continue;
+                    }
+                    terrainList.Add(terrainTM);
+                }
+            }
+            mapTM.terrainSpawnPosArr = terrainSpawnPosList.ToArray();
+            mapTM.terrainTMArr = terrainList.ToArray();
         }
 
         void BakePath() {
@@ -203,6 +230,20 @@ namespace Oshi.Modifier {
             mapTM.spikeTMArr = spikeTMArr.ToArray();
             mapTM.spikePosArr = spikePosArr.ToArray();
             mapTM.spikeIndexArr = spikeIndexArr.ToArray();
+        }
+
+
+        TerrainTM GetTerrainTM(TileBase tileBase) {
+            foreach (var terrainTM in terrainTMArr) {
+                if (terrainTM.tileBase == tileBase) {
+                    return terrainTM;
+                }
+            }
+            return null;
+        }
+
+        void GetAllTerrainTM() {
+            terrainTMArr = FieldHelper.GetAllInstances<TerrainTM>();
         }
 
         void OnDrawGizmos() {

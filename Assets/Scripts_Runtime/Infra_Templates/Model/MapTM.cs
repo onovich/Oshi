@@ -57,6 +57,10 @@ namespace Oshi {
         public bool[] pathIsPingPongLoopArr;
         public Vector2[] pathTravelerHalfSizeArr;
 
+        [Header("Terrain")]
+        public Vector3Int[] terrainSpawnPosArr;
+        public TerrainTM[] terrainTMArr;
+
         [Header("Camera")]
         public Vector2 cameraConfinerWorldMax;
         public Vector2 cameraConfinerWorldMin;

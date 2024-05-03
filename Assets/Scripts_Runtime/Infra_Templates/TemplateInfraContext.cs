@@ -29,6 +29,9 @@ namespace Oshi {
         Dictionary<int, PathTM> pathDict;
         public AsyncOperationHandle pathHandle;
 
+        Dictionary<int, TerrainTM> terrainDict;
+        public AsyncOperationHandle terrainHandle;
+
         public TemplateInfraContext() {
             mapDict = new Dictionary<int, MapTM>();
             roleDict = new Dictionary<int, RoleTM>();
@@ -37,6 +40,7 @@ namespace Oshi {
             goalDict = new Dictionary<int, GoalTM>();
             spikeDict = new Dictionary<int, SpikeTM>();
             pathDict = new Dictionary<int, PathTM>();
+            terrainDict = new Dictionary<int, TerrainTM>();
         }
 
         // Game
@@ -139,6 +143,19 @@ namespace Oshi {
             return has;
         }
 
+        // Terrain
+        public void Terrain_Add(TerrainTM terrain) {
+            terrainDict.Add(terrain.typeID, terrain);
+        }
+
+        public bool Terrain_TryGet(int typeID, out TerrainTM terrain) {
+            var has = terrainDict.TryGetValue(typeID, out terrain);
+            if (!has) {
+                GLog.LogError($"Terrain {typeID} not found");
+            }
+            return has;
+        }
+
         // Clear
         public void Clear() {
             mapDict.Clear();
@@ -148,6 +165,7 @@ namespace Oshi {
             goalDict.Clear();
             spikeDict.Clear();
             pathDict.Clear();
+            terrainDict.Clear();
         }
 
     }
