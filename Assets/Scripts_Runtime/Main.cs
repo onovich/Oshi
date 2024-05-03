@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.U2D;
 
 namespace Oshi {
@@ -24,6 +25,7 @@ namespace Oshi {
         UIAppContext uiAppContext;
         VFXAppContext vfxAppContext;
         CameraAppContext cameraAppContext;
+        PPAppContext ppAppContext;
 
         bool isLoadedAssets;
         bool isTearDown;
@@ -37,6 +39,7 @@ namespace Oshi {
             Transform hudFakeCanvas = GameObject.Find("HUDFakeCanvas").transform;
             Camera mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
             Transform vfxRoot = GameObject.Find("VFXRoot").transform;
+            Volume mainVolume = GameObject.Find("MainVolume").GetComponent<Volume>();
 
             inputEntity = new InputEntity();
 
@@ -46,6 +49,7 @@ namespace Oshi {
             uiAppContext = new UIAppContext("UI", mainCanvas, hudFakeCanvas, mainCamera);
             vfxAppContext = new VFXAppContext("VFX", vfxRoot);
             cameraAppContext = new CameraAppContext(mainCamera, new Vector2(Screen.width, Screen.height));
+            ppAppContext = new PPAppContext(mainVolume);
 
             assetsInfraContext = new AssetsInfraContext();
             templateInfraContext = new TemplateInfraContext();
@@ -62,6 +66,7 @@ namespace Oshi {
             gameBusinessContext.mainCamera = mainCamera;
 
             cameraAppContext.templateInfraContext = templateInfraContext;
+            ppAppContext.templateInfraContext = templateInfraContext;
 
             // TODO Camera
 
