@@ -151,6 +151,12 @@ namespace Oshi {
         }
 
         public static void ApplyGameOver(GameBusinessContext ctx, float dt) {
+            var game = ctx.gameEntity;
+            var fsm = game.fsmComponent;
+            if (fsm.gameOver_isEntering) {
+                fsm.GameOver_Enter(fsm.mapOver_result);
+                fsm.gameOver_isEntering = false;
+            }
         }
 
         public static void ApplyMapOver(GameBusinessContext ctx, float dt) {
@@ -161,7 +167,6 @@ namespace Oshi {
             var enterTime = fsm.mapOver_enterTime;
             var map = ctx.currentMapEntity;
             if (enterTime <= 0) {
-                UIApp.GameOver_Open(ctx.uiContext, fsm.mapOver_result, map.isLastMap);
                 // Game Over
                 if (map.isLastMap) {
                     fsm.GameOver_Enter(fsm.mapOver_result);
