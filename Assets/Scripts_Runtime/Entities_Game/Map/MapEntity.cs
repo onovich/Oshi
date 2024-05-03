@@ -50,8 +50,8 @@ namespace Oshi {
         }
 
         public void Mesh_SetSize(Vector2Int size) {
-            spr.size = size;
-            spr.transform.position -= new Vector3(size.x / 2, size.y / 2, 0);
+            spr.size = new Vector2(size.x + 8f / 32, size.y + 8f / 32);// 4f / 32 is the border size
+            spr.transform.position -= new Vector3(size.x / 2 + 4f / 32, size.y / 2 + 4f / 32, 0);
         }
 
         public void TearDown() {
