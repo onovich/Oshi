@@ -84,6 +84,8 @@ namespace Oshi {
             allow &= ctx.wallRepo.Has(role.Pos_GetNextGrid()) == false;
             // Terrain Wall
             allow &= ctx.currentMapEntity.Terrain_HasWall(role.Pos_GetNextGrid()) == false;
+            // Constraint
+            allow &= role.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos);
             return allow;
         }
 

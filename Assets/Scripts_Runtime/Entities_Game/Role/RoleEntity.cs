@@ -95,12 +95,15 @@ namespace Oshi {
         }
 
         // Move
-        public bool Move_CheckConstraint(Vector2 constarintSize, Vector2 constraintCenter) {
+        public bool Move_CheckConstraint(Vector2 constraintSize, Vector2 constraintCenter) {
             var moveAxisX = inputCom.moveAxis.x;
             var moveAxisY = inputCom.moveAxis.y;
             var pos = transform.position;
-            var min = constraintCenter - constarintSize / 2 + constraintCenter - Vector2.one;
-            var max = constraintCenter + constarintSize / 2 + constraintCenter;
+            var offset = Vector2.zero;
+            offset.x = 1 - constraintSize.x % 2;
+            offset.y = 1 - constraintSize.y % 2;
+            var min = constraintCenter - constraintSize / 2 + constraintCenter - offset;
+            var max = constraintCenter + constraintSize / 2 + constraintCenter;
             if (pos.x + moveAxisX >= max.x || pos.x + moveAxisX <= min.x) {
                 return false;
             }
