@@ -28,13 +28,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dfc506ff2918241ca81377e85f305f72, type: 2}
   blockPosArr:
   - {x: 0, y: 0}
-  wallIndexArr: 0100000002000000
-  wallTMArr:
-  - {fileID: 11400000, guid: 1466f6e2d1578472f9465f1b6e5420d0, type: 2}
-  - {fileID: 11400000, guid: f612cbd970abd451b8ef42d25117e75c, type: 2}
-  wallPosArr:
-  - {x: 0, y: -2}
-  - {x: 1, y: -1}
+  wallIndexArr: 
+  wallTMArr: []
+  wallPosArr: []
   goalIndexArr: 01000000
   goalTMArr:
   - {fileID: 11400000, guid: 0e8401c5cafb24133817156681f17394, type: 2}
@@ -51,5 +47,13 @@ MonoBehaviour:
   pathIsCircleLoopArr: 
   pathIsPingPongLoopArr: 
   pathTravelerHalfSizeArr: []
+  terrainSpawnPosArr:
+  - {x: 0, y: -2, z: 0}
+  - {x: 1, y: -1, z: 0}
+  - {x: 1, y: 0, z: 0}
+  terrainTMArr:
+  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
+  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
+  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}
