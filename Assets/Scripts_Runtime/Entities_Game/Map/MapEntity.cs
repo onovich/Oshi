@@ -36,7 +36,11 @@ namespace Oshi {
         [SerializeField] SpriteRenderer spr;
         [SerializeField] Tilemap tilemap;
 
+        // Terrain
+        public Dictionary<Vector2Int, int> terrainDict;
+
         public void Ctor() {
+            terrainDict = new Dictionary<Vector2Int, int>();
         }
 
         public void Mesh_SetSize(Vector2Int size) {
@@ -46,6 +50,7 @@ namespace Oshi {
 
         public void TearDown() {
             tilemap.ClearAllTiles();
+            terrainDict.Clear();
             Destroy(gameObject);
         }
 
@@ -53,8 +58,13 @@ namespace Oshi {
             gameTotalTime -= dt;
         }
 
-        public void Tilemap_SetTile(Vector3Int pos, TileBase tile) {
+        public void Terrain_Set(Vector3Int pos, TileBase tile, int typeID) {
             tilemap.SetTile(pos, tile);
+            terrainDict.Add(new Vector2Int(pos.x, pos.y), typeID);
+        }
+
+        public bool Terrain_Has(Vector2Int pos) {
+            return terrainDict.ContainsKey(pos);
         }
 
 #if UNITY_EDITOR

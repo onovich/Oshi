@@ -81,6 +81,7 @@ namespace Oshi {
         public static bool CheckMovable(GameBusinessContext ctx, RoleEntity role) {
             var allow = role.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos);
             allow &= ctx.wallRepo.Has(role.Pos_GetNextGrid()) == false;
+            allow &= ctx.currentMapEntity.Terrain_Has(role.Pos_GetNextGrid()) == false;
             return allow;
         }
 
@@ -127,6 +128,7 @@ namespace Oshi {
             var _block = block;
             block.cellSlotComponent.ForEach((index, mod) => {
                 allow &= ctx.wallRepo.Has(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir()) == false;
+                allow &= ctx.currentMapEntity.Terrain_Has(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir()) == false;
                 allow &= ctx.blockRepo.HasDifferent(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir(), _block.entityIndex) == false;
                 allow &= _block.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, _block.PosInt + mod.LocalPosInt, role.Pos_GetNextDir());
             });

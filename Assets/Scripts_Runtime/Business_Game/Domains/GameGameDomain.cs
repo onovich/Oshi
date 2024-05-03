@@ -25,7 +25,7 @@ namespace Oshi {
             for (int i = 0; i < terrainTMArr.Length; i++) {
                 var terrainTM = terrainTMArr[i];
                 var pos = terrainSpawnPosArr[i];
-                map.Tilemap_SetTile(pos, terrainTM.tileBase);
+                map.Terrain_Set(pos, terrainTM.tileBase, terrainTM.typeID);
             }
 
             // Role

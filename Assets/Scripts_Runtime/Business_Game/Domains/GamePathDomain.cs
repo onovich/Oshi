@@ -75,6 +75,7 @@ namespace Oshi {
             allow &= !ctx.blockRepo.Has(point);
             allow &= !ctx.wallRepo.Has(point);
             allow &= !ctx.roleRepo.Has(point);
+            allow &= !ctx.currentMapEntity.Terrain_Has(point);
             return allow;
         }
 
