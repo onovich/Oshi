@@ -115,8 +115,10 @@ namespace Oshi {
             var owner = ctx.Role_GetOwner();
             var map = ctx.currentMapEntity;
 
-            if (status == GameStatus.PlayerTurn) {
+            if (status == GameStatus.FadingIn) {
+            }
 
+            if (status == GameStatus.PlayerTurn) {
                 // Camera
                 CameraApp.LateTick(ctx.cameraContext, dt);
 

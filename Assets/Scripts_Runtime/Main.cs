@@ -63,6 +63,7 @@ namespace Oshi {
             gameBusinessContext.uiContext = uiAppContext;
             gameBusinessContext.vfxContext = vfxAppContext;
             gameBusinessContext.cameraContext = cameraAppContext;
+            gameBusinessContext.ppAppContext = ppAppContext;
             gameBusinessContext.mainCamera = mainCamera;
 
             cameraAppContext.templateInfraContext = templateInfraContext;

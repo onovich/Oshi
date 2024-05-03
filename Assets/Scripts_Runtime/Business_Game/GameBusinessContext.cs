@@ -33,6 +33,7 @@ namespace Oshi {
         // Infra
         public TemplateInfraContext templateInfraContext;
         public AssetsInfraContext assetsInfraContext;
+        public PPAppContext ppAppContext;
 
         // Timer
         public float fixedRestSec;

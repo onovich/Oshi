@@ -8,9 +8,17 @@ namespace Oshi {
 
         public bool notInGame_isEntering;
 
+        public bool fadingIn_isEntering;
+        public float fadingIn_enterTime;
+        public float fadingIn_duration;
+
         public bool playerTurn_isEntering;
 
         public bool envirTurn_isEntering;
+
+        public bool fadingOut_isEntering;
+        public float fadingOut_enterTime;
+        public float fadingOut_duration;
 
         public bool gameOver_isEntering;
         public float gameOver_enterTime;
@@ -20,6 +28,18 @@ namespace Oshi {
             Reset();
             status = GameStatus.NotInGame;
             notInGame_isEntering = true;
+        }
+
+        public void FadingIn_Enter(float enterTime, float duration) {
+            Reset();
+            status = GameStatus.FadingIn;
+            fadingIn_isEntering = true;
+            fadingIn_enterTime = enterTime;
+            fadingIn_duration = duration;
+        }
+
+        public void FadingIn_IncTimer(float dt) {
+            fadingIn_enterTime += dt;
         }
 
         public void PlayerTurn_Enter() {
@@ -32,6 +52,18 @@ namespace Oshi {
             Reset();
             status = GameStatus.EnvirTurn;
             envirTurn_isEntering = true;
+        }
+
+        public void FadingOut_Enter(float enterTime, float duration) {
+            Reset();
+            status = GameStatus.FadingOut;
+            fadingOut_isEntering = true;
+            fadingOut_enterTime = enterTime;
+            fadingOut_duration = duration;
+        }
+
+        public void FadingOut_IncTimer(float dt) {
+            fadingOut_enterTime += dt;
         }
 
         public void GameOver_Enter(float enterTime, GameResult result) {
@@ -52,7 +84,11 @@ namespace Oshi {
             playerTurn_isEntering = false;
             envirTurn_isEntering = false;
             gameOver_isEntering = false;
+            fadingIn_isEntering = false;
+            fadingOut_isEntering = false;
             gameOver_enterTime = 0;
+            fadingIn_enterTime = 0;
+            fadingOut_enterTime = 0;
         }
 
     }

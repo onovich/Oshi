@@ -17,6 +17,15 @@ namespace Oshi {
         [Header("DeadZone Config")]
         public Vector2 cameraDeadZoneNormalizedSize;
 
+        [Header("PP Config")]
+        public EasingType fadingInEasingType;
+        public EasingMode fadingInEasingMode;
+        public float fadingInDuration;
+
+        public EasingType fadingOutEasingType;
+        public EasingMode fadingOutEasingMode;
+        public float fadingOutDuration;
+
         [Header("Shake Config")]
         public float cameraShakeFrequency_roleDamage;
         public float cameraShakeAmplitude_roleDamage;
