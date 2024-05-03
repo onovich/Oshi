@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeID: 1
-  typeName: Test
+  typeName: FIRST STEP
   mapSize: {fileID: 7115896714514695303}
   mapTM: {fileID: 11400000, guid: 1bef76939308c4feaaf6b9da6fb9cd80, type: 2}
   limitedByTime: 0

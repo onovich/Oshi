@@ -1589,6 +1589,7 @@ MonoBehaviour:
   timeText: {fileID: 7065243674539223190}
   timeGroup: {fileID: 8570483579081773069}
   stepText: {fileID: 2624988336989321308}
+  titleText: {fileID: 2536439183429361476}
   stepGroup: {fileID: 3858039576551380096}
   restartBtn: {fileID: 7513456763904318170}
 --- !u!1 &7575699260890050505
@@ -1743,7 +1744,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FIRST STEP
+  m_Text: 
 --- !u!114 &4032131226870690044
 MonoBehaviour:
   m_ObjectHideFlags: 0

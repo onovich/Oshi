@@ -43,8 +43,8 @@ namespace Oshi {
         }
 
         // Panel - GameInfo
-        public static void GameInfo_Open(UIAppContext ctx) {
-            PanelGameInfoDomain.Open(ctx);
+        public static void GameInfo_Open(UIAppContext ctx, string title, bool showTime, bool showStep) {
+            PanelGameInfoDomain.Open(ctx, title, showTime, showStep);
         }
 
 
@@ -58,6 +58,10 @@ namespace Oshi {
 
         public static void GameInfo_ShowStep(UIAppContext ctx, bool show) {
             PanelGameInfoDomain.ShowStep(ctx, show);
+        }
+
+        public static void GameInfo_SetTitle(UIAppContext ctx, string title) {
+            PanelGameInfoDomain.SetTitle(ctx, title);
         }
 
         public static void GameInfo_RefreshStep(UIAppContext ctx, int counter) {

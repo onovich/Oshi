@@ -144,9 +144,7 @@ namespace Oshi {
             CameraApp.Init(ctx.cameraContext, owner.transform, Vector2.zero, mapTM.cameraConfinerWorldMax, mapTM.cameraConfinerWorldMin);
 
             // UI
-            UIApp.GameInfo_Open(ctx.uiContext);
-            UIApp.GameInfo_ShowStep(ctx.uiContext, map.limitedByStep);
-            UIApp.GameInfo_ShowTime(ctx.uiContext, map.limitedByTime);
+            UIApp.GameInfo_Open(ctx.uiContext, mapTM.typeName, map.limitedByTime, map.limitedByStep);
 
             // Cursor
 

@@ -11,6 +11,7 @@ namespace Oshi.UI {
         [SerializeField] Text timeText;
         [SerializeField] Transform timeGroup;
         [SerializeField] Text stepText;
+        [SerializeField] Text titleText;
         [SerializeField] Transform stepGroup;
         [SerializeField] Button restartBtn;
 
@@ -24,6 +25,10 @@ namespace Oshi.UI {
 
         public void RefreshTime(float time) {
             timeText.text = time.ToString("F0");
+        }
+
+        public void SetTitle(string title) {
+            titleText.text = title;
         }
 
         public void ShowTime(bool show) {

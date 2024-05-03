@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Map_001
   m_EditorClassIdentifier: 
   typeID: 1
-  typeName: Test
+  typeName: FIRST STEP
   nextMapTypeID: 2
   isLastMap: 0
   limitedByTime: 0
