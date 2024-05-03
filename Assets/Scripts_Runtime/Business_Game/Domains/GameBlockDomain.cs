@@ -44,10 +44,12 @@ namespace Oshi {
             var pos = block.PosInt;
             var inGoal = true;
             block.cellSlotComponent.ForEach((index, mod) => {
+                var allow = false;
                 // Goal
-                inGoal &= (ctx.goalRepo.Has(mod.LocalPosInt + pos));
+                allow |= (ctx.goalRepo.Has(mod.LocalPosInt + pos));
                 // Terrain Goal
-                inGoal &= (ctx.currentMapEntity.Terrain_HasGoal(mod.LocalPosInt + pos));
+                allow |= (ctx.currentMapEntity.Terrain_HasGoal(mod.LocalPosInt + pos));
+                inGoal &= allow;
             });
             return inGoal;
         }
