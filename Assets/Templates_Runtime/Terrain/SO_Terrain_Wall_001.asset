@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SO_Terrain_Wall_001
   m_EditorClassIdentifier: 
   typeID: 1
-  typeName: Ground
+  typeName: Wall
   tileBase: {fileID: 11400000, guid: fceb28443c47948d6bdf90929b345a8e, type: 2}

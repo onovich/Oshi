@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: d3b30bf25fa844707a5976f1b047303a
   m_SerializeEntries:
   - m_GUID: 0e3729707d2a940498bfcfaec2559962
-    m_Address: SO_Terrain_001
+    m_Address: SO_Terrain_Wall_001
     m_ReadOnly: 0
     m_SerializedLabels:
     - TM_Terrain

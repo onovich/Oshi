@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484ac6c54172643dd8ff32483ed66bf0, type: 3}
   m_Name: SO_Terrain_Goal_003
   m_EditorClassIdentifier: 
-  typeID: 1
-  typeName: Ground
-  tileBase: {fileID: 11400000, guid: fceb28443c47948d6bdf90929b345a8e, type: 2}
+  typeID: 3
+  typeName: Goal
+  tileBase: {fileID: 11400000, guid: 280d1d94552f24350997e1b51c4037f9, type: 2}

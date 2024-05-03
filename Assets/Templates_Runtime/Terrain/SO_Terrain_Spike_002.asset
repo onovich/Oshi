@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484ac6c54172643dd8ff32483ed66bf0, type: 3}
   m_Name: SO_Terrain_Spike_002
   m_EditorClassIdentifier: 
-  typeID: 1
-  typeName: Ground
-  tileBase: {fileID: 11400000, guid: fceb28443c47948d6bdf90929b345a8e, type: 2}
+  typeID: 2
+  typeName: Spike
+  tileBase: {fileID: 11400000, guid: 27775f3fd65b748f28e76d8722625093, type: 2}
