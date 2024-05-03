@@ -1,3 +1,4 @@
+using MortiseFrame.Swing;
 using UnityEngine;
 
 namespace Oshi {
@@ -19,6 +20,8 @@ namespace Oshi {
         public bool fadingOut_isEntering;
         public float fadingOut_enterTime;
         public float fadingOut_duration;
+        public EasingType fadingOut_easingType;
+        public EasingMode fadingOut_easingMode;
         public GameResult fadingOut_result;
 
         public bool mapOver_isEntering;
@@ -57,13 +60,15 @@ namespace Oshi {
             envirTurn_isEntering = true;
         }
 
-        public void FadingOut_Enter(float duration, GameResult result) {
+        public void FadingOut_Enter(float duration, EasingType easingType, EasingMode easingMode, GameResult result) {
             Reset();
             status = GameStatus.FadingOut;
             fadingOut_isEntering = true;
             fadingOut_enterTime = 0f;
             fadingOut_duration = duration;
             fadingOut_result = result;
+            fadingOut_easingType = easingType;
+            fadingOut_easingMode = easingMode;
         }
 
         public void FadingOut_IncTimer(float dt) {

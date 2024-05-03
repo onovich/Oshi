@@ -174,7 +174,7 @@ namespace Oshi {
                 }
                 // Fading Out
                 var config = ctx.templateInfraContext.Config_Get();
-                fsm.FadingOut_Enter(config.fadingOutDuration, fsm.mapOver_result);
+                fsm.FadingOut_Enter(config.fadingOutDuration, config.fadingOutEasingType, config.fadingOutEasingMode, fsm.mapOver_result);
             }
         }
 
@@ -184,10 +184,13 @@ namespace Oshi {
             NewGame(ctx, mapTypeID);
         }
 
-        public static void ApplyRestartGame(GameBusinessContext ctx) {
+        public static void ApplyManualRestartGame(GameBusinessContext ctx) {
             var input = ctx.inputEntity;
             if (input.isPressRestart) {
-                RestartGame(ctx);
+                var game = ctx.gameEntity;
+                var fsm = game.fsmComponent;
+                var config = ctx.templateInfraContext.Config_Get();
+                fsm.FadingOut_Enter(config.manualFadingOutDuration, config.manualFadingOutEasingType, config.manualFadingOutEasingMode, GameResult.Lose);
             }
         }
 

@@ -70,7 +70,7 @@ namespace Oshi {
             if (status == GameStatus.MapOver) {
                 GameGameDomain.ApplyMapOver(ctx, dt);
             }
-            GameGameDomain.ApplyRestartGame(ctx);
+            GameGameDomain.ApplyManualRestartGame(ctx);
         }
 
         static void FixedTick(GameBusinessContext ctx, float fixdt) {

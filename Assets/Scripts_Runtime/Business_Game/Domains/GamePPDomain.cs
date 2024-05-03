@@ -37,13 +37,15 @@ namespace Oshi {
             var duration = fsm.fadingOut_duration;
             var enterTime = fsm.fadingOut_enterTime;
             var result = fsm.fadingOut_result;
+            var easingMode = fsm.fadingOut_easingMode;
+            var easingType = fsm.fadingOut_easingType;
 
             if (enterTime > duration) {
                 onEnd.Invoke(result);
                 return;
             }
 
-            var currentColor = EasingHelper.EasingColor(startColor, endColor, enterTime, duration, config.fadingOutEasingType, config.fadingOutEasingMode);
+            var currentColor = EasingHelper.EasingColor(startColor, endColor, enterTime, duration, easingType, easingMode);
             PPApp.ColorAdjustMents_SetColor(ctx.ppAppContext, currentColor);
 
             fsm.FadingOut_IncTimer(dt);

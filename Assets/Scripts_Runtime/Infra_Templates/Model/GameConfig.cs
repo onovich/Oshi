@@ -26,6 +26,10 @@ namespace Oshi {
         public EasingMode fadingOutEasingMode;
         public float fadingOutDuration;
 
+        public EasingType manualFadingOutEasingType;
+        public EasingMode manualFadingOutEasingMode;
+        public float manualFadingOutDuration;
+
         [Header("Shake Config")]
         public float cameraShakeFrequency_roleDamage;
         public float cameraShakeAmplitude_roleDamage;

@@ -22,6 +22,9 @@ MonoBehaviour:
   fadingOutEasingType: 1
   fadingOutEasingMode: 2
   fadingOutDuration: 0.5
+  manualFadingOutEasingType: 1
+  manualFadingOutEasingMode: 2
+  manualFadingOutDuration: 0.1
   cameraShakeFrequency_roleDamage: 6
   cameraShakeAmplitude_roleDamage: 0.2
   cameraShakeDuration_roleDamage: 0.1
