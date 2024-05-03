@@ -17,7 +17,7 @@ namespace Oshi {
 
             // Game
             var game = ctx.gameEntity;
-            game.fsmComponent.PlayerTurn_Enter();
+            game.fsmComponent.FadingIn_Enter(config.fadingInDuration);
 
             // Terrain
             //// Terrain Wall

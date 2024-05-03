@@ -11,8 +11,8 @@ namespace Oshi {
             var fsm = game.fsmComponent;
             var config = ctx.templateInfraContext.Config_Get();
 
-            var startColor = Color.white;
-            var endColor = Color.black;
+            var startColor = Color.black;
+            var endColor = Color.white;
             var duration = fsm.fadingIn_duration;
             var enterTime = fsm.fadingIn_enterTime;
 
@@ -32,8 +32,8 @@ namespace Oshi {
             var fsm = game.fsmComponent;
             var config = ctx.templateInfraContext.Config_Get();
 
-            var startColor = Color.black;
-            var endColor = Color.white;
+            var startColor = Color.white;
+            var endColor = Color.black;
             var duration = fsm.fadingOut_duration;
             var enterTime = fsm.fadingOut_enterTime;
 

@@ -30,11 +30,11 @@ namespace Oshi {
             notInGame_isEntering = true;
         }
 
-        public void FadingIn_Enter(float enterTime, float duration) {
+        public void FadingIn_Enter(float duration) {
             Reset();
             status = GameStatus.FadingIn;
             fadingIn_isEntering = true;
-            fadingIn_enterTime = enterTime;
+            fadingIn_enterTime = 0f;
             fadingIn_duration = duration;
         }
 
@@ -54,11 +54,11 @@ namespace Oshi {
             envirTurn_isEntering = true;
         }
 
-        public void FadingOut_Enter(float enterTime, float duration) {
+        public void FadingOut_Enter(float duration) {
             Reset();
             status = GameStatus.FadingOut;
             fadingOut_isEntering = true;
-            fadingOut_enterTime = enterTime;
+            fadingOut_enterTime = 0f;
             fadingOut_duration = duration;
         }
 

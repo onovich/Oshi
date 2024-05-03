@@ -116,6 +116,7 @@ namespace Oshi {
             var map = ctx.currentMapEntity;
 
             if (status == GameStatus.FadingIn) {
+                GamePPDomain.ApplyFadingIn(ctx, dt);
             }
 
             if (status == GameStatus.PlayerTurn) {
