@@ -60,6 +60,7 @@ namespace Oshi.Modifier {
         }
 
         void OnDrawGizmos() {
+            if (pathTM == null) return;
             if (transform.childCount == 0) return;
             var pathNodeArr = GetPathNodeArr();
             if (pathNodeArr == null) return;

@@ -9,6 +9,7 @@ namespace Oshi {
         public AsyncOperationHandle configHandle;
 
         Dictionary<int, MapTM> mapDict;
+        MapTM lastMap;
         public AsyncOperationHandle mapHandle;
 
         Dictionary<int, RoleTM> roleDict;
@@ -55,6 +56,9 @@ namespace Oshi {
         // Map
         public void Map_Add(MapTM map) {
             mapDict.Add(map.typeID, map);
+            if (map.isLastMap) {
+                lastMap = map;
+            }
         }
 
         public bool Map_TryGet(int typeID, out MapTM map) {
@@ -63,6 +67,10 @@ namespace Oshi {
                 GLog.LogError($"Map {typeID} not found");
             }
             return has;
+        }
+
+        public MapTM Map_GetLast() {
+            return lastMap;
         }
 
         // Role
@@ -158,6 +166,7 @@ namespace Oshi {
 
         // Clear
         public void Clear() {
+            lastMap = null;
             mapDict.Clear();
             roleDict.Clear();
             blockDict.Clear();

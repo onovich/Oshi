@@ -168,7 +168,7 @@ namespace Oshi {
             var map = ctx.currentMapEntity;
             if (enterTime <= 0) {
                 // Game Over
-                if (map.isLastMap) {
+                if (map.isLastMap && fsm.mapOver_result == GameResult.Win) {
                     fsm.GameOver_Enter(fsm.mapOver_result);
                     return;
                 }
