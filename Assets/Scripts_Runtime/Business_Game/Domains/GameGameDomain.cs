@@ -166,10 +166,16 @@ namespace Oshi {
         }
 
         public static void RestartGame(GameBusinessContext ctx) {
-            var game = ctx.gameEntity;
             var mapTypeID = ctx.currentMapEntity.typeID;
             ExitGame(ctx);
             NewGame(ctx, mapTypeID);
+        }
+
+        public static void ApplyRestartGame(GameBusinessContext ctx) {
+            var input = ctx.inputEntity;
+            if (input.isPressRestart) {
+                RestartGame(ctx);
+            }
         }
 
         public static void NextLevel(GameBusinessContext ctx) {

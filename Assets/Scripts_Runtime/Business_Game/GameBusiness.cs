@@ -67,6 +67,7 @@ namespace Oshi {
             if (status == GameStatus.GameOver) {
                 GameGameDomain.ApplyGameOver(ctx, dt);
             }
+            GameGameDomain.ApplyRestartGame(ctx);
         }
 
         static void FixedTick(GameBusinessContext ctx, float fixdt) {
