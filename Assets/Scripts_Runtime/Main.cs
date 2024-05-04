@@ -60,6 +60,8 @@ namespace Oshi {
 
             // Inject
             loginBusinessContext.uiContext = uiAppContext;
+            loginBusinessContext.templateInfraContext = templateInfraContext;
+            loginBusinessContext.soundContext = soundAppContext;
 
             gameBusinessContext.inputEntity = inputEntity;
             gameBusinessContext.assetsInfraContext = assetsInfraContext;

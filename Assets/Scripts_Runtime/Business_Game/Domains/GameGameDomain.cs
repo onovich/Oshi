@@ -148,7 +148,8 @@ namespace Oshi {
 
             // BGM
             var soundTable = ctx.templateInfraContext.SoundTable_Get();
-            SoundApp.BGM_PlayLoop(ctx.soundContext, soundTable.bgmLoop, soundTable.bgmVolume[0]);
+            SoundApp.BGM_PlayLoop(ctx.soundContext, soundTable.bgmLoop[1], 1, soundTable.bgmVolume[0], false);
+            SoundApp.BGM_PlayLoop(ctx.soundContext, soundTable.bgmLoop[2], 2, soundTable.bgmVolume[0], false);
 
         }
 

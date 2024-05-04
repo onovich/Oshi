@@ -9,9 +9,7 @@ namespace Oshi {
         public Transform root;
         public AudioSource audioSourcePrefab;
 
-        public AudioSource bgmPlayer;
-        public int bgmPlayerIndex;
-
+        public AudioSource[] bgmPlayer;
         public AudioSource[] roleGenericPlayer; // Move / Die 
         public AudioSource[] blockGenericPlayer; // Move / Die
         public AsyncOperationHandle assetsHandle;
@@ -19,7 +17,7 @@ namespace Oshi {
         public SoundAppContext(Transform soundRoot) {
             roleGenericPlayer = new AudioSource[8];
             blockGenericPlayer = new AudioSource[8];
-            roleGenericPlayer = new AudioSource[4];
+            bgmPlayer = new AudioSource[4];
             this.root = soundRoot;
         }
 

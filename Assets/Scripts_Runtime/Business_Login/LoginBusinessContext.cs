@@ -5,6 +5,9 @@ namespace Oshi{
         public LoginEventCenter evt;
         public UIAppContext uiContext;
 
+        public TemplateInfraContext templateInfraContext;
+        public SoundAppContext soundContext;
+
         public LoginBusinessContext() {
             evt = new LoginEventCenter();
         }

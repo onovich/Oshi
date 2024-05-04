@@ -1,11 +1,14 @@
 using UnityEngine;
 
-namespace Oshi{
+namespace Oshi {
 
     public class LoginBusiness {
 
         public static void Enter(LoginBusinessContext ctx) {
             UIApp.Login_Open(ctx.uiContext);
+            // BGM
+            var soundTable = ctx.templateInfraContext.SoundTable_Get();
+            SoundApp.BGM_PlayLoop(ctx.soundContext, soundTable.bgmLoop[0], 0, soundTable.bgmVolume[0], true);
         }
 
         public static void Tick(LoginBusinessContext ctx, float dt) {

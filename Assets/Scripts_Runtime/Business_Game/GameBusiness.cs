@@ -14,6 +14,10 @@ namespace Oshi {
             isTestMode_testGiven ? config.testMapTypeID :
             isTestMode_testLast ? ctx.templateInfraContext.Map_GetLast().typeID :
             config.originalMapTypeID;
+
+            var soundTable = ctx.templateInfraContext.SoundTable_Get();
+            SoundApp.BGM_PlayLoop(ctx.soundContext, soundTable.bgmLoop[1], 1, soundTable.bgmVolume[0], true);
+            SoundApp.BGM_PlayLoop(ctx.soundContext, soundTable.bgmLoop[2], 2, soundTable.bgmVolume[0], true);
             GameGameDomain.NewGame(ctx, mapTypeID);
         }
 

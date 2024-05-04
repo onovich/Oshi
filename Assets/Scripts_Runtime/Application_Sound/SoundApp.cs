@@ -11,21 +11,24 @@ namespace Oshi {
             var handle = Addressables.LoadAssetAsync<GameObject>("Sound_AudioSource");
             var prefab = await handle.Task;
             ctx.audioSourcePrefab = prefab.GetComponent<AudioSource>();
-            ctx.bgmPlayer = GameObject.Instantiate(ctx.audioSourcePrefab);
             ctx.assetsHandle = handle;
 
+            for (int i = 0; i < ctx.bgmPlayer.Length; i++) {
+                var audio = GameObject.Instantiate(ctx.audioSourcePrefab, ctx.root);
+                audio.name = "BGMPlayer - " + i;
+                ctx.bgmPlayer[i] = audio;
+            }
+
             for (int i = 0; i < ctx.roleGenericPlayer.Length; i++) {
-                if (ctx.audioSourcePrefab == null) {
-                    continue;
-                }
-                ctx.roleGenericPlayer[i] = GameObject.Instantiate(ctx.audioSourcePrefab, ctx.root);
+                var audio = GameObject.Instantiate(ctx.audioSourcePrefab, ctx.root);
+                audio.name = "RoleGenericPlayer - " + i;
+                ctx.roleGenericPlayer[i] = audio;
             }
 
             for (int i = 0; i < ctx.blockGenericPlayer.Length; i++) {
-                if (ctx.audioSourcePrefab == null) {
-                    continue;
-                }
-                ctx.blockGenericPlayer[i] = GameObject.Instantiate(ctx.audioSourcePrefab, ctx.root);
+                var audio = GameObject.Instantiate(ctx.audioSourcePrefab, ctx.root);
+                audio.name = "BlockGenericPlayer - " + i;
+                ctx.blockGenericPlayer[i] = audio;
             }
 
         }
@@ -35,8 +38,10 @@ namespace Oshi {
         }
 
         public static void TearDown(SoundAppContext ctx) {
-            BGM_Stop(ctx);
-            GameObject.Destroy(ctx.bgmPlayer.gameObject);
+            foreach (var player in ctx.bgmPlayer) {
+                player.Stop();
+                GameObject.Destroy(player.gameObject);
+            }
             foreach (var player in ctx.roleGenericPlayer) {
                 player.Stop();
                 GameObject.Destroy(player.gameObject);
@@ -47,29 +52,21 @@ namespace Oshi {
             }
         }
 
-        public static void BGM_PlayLoop(SoundAppContext ctx, AudioClip[] clips, float volume) {
-            if (ctx.bgmPlayer.clip == null || !ctx.bgmPlayer.isPlaying) {
-                ctx.bgmPlayerIndex += 1;
-                ctx.bgmPlayerIndex %= clips.Length;
-                ctx.bgmPlayer.clip = clips[ctx.bgmPlayerIndex];
-                ctx.bgmPlayer.Play();
-                ctx.bgmPlayer.loop = true;
+        public static void BGM_PlayLoop(SoundAppContext ctx, AudioClip clip, int layer, float volume, bool replay) {
+            var player = ctx.bgmPlayer[layer];
+            if (player.isPlaying && !replay) {
+                return;
             }
-            ctx.bgmPlayer.volume = volume;
+
+            player.clip = clip;
+            player.Play();
+            player.loop = true;
+            player.volume = volume;
         }
 
-        public static void BGM_Play(SoundAppContext ctx, AudioClip[] clips, float volume) {
-            if (ctx.bgmPlayer.clip == null) {
-                Random.InitState(System.DateTime.Now.Millisecond);
-                ctx.bgmPlayerIndex = Random.Range(0, clips.Length);
-            }
-            ctx.bgmPlayer.clip = clips[ctx.bgmPlayerIndex];
-            ctx.bgmPlayer.Play();
-            ctx.bgmPlayer.volume = volume;
-        }
-
-        public static void BGM_Stop(SoundAppContext ctx) {
-            ctx.bgmPlayer.Stop();
+        public static void BGM_Stop(SoundAppContext ctx, int layer) {
+            var player = ctx.bgmPlayer[layer];
+            player.Stop();
         }
 
         public static void Role_Generic(SoundAppContext ctx, AudioClip clip, float volume) {
@@ -85,7 +82,9 @@ namespace Oshi {
         }
 
         public static void SetMuteAll(SoundAppContext ctx, bool isMute) {
-            ctx.bgmPlayer.mute = isMute;
+            foreach (var player in ctx.bgmPlayer) {
+                player.mute = isMute;
+            }
             foreach (var player in ctx.roleGenericPlayer) {
                 player.mute = isMute;
             }
