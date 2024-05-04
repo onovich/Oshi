@@ -71,15 +71,7 @@ namespace Oshi {
             return transform.position;
         }
 
-        public Vector2Int Pos_GetNextGrid() {
-            var axis = inputCom.moveAxis;
-            if (axis.x != 0 && axis.y != 0) {
-                axis = Vector2Int.zero;
-            }
-            return PosInt + inputCom.moveAxis;
-        }
-
-        public Vector2Int Pos_GetNextDir() {
+        public Vector2Int Pos_GetDir() {
             return inputCom.moveAxis;
         }
 
@@ -92,25 +84,6 @@ namespace Oshi {
         // State
         public void State_IncStageCounter() {
             step++;
-        }
-
-        // Move
-        public bool Move_CheckConstraint(Vector2 constraintSize, Vector2 constraintCenter) {
-            var moveAxisX = inputCom.moveAxis.x;
-            var moveAxisY = inputCom.moveAxis.y;
-            var pos = transform.position;
-            var offset = Vector2.zero;
-            offset.x = 1 - constraintSize.x % 2;
-            offset.y = 1 - constraintSize.y % 2;
-            var min = constraintCenter - constraintSize / 2 + constraintCenter - offset;
-            var max = constraintCenter + constraintSize / 2 + constraintCenter;
-            if (pos.x + moveAxisX >= max.x || pos.x + moveAxisX <= min.x) {
-                return false;
-            }
-            if (pos.y + moveAxisY >= max.y || pos.y + moveAxisY <= min.y) {
-                return false;
-            }
-            return true;
         }
 
         // Mesh
@@ -141,12 +114,11 @@ namespace Oshi {
             fsmCom.Idle_Enter();
         }
 
-        public void FSM_EnterMoving(float duration, bool push = false, int blockIndex = 0, Vector2Int blockOldPos = default) {
+        public void FSM_EnterMoving(Vector2 end, float duration, bool push = false, int blockIndex = 0, Vector2Int blockOldPos = default) {
             var start = transform.position;
             if (inputCom.moveAxis.x != 0 && inputCom.moveAxis.y != 0) {
                 return;
             }
-            var end = new Vector2(start.x + inputCom.moveAxis.x, start.y + inputCom.moveAxis.y);
             fsmCom.Moving_Enter(duration, start, end, push, blockIndex, blockOldPos);
         }
 

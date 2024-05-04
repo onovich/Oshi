@@ -44,7 +44,7 @@ namespace Oshi {
             var blockIndex = fsm.moving_pushBlockIndex;
             var has = ctx.blockRepo.TryGetBlock(blockIndex, out var blockEntity);
             if (!has) {
-                GLog.LogError($"Block Not Found At {role.Pos_GetNextGrid()}");
+                GLog.LogError($"Block Not Found With Index: {blockIndex}");
                 return;
             }
             ApplyPush(ctx, role, blockEntity);
@@ -78,26 +78,6 @@ namespace Oshi {
             blockEntity.Pos_SetPos(pos);
         }
 
-        public static bool CheckMovable(GameBusinessContext ctx, RoleEntity role) {
-            var allow = role.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos);
-            // Wall
-            allow &= ctx.wallRepo.Has(role.Pos_GetNextGrid()) == false;
-            // Terrain Wall
-            allow &= ctx.currentMapEntity.Terrain_HasWall(role.Pos_GetNextGrid()) == false;
-            // Constraint
-            allow &= role.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos);
-            return allow;
-        }
-
-        public static bool CheckPushNeed(GameBusinessContext ctx, RoleEntity role) {
-            var has = ctx.blockRepo.TryGetBlockByPos(role.Pos_GetNextGrid(), out var _);
-            if (has == false) {
-                return false;
-            }
-
-            return has;
-        }
-
         public static void CheckAndApplyAllRoleDead(GameBusinessContext ctx) {
             var roleLen = ctx.roleRepo.TakeAll(out var roleArr);
             for (int i = 0; i < roleLen; i++) {
@@ -123,27 +103,6 @@ namespace Oshi {
                 inSpike |= ctx.currentMapEntity.Terrain_HasSpike(grid);
             });
             return inSpike;
-        }
-
-        public static bool CheckPushable(GameBusinessContext ctx, RoleEntity role, out BlockEntity block) {
-            var has = ctx.blockRepo.TryGetBlockByPos(role.Pos_GetNextGrid(), out block);
-            if (has == false) {
-                return false;
-            }
-
-            var allow = true;
-            var _block = block;
-            block.cellSlotComponent.ForEach((index, mod) => {
-                // Wall
-                allow &= ctx.wallRepo.Has(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir()) == false;
-                // Block
-                allow &= ctx.blockRepo.HasDifferent(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir(), _block.entityIndex) == false;
-                // Terrain Wall
-                allow &= ctx.currentMapEntity.Terrain_HasWall(_block.PosInt + mod.LocalPosInt + role.Pos_GetNextDir()) == false;
-                // Constraint
-                allow &= _block.Move_CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, _block.PosInt + mod.LocalPosInt, role.Pos_GetNextDir());
-            });
-            return allow;
         }
 
     }

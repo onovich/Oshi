@@ -43,22 +43,19 @@ namespace Oshi {
                 return;
             }
 
-            var succ = GameRoleDomain.CheckMovable(ctx, role);
+            var succ = GridUtils.TryGetNeighbourWalkableGrid(ctx, role.PosInt, role.Pos_GetDir(), out var target);
             if (!succ) {
                 return;
             }
 
+            // No Push
+            succ = GridUtils.CheckPushable(ctx, role.PosInt, role.Pos_GetDir(), out var block);
+            if (!succ) {
+                role.FSM_EnterMoving(target, role.moveDurationSec);
+                return;
+            }
             // Push
-            succ = GameRoleDomain.CheckPushNeed(ctx, role);
-            if (!succ) {
-                role.FSM_EnterMoving(role.moveDurationSec);
-                return;
-            }
-            succ = GameRoleDomain.CheckPushable(ctx, role, out var block);
-            if (!succ) {
-                return;
-            }
-            role.FSM_EnterMoving(role.moveDurationSec, true, block.entityIndex, block.PosInt);
+            role.FSM_EnterMoving(block.PosInt, role.moveDurationSec, true, block.entityIndex, block.PosInt);
         }
 
         static void FixedTickFSM_Moving(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {
