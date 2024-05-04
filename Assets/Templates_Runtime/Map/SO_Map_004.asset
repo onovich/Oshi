@@ -15,7 +15,8 @@ MonoBehaviour:
   typeID: 4
   typeName: FIRST PUZZLE
   nextMapTypeID: 3
-  isLastMap: 0
+  isLastMap: 1
+  weatherType: 0
   limitedByTime: 0
   gameTotalTime: 0
   limitedByStep: 0
@@ -48,14 +49,10 @@ MonoBehaviour:
   pathIsPingPongLoopArr: 
   pathTravelerHalfSizeArr: []
   terrainWallSpawnPosArr:
-  - {x: 0, y: -1, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 1, y: 1, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: 1, z: 0}
+  - {x: -3, y: -3, z: 0}
+  - {x: -2, y: -3, z: 0}
+  - {x: -1, y: 2, z: 0}
   terrainWallTMArr:
-  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
-  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}

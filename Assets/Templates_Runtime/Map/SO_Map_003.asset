@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeID: 3
   typeName: FIRST PUZZLE
-  nextMapTypeID: 3
+  nextMapTypeID: 4
   isLastMap: 0
   weatherType: 1
   limitedByTime: 0

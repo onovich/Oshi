@@ -27,7 +27,7 @@ namespace Oshi {
             return dir.x + dir.y;
         }
 
-        public static bool TryGetNeighbourWalkableGrid(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out Vector2 grid) {
+        public static bool TryGetNeighbourWalkableGrid(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out Vector2Int grid) {
             grid = pos + axis;
             // Constraint
             var allow = CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, pos, axis);
@@ -45,24 +45,39 @@ namespace Oshi {
             return allow;
         }
 
-        public static bool TryGetFirstWalkableGrid(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out Vector2 grid) {
+        public static bool TryGetLastWalkableGrid(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out Vector2Int grid) {
             var map = ctx.currentMapEntity;
             var size = map.mapSize;
             grid = pos;
+
+            if (TryGetNeighbourWalkableGrid(ctx, pos, axis, out var _grid) == false) {
+                return false;
+            }
+
+            if (ctx.blockRepo.Has(pos + axis) == true && CheckPushable(ctx, pos, axis, out var block)) {
+                grid = pos + axis;
+                return true;
+            }
+
+            var allow = true;
             while (true) {
-                grid += axis;
-                if (grid.x < 0 || grid.x >= size.x) {
-                    return false;
-                }
+
                 // Constraint
-                var allow = CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, pos, axis);
+                allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, grid, axis);
+                grid += axis;
+
                 // Wall
-                allow &= ctx.wallRepo.Has(pos + axis) == false;
+                allow &= ctx.wallRepo.Has(grid) == false;
                 // Terrain Wall
-                allow &= ctx.currentMapEntity.Terrain_HasWall(pos + axis) == false;
-                if (allow) {
+                allow &= ctx.currentMapEntity.Terrain_HasWall(grid) == false;
+                // Block
+                allow &= ctx.blockRepo.Has(grid) == false;
+
+                if (allow == false) {
+                    grid -= axis;
                     return true;
                 }
+
             }
         }
 

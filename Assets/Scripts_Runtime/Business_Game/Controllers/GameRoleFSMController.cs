@@ -43,10 +43,21 @@ namespace Oshi {
                 return;
             }
 
-            var succ = GridUtils.TryGetNeighbourWalkableGrid(ctx, role.PosInt, role.Pos_GetDir(), out var target);
-            if (!succ) {
-                return;
+            var map = ctx.currentMapEntity;
+            var succ = false;
+            var target = Vector2Int.zero;
+            if (map.weatherType == WeatherType.Rain) {
+                succ = GridUtils.TryGetLastWalkableGrid(ctx, role.PosInt, role.Pos_GetDir(), out target);
+                if (!succ) {
+                    return;
+                }
+            } else {
+                succ = GridUtils.TryGetNeighbourWalkableGrid(ctx, role.PosInt, role.Pos_GetDir(), out target);
+                if (!succ) {
+                    return;
+                }
             }
+
 
             // No Push
             succ = GridUtils.CheckPushable(ctx, role.PosInt, role.Pos_GetDir(), out var block);
