@@ -200,6 +200,18 @@ namespace Oshi {
             }
         }
 
+        public static void ApplyManualExitApplication(GameBusinessContext ctx) {
+            var input = ctx.inputEntity;
+            if (input.isPressExit) {
+                ExitApplication(ctx);
+            }
+        }
+
+        public static void ExitApplication(GameBusinessContext ctx) {
+            ExitGame(ctx);
+            Application.Quit();
+        }
+
         public static void NextLevel(GameBusinessContext ctx) {
             var game = ctx.gameEntity;
             var mapTypeID = ctx.currentMapEntity.nextMapTypeID;

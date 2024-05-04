@@ -8,6 +8,7 @@ namespace Oshi {
         MoveUp = 120,
         MoveDown = 130,
         Restart = 140,
+        Exit = 150,
 
     }
 

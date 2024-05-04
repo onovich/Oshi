@@ -1,6 +1,4 @@
 using System;
-using Codice.CM.Client.Differences;
-using MortiseFrame.Swing;
 using UnityEngine;
 
 namespace Oshi {

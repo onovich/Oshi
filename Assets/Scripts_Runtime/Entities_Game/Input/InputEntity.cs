@@ -8,6 +8,7 @@ namespace Oshi {
 
         public Vector2Int moveAxis;
         public bool isPressRestart;
+        public bool isPressExit;
 
         InputKeybindingComponent keybindingCom;
 
@@ -35,6 +36,9 @@ namespace Oshi {
             if (keybindingCom.IsKeyPressing(InputKeyEnum.Restart)) {
                 isPressRestart = true;
             }
+            if (keybindingCom.IsKeyPressing(InputKeyEnum.Exit)) {
+                isPressExit = true;
+            }
         }
 
         public void Keybinding_Set(InputKeyEnum key, KeyCode[] keyCodes) {
@@ -44,6 +48,7 @@ namespace Oshi {
         public void Reset() {
             moveAxis = Vector2Int.zero;
             isPressRestart = false;
+            isPressExit = false;
         }
 
     }

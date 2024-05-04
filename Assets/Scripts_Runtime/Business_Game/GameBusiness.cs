@@ -225,8 +225,7 @@ namespace Oshi {
         }
 
         public static void UIGameOver_OnExitGameClick(GameBusinessContext ctx) {
-            ExitGame(ctx);
-            Application.Quit();
+            GameGameDomain.ExitApplication(ctx);
             GLog.Log("Application.Quit");
         }
 

@@ -59,11 +59,14 @@ namespace Oshi {
         public void Line_SetPositions(Vector3[] positions, Vector2 offset) {
             var lrPosArr = new Vector3[positions.Length];
             Array.Copy(positions, lrPosArr, positions.Length);
-            lineRenderer.positionCount = lrPosArr.Length;
+            lineRenderer.positionCount = isCircleLoop ? lrPosArr.Length + 1 : lrPosArr.Length;
             for (int i = 0; i < positions.Length; i++) {
                 lrPosArr[i] += new Vector3(offset.x, offset.y, 0);
             }
             lineRenderer.SetPositions(lrPosArr);
+            if (isCircleLoop) {
+                lineRenderer.SetPosition(lrPosArr.Length, lrPosArr[0]);
+            }
         }
 
         // Node

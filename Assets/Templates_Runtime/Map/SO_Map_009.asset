@@ -39,14 +39,17 @@ MonoBehaviour:
   spikeTMArr:
   - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}
   spikePosArr:
-  - {x: 0, y: 0}
+  - {x: 1, y: 0}
   pathIndexArr: 01000000
   pathTMArr:
   - {fileID: 11400000, guid: ae875a6e88f13409680f258d73af9ac5, type: 2}
   pathSpawnTMArr:
   - pathNodeArr:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: -1, z: 0}
+    - {x: 1, y: 0, z: 0}
+    - {x: 1, y: -1, z: 0}
+    - {x: 1, y: -2, z: 0}
+    - {x: 0, y: -2, z: 0}
+    - {x: -1, y: -2, z: 0}
     - {x: -1, y: -1, z: 0}
     - {x: -1, y: 0, z: 0}
     - {x: 0, y: 0, z: 0}
@@ -65,7 +68,7 @@ MonoBehaviour:
   terrainSpikeSpawnPosArr: []
   terrainSpikeTMArr: []
   terrainGoalSpawnPosArr:
-  - {x: -3, y: -1, z: 0}
+  - {x: -3, y: -2, z: 0}
   terrainGoalTMArr:
   - {fileID: 11400000, guid: 6f6a38ec69ae34874aea5dce4070e428, type: 2}
   cameraConfinerWorldMax: {x: 30, y: 20}

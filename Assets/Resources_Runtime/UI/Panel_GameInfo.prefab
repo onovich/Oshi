@@ -1744,7 +1744,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: IT WAS RAINING HEAVILY THAT DAY, AND HE LEFT HOME WITHOUT AN UMBRELLA
+  m_Text: 
 --- !u!114 &4032131226870690044
 MonoBehaviour:
   m_ObjectHideFlags: 0

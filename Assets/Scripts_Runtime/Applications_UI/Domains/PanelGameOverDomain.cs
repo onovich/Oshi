@@ -44,7 +44,7 @@ namespace Oshi.UI {
                 panel.ShowExitBtn(true);
                 panel.ShowNextLevelBtn(false);
             } else {
-                panel.SetResult("YOU WIN ALL!");
+                panel.SetResult("YOU WIN!");
                 panel.ShowExitBtn(true);
                 panel.ShowNextLevelBtn(false);
             }
