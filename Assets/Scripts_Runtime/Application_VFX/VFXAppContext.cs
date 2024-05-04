@@ -8,10 +8,10 @@ namespace Oshi {
     public class VFXAppContext {
 
         // Core
-        public VFXCore vfxCore;
+        public VFXParticelCore vfxCore;
 
         public VFXAppContext(string label, Transform root) {
-            vfxCore = new VFXCore(label, root);
+            vfxCore = new VFXParticelCore(label, root);
         }
 
     }
