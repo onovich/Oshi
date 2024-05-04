@@ -19,9 +19,9 @@ namespace Oshi {
 
         [Header("Weather Config")]
         public GameObject weatherRainVFX;
-        public Color weatherRainColor;
+        public Color32 weatherRainColor;
 
-        public Color weatherNormalColor;
+        public Color32 weatherNormalColor;
 
         [Header("PP Config")]
         public EasingType fadingInEasingType;

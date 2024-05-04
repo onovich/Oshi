@@ -24,6 +24,18 @@ namespace Oshi {
             VFXApp.StopRainVFX(ctx.vfxContext);
         }
 
+        public static Color32 GetWeatherColor(GameBusinessContext ctx) {
+            var map = ctx.currentMapEntity;
+            var weather = map.weatherType;
+            var config = ctx.templateInfraContext.Config_Get();
+
+            if (weather == WeatherType.Rain) {
+                return config.weatherRainColor;
+            }
+
+            return config.weatherNormalColor;
+        }
+
     }
 
 }

@@ -12,12 +12,13 @@ namespace Oshi {
             var config = ctx.templateInfraContext.Config_Get();
 
             var startColor = Color.black;
-            var endColor = Color.white;
+            var endColor = GameWeatherDomain.GetWeatherColor(ctx); ;
             var duration = fsm.fadingIn_duration;
             var enterTime = fsm.fadingIn_enterTime;
 
             if (enterTime > duration) {
                 fsm.PlayerTurn_Enter();
+                PPApp.ColorAdjustMents_SetColor(ctx.ppAppContext, endColor);
                 return;
             }
 
@@ -32,7 +33,7 @@ namespace Oshi {
             var fsm = game.fsmComponent;
             var config = ctx.templateInfraContext.Config_Get();
 
-            var startColor = Color.white;
+            var startColor = GameWeatherDomain.GetWeatherColor(ctx);
             var endColor = Color.black;
             var duration = fsm.fadingOut_duration;
             var enterTime = fsm.fadingOut_enterTime;
@@ -42,6 +43,7 @@ namespace Oshi {
 
             if (enterTime > duration) {
                 onEnd.Invoke(result);
+                PPApp.ColorAdjustMents_SetColor(ctx.ppAppContext, endColor);
                 return;
             }
 
