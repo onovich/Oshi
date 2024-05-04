@@ -60,19 +60,14 @@ namespace Oshi {
 
             // No Push
             var hasBlock = GridUtils.TryGetNeighbourBlock(ctx, role.PosInt, role.Pos_GetDir(), out var block);
-            var pushTarget = Vector2Int.zero;
-            if (map.weatherType == WeatherType.Rain) {
-                succ = hasBlock && GridUtils.TryGetLastPushableTarget(ctx, role.PosInt, role.Pos_GetDir(), block, out pushTarget);
-            } else {
-                succ = hasBlock && GridUtils.TryGetNeighbourPushableTarget(ctx, role.PosInt, role.Pos_GetDir(), block, out pushTarget);
-            }
+            succ = hasBlock && GridUtils.CheckNeighbourPushable(ctx, role.PosInt, role.Pos_GetDir(), block);
 
             if (!succ) {
                 role.FSM_EnterMoving(target, role.moveDurationSec);
                 return;
             }
             // Push
-            role.FSM_EnterMoving(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, true, block.entityIndex, block.PosInt, pushTarget);
+            role.FSM_EnterMoving(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, true, block.entityIndex, block.PosInt);
         }
 
         static void FixedTickFSM_Moving(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {

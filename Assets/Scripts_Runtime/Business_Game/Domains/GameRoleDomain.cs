@@ -47,11 +47,10 @@ namespace Oshi {
                 GLog.LogError($"Block Not Found With Index: {blockIndex}");
                 return;
             }
-            ApplyPush(ctx, role, blockEntity, fsm.moving_pushStartPos, fsm.moving_pushEnd, fsm.moving_durationSec, fsm.moving_currentSec);
+            ApplyPush(ctx, role, blockEntity);
             if (isEnd) {
                 var oldPos = fsm.moving_pushStartPos;
                 ctx.blockRepo.UpdatePos(oldPos, blockEntity);
-                blockEntity.Pos_SetPos(fsm.moving_pushEnd);
                 onEnd.Invoke();
             }
         }
@@ -71,7 +70,7 @@ namespace Oshi {
             }
         }
 
-        static void ApplyPush(GameBusinessContext ctx, RoleEntity role, BlockEntity blockEntity, Vector2Int start, Vector2Int end, float duration, float current) {
+        static void ApplyPush(GameBusinessContext ctx, RoleEntity role, BlockEntity blockEntity) {
             var lastPos = role.lastFramePos;
             var offset = role.Pos - lastPos;
             var pos = blockEntity.Pos;

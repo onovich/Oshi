@@ -39,7 +39,7 @@ namespace Oshi {
             if (allow) {
                 var has = TryGetNeighbourBlock(ctx, pos, axis, out var block);
                 if (has) {
-                    allow &= TryGetNeighbourPushableTarget(ctx, pos, axis, block, out var _);
+                    allow &= CheckNeighbourPushable(ctx, pos, axis, block);
                 }
             }
             return allow;
@@ -55,7 +55,7 @@ namespace Oshi {
             }
 
             if (TryGetNeighbourBlock(ctx, pos, axis, out var block) &&
-               (TryGetNeighbourPushableTarget(ctx, pos, axis, block, out var _))) {
+               (CheckNeighbourPushable(ctx, pos, axis, block))) {
                 grid = pos + axis;
                 return true;
             }
@@ -112,9 +112,9 @@ namespace Oshi {
             return has;
         }
 
-        public static bool TryGetNeighbourPushableTarget(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, BlockEntity block, out Vector2Int target) {
+        public static bool CheckNeighbourPushable(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, BlockEntity block) {
             var allow = true;
-            target = block.PosInt + axis;
+            var target = block.PosInt + axis;
 
             var len = block.cellSlotComponent.TakeAll(out var cells);
             for (int i = 0; i < len; i++) {
@@ -130,35 +130,6 @@ namespace Oshi {
                 allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
             };
             return allow;
-        }
-
-        public static bool TryGetLastPushableTarget(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, BlockEntity block, out Vector2Int target) {
-            var allow = true;
-            var _block = block;
-            target = axis;
-
-            while (true) {
-
-                target += axis;
-                var len = block.cellSlotComponent.TakeAll(out var cells);
-                for (int i = 0; i < len; i++) {
-                    var mod = cells[i];
-                    // Wall
-                    allow &= ctx.wallRepo.Has(_block.PosInt + mod.LocalPosInt + target) == false;
-                    // Block
-                    allow &= ctx.blockRepo.HasDifferent(_block.PosInt + mod.LocalPosInt + target, _block.entityIndex) == false;
-                    // Terrain Wall
-                    allow &= ctx.currentMapEntity.Terrain_HasWall(_block.PosInt + mod.LocalPosInt + target) == false;
-                    // Constraint
-                    allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, _block.PosInt + mod.LocalPosInt, target);
-                }
-
-                if (allow == false) {
-                    target -= axis;
-                    return true;
-                }
-
-            }
         }
 
     }
