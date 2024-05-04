@@ -20,6 +20,9 @@ namespace Oshi {
             map.mapSize = mapTM.mapSize;
             map.typeName = mapTM.typeName;
 
+            // Set Weather
+            map.weatherType = mapTM.weatherType;
+
             // Set Limit
             map.limitedByTime = mapTM.limitedByTime;
             map.gameTotalTime = mapTM.gameTotalTime;

@@ -17,6 +17,12 @@ namespace Oshi {
         [Header("DeadZone Config")]
         public Vector2 cameraDeadZoneNormalizedSize;
 
+        [Header("Weather Config")]
+        public GameObject weatherRainVFX;
+        public Color weatherRainColor;
+
+        public Color weatherNormalColor;
+
         [Header("PP Config")]
         public EasingType fadingInEasingType;
         public EasingMode fadingInEasingMode;

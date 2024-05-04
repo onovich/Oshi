@@ -14,6 +14,9 @@ namespace Oshi {
         public int nextMapTypeID;
         public bool isLastMap;
 
+        [Header("Weather Config")]
+        public WeatherType weatherType;
+
         [Header("Time Config")]
         public bool limitedByTime;
         public float gameTotalTime;

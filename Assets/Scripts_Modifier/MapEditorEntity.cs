@@ -16,6 +16,9 @@ namespace Oshi.Modifier {
         [SerializeField] GameObject mapSize;
         [SerializeField] MapTM mapTM;
 
+        [Header("Weather Config")]
+        [SerializeField] WeatherType weatherType;
+
         [Header("Time Config")]
         [SerializeField] bool limitedByTime;
         [SerializeField] float gameTotalTime;
@@ -58,6 +61,7 @@ namespace Oshi.Modifier {
         void BakeMapInfo() {
             mapTM.typeID = typeID;
             mapTM.typeName = typeName;
+            mapTM.weatherType = weatherType;
             mapTM.limitedByTime = limitedByTime;
             mapTM.gameTotalTime = gameTotalTime;
             mapTM.limitedByStep = limitedByStep;
@@ -277,7 +281,6 @@ namespace Oshi.Modifier {
             mapTM.spikePosArr = spikePosArr.ToArray();
             mapTM.spikeIndexArr = spikeIndexArr.ToArray();
         }
-
 
         TerrainTM GetTerrainTM(TileBase tileBase) {
             foreach (var terrainTM in terrainTMArr) {

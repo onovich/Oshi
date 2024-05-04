@@ -19,6 +19,9 @@ namespace Oshi {
         public int nextMapTypeID;
         public bool isLastMap;
 
+        // Weather
+        public WeatherType weatherType;
+
         // Role
         public Vector2 spawnPoint;
 

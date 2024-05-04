@@ -75,6 +75,7 @@ namespace Oshi {
 
             cameraAppContext.templateInfraContext = templateInfraContext;
             ppAppContext.templateInfraContext = templateInfraContext;
+            vfxAppContext.templateInfraContext = templateInfraContext;
 
             // TODO Camera
 
