@@ -16,7 +16,8 @@ namespace Oshi {
         public Vector2 moving_end;
         public bool moving_pushBlock;
         public int moving_pushBlockIndex;
-        public Vector2Int moving_pushBlockOldPos;
+        public Vector2Int moving_pushStartPos;
+        public Vector2Int moving_pushEnd;
 
         public RoleFSMComponent() { }
 
@@ -25,7 +26,13 @@ namespace Oshi {
             idle_isEntering = true;
         }
 
-        public void Moving_Enter(float duration, Vector2 start, Vector2 end, bool push = false, int blockIndex = 0, Vector2Int blockOldPos = default) {
+        public void Moving_Enter(float duration,
+                                 Vector2 start,
+                                 Vector2 end,
+                                 bool push = false,
+                                 int blockIndex = 0,
+                                 Vector2Int blockStartPos = default,
+                                 Vector2Int pushEndPos = default) {
             Reset();
             status = RoleFSMStatus.Moving;
             moving_isEntering = true;
@@ -35,7 +42,8 @@ namespace Oshi {
             moving_end = end;
             moving_pushBlock = push;
             moving_pushBlockIndex = blockIndex;
-            moving_pushBlockOldPos = blockOldPos;
+            moving_pushStartPos = blockStartPos;
+            moving_pushEnd = pushEndPos;
         }
 
         public void Moving_IncTimer(float dt) {

@@ -115,6 +115,8 @@ namespace Oshi {
         public static bool TryGetNeighbourPushableTarget(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, BlockEntity block, out Vector2Int target) {
             var allow = true;
             var _block = block;
+            target = pos + axis;
+
             block.cellSlotComponent.ForEach((index, mod) => {
                 // Wall
                 allow &= ctx.wallRepo.Has(_block.PosInt + mod.LocalPosInt + axis) == false;
@@ -125,31 +127,35 @@ namespace Oshi {
                 // Constraint
                 allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, _block.PosInt + mod.LocalPosInt, axis);
             });
-            target = pos + axis;
             return allow;
         }
 
-        public static bool TryGetLastPushableTarget(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out BlockEntity block, out Vector2Int target) {
-            var has = ctx.blockRepo.TryGetBlockByPos(pos + axis, out block);
-            target = pos + axis;
-            if (has == false) {
-                return false;
-            }
-
+        public static bool TryGetLastPushableTarget(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, BlockEntity block, out Vector2Int target) {
             var allow = true;
             var _block = block;
+            target = axis;
 
             while (true) {
-                block.cellSlotComponent.ForEach((index, mod) => {
+
+                var len = block.cellSlotComponent.TakeAll(out var mods);
+                target += axis;
+                for (int i = 0; i < len; i++) {
+                    var mod = mods[i];
                     // Wall
-                    allow &= ctx.wallRepo.Has(_block.PosInt + mod.LocalPosInt + axis) == false;
+                    allow &= ctx.wallRepo.Has(_block.PosInt + mod.LocalPosInt + target) == false;
                     // Block
-                    allow &= ctx.blockRepo.HasDifferent(_block.PosInt + mod.LocalPosInt + axis, _block.entityIndex) == false;
+                    allow &= ctx.blockRepo.HasDifferent(_block.PosInt + mod.LocalPosInt + target, _block.entityIndex) == false;
                     // Terrain Wall
-                    allow &= ctx.currentMapEntity.Terrain_HasWall(_block.PosInt + mod.LocalPosInt + axis) == false;
+                    allow &= ctx.currentMapEntity.Terrain_HasWall(_block.PosInt + mod.LocalPosInt + target) == false;
                     // Constraint
-                    allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, _block.PosInt + mod.LocalPosInt, axis);
-                });
+                    allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, _block.PosInt + mod.LocalPosInt, target);
+                }
+
+                if (allow == false) {
+                    target -= axis;
+                    return true;
+                }
+
             }
         }
 

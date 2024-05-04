@@ -6,13 +6,25 @@ namespace Oshi {
     public class CellSlotComponent {
 
         SortedList<int/*index*/, CellMod> all;
+        CellMod[] temp;
 
         public CellSlotComponent() {
             all = new SortedList<int, CellMod>();
+            temp = new CellMod[100];
         }
 
         public void Add(CellMod mod) {
             all.Add(mod.index, mod);
+        }
+
+        public int TakeAll(out CellMod[] result) {
+            int count = all.Count;
+            if (count > temp.Length) {
+                temp = new CellMod[(int)(count * 1.5f)];
+            }
+            all.Values.CopyTo(temp, 0);
+            result = temp;
+            return count;
         }
 
         public void ForEach(Action<int, CellMod> action) {
@@ -32,6 +44,7 @@ namespace Oshi {
 
         public void Clear() {
             all.Clear();
+            Array.Clear(temp, 0, temp.Length);
         }
 
     }

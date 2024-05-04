@@ -114,12 +114,17 @@ namespace Oshi {
             fsmCom.Idle_Enter();
         }
 
-        public void FSM_EnterMoving(Vector2 end, float duration, bool push = false, int blockIndex = 0, Vector2Int blockOldPos = default) {
+        public void FSM_EnterMoving(Vector2 end,
+                                    float duration,
+                                    bool push = false,
+                                    int blockIndex = 0,
+                                    Vector2Int blockOldPos = default,
+                                    Vector2Int pushTarget = default) {
             var start = transform.position;
             if (inputCom.moveAxis.x != 0 && inputCom.moveAxis.y != 0) {
                 return;
             }
-            fsmCom.Moving_Enter(duration, start, end, push, blockIndex, blockOldPos);
+            fsmCom.Moving_Enter(duration, start, end, push, blockIndex, blockOldPos, pushTarget);
         }
 
         public void FSM_EnterDead() {

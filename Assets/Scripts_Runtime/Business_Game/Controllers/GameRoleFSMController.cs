@@ -59,14 +59,21 @@ namespace Oshi {
             }
 
             // No Push
-            succ = GridUtils.TryGetNeighbourBlock(ctx, role.PosInt, role.Pos_GetDir(), out var block) &&
-             GridUtils.TryGetNeighbourPushableTarget(ctx, role.PosInt, role.Pos_GetDir(), block, out var pushTarget);
+            var hasBlock = GridUtils.TryGetNeighbourBlock(ctx, role.PosInt, role.Pos_GetDir(), out var block);
+            var pushTarget = Vector2Int.zero;
+            if (map.weatherType == WeatherType.Rain) {
+                succ = hasBlock && GridUtils.TryGetLastPushableTarget(ctx, role.PosInt, role.Pos_GetDir(), block, out pushTarget);
+            } else {
+                succ = hasBlock && GridUtils.TryGetNeighbourPushableTarget(ctx, role.PosInt, role.Pos_GetDir(), block, out pushTarget);
+                if (succ) Debug.Log($"Push: {block.entityIndex} , pos = {block.PosInt}, target = {pushTarget}");
+            }
+
             if (!succ) {
                 role.FSM_EnterMoving(target, role.moveDurationSec);
                 return;
             }
             // Push
-            role.FSM_EnterMoving(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, true, block.entityIndex, block.PosInt);
+            role.FSM_EnterMoving(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, true, block.entityIndex, block.PosInt, pushTarget);
         }
 
         static void FixedTickFSM_Moving(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {

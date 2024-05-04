@@ -47,10 +47,11 @@ namespace Oshi {
                 GLog.LogError($"Block Not Found With Index: {blockIndex}");
                 return;
             }
-            ApplyPush(ctx, role, blockEntity);
+            ApplyPush(ctx, role, blockEntity, fsm.moving_pushStartPos, fsm.moving_pushEnd, fsm.moving_durationSec, fsm.moving_currentSec);
             if (isEnd) {
-                var oldPos = fsm.moving_pushBlockOldPos;
+                var oldPos = fsm.moving_pushStartPos;
                 ctx.blockRepo.UpdatePos(oldPos, blockEntity);
+                blockEntity.Pos_SetPos(fsm.moving_pushEnd);
                 onEnd.Invoke();
             }
         }
@@ -70,12 +71,14 @@ namespace Oshi {
             }
         }
 
-        static void ApplyPush(GameBusinessContext ctx, RoleEntity role, BlockEntity blockEntity) {
-            var lastPos = role.lastFramePos;
-            var offset = role.Pos - lastPos;
-            var pos = blockEntity.Pos;
-            pos += offset;
-            blockEntity.Pos_SetPos(pos);
+        static void ApplyPush(GameBusinessContext ctx, RoleEntity role, BlockEntity blockEntity, Vector2Int start, Vector2Int end, float duration, float current) {
+            // var lastPos = role.lastFramePos;
+            // var offset = role.Pos - lastPos;
+            // var pos = blockEntity.Pos;
+            var currentPos = EasingHelper.Easing2D(start, end, current, duration, role.moveEasingType, role.moveEasingMode);
+            blockEntity.Pos_SetPos(currentPos);
+
+            // pos += offset;
         }
 
         public static void CheckAndApplyAllRoleDead(GameBusinessContext ctx) {
