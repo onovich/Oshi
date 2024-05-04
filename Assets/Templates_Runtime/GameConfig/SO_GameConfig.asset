@@ -20,9 +20,15 @@ MonoBehaviour:
   weatherRainColor:
     serializedVersion: 2
     rgba: 11842740
+  weatherRainCameraColor:
+    serializedVersion: 2
+    rgba: 4294946816
   weatherNormalColor:
     serializedVersion: 2
     rgba: 16777215
+  weatherNormalCameraColor:
+    serializedVersion: 2
+    rgba: 4281545523
   fadingInEasingType: 1
   fadingInEasingMode: 1
   fadingInDuration: 0.2
