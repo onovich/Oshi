@@ -77,6 +77,7 @@ namespace Oshi {
                 GameGameDomain.ApplyMapOver(ctx, dt);
             }
             GameGameDomain.ApplyManualRestartGame(ctx);
+            GameGameDomain.ApplyManualExitApplication(ctx);
         }
 
         static void FixedTick(GameBusinessContext ctx, float fixdt) {

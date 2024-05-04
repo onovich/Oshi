@@ -208,8 +208,15 @@ namespace Oshi {
         }
 
         public static void ExitApplication(GameBusinessContext ctx) {
-            ExitGame(ctx);
+            var game = ctx.gameEntity;
+            if (game == null || game.fsmComponent.status != GameStatus.NotInGame) {
+                ExitGame(ctx);
+            }
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
             Application.Quit();
+#endif
         }
 
         public static void NextLevel(GameBusinessContext ctx) {
