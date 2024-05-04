@@ -31,6 +31,10 @@ namespace Oshi {
                 ctx.blockGenericPlayer[i] = audio;
             }
 
+            var bgsAudio = GameObject.Instantiate(ctx.audioSourcePrefab, ctx.root);
+            bgsAudio.name = "BGSPlayer";
+            ctx.bgsPlayer = bgsAudio;
+
         }
 
         public static void ReleaseAssets(SoundAppContext ctx) {
@@ -68,6 +72,19 @@ namespace Oshi {
 
         public static void BGM_Stop(SoundAppContext ctx, int layer) {
             var player = ctx.bgmPlayer[layer];
+            player.Stop();
+        }
+
+        public static void BGS_PlayLoop(SoundAppContext ctx, AudioClip clip, float volume) {
+            var player = ctx.bgsPlayer;
+            player.clip = clip;
+            player.Play();
+            player.loop = true;
+            player.volume = volume;
+        }
+
+        public static void BGS_Stop(SoundAppContext ctx) {
+            var player = ctx.bgsPlayer;
             player.Stop();
         }
 

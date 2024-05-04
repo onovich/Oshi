@@ -12,6 +12,7 @@ namespace Oshi {
         public AudioSource[] bgmPlayer;
         public AudioSource[] roleGenericPlayer; // Move / Die 
         public AudioSource[] blockGenericPlayer; // Move / Die
+        public AudioSource bgsPlayer;
         public AsyncOperationHandle assetsHandle;
 
         public SoundAppContext(Transform soundRoot) {

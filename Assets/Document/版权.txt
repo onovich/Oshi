@@ -4,7 +4,7 @@ BGM
     * https://tallbeard.itch.io/music-loop-bundle
     * CC0
 SE
-- Rain: Snoopy20111
-    * Rain_Loop
-    * https://freesound.org/people/Snoopy20111/sounds/399072/
+- Rain: speakwithanimals
+    * Rain Slowly Passing TREATED LOOP_Edgewater_06192020
+    * https://freesound.org/people/speakwithanimals/sounds/525046/
     * CC0

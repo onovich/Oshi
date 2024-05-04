@@ -28,3 +28,5 @@ MonoBehaviour:
   - 5
   - 2
   - 2
+  bgsRainLoop: {fileID: 8300000, guid: 60288b5551a7448bf8bd7079a251131d, type: 3}
+  bgsrainVolume: 5

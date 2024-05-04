@@ -21,6 +21,10 @@ namespace VTD {
         public AudioClip[] bgmLoop;
         public float[] bgmVolume;
 
+        [Header("BGS")]
+        public AudioClip bgsRainLoop;
+        public float bgsrainVolume;
+
     }
 
 }

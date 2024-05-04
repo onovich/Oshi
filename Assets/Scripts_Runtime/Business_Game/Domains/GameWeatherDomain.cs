@@ -18,10 +18,13 @@ namespace Oshi {
 
         public static void EnterRain(GameBusinessContext ctx) {
             VFXApp.PlayRainVFX(ctx.vfxContext);
+            var soundTable = ctx.templateInfraContext.SoundTable_Get();
+            SoundApp.BGS_PlayLoop(ctx.soundContext, soundTable.bgsRainLoop, soundTable.bgsrainVolume);
         }
 
         public static void EnterNormal(GameBusinessContext ctx) {
             VFXApp.StopRainVFX(ctx.vfxContext);
+            SoundApp.BGS_Stop(ctx.soundContext);
         }
 
         public static Color32 GetWeatherColor(GameBusinessContext ctx) {
