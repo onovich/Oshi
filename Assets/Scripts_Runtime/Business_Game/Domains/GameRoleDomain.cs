@@ -72,13 +72,11 @@ namespace Oshi {
         }
 
         static void ApplyPush(GameBusinessContext ctx, RoleEntity role, BlockEntity blockEntity, Vector2Int start, Vector2Int end, float duration, float current) {
-            // var lastPos = role.lastFramePos;
-            // var offset = role.Pos - lastPos;
-            // var pos = blockEntity.Pos;
-            var currentPos = EasingHelper.Easing2D(start, end, current, duration, role.moveEasingType, role.moveEasingMode);
-            blockEntity.Pos_SetPos(currentPos);
-
-            // pos += offset;
+            var lastPos = role.lastFramePos;
+            var offset = role.Pos - lastPos;
+            var pos = blockEntity.Pos;
+            pos += offset;
+            blockEntity.Pos_SetPos(pos);
         }
 
         public static void CheckAndApplyAllRoleDead(GameBusinessContext ctx) {
