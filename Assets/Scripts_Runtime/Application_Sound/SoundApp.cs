@@ -53,6 +53,7 @@ namespace Oshi {
                 ctx.bgmPlayerIndex %= clips.Length;
                 ctx.bgmPlayer.clip = clips[ctx.bgmPlayerIndex];
                 ctx.bgmPlayer.Play();
+                ctx.bgmPlayer.loop = true;
             }
             ctx.bgmPlayer.volume = volume;
         }
