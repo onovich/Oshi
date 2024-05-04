@@ -191,12 +191,14 @@ namespace Oshi {
 
             AssetsInfra.ReleaseAssets(assetsInfraContext);
             TemplateInfra.Release(templateInfraContext);
-            // SoundApp.ReleaseAssets(soundAppContext);
+            SoundApp.ReleaseAssets(soundAppContext);
             VFXApp.ReleaseAssets(vfxAppContext);
             UIApp.ReleaseAssets(uiAppContext);
 
             GameBusiness.TearDown(gameBusinessContext);
+            SoundApp.TearDown(soundAppContext);
             VFXApp.TearDown(vfxAppContext);
+            UIApp.TearDown(uiAppContext);
         }
 
 #if UNITY_EDITOR

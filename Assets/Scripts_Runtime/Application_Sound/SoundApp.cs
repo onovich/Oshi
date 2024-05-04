@@ -8,10 +8,11 @@ namespace Oshi {
 
         public static async Task LoadAssets(SoundAppContext ctx) {
 
-            var prefab = await Addressables.LoadAssetAsync<GameObject>("Sound_AudioSource").Task;
+            var handle = Addressables.LoadAssetAsync<GameObject>("Sound_AudioSource");
+            var prefab = await handle.Task;
             ctx.audioSourcePrefab = prefab.GetComponent<AudioSource>();
-
             ctx.bgmPlayer = GameObject.Instantiate(ctx.audioSourcePrefab);
+            ctx.assetsHandle = handle;
 
             for (int i = 0; i < ctx.roleGenericPlayer.Length; i++) {
                 if (ctx.audioSourcePrefab == null) {
@@ -20,13 +21,30 @@ namespace Oshi {
                 ctx.roleGenericPlayer[i] = GameObject.Instantiate(ctx.audioSourcePrefab, ctx.root);
             }
 
-            for (int i = 0; i < ctx.blockGatherTreePlayer.Length; i++) {
+            for (int i = 0; i < ctx.blockGenericPlayer.Length; i++) {
                 if (ctx.audioSourcePrefab == null) {
                     continue;
                 }
-                ctx.blockGatherTreePlayer[i] = GameObject.Instantiate(ctx.audioSourcePrefab, ctx.root);
+                ctx.blockGenericPlayer[i] = GameObject.Instantiate(ctx.audioSourcePrefab, ctx.root);
             }
 
+        }
+
+        public static void ReleaseAssets(SoundAppContext ctx) {
+            Addressables.Release(ctx.assetsHandle);
+        }
+
+        public static void TearDown(SoundAppContext ctx) {
+            BGM_Stop(ctx);
+            GameObject.Destroy(ctx.bgmPlayer.gameObject);
+            foreach (var player in ctx.roleGenericPlayer) {
+                player.Stop();
+                GameObject.Destroy(player.gameObject);
+            }
+            foreach (var player in ctx.blockGenericPlayer) {
+                player.Stop();
+                GameObject.Destroy(player.gameObject);
+            }
         }
 
         public static void BGM_PlayLoop(SoundAppContext ctx, AudioClip[] clips, float volume) {
@@ -70,7 +88,7 @@ namespace Oshi {
             foreach (var player in ctx.roleGenericPlayer) {
                 player.mute = isMute;
             }
-            foreach (var player in ctx.blockGatherTreePlayer) {
+            foreach (var player in ctx.blockGenericPlayer) {
                 player.mute = isMute;
             }
         }

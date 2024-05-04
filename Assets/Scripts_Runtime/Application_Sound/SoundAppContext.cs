@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Oshi {
 
@@ -12,11 +13,12 @@ namespace Oshi {
         public int bgmPlayerIndex;
 
         public AudioSource[] roleGenericPlayer; // Move / Die 
-        public AudioSource[] blockGatherTreePlayer; // Move / Die
+        public AudioSource[] blockGenericPlayer; // Move / Die
+        public AsyncOperationHandle assetsHandle;
 
         public SoundAppContext(Transform soundRoot) {
             roleGenericPlayer = new AudioSource[8];
-            blockGatherTreePlayer = new AudioSource[8];
+            blockGenericPlayer = new AudioSource[8];
             roleGenericPlayer = new AudioSource[4];
             this.root = soundRoot;
         }
