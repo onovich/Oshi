@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 3949629460453778079}
   - component: {fileID: 6901749814465627264}
   m_Layer: 0
-  m_Name: MapEditor_000
+  m_Name: MapEditor_000_Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

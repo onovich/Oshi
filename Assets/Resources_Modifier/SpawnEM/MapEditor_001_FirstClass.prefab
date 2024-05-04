@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 3949629460453778079}
   - component: {fileID: 6901749814465627264}
   m_Layer: 0
-  m_Name: MapEditor_001
+  m_Name: MapEditor_001_FirstClass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeID: 1
-  typeName: FIRST STEP
+  typeName: SAY HELLO
   mapSize: {fileID: 7115896714514695303}
   mapTM: {fileID: 11400000, guid: 1bef76939308c4feaaf6b9da6fb9cd80, type: 2}
   weatherType: 0

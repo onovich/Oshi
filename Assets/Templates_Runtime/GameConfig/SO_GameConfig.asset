@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: SO_GameConfig
   m_EditorClassIdentifier: 
   gameResetEnterTime: 1
-  testMapTypeID: 0
   originalMapTypeID: 1
   cameraDeadZoneNormalizedSize: {x: 0, y: 0}
   weatherRainVFX: {fileID: 1046417506903995189, guid: 2245f8e4bfea04c8fafad80ec868e33e, type: 3}
   weatherRainColor:
     serializedVersion: 2
-    rgba: 11842740
+    rgba: 9211020
   weatherRainCameraColor:
     serializedVersion: 2
     rgba: 4294946816

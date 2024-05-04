@@ -8,11 +8,10 @@ namespace Oshi {
 
         }
 
-        public static void StartGame(GameBusinessContext ctx, bool isTestMode_testGiven, bool isTestMode_testLast) {
+        public static void StartGame(GameBusinessContext ctx, bool isTestMode, int testMapTypeID) {
             var config = ctx.templateInfraContext.Config_Get();
             var mapTypeID =
-            isTestMode_testGiven ? config.testMapTypeID :
-            isTestMode_testLast ? ctx.templateInfraContext.Map_GetLast().typeID :
+            isTestMode ? testMapTypeID :
             config.originalMapTypeID;
 
             var soundTable = ctx.templateInfraContext.SoundTable_Get();
