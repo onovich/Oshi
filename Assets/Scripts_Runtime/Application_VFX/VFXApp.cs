@@ -19,6 +19,10 @@ namespace Oshi {
             }
         }
 
+        public static void ReleaseAssets(VFXAppContext ctx) {
+            ctx.vfxCore.ReleaseAssets();
+        }
+
         public static void LateTick(VFXAppContext ctx, float dt) {
             ctx.vfxCore.Tick(dt);
         }

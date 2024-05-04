@@ -189,12 +189,14 @@ namespace Oshi {
             loginBusinessContext.evt.Clear();
             uiAppContext.evt.Clear();
 
-            GameBusiness.TearDown(gameBusinessContext);
             AssetsInfra.ReleaseAssets(assetsInfraContext);
             TemplateInfra.Release(templateInfraContext);
             // SoundApp.ReleaseAssets(soundAppContext);
-            // VFXApp.ReleaseAssets(vfxAppContext);
-            // UIApp.ReleaseAssets(uiAppContext);
+            VFXApp.ReleaseAssets(vfxAppContext);
+            UIApp.ReleaseAssets(uiAppContext);
+
+            GameBusiness.TearDown(gameBusinessContext);
+            VFXApp.TearDown(vfxAppContext);
         }
 
 #if UNITY_EDITOR

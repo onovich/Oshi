@@ -2,7 +2,7 @@
   "dependencies": {
     "com.codewriter.triinspector": "git@github.com:codewriter-packages/Tri-Inspector.git",
     "com.gamearki.gamefunctions": "ssh://git@github.com/GameArki/GameFunctions.git?path=Assets",
-    "com.mortise.loom": "ssh://git@github.com/onovich/Loom.git?path=/Assets/com.mortise.loom#main",
+    "com.tenon.loom": "ssh://git@github.com/onovich/Loom.git?path=/Assets/com.tenon.loom#main",
     "com.mortise.swing": "ssh://git@github.com/onovich/Swing.git?path=/Assets/com.mortise.swing#main",
     "com.tenon.prism": "ssh://git@github.com/onovich/Prism.git?path=/Assets/com.tenon.prism#main",
     "com.tenon.vista.camera2d": "ssh://git@github.com/onovich/Vista.git?path=/Assets/com.tenon.vista.camera2d#main",

@@ -19,6 +19,14 @@ namespace Oshi {
             }
         }
 
+        public static void ReleaseAssets(UIAppContext ctx) {
+            ctx.uiCore.ReleaseAssets();
+        }
+
+        public static void TearDown(UIAppContext ctx) {
+            ctx.uiCore.TearDown();
+        }
+
         // Tick
         public static void LateTick(UIAppContext ctx, float dt) {
             ctx.uiCore.LateTick(dt);

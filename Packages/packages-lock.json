@@ -16,19 +16,19 @@
       "dependencies": {},
       "hash": "00088f668d560f8a40af249096f581ea28ab4dde"
     },
-    "com.mortise.loom": {
-      "version": "ssh://git@github.com/onovich/Loom.git?path=/Assets/com.mortise.loom#main",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "d28429bcf558304d11a6f7a38300db9b76cb524e"
-    },
     "com.mortise.swing": {
       "version": "ssh://git@github.com/onovich/Swing.git?path=/Assets/com.mortise.swing#main",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "ec648be80e12ed20c55fffb2bbefb49b8323ea29"
+    },
+    "com.tenon.loom": {
+      "version": "ssh://git@github.com/onovich/Loom.git?path=/Assets/com.tenon.loom#main",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "207a62b70f88ce8f7e2356dc3f934a8ae435aaef"
     },
     "com.tenon.prism": {
       "version": "ssh://git@github.com/onovich/Prism.git?path=/Assets/com.tenon.prism#main",
