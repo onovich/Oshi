@@ -17,6 +17,7 @@ namespace Oshi {
 
         public VFXAppContext(string label, Transform root) {
             vfxCore = new VFXParticelCore(label, root);
+            weather_rain_vfx_id = -1;
         }
 
     }

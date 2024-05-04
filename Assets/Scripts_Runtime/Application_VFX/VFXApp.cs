@@ -28,14 +28,21 @@ namespace Oshi {
         }
 
         public static void PlayRainVFX(VFXAppContext ctx) {
-            var config = ctx.templateInfraContext.Config_Get();
-            var vfx = config.weatherRainVFX;
-            var id = TryPreSpawnVFX_ToWorldPos(ctx, vfx.name, 0f, Vector2.zero);
-            ctx.weather_rain_vfx_id = id;
-            PlayVFXManualy(ctx, id);
+            if (ctx.weather_rain_vfx_id == -1) {
+                var config = ctx.templateInfraContext.Config_Get();
+                var vfx = config.weatherRainVFX;
+                var id = TryPreSpawnVFX_ToWorldPos(ctx, vfx.name, 0f, Vector2.zero);
+                ctx.weather_rain_vfx_id = id;
+                PlayVFXManualy(ctx, id);
+            }else{
+                PlayVFXManualy(ctx, ctx.weather_rain_vfx_id);
+            }
         }
 
         public static void StopRainVFX(VFXAppContext ctx) {
+            if (ctx.weather_rain_vfx_id == -1) {
+                return;
+            }
             StopVFXManualy(ctx, ctx.weather_rain_vfx_id);
         }
 
