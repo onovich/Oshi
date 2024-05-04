@@ -58,9 +58,9 @@ namespace Oshi {
                 }
             }
 
-
             // No Push
-            succ = GridUtils.CheckPushable(ctx, role.PosInt, role.Pos_GetDir(), out var block);
+            succ = GridUtils.TryGetNeighbourBlock(ctx, role.PosInt, role.Pos_GetDir(), out var block) &&
+             GridUtils.TryGetNeighbourPushableTarget(ctx, role.PosInt, role.Pos_GetDir(), block, out var pushTarget);
             if (!succ) {
                 role.FSM_EnterMoving(target, role.moveDurationSec);
                 return;

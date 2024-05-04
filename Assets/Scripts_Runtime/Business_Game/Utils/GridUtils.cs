@@ -37,9 +37,9 @@ namespace Oshi {
             allow &= ctx.currentMapEntity.Terrain_HasWall(pos + axis) == false;
             // Pushable Block
             if (allow) {
-                var has = ctx.blockRepo.TryGetBlockByPos(pos + axis, out var block);
+                var has = TryGetNeighbourBlock(ctx, pos, axis, out var block);
                 if (has) {
-                    allow &= CheckPushable(ctx, pos, axis, out var _);
+                    allow &= TryGetNeighbourPushableTarget(ctx, pos, axis, block, out var _);
                 }
             }
             return allow;
@@ -54,7 +54,8 @@ namespace Oshi {
                 return false;
             }
 
-            if (ctx.blockRepo.Has(pos + axis) == true && CheckPushable(ctx, pos, axis, out var block)) {
+            if (TryGetNeighbourBlock(ctx, pos, axis, out var block) &&
+               (TryGetNeighbourPushableTarget(ctx, pos, axis, block, out var _))) {
                 grid = pos + axis;
                 return true;
             }
@@ -106,12 +107,12 @@ namespace Oshi {
             return true;
         }
 
-        public static bool CheckPushable(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out BlockEntity block) {
+        public static bool TryGetNeighbourBlock(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out BlockEntity block) {
             var has = ctx.blockRepo.TryGetBlockByPos(pos + axis, out block);
-            if (has == false) {
-                return false;
-            }
+            return has;
+        }
 
+        public static bool TryGetNeighbourPushableTarget(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, BlockEntity block, out Vector2Int target) {
             var allow = true;
             var _block = block;
             block.cellSlotComponent.ForEach((index, mod) => {
@@ -124,7 +125,32 @@ namespace Oshi {
                 // Constraint
                 allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, _block.PosInt + mod.LocalPosInt, axis);
             });
+            target = pos + axis;
             return allow;
+        }
+
+        public static bool TryGetLastPushableTarget(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out BlockEntity block, out Vector2Int target) {
+            var has = ctx.blockRepo.TryGetBlockByPos(pos + axis, out block);
+            target = pos + axis;
+            if (has == false) {
+                return false;
+            }
+
+            var allow = true;
+            var _block = block;
+
+            while (true) {
+                block.cellSlotComponent.ForEach((index, mod) => {
+                    // Wall
+                    allow &= ctx.wallRepo.Has(_block.PosInt + mod.LocalPosInt + axis) == false;
+                    // Block
+                    allow &= ctx.blockRepo.HasDifferent(_block.PosInt + mod.LocalPosInt + axis, _block.entityIndex) == false;
+                    // Terrain Wall
+                    allow &= ctx.currentMapEntity.Terrain_HasWall(_block.PosInt + mod.LocalPosInt + axis) == false;
+                    // Constraint
+                    allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, _block.PosInt + mod.LocalPosInt, axis);
+                });
+            }
         }
 
     }
