@@ -16,6 +16,9 @@ MonoBehaviour:
   testMapTypeID: 0
   originalMapTypeID: 1
   cameraDeadZoneNormalizedSize: {x: 0, y: 0}
+  weatherRainVFX: {fileID: 1046417506903995189, guid: 2245f8e4bfea04c8fafad80ec868e33e, type: 3}
+  weatherRainColor: {r: 0, g: 0, b: 0, a: 0}
+  weatherNormalColor: {r: 0, g: 0, b: 0, a: 0}
   fadingInEasingType: 1
   fadingInEasingMode: 1
   fadingInDuration: 0.2

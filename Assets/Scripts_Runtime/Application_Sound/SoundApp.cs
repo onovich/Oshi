@@ -34,7 +34,9 @@ namespace Oshi {
         }
 
         public static void ReleaseAssets(SoundAppContext ctx) {
-            Addressables.Release(ctx.assetsHandle);
+            if (ctx.assetsHandle.IsValid()) {
+                Addressables.Release(ctx.assetsHandle);
+            }
         }
 
         public static void TearDown(SoundAppContext ctx) {

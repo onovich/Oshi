@@ -214,6 +214,7 @@ MonoBehaviour:
   typeName: FIRST STEP
   mapSize: {fileID: 7115896714514695303}
   mapTM: {fileID: 11400000, guid: 1bef76939308c4feaaf6b9da6fb9cd80, type: 2}
+  weatherType: 1
   limitedByTime: 0
   gameTotalTime: 0
   limitedByStep: 0
