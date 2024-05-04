@@ -62,11 +62,11 @@ TagManager:
   - name: Role
     uniqueID: 1601092365
     locked: 0
-  - name: VFX
-    uniqueID: 981059655
-    locked: 0
   - name: Wall
     uniqueID: 258716687
+    locked: 0
+  - name: VFX
+    uniqueID: 981059655
     locked: 0
   - name: UI
     uniqueID: 240563349
