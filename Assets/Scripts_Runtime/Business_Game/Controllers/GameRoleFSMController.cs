@@ -66,7 +66,7 @@ namespace Oshi {
                 return;
             }
             // Push
-            role.FSM_EnterMoving(block.PosInt, role.moveDurationSec, true, block.entityIndex, block.PosInt);
+            role.FSM_EnterMoving(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, true, block.entityIndex, block.PosInt);
         }
 
         static void FixedTickFSM_Moving(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {

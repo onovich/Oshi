@@ -951,7 +951,7 @@ MonoBehaviour:
   typeName: FIRST PUZZLE
   mapSize: {fileID: 7115896714514695303}
   mapTM: {fileID: 11400000, guid: d262942bc44934dae8434808b8d36d1e, type: 2}
-  weatherType: 0
+  weatherType: 1
   limitedByTime: 0
   gameTotalTime: 0
   limitedByStep: 0
