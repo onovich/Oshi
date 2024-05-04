@@ -27,6 +27,7 @@ namespace Oshi {
         VFXAppContext vfxAppContext;
         CameraAppContext cameraAppContext;
         PPAppContext ppAppContext;
+        SoundAppContext soundAppContext;
 
         bool isLoadedAssets;
         bool isTearDown;
@@ -39,8 +40,9 @@ namespace Oshi {
             Canvas mainCanvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
             Transform hudFakeCanvas = GameObject.Find("HUDFakeCanvas").transform;
             Camera mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
-            Transform vfxRoot = GameObject.Find("VFXRoot").transform;
             Volume mainVolume = GameObject.Find("MainVolume").GetComponent<Volume>();
+            Transform vfxRoot = GameObject.Find("VFXRoot").transform;
+            Transform soundRoot = GameObject.Find("SoundRoot").transform;
 
             inputEntity = new InputEntity();
 
@@ -51,6 +53,7 @@ namespace Oshi {
             vfxAppContext = new VFXAppContext("VFX", vfxRoot);
             cameraAppContext = new CameraAppContext(mainCamera, new Vector2(Screen.width, Screen.height));
             ppAppContext = new PPAppContext(mainVolume);
+            soundAppContext = new SoundAppContext(soundRoot);
 
             assetsInfraContext = new AssetsInfraContext();
             templateInfraContext = new TemplateInfraContext();
