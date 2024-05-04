@@ -18,5 +18,7 @@ MonoBehaviour:
   meshColor: {r: 1, g: 1, b: 1, a: 1}
   meshMaterial_default: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   meshMaterial_bloom: {fileID: 2100000, guid: 53e7422ec9caf46d68abbc371e4a5eac, type: 2}
+  deadVFX: {fileID: 1046417506903995189, guid: 4cc547ee9ad754a728a343efb6c300c0, type: 3}
+  deadVFXDuration: 2
   shapeArr:
   - {fileID: 11400000, guid: 79f3df2fa04514cd58ad45b84d29c54d, type: 2}

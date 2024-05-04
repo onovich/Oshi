@@ -255,6 +255,10 @@ namespace Oshi {
             block.meshMaterial_default = blockTM.meshMaterial_default;
             block.meshMaterial_bloom = blockTM.meshMaterial_bloom;
 
+            // Set VFX
+            block.deadVFXName = blockTM.deadVFX.name;
+            block.deadVFXDuration = blockTM.deadVFXDuration;
+
             // Set Models
             for (int i = 0; i < blockTM.shapeArr.Length; i++) {
                 var shapeTM = blockTM.shapeArr[i];

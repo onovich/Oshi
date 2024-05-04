@@ -516,7 +516,7 @@ MonoBehaviour:
   drawCameraGizmos: 0
   drawMapGizmos: 0
   isTestMode_testGiven: 0
-  isTestMode_testLast: 0
+  isTestMode_testLast: 1
 --- !u!1 &1802965980
 GameObject:
   m_ObjectHideFlags: 0

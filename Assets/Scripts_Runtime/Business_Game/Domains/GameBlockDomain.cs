@@ -83,6 +83,12 @@ namespace Oshi {
             var oldPos = block.PosInt;
             block.Pos_SetPos(originalPos);
             ctx.blockRepo.UpdatePos(oldPos, block);
+
+            // VFX
+            VFXApp.AddVFXToWorld(ctx.vfxContext, block.deadVFXName, block.deadVFXDuration, block.Pos);
+
+            // Camera
+            GameCameraDomain.ShakeOnce(ctx);
         }
 
         public static void CheckAndResetBlock(GameBusinessContext ctx, BlockEntity block) {

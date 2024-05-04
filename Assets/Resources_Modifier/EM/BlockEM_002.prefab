@@ -62,3 +62,5 @@ MonoBehaviour:
   meshMaterial_bloom: {fileID: 2100000, guid: 53e7422ec9caf46d68abbc371e4a5eac, type: 2}
   shapes:
   - {fileID: 11400000, guid: f39cd326f70b446c890c8be28c309b10, type: 2}
+  deadVFX: {fileID: 1046417506903995189, guid: 4cc547ee9ad754a728a343efb6c300c0, type: 3}
+  deadVFXDuration: 2
