@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using VTD;
 
 namespace Oshi {
 
@@ -32,6 +33,9 @@ namespace Oshi {
 
         Dictionary<int, TerrainTM> terrainDict;
         public AsyncOperationHandle terrainHandle;
+
+        SoundTable soundTable;
+        public AsyncOperationHandle soundTableHandle;
 
         public TemplateInfraContext() {
             mapDict = new Dictionary<int, MapTM>();
@@ -162,6 +166,15 @@ namespace Oshi {
                 GLog.LogError($"Terrain {typeID} not found");
             }
             return has;
+        }
+
+        // Sound
+        public void SoundTable_Set(SoundTable soundTable) {
+            this.soundTable = soundTable;
+        }
+
+        public SoundTable SoundTable_Get() {
+            return soundTable;
         }
 
         // Clear

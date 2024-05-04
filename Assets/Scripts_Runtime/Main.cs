@@ -68,6 +68,7 @@ namespace Oshi {
             gameBusinessContext.vfxContext = vfxAppContext;
             gameBusinessContext.cameraContext = cameraAppContext;
             gameBusinessContext.ppAppContext = ppAppContext;
+            gameBusinessContext.soundContext = soundAppContext;
             gameBusinessContext.mainCamera = mainCamera;
 
             cameraAppContext.templateInfraContext = templateInfraContext;
@@ -168,6 +169,7 @@ namespace Oshi {
             await VFXApp.LoadAssets(vfxAppContext);
             await AssetsInfra.LoadAssets(assetsInfraContext);
             await TemplateInfra.LoadAssets(templateInfraContext);
+            await SoundApp.LoadAssets(soundAppContext);
         }
 
         void OnApplicationQuit() {
@@ -190,8 +192,9 @@ namespace Oshi {
             GameBusiness.TearDown(gameBusinessContext);
             AssetsInfra.ReleaseAssets(assetsInfraContext);
             TemplateInfra.Release(templateInfraContext);
-            // TemplateInfra.ReleaseAssets(templateInfraContext);
-            // UIApp.TearDown(uiAppContext);
+            // SoundApp.ReleaseAssets(soundAppContext);
+            // VFXApp.ReleaseAssets(vfxAppContext);
+            // UIApp.ReleaseAssets(uiAppContext);
         }
 
 #if UNITY_EDITOR

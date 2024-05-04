@@ -6,7 +6,7 @@ namespace Oshi {
 
     public static class SoundApp {
 
-        public static async Task Load(SoundAppContext ctx) {
+        public static async Task LoadAssets(SoundAppContext ctx) {
 
             var prefab = await Addressables.LoadAssetAsync<GameObject>("Sound_AudioSource").Task;
             ctx.audioSourcePrefab = prefab.GetComponent<AudioSource>();
@@ -29,7 +29,7 @@ namespace Oshi {
 
         }
 
-        public static void BGM_ListLoop(SoundAppContext ctx, AudioClip[] clips, float volume) {
+        public static void BGM_PlayLoop(SoundAppContext ctx, AudioClip[] clips, float volume) {
             if (ctx.bgmPlayer.clip == null || !ctx.bgmPlayer.isPlaying) {
                 ctx.bgmPlayerIndex += 1;
                 ctx.bgmPlayerIndex %= clips.Length;
@@ -57,7 +57,7 @@ namespace Oshi {
             PlayWhenFree(ctx, ctx.roleGenericPlayer, clip, volume);
         }
 
-        static float GetVolume(Vector2 listenerPos, Vector2 hitPos, float thresholdDistance, float volume) {
+        public static float GetVolume(Vector2 listenerPos, Vector2 hitPos, float thresholdDistance, float volume) {
             float dis = Vector2.Distance(listenerPos, hitPos);
             if (dis >= thresholdDistance) {
                 return 0;

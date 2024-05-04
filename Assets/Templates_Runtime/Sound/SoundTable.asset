@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692f04f5696154a50afed9cddfd0e5f1, type: 3}
+  m_Name: SoundTable
+  m_EditorClassIdentifier: 
+  roleMove: {fileID: 0}
+  roleMoveVolume: 0
+  roleDie: {fileID: 0}
+  roleDieVolume: 0
+  blockMove: {fileID: 0}
+  blockMoveVolume: 0
+  blockDie: {fileID: 0}
+  blockDieVolume: 0
+  bgmLoop:
+  - {fileID: 8300000, guid: 2b91f382ced8447da9993309d92e182c, type: 3}
+  - {fileID: 8300000, guid: 99327e2485efa4b28b95213f50c2ae2d, type: 3}
+  - {fileID: 8300000, guid: 7260581709227410f9cdeee0d657791e, type: 3}
+  bgmVolume:
+  - 5
+  - 5
+  - 5

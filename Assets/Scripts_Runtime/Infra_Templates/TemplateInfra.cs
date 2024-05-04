@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using UnityEngine.AddressableAssets;
+using VTD;
 
 namespace Oshi {
 
@@ -86,6 +87,13 @@ namespace Oshi {
                 ctx.terrainHandle = handle;
             }
 
+            {
+                var handle = Addressables.LoadAssetAsync<SoundTable>("Table_Sound");
+                var soundTable = await handle.Task;
+                ctx.SoundTable_Set(soundTable);
+                ctx.soundTableHandle = handle;
+            }
+
         }
 
         public static void Release(TemplateInfraContext ctx) {
@@ -115,6 +123,9 @@ namespace Oshi {
             }
             if (ctx.terrainHandle.IsValid()) {
                 Addressables.Release(ctx.terrainHandle);
+            }
+            if (ctx.soundTableHandle.IsValid()) {
+                Addressables.Release(ctx.soundTableHandle);
             }
         }
 

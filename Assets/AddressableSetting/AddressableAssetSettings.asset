@@ -59,6 +59,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a38a8ad709262449cafa5666cd3478e0, type: 2}
   - {fileID: 11400000, guid: 0f668862720614a978a69dd470491c59, type: 2}
   - {fileID: 11400000, guid: 206e165216e8e48d7a59c465deb2f110, type: 2}
+  - {fileID: 11400000, guid: 680346efc9c8c461fbd9bc4d44c03d95, type: 2}
+  - {fileID: 11400000, guid: b8e1aed71cf8246c3956e9fd33892765, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -112,6 +114,8 @@ MonoBehaviour:
     - TM_Goal
     - TM_Path
     - TM_Terrain
+    - Table_Sound
+    - Sound_AudioSource
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 2316a715d6a6eb047bed5ac4c42ad64f, type: 2}

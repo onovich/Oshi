@@ -23,6 +23,7 @@ namespace Oshi {
         public UIAppContext uiContext;
         public VFXAppContext vfxContext;
         public CameraAppContext cameraContext;
+        public SoundAppContext soundContext;
 
         // Camera
         public Camera mainCamera;

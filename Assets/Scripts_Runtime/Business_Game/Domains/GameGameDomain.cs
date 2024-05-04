@@ -146,7 +146,9 @@ namespace Oshi {
             // UI
             UIApp.GameInfo_Open(ctx.uiContext, mapTM.typeName, map.limitedByTime, map.limitedByStep);
 
-            // Cursor
+            // BGM
+            var soundTable = ctx.templateInfraContext.SoundTable_Get();
+            SoundApp.BGM_PlayLoop(ctx.soundContext, soundTable.bgmLoop, soundTable.bgmVolume[0]);
 
         }
 
