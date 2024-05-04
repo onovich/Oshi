@@ -114,19 +114,21 @@ namespace Oshi {
 
         public static bool TryGetNeighbourPushableTarget(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, BlockEntity block, out Vector2Int target) {
             var allow = true;
-            var _block = block;
-            target = pos + axis;
+            target = block.PosInt + axis;
 
-            block.cellSlotComponent.ForEach((index, mod) => {
+            var len = block.cellSlotComponent.TakeAll(out var cells);
+            for (int i = 0; i < len; i++) {
+                var cell = cells[i];
+                var cellPos = cell.LocalPosInt + target;
                 // Wall
-                allow &= ctx.wallRepo.Has(_block.PosInt + mod.LocalPosInt + axis) == false;
+                allow &= ctx.wallRepo.Has(cellPos) == false;
                 // Block
-                allow &= ctx.blockRepo.HasDifferent(_block.PosInt + mod.LocalPosInt + axis, _block.entityIndex) == false;
+                allow &= ctx.blockRepo.HasDifferent(cellPos, block.entityIndex) == false;
                 // Terrain Wall
-                allow &= ctx.currentMapEntity.Terrain_HasWall(_block.PosInt + mod.LocalPosInt + axis) == false;
+                allow &= ctx.currentMapEntity.Terrain_HasWall(cellPos) == false;
                 // Constraint
-                allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, _block.PosInt + mod.LocalPosInt, axis);
-            });
+                allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
+            };
             return allow;
         }
 
@@ -137,10 +139,10 @@ namespace Oshi {
 
             while (true) {
 
-                var len = block.cellSlotComponent.TakeAll(out var mods);
                 target += axis;
+                var len = block.cellSlotComponent.TakeAll(out var cells);
                 for (int i = 0; i < len; i++) {
-                    var mod = mods[i];
+                    var mod = cells[i];
                     // Wall
                     allow &= ctx.wallRepo.Has(_block.PosInt + mod.LocalPosInt + target) == false;
                     // Block

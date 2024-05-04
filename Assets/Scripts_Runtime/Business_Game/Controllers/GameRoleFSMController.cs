@@ -65,7 +65,6 @@ namespace Oshi {
                 succ = hasBlock && GridUtils.TryGetLastPushableTarget(ctx, role.PosInt, role.Pos_GetDir(), block, out pushTarget);
             } else {
                 succ = hasBlock && GridUtils.TryGetNeighbourPushableTarget(ctx, role.PosInt, role.Pos_GetDir(), block, out pushTarget);
-                if (succ) Debug.Log($"Push: {block.entityIndex} , pos = {block.PosInt}, target = {pushTarget}");
             }
 
             if (!succ) {
