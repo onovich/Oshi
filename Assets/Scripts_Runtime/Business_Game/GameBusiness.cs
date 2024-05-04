@@ -142,9 +142,6 @@ namespace Oshi {
             }
 
             if (status == GameStatus.PlayerTurn) {
-                // Camera
-                CameraApp.LateTick(ctx.cameraContext, dt);
-
                 // Game Info
                 var totalStep = map.gameTotalStep;
                 var showTime = map.limitedByTime;
@@ -167,8 +164,13 @@ namespace Oshi {
                 GameGameDomain.ApplyCheckGameResult(ctx);
             }
 
-            // VFX
-            VFXApp.LateTick(ctx.vfxContext, dt);
+            if (status != GameStatus.NotInGame) {
+                // Camera
+                CameraApp.LateTick(ctx.cameraContext, dt);
+
+                // VFX
+                VFXApp.LateTick(ctx.vfxContext, dt);
+            }
         }
 
         public static void TearDown(GameBusinessContext ctx) {
