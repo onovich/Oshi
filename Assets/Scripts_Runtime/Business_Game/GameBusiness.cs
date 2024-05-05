@@ -92,6 +92,8 @@ namespace Oshi {
                 if (pathMoveDone) {
                     game.fsmComponent.PlayerTurn_Enter();
                 }
+                // Result
+                GameGameDomain.ApplyCheckGameResult(ctx);
             } else if (status == GameStatus.GameOver) {
                 GameGameDomain.ApplyGameOver(ctx, dt);
             } else if (status == GameStatus.MapOver) {
@@ -156,8 +158,6 @@ namespace Oshi {
                     var block = blockArr[i];
                     GameBlockDomain.ApplyBloom(ctx, block);
                 }
-                // Result
-                GameGameDomain.ApplyCheckGameResult(ctx);
             }
 
             if (status != GameStatus.NotInGame) {
