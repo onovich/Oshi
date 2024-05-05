@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Map_007
   m_EditorClassIdentifier: 
   typeID: 7
-  typeName: THE SECOND PUZZLE
+  typeName: THE SUMMER I FANTASIZED ABOUT BEING A FIGURE SKATER
   nextMapTypeID: 8
   isLastMap: 0
   weatherType: 1

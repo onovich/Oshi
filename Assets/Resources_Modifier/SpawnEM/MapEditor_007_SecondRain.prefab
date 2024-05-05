@@ -958,7 +958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeID: 7
-  typeName: THE SECOND PUZZLE
+  typeName: THE SUMMER I FANTASIZED ABOUT BEING A FIGURE SKATER
   mapSize: {fileID: 7115896714514695303}
   mapTM: {fileID: 11400000, guid: 9f79871eea2d94a68a19f65139bf0c3e, type: 2}
   weatherType: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Map_005
   m_EditorClassIdentifier: 
   typeID: 5
-  typeName: THE FIRST REAL PUZZLE
+  typeName: LIFE IS JUST ONE CRAZY REVERSE PARKING PRACTICE
   nextMapTypeID: 7
   isLastMap: 0
   weatherType: 0
