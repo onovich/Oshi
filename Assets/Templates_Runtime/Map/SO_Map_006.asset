@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeID: 6
   typeName: IT WAS RAINING HEAVILY THAT DAY, AND HE LEFT HOME WITHOUT AN UMBRELLA
-  nextMapTypeID: 7
+  nextMapTypeID: 3
   isLastMap: 0
   weatherType: 1
   limitedByTime: 0

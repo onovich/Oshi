@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeID: 2
   typeName: EVERY BEGINNING IS EASY
-  nextMapTypeID: 3
+  nextMapTypeID: 6
   isLastMap: 0
   weatherType: 0
   limitedByTime: 0

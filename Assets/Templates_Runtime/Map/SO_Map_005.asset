@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeID: 5
   typeName: THE FIRST REAL PUZZLE
-  nextMapTypeID: 6
+  nextMapTypeID: 7
   isLastMap: 0
   weatherType: 0
   limitedByTime: 0
