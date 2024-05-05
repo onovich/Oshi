@@ -62,40 +62,26 @@ namespace Oshi {
             var game = ctx.gameEntity;
             var status = game.fsmComponent.status;
             var map = ctx.currentMapEntity;
-            if (status == GameStatus.EnvirTurn) {
+
+            if (status == GameStatus.PlayerTurn) {
+                // Owner
+                var owner = ctx.Role_GetOwner();
+                GameRoleFSMController.FixedTickFSM(ctx, owner, dt, () => {
+                    game.fsmComponent.EnvirTurn_Enter();
+                });
+            } else if (status == GameStatus.EnvirTurn) {
                 // Block
                 var blockLen = ctx.blockRepo.TakeAll(out var blockArr);
                 for (int i = 0; i < blockLen; i++) {
                     var block = blockArr[i];
                     GameBlockDomain.CheckAndResetBlock(ctx, block);
                 }
-            }
-            if (status == GameStatus.GameOver) {
-                GameGameDomain.ApplyGameOver(ctx, dt);
-            }
-            if (status == GameStatus.MapOver) {
-                GameGameDomain.ApplyMapOver(ctx, dt);
-            }
-            GameGameDomain.ApplyManualRestartGame(ctx);
-            GameGameDomain.ApplyManualExitApplication(ctx);
-        }
-
-        static void FixedTick(GameBusinessContext ctx, float fixdt) {
-            var game = ctx.gameEntity;
-            var status = game.fsmComponent.status;
-            if (status == GameStatus.PlayerTurn) {
-                // Owner
-                var owner = ctx.Role_GetOwner();
-                GameRoleFSMController.FixedTickFSM(ctx, owner, fixdt, () => {
-                    game.fsmComponent.EnvirTurn_Enter();
-                });
-            } else if (status == GameStatus.EnvirTurn) {
                 // Path
                 var pathMoveDone = true;
                 var pathLen = ctx.pathRepo.TakeAll(out var pathArr);
                 for (int i = 0; i < pathLen; i++) {
                     var path = pathArr[i];
-                    GamePathDomain.ApplyMoving(ctx, path, fixdt, out var isEnd);
+                    GamePathDomain.ApplyMoving(ctx, path, dt, out var isEnd);
                     pathMoveDone &= isEnd;
                 }
                 // Path Carry
@@ -106,8 +92,15 @@ namespace Oshi {
                 if (pathMoveDone) {
                     game.fsmComponent.PlayerTurn_Enter();
                 }
+            } else if (status == GameStatus.GameOver) {
+                GameGameDomain.ApplyGameOver(ctx, dt);
+            } else if (status == GameStatus.MapOver) {
+                GameGameDomain.ApplyMapOver(ctx, dt);
             }
+
             GameRoleDomain.CheckAndApplyAllRoleDead(ctx);
+            GameGameDomain.ApplyManualRestartGame(ctx);
+            GameGameDomain.ApplyManualExitApplication(ctx);
 
             // Roles
             var roleLen = ctx.roleRepo.TakeAll(out var roleArr);
@@ -115,8 +108,10 @@ namespace Oshi {
                 var role = roleArr[i];
                 GameRoleDomain.CheckAndUnSpawn(ctx, role);
             }
+        }
 
-            Physics2D.Simulate(fixdt);
+        static void FixedTick(GameBusinessContext ctx, float dt) {
+            Physics2D.Simulate(dt);
         }
 
         static void LateTick(GameBusinessContext ctx, float dt) {
