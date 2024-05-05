@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: TM_Terrain
+  m_EditorClassIdentifier: 
+  m_GroupName: TM_Terrain
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d3b30bf25fa844707a5976f1b047303a
+  m_SerializeEntries:
+  - m_GUID: 0e3729707d2a940498bfcfaec2559962
+    m_Address: SO_Terrain_Wall_001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Terrain
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72b8f9217817c493d839157b9f149c8c
+    m_Address: SO_Terrain_Spike_002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Terrain
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f6a38ec69ae34874aea5dce4070e428
+    m_Address: SO_Terrain_Goal_003
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Terrain
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bcda1c8e574105f42bf63fc8b4423c66, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0f0ff8b671c9e47ec8cdcbd6cccb1244, type: 2}
+    - {fileID: 11400000, guid: 1fceb54fa8ee449d5959c73f21ccb821, type: 2}

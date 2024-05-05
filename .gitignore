@@ -72,6 +72,3 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Assets/AddressableSetting/OSX/addressables_content_state.bin
 Assets/AddressableSetting/Windows/addressables_content_state.bin
-Assets/AddressableSetting/Windows
-Assets/AddressableSetting/OSX
-Assets/AddressableSetting
