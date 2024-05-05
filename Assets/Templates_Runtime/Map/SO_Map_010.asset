@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Map_010
   m_EditorClassIdentifier: 
   typeID: 10
-  typeName: THE FIRST ERROR
+  typeName: TIME TRAVELER
   nextMapTypeID: 11
   isLastMap: 0
   weatherType: 0

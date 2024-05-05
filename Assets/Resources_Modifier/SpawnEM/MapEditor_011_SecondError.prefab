@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeID: 11
-  typeName: THE SECOND ERROR
+  typeName: CYBERPUNK
   mapSize: {fileID: 7115896714514695303}
   mapTM: {fileID: 11400000, guid: 954f14f3a729a4af2af378c6dfa2739e, type: 2}
   weatherType: 0

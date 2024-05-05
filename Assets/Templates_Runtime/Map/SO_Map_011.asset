@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Map_011
   m_EditorClassIdentifier: 
   typeID: 11
-  typeName: THE SECOND ERROR
+  typeName: CYBERPUNK
   nextMapTypeID: 0
   isLastMap: 1
   weatherType: 0

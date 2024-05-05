@@ -951,7 +951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeID: 10
-  typeName: THE FIRST ERROR
+  typeName: TIME TRAVELER
   mapSize: {fileID: 7115896714514695303}
   mapTM: {fileID: 11400000, guid: abaa50df61c2c42d589e6464888ff5a4, type: 2}
   weatherType: 0
