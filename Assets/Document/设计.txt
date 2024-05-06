@@ -1,6 +1,3 @@
-重构任务
-1. LoginBusiness 和 GameBusiness 合并, 存档放在 GameBusiness 里
-
 Bug
 1. 当 Block 踩中 Spike 被重置到出生点时，如果出生点被占用，会有逻辑问题。
 解决方案: 提供一个暂存格，Block 会被传送到暂存格，直到出生点被释放为止

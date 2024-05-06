@@ -21,7 +21,6 @@ namespace Oshi {
         TemplateInfraContext templateInfraContext;
         DBInfraContext dBInfraContext;
 
-        LoginBusinessContext loginBusinessContext;
         GameBusinessContext gameBusinessContext;
 
         UIAppContext uiAppContext;
@@ -47,7 +46,6 @@ namespace Oshi {
 
             inputEntity = new InputEntity();
 
-            loginBusinessContext = new LoginBusinessContext();
             gameBusinessContext = new GameBusinessContext();
 
             uiAppContext = new UIAppContext("UI", mainCanvas, hudFakeCanvas, mainCamera);
@@ -61,11 +59,6 @@ namespace Oshi {
             dBInfraContext = new DBInfraContext();
 
             // Inject
-            loginBusinessContext.uiContext = uiAppContext;
-            loginBusinessContext.templateInfraContext = templateInfraContext;
-            loginBusinessContext.soundContext = soundAppContext;
-            loginBusinessContext.dbInfraContext = dBInfraContext;
-
             gameBusinessContext.inputEntity = inputEntity;
             gameBusinessContext.assetsInfraContext = assetsInfraContext;
             gameBusinessContext.templateInfraContext = templateInfraContext;
@@ -101,7 +94,7 @@ namespace Oshi {
         }
 
         void Enter() {
-            LoginBusiness.Enter(loginBusinessContext);
+            GameBusiness.EnterLogin(gameBusinessContext);
         }
 
         void Update() {
@@ -111,7 +104,6 @@ namespace Oshi {
             }
 
             var dt = Time.deltaTime;
-            LoginBusiness.Tick(loginBusinessContext, dt);
             GameBusiness.Tick(gameBusinessContext, dt);
 
             UIApp.LateTick(uiAppContext, dt);
@@ -144,12 +136,12 @@ namespace Oshi {
             // UI
             // - Login
             uiEvt.Login_OnStartGameClickHandle += () => {
-                LoginBusiness.Exit(loginBusinessContext);
-                GameBusiness.StartGame(gameBusinessContext, isTestMode, testMapTypeID);
+                GameBusiness.ExitLogin(gameBusinessContext);
+                GameBusiness.EnterGame(gameBusinessContext, isTestMode, testMapTypeID);
             };
 
             uiEvt.Login_OnExitGameClickHandle += () => {
-                LoginBusiness.ExitApplication(loginBusinessContext);
+                GameBusiness.ExitApplication(gameBusinessContext);
             };
 
             // - GameInfo
@@ -194,7 +186,6 @@ namespace Oshi {
             }
             isTearDown = true;
 
-            loginBusinessContext.evt.Clear();
             uiAppContext.evt.Clear();
 
             AssetsInfra.ReleaseAssets(assetsInfraContext);

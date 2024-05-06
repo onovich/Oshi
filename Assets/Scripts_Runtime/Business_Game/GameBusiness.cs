@@ -8,7 +8,23 @@ namespace Oshi {
 
         }
 
-        public static void StartGame(GameBusinessContext ctx, bool isTestMode, int testMapTypeID) {
+        public static void EnterLogin(GameBusinessContext ctx) {
+            UIApp.Login_Open(ctx.uiContext);
+            // BGM
+            var soundTable = ctx.templateInfraContext.SoundTable_Get();
+            SoundApp.BGM_PlayLoop(ctx.soundContext, soundTable.bgmLoop[0], 0, soundTable.bgmVolume[0], true);
+        }
+
+        public static void ExitLogin(GameBusinessContext ctx) {
+            UIApp.Login_Close(ctx.uiContext);
+        }
+
+        public static void ExitApplication(GameBusinessContext ctx) {
+            ExitLogin(ctx);
+            Application.Quit();
+        }
+
+        public static void EnterGame(GameBusinessContext ctx, bool isTestMode, int testMapTypeID) {
             var config = ctx.templateInfraContext.Config_Get();
             var mapTypeID =
             isTestMode ? testMapTypeID :
