@@ -33,8 +33,8 @@ namespace Oshi {
         }
 
         // Panel - Login
-        public static void Login_Open(UIAppContext ctx) {
-            PanelLoginDomain.Open(ctx);
+        public static void Login_Open(UIAppContext ctx, bool hasSave) {
+            PanelLoginDomain.Open(ctx, hasSave);
         }
 
         public static void Login_Close(UIAppContext ctx) {

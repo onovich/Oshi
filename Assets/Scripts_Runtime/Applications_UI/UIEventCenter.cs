@@ -15,6 +15,11 @@ namespace Oshi.UI {
             Login_OnExitGameClickHandle?.Invoke();
         }
 
+        public Action Login_OnLoadGameClickHandle;
+        public void Login_OnLoadGameClick() {
+            Login_OnLoadGameClickHandle?.Invoke();
+        }
+
         // GameOver
         public Action GameOver_OnRestartGameClickHandle;
         public void GameOver_OnRestartGameClick() {
@@ -62,6 +67,7 @@ namespace Oshi.UI {
         public void Clear() {
             Login_OnStartGameClickHandle = null;
             Login_OnExitGameClickHandle = null;
+            Login_OnLoadGameClickHandle = null;
 
             GameOver_OnRestartGameClickHandle = null;
             GameOver_OnExitGameClickHandle = null;

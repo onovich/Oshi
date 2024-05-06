@@ -2,12 +2,16 @@ namespace Oshi {
 
     public static class DBInfra {
 
-        public static void GameStage_Save(DBInfraContext ctx, DBGameStageModel model) {
-            DBGameStageDomain.Save(ctx, model);
+        public static string GameStage_Save(DBInfraContext ctx, DBGameStageModel model) {
+            return DBGameStageDomain.Save(ctx, model);
         }
 
-        public static DBGameStageModel GameStage_Load(DBInfraContext ctx) {
-            return DBGameStageDomain.Load(ctx);
+        public static bool GameStage_TryLoad(DBInfraContext ctx, out DBGameStageModel model) {
+            return DBGameStageDomain.TryLoad(ctx, out model);
+        }
+
+        public static void TearDown(DBInfraContext ctx) {
+            ctx.Clear();
         }
 
     }

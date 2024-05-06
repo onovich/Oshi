@@ -21,6 +21,10 @@ namespace Oshi {
             return saveDict[type];
         }
 
+        public void Clear() {
+            saveDict.Clear();
+        }
+
     }
 
 }

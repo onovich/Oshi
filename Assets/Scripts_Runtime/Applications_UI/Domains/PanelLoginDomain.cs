@@ -6,7 +6,7 @@ namespace Oshi.UI {
 
     public static class PanelLoginDomain {
 
-        public static void Open(UIAppContext ctx) {
+        public static void Open(UIAppContext ctx, bool hasSave) {
 
             Panel_Login panel = ctx.uiCore.UniquePanel_Open<Panel_Login>();
             panel.Ctor();
@@ -18,6 +18,12 @@ namespace Oshi.UI {
             panel.OnClickExitGameHandle += () => {
                 ctx.evt.Login_OnExitGameClick();
             };
+
+            panel.OnClickLoadGameHandle += () => {
+                ctx.evt.Login_OnLoadGameClick();
+            };
+
+            panel.SetLoadInteractable(hasSave);
         }
 
         public static void Close(UIAppContext ctx) {

@@ -1,3 +1,6 @@
+
+using UnityEngine;
+
 namespace Oshi {
 
     public static class GameSaveDomain {
@@ -5,14 +8,17 @@ namespace Oshi {
         public static void GameStage_Save(GameBusinessContext ctx) {
             var gameStage = ctx.gameStageEntity;
             var model = gameStage.Save();
-            DBInfra.GameStage_Save(ctx.dbInfraContext, model);
+            var path = DBInfra.GameStage_Save(ctx.dbInfraContext, model);
+            Debug.Log($"GameStage saved to {path}");
         }
 
-        public static GameStageEntity GameStage_Load(GameBusinessContext ctx) {
-            var model = DBInfra.GameStage_Load(ctx.dbInfraContext);
-            var gameStage = ctx.gameStageEntity;
-            gameStage.Load(model);
-            return gameStage;
+        public static bool GameStage_TryLoad(GameBusinessContext ctx, out GameStageEntity gameStage) {
+            var succ = DBInfra.GameStage_TryLoad(ctx.dbInfraContext, out DBGameStageModel model);
+            gameStage = ctx.gameStageEntity;
+            if (succ) {
+                gameStage.Load(model);
+            }
+            return succ;
         }
 
     }

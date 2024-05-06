@@ -9,7 +9,10 @@ namespace Oshi {
         }
 
         public static void EnterLogin(GameBusinessContext ctx) {
-            UIApp.Login_Open(ctx.uiContext);
+            // GameStage
+            var loadSucc = GameSaveDomain.GameStage_TryLoad(ctx, out var gameStage);
+            // UI
+            UIApp.Login_Open(ctx.uiContext, loadSucc);
             // BGM
             var soundTable = ctx.templateInfraContext.SoundTable_Get();
             SoundApp.BGM_PlayLoop(ctx.soundContext, soundTable.bgmLoop[0], 0, soundTable.bgmVolume[0], true);
@@ -24,10 +27,15 @@ namespace Oshi {
             Application.Quit();
         }
 
-        public static void EnterGame(GameBusinessContext ctx, bool isTestMode, int testMapTypeID) {
+        public static void Login_OnLoadGameClick(GameBusinessContext ctx) {
+            var gameStage = ctx.gameStageEntity;
+            EnterGame(ctx, true, gameStage.lastPlayedMapTypeID);
+        }
+
+        public static void EnterGame(GameBusinessContext ctx, bool isForceEnter, int testMapTypeID) {
             var config = ctx.templateInfraContext.Config_Get();
             var mapTypeID =
-            isTestMode ? testMapTypeID :
+            isForceEnter ? testMapTypeID :
             config.originalMapTypeID;
 
             var soundTable = ctx.templateInfraContext.SoundTable_Get();

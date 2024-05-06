@@ -144,6 +144,11 @@ namespace Oshi {
                 GameBusiness.ExitApplication(gameBusinessContext);
             };
 
+            uiEvt.Login_OnLoadGameClickHandle += () => {
+                GameBusiness.ExitLogin(gameBusinessContext);
+                GameBusiness.Login_OnLoadGameClick(gameBusinessContext);
+            };
+
             // - GameInfo
             uiEvt.GameInfo_OnRestartBtnClickHandle += () => {
                 GameBusiness.UIGameInfo_OnRestartBtnClick(gameBusinessContext);
@@ -198,6 +203,7 @@ namespace Oshi {
             SoundApp.TearDown(soundAppContext);
             VFXApp.TearDown(vfxAppContext);
             UIApp.TearDown(uiAppContext);
+            DBInfra.TearDown(dBInfraContext);
         }
 
 #if UNITY_EDITOR
