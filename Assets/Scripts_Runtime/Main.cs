@@ -19,6 +19,7 @@ namespace Oshi {
 
         AssetsInfraContext assetsInfraContext;
         TemplateInfraContext templateInfraContext;
+        DBInfraContext dBInfraContext;
 
         LoginBusinessContext loginBusinessContext;
         GameBusinessContext gameBusinessContext;
@@ -57,11 +58,13 @@ namespace Oshi {
 
             assetsInfraContext = new AssetsInfraContext();
             templateInfraContext = new TemplateInfraContext();
+            dBInfraContext = new DBInfraContext();
 
             // Inject
             loginBusinessContext.uiContext = uiAppContext;
             loginBusinessContext.templateInfraContext = templateInfraContext;
             loginBusinessContext.soundContext = soundAppContext;
+            loginBusinessContext.dbInfraContext = dBInfraContext;
 
             gameBusinessContext.inputEntity = inputEntity;
             gameBusinessContext.assetsInfraContext = assetsInfraContext;
@@ -72,6 +75,7 @@ namespace Oshi {
             gameBusinessContext.ppAppContext = ppAppContext;
             gameBusinessContext.soundContext = soundAppContext;
             gameBusinessContext.mainCamera = mainCamera;
+            gameBusinessContext.dbInfraContext = dBInfraContext;
 
             cameraAppContext.templateInfraContext = templateInfraContext;
             ppAppContext.templateInfraContext = templateInfraContext;

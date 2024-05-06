@@ -8,6 +8,9 @@ namespace Oshi {
 
             var config = ctx.templateInfraContext.Config_Get();
 
+            // GameStage
+            GameSaveDomain.GameStage_Load(ctx);
+
             // Map
             var has = ctx.templateInfraContext.Map_TryGet(mapTypeID, out var mapTM);
             if (!has) {
@@ -221,9 +224,13 @@ namespace Oshi {
 
         public static void NextLevel(GameBusinessContext ctx) {
             var game = ctx.gameEntity;
-            var mapTypeID = ctx.currentMapEntity.nextMapTypeID;
+            var mapTypeID = ctx.currentMapEntity.typeID;
+            GameStageDomain.TryUnlock(ctx, mapTypeID);
+            GameStageDomain.SetLastPlayedMapTypeID(ctx, mapTypeID);
+
+            var nextMapTypeID = ctx.currentMapEntity.nextMapTypeID;
             ExitGame(ctx);
-            NewGame(ctx, mapTypeID);
+            NewGame(ctx, nextMapTypeID);
         }
 
         public static void ApplyCheckGameResult(GameBusinessContext ctx) {
@@ -362,6 +369,10 @@ namespace Oshi {
             // UI
             UIApp.GameOver_Close(ctx.uiContext);
             UIApp.GameInfo_Close(ctx.uiContext);
+
+            // GameStage
+            var gameStage = ctx.gameStageEntity;
+            gameStage.Clear();
 
         }
 

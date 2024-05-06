@@ -7,6 +7,7 @@ namespace Oshi{
 
         public TemplateInfraContext templateInfraContext;
         public SoundAppContext soundContext;
+        public DBInfraContext dbInfraContext;
 
         public LoginBusinessContext() {
             evt = new LoginEventCenter();

@@ -11,6 +11,7 @@ namespace Oshi {
         public PlayerEntity playerEntity;
         public InputEntity inputEntity; // External
         public MapEntity currentMapEntity;
+        public GameStageEntity gameStageEntity;
 
         public RoleRepository roleRepo;
         public BlockRepository blockRepo;
@@ -35,6 +36,7 @@ namespace Oshi {
         public TemplateInfraContext templateInfraContext;
         public AssetsInfraContext assetsInfraContext;
         public PPAppContext ppAppContext;
+        public DBInfraContext dbInfraContext;
 
         // Timer
         public float fixedRestSec;
@@ -47,6 +49,7 @@ namespace Oshi {
 
         public GameBusinessContext() {
             gameEntity = new GameEntity();
+            gameStageEntity = new GameStageEntity();
             playerEntity = new PlayerEntity();
             idRecordService = new IDRecordService();
             roleRepo = new RoleRepository();
