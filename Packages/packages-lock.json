@@ -16,6 +16,20 @@
       "dependencies": {},
       "hash": "00088f668d560f8a40af249096f581ea28ab4dde"
     },
+    "com.mortise.capsule": {
+      "version": "ssh://git@github.com/onovich/Capsule.git?path=/Assets/com.mortise.capsule#main",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "2bee7ade9ed8b8b5cdd51fe11928bd7a8a1babd8"
+    },
+    "com.mortise.litio": {
+      "version": "ssh://git@github.com/onovich/LitIO.git?path=/Assets/com.mortise.litio#main",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "1c3a7a7e85f011b41fafa835a1d3b93f05e402ae"
+    },
     "com.mortise.swing": {
       "version": "ssh://git@github.com/onovich/Swing.git?path=/Assets/com.mortise.swing#main",
       "depth": 0,
