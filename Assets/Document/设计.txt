@@ -30,6 +30,7 @@ Bug
 5. Role 多格
 6. FakeBlock 可以推动, 但不需入 Goal
 7. Block 和 Goal 带编号
+8. 可推动的 Goal
 
 关卡策划
 1. 参考华容道
