@@ -21,6 +21,10 @@ namespace Oshi.Modifier {
         [Header("Fake Block")]
         public bool isFake;
 
+        [Header("Block Number")]
+        public int number;
+        public bool showNumber;
+
         [Header("Block Mesh")]
         public Sprite mesh;
         public UnityEngine.Color color;
@@ -39,6 +43,8 @@ namespace Oshi.Modifier {
             typeID = blockTM.typeID;
             typeName = blockTM.typeName;
             isFake = blockTM.isFake;
+            number = blockTM.number;
+            showNumber = blockTM.showNumber;
             mesh = blockTM.mesh;
             color = blockTM.meshColor;
             meshMaterial_default = blockTM.meshMaterial_default;
@@ -75,6 +81,8 @@ namespace Oshi.Modifier {
             blockTM.typeID = typeID;
             blockTM.typeName = typeName;
             blockTM.isFake = isFake;
+            blockTM.number = number;
+            blockTM.showNumber = showNumber;
             blockTM.mesh = mesh;
             blockTM.meshColor = color;
             blockTM.meshMaterial_default = meshMaterial_default;

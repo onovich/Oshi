@@ -157,6 +157,10 @@ namespace Oshi {
             // Can Push
             goal.canPush = goalTM.canPush;
 
+             // Goal Number
+            goal.number = goalTM.number;
+            goal.showNumber = goalTM.showNumber;
+
             // Rename
             goal.gameObject.name = $"Goal - {goal.typeName} - {goal.entityIndex}";
 
@@ -252,6 +256,10 @@ namespace Oshi {
 
             // Is Fake
             block.isFake = blockTM.isFake;
+
+            // Block Number
+            block.number = blockTM.number;
+            block.showNumber = blockTM.showNumber;
 
             // Rename
             block.gameObject.name = $"Block - {block.typeName} - {block.entityIndex}";

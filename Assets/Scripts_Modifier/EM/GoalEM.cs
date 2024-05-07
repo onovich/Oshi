@@ -21,6 +21,10 @@ namespace Oshi.Modifier {
         [Header("Can Push")]
         public bool canPush;
 
+        [Header("Goal Number")]
+        public int number;
+        public bool showNumber;
+
         [Header("Block Mesh")]
         public Sprite mesh;
         public UnityEngine.Color color;
@@ -34,6 +38,8 @@ namespace Oshi.Modifier {
             typeID = goalTM.typeID;
             typeName = goalTM.typeName;
             canPush = goalTM.canPush;
+            number = goalTM.number;
+            showNumber = goalTM.showNumber;
             mesh = goalTM.mesh;
             color = goalTM.meshColor;
             meshMaterial = goalTM.meshMaterial;
@@ -67,6 +73,8 @@ namespace Oshi.Modifier {
             goalTM.typeID = typeID;
             goalTM.typeName = typeName;
             goalTM.canPush = canPush;
+            goalTM.number = number;
+            goalTM.showNumber = showNumber;
             goalTM.mesh = mesh;
             goalTM.meshColor = color;
             goalTM.meshMaterial = meshMaterial;

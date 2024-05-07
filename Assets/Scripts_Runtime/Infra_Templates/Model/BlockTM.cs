@@ -8,6 +8,8 @@ namespace Oshi {
 
         public int typeID;
         public bool isFake;
+        public int number;
+        public bool showNumber;
         public string typeName;
         public Sprite mesh;
         public Color meshColor;

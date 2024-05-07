@@ -13,6 +13,10 @@ namespace Oshi {
         // Is Fake
         public bool isFake;
 
+        // Block Number
+        public int number;
+        public bool showNumber;
+
         // Cell
         [SerializeField] Transform cellRoot;
         public CellSlotComponent cellSlotComponent;

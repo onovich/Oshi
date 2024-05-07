@@ -13,6 +13,10 @@ namespace Oshi {
         // Can Push
         public bool canPush;
 
+        // Goal Number
+        public int number;
+        public bool showNumber;
+
         // Cell
         [SerializeField] Transform cellRoot;
         public CellSlotComponent cellSlotComponent;
