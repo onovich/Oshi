@@ -56,6 +56,8 @@ namespace Oshi {
                 player.Stop();
                 GameObject.Destroy(player.gameObject);
             }
+            ctx.bgsPlayer.Stop();
+            GameObject.Destroy(ctx.bgsPlayer.gameObject);
         }
 
         public static void BGM_PlayLoop(SoundAppContext ctx, AudioClip clip, int layer, float volume, bool replay) {
@@ -110,6 +112,7 @@ namespace Oshi {
             foreach (var player in ctx.blockGenericPlayer) {
                 player.mute = isMute;
             }
+            ctx.bgsPlayer.mute = isMute;
         }
 
         static void PlayWhenFree(SoundAppContext ctx, AudioSource[] players, AudioClip clip, float volume) {
