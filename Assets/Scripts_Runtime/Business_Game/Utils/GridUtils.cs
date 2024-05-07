@@ -130,6 +130,8 @@ namespace Oshi {
                 allow &= ctx.blockRepo.Has(cellPos) == false;
                 // Goal
                 allow &= ctx.goalRepo.HasDifferent(cellPos, goal.entityIndex) == false;
+                // Terrain Goal
+                allow &= ctx.currentMapEntity.Terrain_HasGoal(cellPos) == false;
                 // Terrain Wall
                 allow &= ctx.currentMapEntity.Terrain_HasWall(cellPos) == false;
                 // Constraint

@@ -60,10 +60,13 @@ namespace Oshi {
             block.cellSlotComponent.ForEach((index, mod) => {
                 var allow = false;
                 // Goal
-                allow |= (ctx.goalRepo.Has(mod.LocalPosInt + pos));
+                allow |= (ctx.goalRepo.TryGetGoalByPos(mod.LocalPosInt + pos, out var goal));
                 // Terrain Goal
                 allow |= (ctx.currentMapEntity.Terrain_HasGoal(mod.LocalPosInt + pos));
                 inGoal &= allow;
+                if (inGoal) {
+                    inGoal &= goal.number == block.number;
+                }
             });
             return inGoal;
         }
