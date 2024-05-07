@@ -7,6 +7,7 @@ namespace Oshi {
     public class BlockTM : ScriptableObject {
 
         public int typeID;
+        public bool isFake;
         public string typeName;
         public Sprite mesh;
         public Color meshColor;

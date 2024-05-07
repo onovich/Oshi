@@ -24,13 +24,17 @@ MonoBehaviour:
   ownerRoleTypeID: 1
   mapSize: {x: 20, y: 10}
   spawnPoint: {x: 0, y: 0}
-  blockIndexArr: 0100000002000000
+  blockIndexArr: 01000000020000000300000004000000
   blockTMArr:
-  - {fileID: 11400000, guid: 0acbcfa6cf33e470ca47effbf466206a, type: 2}
-  - {fileID: 11400000, guid: 0acbcfa6cf33e470ca47effbf466206a, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 459b34d0c218242f58ceb0e54051e7c6, type: 2}
   blockPosArr:
   - {x: 2, y: 2}
-  - {x: 4, y: -2}
+  - {x: -5, y: 2}
+  - {x: -3, y: 1}
+  - {x: -2, y: 2}
   wallIndexArr: 01000000
   wallTMArr:
   - {fileID: 11400000, guid: 164f8d450169043389c59f12bb12963f, type: 2}

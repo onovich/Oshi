@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1128079099802362847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3527060180567912238}
+  - component: {fileID: 4527994836551481998}
+  m_Layer: 0
+  m_Name: BlockEM_Fake_100
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3527060180567912238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128079099802362847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6652581, y: -0.896235, z: 0.0032541975}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4527994836551481998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128079099802362847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9e81d3c649b40d2a11b3204fae9a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  blockTM: {fileID: 11400000, guid: 459b34d0c218242f58ceb0e54051e7c6, type: 2}
+  typeID: 100
+  typeName: Fake
+  isFake: 1
+  mesh: {fileID: 21300000, guid: 77312400b0b8943d38a1ced06979e14a, type: 3}
+  color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  meshMaterial_default: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  meshMaterial_bloom: {fileID: 0}
+  shapes:
+  - {fileID: 11400000, guid: 79f3df2fa04514cd58ad45b84d29c54d, type: 2}
+  deadVFX: {fileID: 1046417506903995189, guid: 4cc547ee9ad754a728a343efb6c300c0, type: 3}
+  deadVFXDuration: 2

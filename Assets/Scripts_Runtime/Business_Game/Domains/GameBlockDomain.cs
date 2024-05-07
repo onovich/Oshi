@@ -48,6 +48,8 @@ namespace Oshi {
                 allow |= (ctx.goalRepo.Has(pos));
                 // Terrain Goal
                 allow |= (ctx.currentMapEntity.Terrain_HasGoal(pos));
+                // Fake
+                allow &= !block.isFake;
                 return allow;
             });
         }

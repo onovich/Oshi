@@ -246,6 +246,7 @@ namespace Oshi {
             block.typeID = typeID;
             block.entityIndex = index;
             block.typeName = blockTM.typeName;
+            block.isFake = blockTM.isFake;
 
             // Rename
             block.gameObject.name = $"Block - {block.typeName} - {block.entityIndex}";

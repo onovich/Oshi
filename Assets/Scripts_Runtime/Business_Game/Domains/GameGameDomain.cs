@@ -280,6 +280,9 @@ namespace Oshi {
             var config = ctx.templateInfraContext.Config_Get();
 
             ctx.blockRepo.ForEach((block) => {
+                if (block.isFake) {
+                    return;
+                }
                 inGoal &= GameBlockDomain.CheckAllInGoal(ctx, block);
             });
             return inGoal;

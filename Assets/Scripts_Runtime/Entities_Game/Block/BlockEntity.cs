@@ -9,6 +9,7 @@ namespace Oshi {
         public int entityIndex;
         public int typeID;
         public string typeName;
+        public bool isFake;
 
         // Cell
         [SerializeField] Transform cellRoot;
