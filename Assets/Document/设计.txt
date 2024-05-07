@@ -19,6 +19,7 @@ Bug
 6. Block / Wall / Spike / Goal 多格
 7. Path
 8. 雨天地面变滑, 仅影响 Role
+9. 不计入 Goal 的 FakeBlock
 
 特殊玩法
 ** 单局内, 抵达特定位置改变天气
@@ -28,7 +29,6 @@ Bug
 2. Enemy 可以被 Spike 杀死，仅在遇到 Wall 和 Block、看到 Role 时改变方向，杀死 Role
 3. Boss 可以杀死 Spike、Block、Role，遇到 Wall 、看到 Role时改变方向
 5. Role 多格
-6. FakeBlock 可以推动, 但不需入 Goal
 7. Block 和 Goal 带编号
 8. 可推动的 Goal
 
