@@ -62,6 +62,10 @@ namespace Oshi {
             return all.TryGetValue(entityID, out goal);
         }
 
+        public bool TryGetGoalByPos(Vector2Int pos, out GoalEntity goal){
+            return posMap.TryGetValue(pos, out goal);
+        }
+
         public bool IsInRange(int entityID, in Vector2 pos, float range) {
             bool has = TryGetGoal(entityID, out var goal);
             if (!has) {

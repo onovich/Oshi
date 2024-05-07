@@ -10,6 +10,9 @@ namespace Oshi {
         public int typeID;
         public string typeName;
 
+        // Can Push
+        public bool canPush;
+
         // Cell
         [SerializeField] Transform cellRoot;
         public CellSlotComponent cellSlotComponent;

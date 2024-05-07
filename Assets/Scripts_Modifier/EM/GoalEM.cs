@@ -18,6 +18,9 @@ namespace Oshi.Modifier {
         public int typeID;
         public string typeName;
 
+        [Header("Can Push")]
+        public bool canPush;
+
         [Header("Block Mesh")]
         public Sprite mesh;
         public UnityEngine.Color color;
@@ -30,6 +33,7 @@ namespace Oshi.Modifier {
         void Load() {
             typeID = goalTM.typeID;
             typeName = goalTM.typeName;
+            canPush = goalTM.canPush;
             mesh = goalTM.mesh;
             color = goalTM.meshColor;
             meshMaterial = goalTM.meshMaterial;
@@ -62,6 +66,7 @@ namespace Oshi.Modifier {
         void Bake() {
             goalTM.typeID = typeID;
             goalTM.typeName = typeName;
+            goalTM.canPush = canPush;
             goalTM.mesh = mesh;
             goalTM.meshColor = color;
             goalTM.meshMaterial = meshMaterial;

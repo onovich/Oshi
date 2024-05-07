@@ -14,9 +14,10 @@ namespace Oshi {
         public float moving_currentSec;
         public Vector2 moving_start;
         public Vector2 moving_end;
-        public bool moving_pushBlock;
-        public int moving_pushBlockIndex;
-        public Vector2Int moving_pushStartPos;
+        public bool moving_pushTarget;
+        public EntityType moving_pushTargetType;
+        public int moving_pushTargetIndex;
+        public Vector2Int moving_pushTargetStartPos;
 
         public RoleFSMComponent() { }
 
@@ -25,12 +26,9 @@ namespace Oshi {
             idle_isEntering = true;
         }
 
-        public void Moving_Enter(float duration,
+        public void Moving_EnterWithOutPush(float duration,
                                  Vector2 start,
-                                 Vector2 end,
-                                 bool push = false,
-                                 int blockIndex = 0,
-                                 Vector2Int blockStartPos = default) {
+                                 Vector2 end) {
             Reset();
             status = RoleFSMStatus.Moving;
             moving_isEntering = true;
@@ -38,9 +36,26 @@ namespace Oshi {
             moving_currentSec = 0;
             moving_start = start;
             moving_end = end;
-            moving_pushBlock = push;
-            moving_pushBlockIndex = blockIndex;
-            moving_pushStartPos = blockStartPos;
+            moving_pushTarget = false;
+        }
+
+        public void Moving_EnterWithPush(float duration,
+                                 Vector2 start,
+                                 Vector2 end,
+                                 EntityType pushTargetType,
+                                 int pushTargetIndex,
+                                 Vector2Int pushTargetStartPos) {
+            Reset();
+            status = RoleFSMStatus.Moving;
+            moving_isEntering = true;
+            moving_durationSec = duration;
+            moving_currentSec = 0;
+            moving_start = start;
+            moving_end = end;
+            moving_pushTarget = true;
+            moving_pushTargetType = pushTargetType;
+            moving_pushTargetIndex = pushTargetIndex;
+            moving_pushTargetStartPos = pushTargetStartPos;
         }
 
         public void Moving_IncTimer(float dt) {
@@ -62,8 +77,9 @@ namespace Oshi {
             moving_currentSec = 0;
             moving_start = Vector2.zero;
             moving_end = Vector2.zero;
-            moving_pushBlock = false;
-            moving_pushBlockIndex = 0;
+            moving_pushTarget = false;
+            moving_pushTargetIndex = 0;
+            moving_pushTargetType = EntityType.None;
         }
 
     }

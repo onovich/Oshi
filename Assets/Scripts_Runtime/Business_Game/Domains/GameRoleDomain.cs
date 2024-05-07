@@ -34,22 +34,49 @@ namespace Oshi {
                 isEnd = true;
             });
             var fsm = role.fsmCom;
-            var push = fsm.moving_pushBlock;
+            var push = fsm.moving_pushTarget;
             if (!push) {
                 if (isEnd) {
                     onEnd.Invoke();
                 }
                 return;
             }
-            var blockIndex = fsm.moving_pushBlockIndex;
+            var entityType = fsm.moving_pushTargetType;
+            if (entityType == EntityType.Block) {
+                PushBlock(ctx, role, isEnd, onEnd);
+            } else if (entityType == EntityType.Goal) {
+                PushGoal(ctx, role, isEnd, onEnd);
+            }
+
+        }
+
+        static void PushGoal(GameBusinessContext ctx, RoleEntity role, bool isEnd, Action onEnd) {
+            var fsm = role.fsmCom;
+            var goalIndex = fsm.moving_pushTargetIndex;
+            var has = ctx.goalRepo.TryGetGoal(goalIndex, out var goalEntity);
+            if (!has) {
+                GLog.LogError($"Goal Not Found With Index: {goalIndex}");
+                return;
+            }
+            ApplyPushGoal(ctx, role, goalEntity);
+            if (isEnd) {
+                var oldPos = fsm.moving_pushTargetStartPos;
+                ctx.goalRepo.UpdatePos(oldPos, goalEntity);
+                onEnd.Invoke();
+            }
+        }
+
+        static void PushBlock(GameBusinessContext ctx, RoleEntity role, bool isEnd, Action onEnd) {
+            var fsm = role.fsmCom;
+            var blockIndex = fsm.moving_pushTargetIndex;
             var has = ctx.blockRepo.TryGetBlock(blockIndex, out var blockEntity);
             if (!has) {
                 GLog.LogError($"Block Not Found With Index: {blockIndex}");
                 return;
             }
-            ApplyPush(ctx, role, blockEntity);
+            ApplyPushBlock(ctx, role, blockEntity);
             if (isEnd) {
-                var oldPos = fsm.moving_pushStartPos;
+                var oldPos = fsm.moving_pushTargetStartPos;
                 ctx.blockRepo.UpdatePos(oldPos, blockEntity);
                 onEnd.Invoke();
             }
@@ -70,7 +97,15 @@ namespace Oshi {
             }
         }
 
-        static void ApplyPush(GameBusinessContext ctx, RoleEntity role, BlockEntity blockEntity) {
+        static void ApplyPushGoal(GameBusinessContext ctx, RoleEntity role, GoalEntity goalEntity) {
+            var lastPos = role.lastFramePos;
+            var offset = role.Pos - lastPos;
+            var pos = goalEntity.Pos;
+            pos += offset;
+            goalEntity.Pos_SetPos(pos);
+        }
+
+        static void ApplyPushBlock(GameBusinessContext ctx, RoleEntity role, BlockEntity blockEntity) {
             var lastPos = role.lastFramePos;
             var offset = role.Pos - lastPos;
             var pos = blockEntity.Pos;

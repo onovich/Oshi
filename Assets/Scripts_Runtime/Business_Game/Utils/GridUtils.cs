@@ -39,7 +39,7 @@ namespace Oshi {
             if (allow) {
                 var has = TryGetNeighbourBlock(ctx, pos, axis, out var block);
                 if (has) {
-                    allow &= CheckNeighbourPushable(ctx, pos, axis, block);
+                    allow &= CheckNeighbourBlockPushable(ctx, pos, axis, block);
                 }
             }
             return allow;
@@ -55,7 +55,7 @@ namespace Oshi {
             }
 
             if (TryGetNeighbourBlock(ctx, pos, axis, out var block) &&
-               (CheckNeighbourPushable(ctx, pos, axis, block))) {
+               (CheckNeighbourBlockPushable(ctx, pos, axis, block))) {
                 grid = pos + axis;
                 return true;
             }
@@ -107,12 +107,43 @@ namespace Oshi {
             return true;
         }
 
+        public static bool TryGetNeighbourGoal(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out GoalEntity goal) {
+            var has = ctx.goalRepo.TryGetGoalByPos(pos + axis, out goal);
+            return has;
+        }
+
+        public static bool CheckNeighbourGoalPushable(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, GoalEntity goal) {
+            var allow = true;
+            var target = goal.PosInt + axis;
+
+            if (!goal.canPush) {
+                return false;
+            }
+
+            var len = goal.cellSlotComponent.TakeAll(out var cells);
+            for (int i = 0; i < len; i++) {
+                var cell = cells[i];
+                var cellPos = cell.LocalPosInt + target;
+                // Wall
+                allow &= ctx.wallRepo.Has(cellPos) == false;
+                // Block
+                allow &= ctx.blockRepo.Has(cellPos) == false;
+                // Goal
+                allow &= ctx.goalRepo.HasDifferent(cellPos, goal.entityIndex) == false;
+                // Terrain Wall
+                allow &= ctx.currentMapEntity.Terrain_HasWall(cellPos) == false;
+                // Constraint
+                allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
+            };
+            return allow;
+        }
+
         public static bool TryGetNeighbourBlock(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out BlockEntity block) {
             var has = ctx.blockRepo.TryGetBlockByPos(pos + axis, out block);
             return has;
         }
 
-        public static bool CheckNeighbourPushable(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, BlockEntity block) {
+        public static bool CheckNeighbourBlockPushable(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, BlockEntity block) {
             var allow = true;
             var target = block.PosInt + axis;
 

@@ -56,16 +56,26 @@ namespace Oshi {
                 }
             }
 
-            // No Push
+            // Push
+            //// - Push Block
             var hasBlock = GridUtils.TryGetNeighbourBlock(ctx, role.PosInt, role.Pos_GetDir(), out var block);
-            succ = hasBlock && GridUtils.CheckNeighbourPushable(ctx, role.PosInt, role.Pos_GetDir(), block);
-
-            if (!succ) {
-                role.FSM_EnterMoving(target, role.moveDurationSec);
+            succ = hasBlock && GridUtils.CheckNeighbourBlockPushable(ctx, role.PosInt, role.Pos_GetDir(), block);
+            if (succ) {
+                role.FSM_EnterMovingWithPush(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, EntityType.Block, block.entityIndex, block.PosInt);
                 return;
             }
-            // Push
-            role.FSM_EnterMoving(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, true, block.entityIndex, block.PosInt);
+            //// - Push Goal
+            var hasGoal = GridUtils.TryGetNeighbourGoal(ctx, role.PosInt, role.Pos_GetDir(), out var goal);
+            succ = hasGoal && GridUtils.CheckNeighbourGoalPushable(ctx, role.PosInt, role.Pos_GetDir(), goal);
+            if (succ) {
+                role.FSM_EnterMovingWithPush(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, EntityType.Goal, goal.entityIndex, goal.PosInt);
+                return;
+            }
+
+            // No Push
+            if (!succ) {
+                role.FSM_EnterMovingWithOutPush(target, role.moveDurationSec);
+            }
         }
 
         static void FixedTickFSM_Moving(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {

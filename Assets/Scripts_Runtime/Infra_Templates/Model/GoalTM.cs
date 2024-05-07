@@ -7,6 +7,7 @@ namespace Oshi {
     public class GoalTM : ScriptableObject {
 
         public int typeID;
+        public bool canPush;
         public string typeName;
         public Sprite mesh;
         public Color meshColor;

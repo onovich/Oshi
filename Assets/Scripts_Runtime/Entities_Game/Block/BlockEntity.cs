@@ -9,6 +9,8 @@ namespace Oshi {
         public int entityIndex;
         public int typeID;
         public string typeName;
+
+        // Is Fake
         public bool isFake;
 
         // Cell
