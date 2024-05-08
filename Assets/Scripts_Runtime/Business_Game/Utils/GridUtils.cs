@@ -79,6 +79,10 @@ namespace Oshi {
                     if (has) {
                         allow &= !CheckNeighbourGoalPushable(ctx, pos - axis, axis, goal);
                     }
+                    has = ctx.gateRepo.TryGetGateByPos(grid, out var gate);
+                    if (has) {
+                        allow &= CheckNextGateMovable(ctx, gate, axis);
+                    }
                 }
 
                 if (allow == false) {
