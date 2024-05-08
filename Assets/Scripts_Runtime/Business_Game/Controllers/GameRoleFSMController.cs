@@ -71,6 +71,13 @@ namespace Oshi {
                 role.FSM_EnterMovingWithPush(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, EntityType.Goal, goal.entityIndex, goal.PosInt);
                 return;
             }
+            //// - Push Gate
+            var hasGate = GridUtils.TryGetNeighbourGate(ctx, role.PosInt, role.Pos_GetDir(), out var gate);
+            succ = hasGate && GridUtils.CheckNeighbourGatePushable(ctx, role.PosInt, role.Pos_GetDir(), gate);
+            if (succ) {
+                role.FSM_EnterMovingWithPush(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, EntityType.Gate, gate.entityIndex, gate.PosInt);
+                return;
+            }
 
             // No Push
             if (!succ) {

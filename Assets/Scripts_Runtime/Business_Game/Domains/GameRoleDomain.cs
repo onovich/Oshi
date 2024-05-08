@@ -46,7 +46,9 @@ namespace Oshi {
                 PushBlock(ctx, role, isEnd, onEnd);
             } else if (entityType == EntityType.Goal) {
                 PushGoal(ctx, role, isEnd, onEnd);
-            }
+            } else if (entityType == EntityType.Gate) {
+                PushGate(ctx, role, isEnd, onEnd);
+            } 
 
         }
 
@@ -62,6 +64,22 @@ namespace Oshi {
             if (isEnd) {
                 var oldPos = fsm.moving_pushTargetStartPos;
                 ctx.goalRepo.UpdatePos(oldPos, goalEntity);
+                onEnd.Invoke();
+            }
+        }
+
+        static void PushGate(GameBusinessContext ctx, RoleEntity role, bool isEnd, Action onEnd) {
+            var fsm = role.fsmCom;
+            var gateIndex = fsm.moving_pushTargetIndex;
+            var has = ctx.gateRepo.TryGetGate(gateIndex, out var gateEntity);
+            if (!has) {
+                GLog.LogError($"Gate Not Found With Index: {gateIndex}");
+                return;
+            }
+            ApplyPushGate(ctx, role, gateEntity);
+            if (isEnd) {
+                var oldPos = fsm.moving_pushTargetStartPos;
+                ctx.gateRepo.UpdatePos(oldPos, gateEntity);
                 onEnd.Invoke();
             }
         }
@@ -103,6 +121,14 @@ namespace Oshi {
             var pos = goalEntity.Pos;
             pos += offset;
             goalEntity.Pos_SetPos(pos);
+        }
+
+        static void ApplyPushGate(GameBusinessContext ctx, RoleEntity role, GateEntity gateEntity) {
+            var lastPos = role.lastFramePos;
+            var offset = role.Pos - lastPos;
+            var pos = gateEntity.Pos;
+            pos += offset;
+            gateEntity.Pos_SetPos(pos);
         }
 
         static void ApplyPushBlock(GameBusinessContext ctx, RoleEntity role, BlockEntity blockEntity) {

@@ -37,8 +37,8 @@ namespace Oshi {
             allow &= ctx.currentMapEntity.Terrain_HasWall(pos + axis) == false;
             // Pushable Block
             if (allow) {
-                var has = TryGetNeighbourBlock(ctx, pos, axis, out var block);
-                if (has) {
+                var hasBlock = TryGetNeighbourBlock(ctx, pos, axis, out var block);
+                if (hasBlock) {
                     allow &= CheckNeighbourBlockPushable(ctx, pos, axis, block);
                 }
             }
@@ -105,6 +105,37 @@ namespace Oshi {
                 return false;
             }
             return true;
+        }
+
+        public static bool TryGetNeighbourGate(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out GateEntity gate) {
+            var has = ctx.gateRepo.TryGetGateByPos(pos + axis, out gate);
+            return has;
+        }
+
+        public static bool CheckNeighbourGatePushable(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, GateEntity gate) {
+            var allow = true;
+            var target = gate.PosInt + axis;
+
+            var len = gate.cellSlotComponent.TakeAll(out var cells);
+            for (int i = 0; i < len; i++) {
+                var cell = cells[i];
+                var cellPos = cell.LocalPosInt + target;
+                // Wall
+                allow &= ctx.wallRepo.Has(cellPos) == false;
+                // Block
+                allow &= ctx.blockRepo.Has(cellPos) == false;
+                // Goal
+                allow &= ctx.goalRepo.Has(cellPos) == false;
+                // Gate
+                allow &= ctx.gateRepo.HasDifferent(cellPos, gate.entityIndex) == false;
+                // Terrain Goal
+                allow &= ctx.currentMapEntity.Terrain_HasGoal(cellPos) == false;
+                // Terrain Wall
+                allow &= ctx.currentMapEntity.Terrain_HasWall(cellPos) == false;
+                // Constraint
+                allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
+            };
+            return allow;
         }
 
         public static bool TryGetNeighbourGoal(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out GoalEntity goal) {
