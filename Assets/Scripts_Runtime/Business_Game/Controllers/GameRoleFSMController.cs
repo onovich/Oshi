@@ -59,21 +59,21 @@ namespace Oshi {
             // Push
             //// - Push Block
             var hasBlock = GridUtils.TryGetNeighbourBlock(ctx, role.PosInt, role.Pos_GetDir(), out var block);
-            succ = hasBlock && GridUtils.CheckNeighbourBlockPushable(ctx, role.PosInt, role.Pos_GetDir(), block);
+            succ = hasBlock && GridUtils_Pushable.CheckBlockPushable(ctx, role.PosInt, role.Pos_GetDir(), block);
             if (succ) {
                 role.FSM_EnterMovingWithPush(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, EntityType.Block, block.entityIndex, block.PosInt);
                 return;
             }
             //// - Push Goal
             var hasGoal = GridUtils.TryGetNeighbourGoal(ctx, role.PosInt, role.Pos_GetDir(), out var goal);
-            succ = hasGoal && GridUtils.CheckNeighbourGoalPushable(ctx, role.PosInt, role.Pos_GetDir(), goal);
+            succ = hasGoal && GridUtils_Pushable.CheckGoalPushable(ctx, role.PosInt, role.Pos_GetDir(), goal);
             if (succ) {
                 role.FSM_EnterMovingWithPush(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, EntityType.Goal, goal.entityIndex, goal.PosInt);
                 return;
             }
             //// - Push Gate
             var hasGate = GridUtils.TryGetNeighbourGate(ctx, role.PosInt, role.Pos_GetDir(), out var gate);
-            succ = hasGate && GridUtils.CheckNeighbourGatePushable(ctx, role.PosInt, role.Pos_GetDir(), gate);
+            succ = hasGate && GridUtils_Pushable.CheckGatePushable(ctx, role.PosInt, role.Pos_GetDir(), gate);
             if (succ) {
                 role.FSM_EnterMovingWithPush(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, EntityType.Gate, gate.entityIndex, gate.PosInt);
                 return;
