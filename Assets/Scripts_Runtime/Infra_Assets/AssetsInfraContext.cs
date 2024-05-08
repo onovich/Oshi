@@ -56,6 +56,14 @@ namespace Oshi {
             return prefab;
         }
 
+        public GameObject Entity_GetGate() {
+            var has = Entity_TryGet("Entity_Gate", out var prefab);
+            if (!has) {
+                GLog.LogError($"Entity Gate not found");
+            }
+            return prefab;
+        }
+
         public GameObject Entity_GetSpike() {
             var has = Entity_TryGet("Entity_Spike", out var prefab);
             if (!has) {

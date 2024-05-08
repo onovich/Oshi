@@ -38,6 +38,7 @@ namespace Oshi.Modifier {
         [SerializeField] Transform goalGroup;
         [SerializeField] Transform spikeGroup;
         [SerializeField] Transform pathGroup;
+        [SerializeField] Transform gateGroup;
 
         [Button("Bake")]
         void Bake() {
@@ -52,6 +53,7 @@ namespace Oshi.Modifier {
             BakeGoal();
             BakeSpike();
             BakePath();
+            BakeGate();
 
             EditorUtility.SetDirty(mapTM);
             AssetDatabase.SaveAssets();
@@ -238,6 +240,36 @@ namespace Oshi.Modifier {
             mapTM.wallTMArr = wallTMArr.ToArray();
             mapTM.wallPosArr = wallPosArr.ToArray();
             mapTM.wallIndexArr = wallIndexArr.ToArray();
+        }
+
+        void BakeGate() {
+            var editors = gateGroup.GetComponentsInChildren<GateEditorEntity>();
+            if (editors == null || editors.Length == 0) {
+                mapTM.gateTMArr = null;
+                mapTM.gatePosArr = null;
+                mapTM.gateIndexArr = null;
+                mapTM.gateNextGateIndexArr = null;
+                return;
+            }
+            var gateTMArr = new List<GateTM>();
+            var gatePosArr = new List<Vector2Int>();
+            var gateIndexArr = new List<int>();
+            var gateNextGateIndexArr = new List<int>();
+            var index = 0;
+            foreach (var editor in editors) {
+                index += 1;
+                gateTMArr.Add(editor.gateTM);
+                gatePosArr.Add(editor.GetPosInt());
+                gateIndexArr.Add(index);
+                editor.Rename(index);
+            }
+            mapTM.gateTMArr = gateTMArr.ToArray();
+            mapTM.gatePosArr = gatePosArr.ToArray();
+            mapTM.gateIndexArr = gateIndexArr.ToArray();
+            foreach (var editor in editors) {
+                gateNextGateIndexArr.Add(editor.GetNextGateIndex());
+            }
+            mapTM.gateNextGateIndexArr = gateNextGateIndexArr.ToArray();
         }
 
         void BakeGoal() {

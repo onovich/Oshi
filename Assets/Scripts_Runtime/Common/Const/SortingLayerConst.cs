@@ -9,6 +9,7 @@ namespace Oshi {
         public const string Wall = "Wall";
         public const string Spike = "Spike";
         public const string Role = "Role";
+        public const string Gate = "Gate";
         public const string VFX = "VFX";
 
     }

@@ -18,6 +18,7 @@ namespace Oshi {
         public SpikeRepository spikeRepo;
         public WallRepository wallRepo;
         public GoalRepository goalRepo;
+        public GateRepository gateRepo;
         public PathRepository pathRepo;
 
         // App
@@ -57,6 +58,7 @@ namespace Oshi {
             spikeRepo = new SpikeRepository();
             wallRepo = new WallRepository();
             goalRepo = new GoalRepository();
+            gateRepo = new GateRepository();
             pathRepo = new PathRepository();
             hitResults = new RaycastHit2D[100];
         }

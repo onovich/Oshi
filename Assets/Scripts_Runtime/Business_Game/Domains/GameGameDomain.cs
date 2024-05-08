@@ -106,6 +106,21 @@ namespace Oshi {
                 }
             }
 
+            // Gate 
+            var gateTMArr = mapTM.gateTMArr;
+            var gatePosArr = mapTM.gatePosArr;
+            var gateIndexArr = mapTM.gateIndexArr;
+            var gateNextGateIndexArr = mapTM.gateNextGateIndexArr;
+            if (gateTMArr != null) {
+                for (int i = 0; i < gateTMArr.Length; i++) {
+                    var gateTM = gateTMArr[i];
+                    var pos = gatePosArr[i];
+                    var index = gateIndexArr[i];
+                    var nextGateIndex = gateNextGateIndexArr[i];
+                    var _ = GameGateDomain.Spawn(ctx, gateTM.typeID, index, pos, nextGateIndex);
+                }
+            }
+
             // Path
             var pathTMArr = mapTM.pathTMArr;
             var pathIndexArr = mapTM.pathIndexArr;
@@ -357,6 +372,13 @@ namespace Oshi {
                 GameSpikeDomain.UnSpawn(ctx, spike);
             }
 
+            // Gate
+            int gateLen = ctx.gateRepo.TakeAll(out var gateArr);
+            for (int i = 0; i < gateLen; i++) {
+                var gate = gateArr[i];
+                GameGateDomain.UnSpawn(ctx, gate);
+            }
+
             // Path
             int pathLen = ctx.pathRepo.TakeAll(out var pathArr);
             for (int i = 0; i < pathLen; i++) {
@@ -370,7 +392,6 @@ namespace Oshi {
             // UI
             UIApp.GameOver_Close(ctx.uiContext);
             UIApp.GameInfo_Close(ctx.uiContext);
-
         }
 
     }

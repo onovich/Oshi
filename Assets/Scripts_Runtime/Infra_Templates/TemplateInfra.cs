@@ -88,6 +88,15 @@ namespace Oshi {
             }
 
             {
+                var handle = Addressables.LoadAssetsAsync<GateTM>("TM_Gate", null);
+                var gateList = await handle.Task;
+                foreach (var tm in gateList) {
+                    ctx.Gate_Add(tm);
+                }
+                ctx.gateHandle = handle;
+            }
+
+            {
                 var handle = Addressables.LoadAssetAsync<SoundTable>("Table_Sound");
                 var soundTable = await handle.Task;
                 ctx.SoundTable_Set(soundTable);
@@ -123,6 +132,9 @@ namespace Oshi {
             }
             if (ctx.terrainHandle.IsValid()) {
                 Addressables.Release(ctx.terrainHandle);
+            }
+            if (ctx.gateHandle.IsValid()) {
+                Addressables.Release(ctx.gateHandle);
             }
             if (ctx.soundTableHandle.IsValid()) {
                 Addressables.Release(ctx.soundTableHandle);

@@ -59,6 +59,9 @@ TagManager:
   - name: Spike
     uniqueID: 1132230647
     locked: 0
+  - name: Gate
+    uniqueID: 1114305817
+    locked: 0
   - name: Role
     uniqueID: 1601092365
     locked: 0

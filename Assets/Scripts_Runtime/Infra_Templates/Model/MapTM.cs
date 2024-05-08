@@ -50,6 +50,12 @@ namespace Oshi {
         public SpikeTM[] spikeTMArr;
         public Vector2Int[] spikePosArr;
 
+        [Header("Gate")]
+        public int[] gateIndexArr;
+        public GateTM[] gateTMArr;
+        public Vector2Int[] gatePosArr;
+        public int[] gateNextGateIndexArr;
+
         [Header("Path")]
         public int[] pathIndexArr;
         public PathTM[] pathTMArr;

@@ -34,6 +34,9 @@ namespace Oshi {
         Dictionary<int, TerrainTM> terrainDict;
         public AsyncOperationHandle terrainHandle;
 
+        Dictionary<int, GateTM> gateDict;
+        public AsyncOperationHandle gateHandle;
+
         SoundTable soundTable;
         public AsyncOperationHandle soundTableHandle;
 
@@ -45,6 +48,7 @@ namespace Oshi {
             goalDict = new Dictionary<int, GoalTM>();
             spikeDict = new Dictionary<int, SpikeTM>();
             pathDict = new Dictionary<int, PathTM>();
+            gateDict = new Dictionary<int, GateTM>();
             terrainDict = new Dictionary<int, TerrainTM>();
         }
 
@@ -168,6 +172,19 @@ namespace Oshi {
             return has;
         }
 
+        // Gate
+        public void Gate_Add(GateTM gate) {
+            gateDict.Add(gate.typeID, gate);
+        }
+
+        public bool Gate_TryGet(int typeID, out GateTM gate) {
+            var has = gateDict.TryGetValue(typeID, out gate);
+            if (!has) {
+                GLog.LogError($"Gate {typeID} not found");
+            }
+            return has;
+        }
+
         // Sound
         public void SoundTable_Set(SoundTable soundTable) {
             this.soundTable = soundTable;
@@ -187,6 +204,7 @@ namespace Oshi {
             goalDict.Clear();
             spikeDict.Clear();
             pathDict.Clear();
+            gateDict.Clear();
             terrainDict.Clear();
         }
 

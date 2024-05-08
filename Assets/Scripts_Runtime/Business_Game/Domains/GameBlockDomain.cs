@@ -21,7 +21,7 @@ namespace Oshi {
             shape.ForEachCell((localPos) => {
                 cellIndex++;
                 var cellPos = pos + localPos;
-                var cell = GameCellDomain.Spawn(ctx, blockTM.showNumber, cellPos);
+                var cell = GameCellDomain.Spawn(ctx, blockTM.showNumber, cellPos, block.cellRoot);
                 cell.SetSpr(blockTM.mesh);
                 cell.SetSortingLayer(SortingLayerConst.Block);
                 cell.SetSprColor(blockTM.meshColor);

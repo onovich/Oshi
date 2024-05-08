@@ -7,6 +7,7 @@ namespace Oshi {
         Goal = 3,
         Spike = 4,
         Role = 5,
+        Gate = 6,
     }
 
 }

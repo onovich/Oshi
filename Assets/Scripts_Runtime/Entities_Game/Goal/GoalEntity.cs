@@ -20,7 +20,7 @@ namespace Oshi {
         public Color numberColor;
 
         // Cell
-        [SerializeField] Transform cellRoot;
+        [SerializeField] public Transform cellRoot;
         public CellSlotComponent cellSlotComponent;
 
         // Shape

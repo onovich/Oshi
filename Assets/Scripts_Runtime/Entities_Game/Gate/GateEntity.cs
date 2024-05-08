@@ -10,17 +10,10 @@ namespace Oshi {
         public int typeID;
         public string typeName;
 
-        // Can Push
-        public bool canPush;
-
-        // Goal Number
-        public int number;
-        public bool showNumber;
-        public Material numberMaterial;
-        public Color numberColor;
+        public int nextGateIndex;
 
         // Cell
-        [SerializeField] Transform cellRoot;
+        [SerializeField] public Transform cellRoot;
         public CellSlotComponent cellSlotComponent;
 
         // Shape

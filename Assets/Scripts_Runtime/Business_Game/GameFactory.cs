@@ -236,6 +236,55 @@ namespace Oshi {
             return wall;
         }
 
+        public static GateEntity Gate_Spawn(TemplateInfraContext templateInfraContext,
+                                 AssetsInfraContext assetsInfraContext,
+                                 int typeID,
+                                 int index,
+                                 Vector2Int pos,
+                                 int nextGateIndex) {
+
+            var has = templateInfraContext.Gate_TryGet(typeID, out var gateTM);
+            if (!has) {
+                GLog.LogError($"Gate {typeID} not found");
+            }
+
+            var prefab = assetsInfraContext.Entity_GetGate();
+            var gate = GameObject.Instantiate(prefab).GetComponent<GateEntity>();
+            gate.Ctor();
+
+            // Base Info
+            gate.typeID = typeID;
+            gate.entityIndex = index;
+            gate.typeName = gateTM.typeName;
+
+            // Rename
+            gate.gameObject.name = $"Gate - {gate.typeName} - {gate.entityIndex}";
+
+            // Set Pos
+            gate.Pos_SetPos(pos);
+
+            // Set Models
+            for (int i = 0; i < gateTM.shapeArr.Length; i++) {
+                var shapeTM = gateTM.shapeArr[i];
+                var shape = new Vector2Int[shapeTM.cells.Length];
+                shapeTM.ForEachCells((index, localPos) => {
+                    shape[index] = localPos;
+                });
+                var shapeModel = new ShapeModel {
+                    index = i,
+                    shape = shape,
+                    sizeInt = shapeTM.sizeInt,
+                    centerFloat = shapeTM.GetCenterFloat()
+                };
+                gate.shapeComponent.Add(shapeModel);
+            }
+
+            // Set Next Gate
+            gate.nextGateIndex = nextGateIndex;
+
+            return gate;
+        }
+
         public static BlockEntity Block_Spawn(TemplateInfraContext templateInfraContext,
                                  AssetsInfraContext assetsInfraContext,
                                  int typeID,
@@ -302,12 +351,13 @@ namespace Oshi {
         public static CellMod Cell_Spawn(bool showNumber,
                                          IDRecordService idRecordService,
                                          AssetsInfraContext assetsInfraContext,
-                                         Vector2Int pos) {
+                                         Vector2Int pos,
+                                         Transform root) {
 
             var prefab = showNumber ?
             assetsInfraContext.Mod_GetNumberCell() :
             assetsInfraContext.Mod_GetCell();
-            var cell = GameObject.Instantiate(prefab).GetComponent<CellMod>();
+            var cell = GameObject.Instantiate(prefab, root).GetComponent<CellMod>();
             cell.Ctor();
 
             // Set Pos

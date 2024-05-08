@@ -56,6 +56,14 @@ MonoBehaviour:
   spikePosArr:
   - {x: -5, y: -2}
   - {x: -7, y: -1}
+  gateIndexArr: 0100000002000000
+  gateTMArr:
+  - {fileID: 11400000, guid: 39c20eda8a965419d83f25d326520700, type: 2}
+  - {fileID: 11400000, guid: 9199abeef875e4316bc95f30c4f0b4f2, type: 2}
+  gatePosArr:
+  - {x: 5, y: 2}
+  - {x: 1, y: 3}
+  gateNextGateIndexArr: 0200000001000000
   pathIndexArr: 01000000
   pathTMArr:
   - {fileID: 11400000, guid: ae875a6e88f13409680f258d73af9ac5, type: 2}
