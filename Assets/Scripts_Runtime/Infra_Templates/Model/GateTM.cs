@@ -8,11 +8,6 @@ namespace Oshi {
 
         public int typeID;
         public string typeName;
-        public bool canPush;
-        public int number;
-        public bool showNumber;
-        public Material numberMaterial;
-        public Color numberColor;
         public Sprite mesh;
         public Color meshColor;
         public Material meshMaterial;

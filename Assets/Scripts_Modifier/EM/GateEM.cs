@@ -18,15 +18,6 @@ namespace Oshi.Modifier {
         public int typeID;
         public string typeName;
 
-        [Header("Can Push")]
-        public bool canPush;
-
-        [Header("Gate Number")]
-        public int number;
-        public bool showNumber;
-        public Material numberMaterial;
-        public UnityEngine.Color numberColor;
-
         [Header("Gate Mesh")]
         public Sprite mesh;
         public UnityEngine.Color color;
@@ -39,11 +30,6 @@ namespace Oshi.Modifier {
         void Load() {
             typeID = gateTM.typeID;
             typeName = gateTM.typeName;
-            canPush = gateTM.canPush;
-            number = gateTM.number;
-            showNumber = gateTM.showNumber;
-            numberMaterial = gateTM.numberMaterial;
-            numberColor = gateTM.numberColor;
             mesh = gateTM.mesh;
             color = gateTM.meshColor;
             meshMaterial = gateTM.meshMaterial;
@@ -76,11 +62,6 @@ namespace Oshi.Modifier {
         void Bake() {
             gateTM.typeID = typeID;
             gateTM.typeName = typeName;
-            gateTM.canPush = canPush;
-            gateTM.number = number;
-            gateTM.showNumber = showNumber;
-            gateTM.numberMaterial = numberMaterial;
-            gateTM.numberColor = numberColor;
             gateTM.mesh = mesh;
             gateTM.meshColor = color;
             gateTM.meshMaterial = meshMaterial;
