@@ -71,6 +71,7 @@ namespace Oshi {
             wallRepo.Clear();
             goalRepo.Clear();
             pathRepo.Clear();
+            gateRepo.Clear();
         }
 
         // Role

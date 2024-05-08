@@ -73,15 +73,20 @@ namespace Oshi {
                 allow &= ctx.currentMapEntity.Terrain_HasWall(grid) == false;
                 // Block
                 allow &= ctx.blockRepo.Has(grid) == false;
-                // Goal
                 if (allow) {
+                    // Goal
                     var has = ctx.goalRepo.TryGetGoalByPos(grid, out var goal);
                     if (has) {
                         allow &= !CheckNeighbourGoalPushable(ctx, pos - axis, axis, goal);
                     }
+                    // Gate
                     has = ctx.gateRepo.TryGetGateByPos(grid, out var gate);
                     if (has) {
-                        allow &= CheckNextGateMovable(ctx, gate, axis);
+                        allow &= !CheckNextGateMovable(ctx, gate, axis);
+                        if (allow == false) {
+                            return true;
+                        }
+                        allow &= !CheckNeighbourGatePushable(ctx, pos - axis, axis, gate);
                     }
                 }
 
@@ -151,6 +156,11 @@ namespace Oshi {
                 // Constraint
                 allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
             };
+            if (allow) {
+                Debug.Log("Gate Not Pushable: Axis " + axis);
+            } else {
+                Debug.Log("Gate Pushable: Axis " + axis);
+            }
             return allow;
         }
 
