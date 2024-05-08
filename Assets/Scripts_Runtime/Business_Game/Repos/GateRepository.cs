@@ -58,8 +58,8 @@ namespace Oshi {
             });
         }
 
-        public bool TryGetGate(int entityID, out GateEntity gate) {
-            return all.TryGetValue(entityID, out gate);
+        public bool TryGetGate(int index, out GateEntity gate) {
+            return all.TryGetValue(index, out gate);
         }
 
         public bool TryGetGateByPos(Vector2Int pos, out GateEntity gate){

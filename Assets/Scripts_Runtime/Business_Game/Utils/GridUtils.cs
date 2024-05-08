@@ -82,16 +82,6 @@ namespace Oshi {
             }
         }
 
-        public static bool CheckMovable(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis) {
-            // Constraint
-            var allow = CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, pos, axis);
-            // Wall
-            allow &= ctx.wallRepo.Has(pos + axis) == false;
-            // Terrain Wall
-            allow &= ctx.currentMapEntity.Terrain_HasWall(pos + axis) == false;
-            return allow;
-        }
-
         public static bool CheckConstraint(Vector2 constraintSize, Vector2 constraintCenter, Vector2 pos, Vector2 axis) {
             var offset = Vector2.zero;
             offset.x = 1 - constraintSize.x % 2;
@@ -114,9 +104,24 @@ namespace Oshi {
 
         public static bool CheckNeighbourGatePushable(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, GateEntity gate) {
             var allow = true;
-            var target = gate.PosInt + axis;
+            allow &= !CheckNextGateMovable(ctx, gate, axis);
+            return allow;
+        }
 
-            var len = gate.cellSlotComponent.TakeAll(out var cells);
+        public static bool CheckNextGateMovable(GameBusinessContext ctx, GateEntity gate, Vector2Int axis) {
+            var allow = true;
+            var nextIndex = gate.nextGateIndex;
+            if (nextIndex == -1) {
+                return true;
+            }
+            var has = ctx.gateRepo.TryGetGate(nextIndex, out var nextGate);
+            if (!has) {
+                GLog.LogError($"Gate {nextIndex} not found");
+                return true;
+            }
+
+            var target = nextGate.PosInt + axis;
+            var len = nextGate.cellSlotComponent.TakeAll(out var cells);
             for (int i = 0; i < len; i++) {
                 var cell = cells[i];
                 var cellPos = cell.LocalPosInt + target;
@@ -127,7 +132,7 @@ namespace Oshi {
                 // Goal
                 allow &= ctx.goalRepo.Has(cellPos) == false;
                 // Gate
-                allow &= ctx.gateRepo.HasDifferent(cellPos, gate.entityIndex) == false;
+                allow &= ctx.gateRepo.HasDifferent(cellPos, nextGate.entityIndex) == false;
                 // Terrain Goal
                 allow &= ctx.currentMapEntity.Terrain_HasGoal(cellPos) == false;
                 // Terrain Wall
