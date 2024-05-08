@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1e22956f2334251b773b2a1967c65b, type: 3}
+  m_Name: SO_Map_100
+  m_EditorClassIdentifier: 
+  typeID: 100
+  typeName: Test
+  nextMapTypeID: 0
+  isLastMap: 0
+  weatherType: 1
+  limitedByTime: 0
+  gameTotalTime: 0
+  limitedByStep: 0
+  gameTotalStep: 0
+  ownerRoleTypeID: 1
+  mapSize: {x: 8, y: 8}
+  spawnPoint: {x: 0, y: 0}
+  blockIndexArr: 010000000200000003000000
+  blockTMArr:
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 459b34d0c218242f58ceb0e54051e7c6, type: 2}
+  blockPosArr:
+  - {x: 2, y: 3}
+  - {x: 0, y: -1}
+  - {x: -2, y: 2}
+  wallIndexArr: 
+  wallTMArr: []
+  wallPosArr: []
+  goalIndexArr: 0100000002000000
+  goalTMArr:
+  - {fileID: 11400000, guid: 08f8bb6e5895d4c2cba006d18e5794c6, type: 2}
+  - {fileID: 11400000, guid: 503dfa0f16cb249cea76b6420e9d29c6, type: 2}
+  goalPosArr:
+  - {x: -4, y: 3}
+  - {x: 1, y: 2}
+  spikeIndexArr: 01000000
+  spikeTMArr:
+  - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}
+  spikePosArr:
+  - {x: -4, y: -1}
+  gateIndexArr: 0100000002000000
+  gateTMArr:
+  - {fileID: 11400000, guid: 39c20eda8a965419d83f25d326520700, type: 2}
+  - {fileID: 11400000, guid: 9199abeef875e4316bc95f30c4f0b4f2, type: 2}
+  gatePosArr:
+  - {x: -2, y: -4}
+  - {x: 0, y: 3}
+  gateNextGateIndexArr: 0200000001000000
+  pathIndexArr: 01000000
+  pathTMArr:
+  - {fileID: 11400000, guid: ae875a6e88f13409680f258d73af9ac5, type: 2}
+  pathSpawnTMArr:
+  - pathNodeArr:
+    - {x: -4, y: -1, z: 0}
+    - {x: -4, y: -2, z: 0}
+  pathTravelerTypeArr: 04000000
+  pathTravelerIndexArr: 01000000
+  pathIsCircleLoopArr: 00
+  pathIsPingPongLoopArr: 01
+  pathTravelerHalfSizeArr:
+  - {x: 0.5, y: 0.5}
+  terrainWallSpawnPosArr:
+  - {x: 3, y: -4, z: 0}
+  - {x: 3, y: -3, z: 0}
+  terrainWallTMArr:
+  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
+  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
+  terrainSpikeSpawnPosArr: []
+  terrainSpikeTMArr: []
+  terrainGoalSpawnPosArr: []
+  terrainGoalTMArr: []
+  cameraConfinerWorldMax: {x: 30, y: 20}
+  cameraConfinerWorldMin: {x: -30, y: -20}

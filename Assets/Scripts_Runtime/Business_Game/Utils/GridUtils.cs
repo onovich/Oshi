@@ -73,6 +73,13 @@ namespace Oshi {
                 allow &= ctx.currentMapEntity.Terrain_HasWall(grid) == false;
                 // Block
                 allow &= ctx.blockRepo.Has(grid) == false;
+                // Goal
+                if (allow) {
+                    var has = ctx.goalRepo.TryGetGoalByPos(grid, out var goal);
+                    if (has) {
+                        allow &= !CheckNeighbourGoalPushable(ctx, pos - axis, axis, goal);
+                    }
+                }
 
                 if (allow == false) {
                     grid -= axis;
