@@ -57,7 +57,7 @@ namespace Oshi {
                 }
                 var start = path.GetCurrentNode();
                 var end = path.GetNextNode();
-                var count = GridUtils.GetCoveredStraightGrid(start, end, GridUtils.temp);
+                var count = GridUtils.GetPathCoveredGrid(start, end, GridUtils.temp);
                 for (int i = 0; i < count; i++) {
                     var point = GridUtils.temp[i];
                     allow &= CheckSpikeMovable(ctx, path, spike, point);

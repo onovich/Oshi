@@ -16,7 +16,7 @@ namespace Oshi {
             }
         }
 
-        public static int GetCoveredStraightGrid(Vector2Int start, Vector2Int end, Vector2Int[] result) {
+        public static int GetPathCoveredGrid(Vector2Int start, Vector2Int end, Vector2Int[] result) {
             var dir = end - start;
             for (int i = 0; i < dir.x; i++) {
                 result[i] = new Vector2Int(start.x + i, start.y);
@@ -27,18 +27,16 @@ namespace Oshi {
             return dir.x + dir.y;
         }
 
-        public static bool TryGetNeighbourWalkableGrid(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out Vector2Int grid) {
+        public static bool TryGetNextWalkableGrid(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out Vector2Int grid) {
             grid = pos + axis;
             // Constraint
             var allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, pos, axis)
-            &&
             // No Hard Prop
-            (!GridUtils_Has.HasWall(ctx, grid)
-            // Has Soft Prop OR Empty
-            && GridUtils_Has.HasSoftProp(ctx, grid, axis)
-            // Has Pushable Prop
+            && !GridUtils_Has.HasHardProp(ctx, grid, axis)
+            // Has Soft Prop / Pushable Prop / No Prop
+            &&
+            (GridUtils_Has.HasSoftProp(ctx, grid, axis)
             || GridUtils_Has.HasPushableProp(ctx, grid, axis)
-            // Empty
             || GridUtils_Has.HasNoProp(ctx, grid));
             return allow;
         }
@@ -53,12 +51,11 @@ namespace Oshi {
                 grid += axis;
                 allow &=
                 // No Hard Prop
-                (!GridUtils_Has.HasWall(ctx, grid)
-                // Has Soft Prop OR Empty
-                && GridUtils_Has.HasSoftProp(ctx, grid, axis)
-                // Has Pushable Prop
+                !GridUtils_Has.HasHardProp(ctx, grid, axis)
+                // Has Soft Prop / Pushable Prop / No Prop
+                &&
+                (GridUtils_Has.HasSoftProp(ctx, grid, axis)
                 || GridUtils_Has.HasPushableProp(ctx, grid, axis)
-                // Empty
                 || GridUtils_Has.HasNoProp(ctx, grid));
                 if (!allow) {
                     grid -= axis;

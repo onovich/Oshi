@@ -27,7 +27,30 @@ namespace Oshi {
             return !has;
         }
 
-        public static bool HasWall(GameBusinessContext ctx, Vector2Int pos) {
+        public static bool HasDifferentGoal(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, int goalIndex) {
+            var has =
+            ctx.goalRepo.HasDifferent(pos, goalIndex)
+
+            || ctx.currentMapEntity.Terrain_HasGoal(pos);
+            return has;
+        }
+
+        public static bool HasDifferentBlock(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, int blockIndex) {
+            var has =
+            ctx.blockRepo.HasDifferent(pos, blockIndex);
+            return has;
+        }
+
+        public static bool HasHardProp(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis) {
+            var has = ctx.wallRepo.Has(pos)
+            || ctx.currentMapEntity.Terrain_HasWall(pos)
+
+            || ctx.blockRepo.TryGetBlockByPos(pos, out var block)
+            && GridUtils_Pushable.CheckBlockPushable(ctx, pos, Vector2Int.zero, block);
+            return has;
+        }
+
+        public static bool HasHardPropWithoutBlock(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis) {
             var has = ctx.wallRepo.Has(pos)
             || ctx.currentMapEntity.Terrain_HasWall(pos);
             return has;

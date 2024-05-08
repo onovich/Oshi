@@ -22,17 +22,16 @@ namespace Oshi {
             for (int i = 0; i < len; i++) {
                 var cell = cells[i];
                 var cellPos = cell.LocalPosInt + target;
-                // No Prop
-                var allow = GridUtils_Has.HasNoProp(ctx, cellPos)
+                // Constraint
+                var allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis)
                 // No Wall
-                || (GridUtils_Has.HasWall(ctx, cellPos) == false)
-                // No Soft Goal
-                && GridUtils_Different.Goal(ctx, cellPos, axis, goal.entityIndex) == false
+                && (GridUtils_Has.HasHardProp(ctx, cellPos, axis) == false)
+                // No Soft Goal 
+                && GridUtils_Has.HasDifferentGoal(ctx, cellPos, axis, goal.entityIndex) == false
                 // No Soft Prop
                 && GridUtils_Has.HasSoftPropWithoutGoal(ctx, cellPos, axis) == false
-
-                // Constraint
-                && GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
+                // No Prop
+                || GridUtils_Has.HasNoProp(ctx, cellPos);
                 if (!allow) {
                     return false;
                 }
@@ -50,9 +49,9 @@ namespace Oshi {
                 // No Prop
                 var allow = GridUtils_Has.HasNoProp(ctx, cellPos)
                 // No Wall
-                || (GridUtils_Has.HasWall(ctx, cellPos) == false)
+                || (GridUtils_Has.HasHardProp(ctx, cellPos, axis) == false)
                 // No Block
-                && GridUtils_Different.Block(ctx, cellPos, axis, block.entityIndex) == false
+                && GridUtils_Has.HasDifferentBlock(ctx, cellPos, axis, block.entityIndex) == false
                 // No Soft
                 && GridUtils_Has.HasSoftProp(ctx, cellPos, axis) == false
                 // Constraint

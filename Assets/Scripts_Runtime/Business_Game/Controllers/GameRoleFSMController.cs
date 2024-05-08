@@ -50,7 +50,7 @@ namespace Oshi {
                     return;
                 }
             } else {
-                succ = GridUtils.TryGetNeighbourWalkableGrid(ctx, role.PosInt, role.Pos_GetDir(), out target);
+                succ = GridUtils.TryGetNextWalkableGrid(ctx, role.PosInt, role.Pos_GetDir(), out target);
                 if (!succ) {
                     return;
                 }
