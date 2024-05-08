@@ -21,7 +21,7 @@ namespace Oshi {
             shape.ForEachCell((localPos) => {
                 cellIndex++;
                 var cellPos = pos + localPos;
-                var cell = GameCellDomain.Spawn(ctx, cellPos);
+                var cell = GameCellDomain.Spawn(ctx, blockTM.showNumber, cellPos);
                 cell.SetSpr(blockTM.mesh);
                 cell.SetSortingLayer(SortingLayerConst.Block);
                 cell.SetSprColor(blockTM.meshColor);
@@ -32,6 +32,7 @@ namespace Oshi {
             });
 
             ApplyBloom(ctx, block);
+            SetNumber(ctx, block);
             ctx.blockRepo.Add(block);
             return block;
         }
@@ -39,6 +40,18 @@ namespace Oshi {
         public static void UnSpawn(GameBusinessContext ctx, BlockEntity block) {
             ctx.blockRepo.Remove(block);
             block.TearDown();
+        }
+
+        static void SetNumber(GameBusinessContext ctx, BlockEntity block) {
+            if (!block.showNumber) {
+                return;
+            }
+            var number = block.number;
+            block.cellSlotComponent.ForEach((index, mod) => {
+                mod.SetNumber(number);
+                mod.SetNumberMaterial(block.numberMaterial);
+                mod.SetNumberColor(block.numberColor);
+            });
         }
 
         public static void ApplyBloom(GameBusinessContext ctx, BlockEntity block) {

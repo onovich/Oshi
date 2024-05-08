@@ -24,15 +24,13 @@ MonoBehaviour:
   ownerRoleTypeID: 1
   mapSize: {x: 20, y: 10}
   spawnPoint: {x: 0, y: 0}
-  blockIndexArr: 0100000002000000030000000400000005000000
+  blockIndexArr: 01000000020000000300000004000000
   blockTMArr:
   - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
   - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
-  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
-  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1508424567f104ecc94aff14fec1fc94, type: 2}
   - {fileID: 11400000, guid: 459b34d0c218242f58ceb0e54051e7c6, type: 2}
   blockPosArr:
-  - {x: 2, y: 2}
   - {x: -5, y: 2}
   - {x: -3, y: 1}
   - {x: -5, y: 0}
@@ -42,13 +40,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 164f8d450169043389c59f12bb12963f, type: 2}
   wallPosArr:
   - {x: 2, y: -2}
-  goalIndexArr: 0100000002000000
+  goalIndexArr: 010000000200000003000000
   goalTMArr:
-  - {fileID: 11400000, guid: df7a47281712845798ed4565588d236d, type: 2}
+  - {fileID: 11400000, guid: d025f642399bd4a2595a54d12dd08a16, type: 2}
+  - {fileID: 11400000, guid: 08f8bb6e5895d4c2cba006d18e5794c6, type: 2}
   - {fileID: 11400000, guid: 503dfa0f16cb249cea76b6420e9d29c6, type: 2}
   goalPosArr:
   - {x: -8, y: 1}
-  - {x: -4, y: 3}
+  - {x: -8, y: 2}
+  - {x: -7, y: 3}
   spikeIndexArr: 0100000002000000
   spikeTMArr:
   - {fileID: 11400000, guid: 1accb5851771b4545959661a3a2dce79, type: 2}

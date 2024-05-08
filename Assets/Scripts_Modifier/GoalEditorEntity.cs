@@ -33,6 +33,13 @@ namespace Oshi.Modifier {
                 var pos = GetPosInt();
                 foreach (var cell in shape.cells) {
                     Gizmos.DrawGUITexture(new Rect(cell.x + pos.x, cell.y + pos.y, 1, 1), goalTM.mesh.texture, 0, 0, 0, 0);
+                    if (goalTM.showNumber) {
+                        GUIStyle labelStyle = new GUIStyle();
+                        labelStyle.fontSize = 20;
+                        labelStyle.normal.textColor = Color.white;
+                        Vector3 labelPosition = transform.position + new Vector3(0.2f, .8f, 0f) + new Vector3(cell.x, cell.y, 0f);
+                        Handles.Label(labelPosition, goalTM.number.ToString(), labelStyle);
+                    }
                 }
             }
         }

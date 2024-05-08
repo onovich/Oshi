@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   spr: {fileID: 8458074101075794356}
+  textMesh: {fileID: 0}
 --- !u!1 &8978179738595758578
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +126,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 18.28, y: 12.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

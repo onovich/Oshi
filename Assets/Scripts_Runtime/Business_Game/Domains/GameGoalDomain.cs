@@ -21,7 +21,7 @@ namespace Oshi {
             shape.ForEachCell((localPos) => {
                 cellIndex++;
                 var cellPos = pos + localPos;
-                var cell = GameCellDomain.Spawn(ctx, cellPos);
+                var cell = GameCellDomain.Spawn(ctx, goalTM.showNumber, cellPos);
                 cell.SetSpr(goalTM.mesh);
                 cell.SetSortingLayer(SortingLayerConst.Goal);
                 cell.SetSprColor(goalTM.meshColor);
@@ -32,12 +32,25 @@ namespace Oshi {
             });
 
             ctx.goalRepo.Add(goal);
+            SetNumber(ctx, goal);
             return goal;
         }
 
         public static void UnSpawn(GameBusinessContext ctx, GoalEntity goal) {
             ctx.goalRepo.Remove(goal);
             goal.TearDown();
+        }
+
+        static void SetNumber(GameBusinessContext ctx, GoalEntity goal) {
+            if (!goal.showNumber) {
+                return;
+            }
+            var number = goal.number;
+            goal.cellSlotComponent.ForEach((index, mod) => {
+                mod.SetNumber(number);
+                mod.SetNumberMaterial(goal.numberMaterial);
+                mod.SetNumberColor(goal.numberColor);
+            });
         }
 
     }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using TMPro;
 
 namespace Oshi {
 
@@ -7,10 +8,25 @@ namespace Oshi {
 
         public int index;
         [SerializeField] SpriteRenderer spr;
+        [SerializeField] TextMeshProUGUI textMesh;
+        [SerializeField] Canvas canvas;
+
         public Vector2Int LocalPosInt => Pos_GetLocalPosInt();
 
         public void Ctor() {
 
+        }
+
+        public void SetNumberMaterial(Material material) {
+            textMesh.material = material;
+        }
+
+        public void SetNumberColor(Color color) {
+            textMesh.color = color;
+        }
+
+        public void SetNumber(int number) {
+            textMesh.text = number.ToString();
         }
 
         public void Pos_SetPosInt(Vector2Int pos) {
@@ -31,6 +47,9 @@ namespace Oshi {
 
         public void SetSortingLayer(string sortingLayerName) {
             spr.sortingLayerName = sortingLayerName;
+            if (canvas != null) {
+                canvas.sortingLayerName = sortingLayerName;
+            }
         }
 
         public void SetSpr(Sprite spr) {

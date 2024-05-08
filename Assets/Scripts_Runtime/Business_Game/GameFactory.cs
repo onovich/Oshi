@@ -157,9 +157,11 @@ namespace Oshi {
             // Can Push
             goal.canPush = goalTM.canPush;
 
-             // Goal Number
+            // Goal Number
             goal.number = goalTM.number;
             goal.showNumber = goalTM.showNumber;
+            goal.numberMaterial = goalTM.numberMaterial;
+            goal.numberColor = goalTM.numberColor;
 
             // Rename
             goal.gameObject.name = $"Goal - {goal.typeName} - {goal.entityIndex}";
@@ -260,6 +262,8 @@ namespace Oshi {
             // Block Number
             block.number = blockTM.number;
             block.showNumber = blockTM.showNumber;
+            block.numberMaterial = blockTM.numberMaterial;
+            block.numberColor = blockTM.numberColor;
 
             // Rename
             block.gameObject.name = $"Block - {block.typeName} - {block.entityIndex}";
@@ -295,11 +299,14 @@ namespace Oshi {
             return block;
         }
 
-        public static CellMod Cell_Spawn(IDRecordService idRecordService,
-                                               AssetsInfraContext assetsInfraContext,
-                                               Vector2Int pos) {
+        public static CellMod Cell_Spawn(bool showNumber,
+                                         IDRecordService idRecordService,
+                                         AssetsInfraContext assetsInfraContext,
+                                         Vector2Int pos) {
 
-            var prefab = assetsInfraContext.Mod_GetCell();
+            var prefab = showNumber ?
+            assetsInfraContext.Mod_GetNumberCell() :
+            assetsInfraContext.Mod_GetCell();
             var cell = GameObject.Instantiate(prefab).GetComponent<CellMod>();
             cell.Ctor();
 

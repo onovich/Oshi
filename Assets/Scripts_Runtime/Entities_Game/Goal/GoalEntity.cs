@@ -16,6 +16,8 @@ namespace Oshi {
         // Goal Number
         public int number;
         public bool showNumber;
+        public Material numberMaterial;
+        public Color numberColor;
 
         // Cell
         [SerializeField] Transform cellRoot;
