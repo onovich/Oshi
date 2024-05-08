@@ -181,6 +181,8 @@ namespace Oshi {
                 allow &= ctx.currentMapEntity.Terrain_HasGoal(cellPos) == false;
                 // Terrain Wall
                 allow &= ctx.currentMapEntity.Terrain_HasWall(cellPos) == false;
+                // Gate
+                allow &= ctx.gateRepo.Has(cellPos) == false;
                 // Constraint
                 allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
             };
@@ -206,6 +208,8 @@ namespace Oshi {
                 allow &= ctx.blockRepo.HasDifferent(cellPos, block.entityIndex) == false;
                 // Terrain Wall
                 allow &= ctx.currentMapEntity.Terrain_HasWall(cellPos) == false;
+                // Gate
+                allow &= ctx.gateRepo.Has(cellPos) == false;
                 // Constraint
                 allow &= CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
             };
