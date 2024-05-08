@@ -48,7 +48,7 @@ namespace Oshi {
                 PushGoal(ctx, role, isEnd, onEnd);
             } else if (entityType == EntityType.Gate) {
                 PushGate(ctx, role, isEnd, onEnd);
-            } 
+            }
 
         }
 
@@ -111,8 +111,26 @@ namespace Oshi {
             role.Pos_SetPos(currentPos);
             if (currentSec >= durationSec) {
                 role.Pos_SetPos(end);
+                var inGate = CheckRoleInGate(ctx, role, out var gateEntity);
+                if (inGate) {
+                    var hasNext = GameGateDomain.TryGetNextGate(ctx, gateEntity, out var nextGate);
+                    if (!hasNext) {
+                        onEnd.Invoke();
+                        return;
+                    }
+                    var target = nextGate.PosInt + (role.fsmCom.moving_end - role.fsmCom.moving_start).normalized;
+                    role.Pos_SetPos(nextGate.PosInt);
+                    role.FSM_EnterMovingWithOutPush(target, durationSec);
+                    return;
+                }
                 onEnd.Invoke();
             }
+        }
+
+        static bool CheckRoleInGate(GameBusinessContext ctx, RoleEntity role, out GateEntity gateEntity) {
+            var pos = role.PosInt;
+            var has = ctx.gateRepo.TryGetGateByPos(pos, out gateEntity);
+            return has;
         }
 
         static void ApplyPushGoal(GameBusinessContext ctx, RoleEntity role, GoalEntity goalEntity) {

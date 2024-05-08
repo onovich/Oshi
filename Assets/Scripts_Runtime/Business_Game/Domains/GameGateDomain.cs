@@ -36,6 +36,11 @@ namespace Oshi {
             return gate;
         }
 
+        public static bool TryGetNextGate(GameBusinessContext ctx, GateEntity gate, out GateEntity next) {
+            var nextGateIndex = gate.nextGateIndex;
+            return ctx.gateRepo.TryGetGate(nextGateIndex, out next);
+        }
+
         public static void UnSpawn(GameBusinessContext ctx, GateEntity gate) {
             ctx.gateRepo.Remove(gate);
             gate.TearDown();
