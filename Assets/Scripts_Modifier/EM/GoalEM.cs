@@ -14,7 +14,7 @@ namespace Oshi.Modifier {
         [Header("Bake Target")]
         public GoalTM goalTM;
 
-        [Header("Block Info")]
+        [Header("Goal Info")]
         public int typeID;
         public string typeName;
 
@@ -27,12 +27,12 @@ namespace Oshi.Modifier {
         public Material numberMaterial;
         public UnityEngine.Color numberColor;
 
-        [Header("Block Mesh")]
+        [Header("Goal Mesh")]
         public Sprite mesh;
         public UnityEngine.Color color;
         public Material meshMaterial;
 
-        [Header("Block Shapes")]
+        [Header("Goal Shapes")]
         public ShapeTM[] shapes;
 
         [Button("Load")]

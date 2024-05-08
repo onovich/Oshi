@@ -14,21 +14,21 @@ namespace Oshi.Modifier {
         [Header("Bake Target")]
         public WallTM wallTM;
 
-        [Header("Block Info")]
+        [Header("Wall Info")]
         public int typeID;
         public string typeName;
 
-        [Header("Block Mesh")]
+        [Header("Wall Mesh")]
         public Sprite mesh;
         public UnityEngine.Color meshColor;
         public Material meshMaterial;
 
-        [Header("Block Line")]
+        [Header("Wall Line")]
         public UnityEngine.Color lineColor;
         public Material lineMaterial;
         public float lineWidth;
 
-        [Header("Block Shapes")]
+        [Header("Wall Shapes")]
         public ShapeTM[] shapes;
 
         [Button("Load")]

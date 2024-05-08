@@ -14,16 +14,16 @@ namespace Oshi.Modifier {
         [Header("Bake Target")]
         public SpikeTM spikeTM;
 
-        [Header("Block Info")]
+        [Header("Spike Info")]
         public int typeID;
         public string typeName;
 
-        [Header("Block Mesh")]
+        [Header("Spike Mesh")]
         public Sprite mesh;
         public UnityEngine.Color color;
         public Material meshMaterial;
 
-        [Header("Block Shapes")]
+        [Header("Spike Shapes")]
         public ShapeTM[] shapes;
 
         [Button("Load")]
