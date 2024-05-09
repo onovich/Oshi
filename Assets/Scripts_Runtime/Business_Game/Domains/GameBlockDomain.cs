@@ -103,7 +103,8 @@ namespace Oshi {
             ctx.blockRepo.UpdatePos(oldPos, block);
 
             // VFX
-            VFXApp.AddVFXToWorld(ctx.vfxContext, block.deadVFXName, block.deadVFXDuration, block.Pos);
+            var vfxTable = ctx.templateInfraContext.VFXTable_Get();
+            VFXApp.AddVFXToWorld(ctx.vfxContext, vfxTable.blockDeadVFX.name, vfxTable.blockDeadVFXDuration, block.Pos);
 
             // Camera
             GameCameraDomain.ShakeOnce(ctx);

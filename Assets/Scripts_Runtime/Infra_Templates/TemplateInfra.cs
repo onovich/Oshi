@@ -103,6 +103,13 @@ namespace Oshi {
                 ctx.soundTableHandle = handle;
             }
 
+            {
+                var handle = Addressables.LoadAssetAsync<SoundTable>("Table_Sound");
+                var soundTable = await handle.Task;
+                ctx.SoundTable_Set(soundTable);
+                ctx.soundTableHandle = handle;
+            }
+
         }
 
         public static void Release(TemplateInfraContext ctx) {
@@ -138,6 +145,9 @@ namespace Oshi {
             }
             if (ctx.soundTableHandle.IsValid()) {
                 Addressables.Release(ctx.soundTableHandle);
+            }
+            if (ctx.vfxTableHandle.IsValid()) {
+                Addressables.Release(ctx.vfxTableHandle);
             }
         }
 

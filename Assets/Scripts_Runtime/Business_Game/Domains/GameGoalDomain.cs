@@ -53,6 +53,44 @@ namespace Oshi {
             });
         }
 
+        static bool CheckInSpike(GameBusinessContext ctx, GoalEntity goal) {
+            var pos = goal.PosInt;
+            var inSpike = false;
+            goal.cellSlotComponent.ForEach((index, mod) => {
+                // Spike
+                inSpike |= (ctx.spikeRepo.Has(mod.LocalPosInt + pos));
+                // Terrain Spike
+                inSpike |= (ctx.currentMapEntity.Terrain_HasSpike(mod.LocalPosInt + pos));
+            });
+            return inSpike;
+        }
+
+        static void ResetGoal(GameBusinessContext ctx, GoalEntity goal) {
+            var originalPos = goal.originalPos;
+            var oldPos = goal.PosInt;
+            goal.Pos_SetPos(originalPos);
+            ctx.goalRepo.UpdatePos(oldPos, goal);
+
+            // VFX
+            var vfxTable = ctx.templateInfraContext.VFXTable_Get();
+            VFXApp.AddVFXToWorld(ctx.vfxContext, vfxTable.goalDeadVFX.name, vfxTable.goalDeadVFXDuration, goal.Pos);
+
+            // Camera
+            GameCameraDomain.ShakeOnce(ctx);
+        }
+
+        public static void CheckAndResetGoal(GameBusinessContext ctx, GoalEntity goal) {
+            var owner = ctx.Role_GetOwner();
+            if (owner == null || owner.fsmCom.status != RoleFSMStatus.Idle) {
+                return;
+            }
+
+            var inSpike = CheckInSpike(ctx, goal);
+            if (inSpike) {
+                ResetGoal(ctx, goal);
+            }
+        }
+
     }
 
 }

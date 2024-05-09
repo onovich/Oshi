@@ -42,10 +42,6 @@ namespace Oshi {
         [SerializeField] SpriteRenderer spr;
         [SerializeField] Animator anim;
 
-        // VFX
-        public string deadVFXName;
-        public float deadVFXDuration;
-
         // Pos
         public Vector2 Pos => Pos_GetPos();
         public Vector2Int PosInt => Pos_GetPos().RoundToVector2Int();

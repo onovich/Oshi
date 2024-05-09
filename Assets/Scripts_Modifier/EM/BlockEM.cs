@@ -36,10 +36,6 @@ namespace Oshi.Modifier {
         [Header("Block Shapes")]
         public ShapeTM[] shapes;
 
-        [Header("Block VFX")]
-        public GameObject deadVFX;
-        public float deadVFXDuration;
-
         [Button("Load")]
         void Load() {
             typeID = blockTM.typeID;
@@ -53,8 +49,6 @@ namespace Oshi.Modifier {
             color = blockTM.meshColor;
             meshMaterial_default = blockTM.meshMaterial_default;
             meshMaterial_bloom = blockTM.meshMaterial_bloom;
-            deadVFX = blockTM.deadVFX;
-            deadVFXDuration = blockTM.deadVFXDuration;
             GetShapes();
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
@@ -93,8 +87,6 @@ namespace Oshi.Modifier {
             blockTM.meshColor = color;
             blockTM.meshMaterial_default = meshMaterial_default;
             blockTM.meshMaterial_bloom = meshMaterial_bloom;
-            blockTM.deadVFX = deadVFX;
-            blockTM.deadVFXDuration = deadVFXDuration;
             BakeShapes();
             EditorUtility.SetDirty(blockTM);
             AssetDatabase.SaveAssets();

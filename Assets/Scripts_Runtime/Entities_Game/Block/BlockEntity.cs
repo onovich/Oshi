@@ -36,10 +36,6 @@ namespace Oshi {
         public Material meshMaterial_default;
         public Material meshMaterial_bloom;
 
-        // VFX
-        public string deadVFXName;
-        public float deadVFXDuration;
-
         public void Ctor() {
             cellSlotComponent = new CellSlotComponent();
             shapeComponent = new ShapeComponent();

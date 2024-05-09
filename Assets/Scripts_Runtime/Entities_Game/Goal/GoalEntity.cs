@@ -30,6 +30,7 @@ namespace Oshi {
         // Pos
         public Vector2 Pos => transform.position;
         public Vector2Int PosInt => Pos_GetPosInt();
+        public Vector2 originalPos;
 
         public void Ctor() {
             cellSlotComponent = new CellSlotComponent();

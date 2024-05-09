@@ -100,6 +100,18 @@ namespace Oshi {
                     var block = blockArr[i];
                     GameBlockDomain.CheckAndResetBlock(ctx, block);
                 }
+                // Gate
+                var gateLen = ctx.gateRepo.TakeAll(out var gateArr);
+                for (int i = 0; i < gateLen; i++) {
+                    var gate = gateArr[i];
+                    GameGateDomain.CheckAndResetGate(ctx, gate);
+                }
+                // Goal
+                var goalLen = ctx.goalRepo.TakeAll(out var goalArr);
+                for (int i = 0; i < goalLen; i++) {
+                    var goal = goalArr[i];
+                    GameGoalDomain.CheckAndResetGoal(ctx, goal);
+                }
                 // Path
                 var pathMoveDone = true;
                 var pathLen = ctx.pathRepo.TakeAll(out var pathArr);

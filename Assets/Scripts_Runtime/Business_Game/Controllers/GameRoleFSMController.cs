@@ -118,7 +118,8 @@ namespace Oshi {
                 fsm.dead_isEntering = false;
 
                 // VFX
-                VFXApp.AddVFXToWorld(ctx.vfxContext, role.deadVFXName, role.deadVFXDuration, role.Pos);
+                var vfxTable = ctx.templateInfraContext.VFXTable_Get();
+                VFXApp.AddVFXToWorld(ctx.vfxContext, vfxTable.roleDeadVFX.name, vfxTable.roleDeadVFXDuration, role.Pos);
 
                 // Camera
                 GameCameraDomain.ShakeOnce(ctx);

@@ -168,6 +168,7 @@ namespace Oshi {
 
             // Set Pos
             goal.Pos_SetPos(pos);
+            goal.originalPos = pos;
 
             // Set Models
             for (int i = 0; i < goalTM.shapeArr.Length; i++) {
@@ -262,6 +263,7 @@ namespace Oshi {
 
             // Set Pos
             gate.Pos_SetPos(pos);
+            gate.originalPos = pos;
 
             // Set Models
             for (int i = 0; i < gateTM.shapeArr.Length; i++) {
@@ -324,10 +326,6 @@ namespace Oshi {
             // Set Material
             block.meshMaterial_default = blockTM.meshMaterial_default;
             block.meshMaterial_bloom = blockTM.meshMaterial_bloom;
-
-            // Set VFX
-            block.deadVFXName = blockTM.deadVFX.name;
-            block.deadVFXDuration = blockTM.deadVFXDuration;
 
             // Set Models
             for (int i = 0; i < blockTM.shapeArr.Length; i++) {
@@ -408,10 +406,6 @@ namespace Oshi {
 
             // Set FSM
             role.FSM_EnterIdle();
-
-            // Set VFX
-            role.deadVFXName = roleTM.deadVFX.name;
-            role.deadVFXDuration = roleTM.deadVFXDuration;
 
             // Set Mesh
             role.Mesh_Set(roleTM.mesh);

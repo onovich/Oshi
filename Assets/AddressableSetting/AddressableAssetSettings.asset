@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 8d29f52da86dc8a4ea4709ac168013cf
   m_currentHash:
     serializedVersion: 2
-    Hash: 4e93d20fe9097a4e32fa4c58edfe1ada
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -62,6 +62,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 680346efc9c8c461fbd9bc4d44c03d95, type: 2}
   - {fileID: 11400000, guid: b8e1aed71cf8246c3956e9fd33892765, type: 2}
   - {fileID: 11400000, guid: c7f93ccefddb443059918670541fe6fe, type: 2}
+  - {fileID: 11400000, guid: 087f1418074c64544a2d9bc74165094a, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -118,6 +119,7 @@ MonoBehaviour:
     - Table_Sound
     - TM_Gate
     - Sound_AudioSource
+    - Table_VFX
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 2316a715d6a6eb047bed5ac4c42ad64f, type: 2}

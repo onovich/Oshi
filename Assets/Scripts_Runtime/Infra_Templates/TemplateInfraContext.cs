@@ -40,6 +40,9 @@ namespace Oshi {
         SoundTable soundTable;
         public AsyncOperationHandle soundTableHandle;
 
+        VFXTable vfxTable;
+        public AsyncOperationHandle vfxTableHandle;
+
         public TemplateInfraContext() {
             mapDict = new Dictionary<int, MapTM>();
             roleDict = new Dictionary<int, RoleTM>();
@@ -192,6 +195,15 @@ namespace Oshi {
 
         public SoundTable SoundTable_Get() {
             return soundTable;
+        }
+
+        // VFX
+        public void VFXTable_Set(VFXTable vfxTable) {
+            this.vfxTable = vfxTable;
+        }
+
+        public VFXTable VFXTable_Get() {
+            return vfxTable;
         }
 
         // Clear
