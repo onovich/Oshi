@@ -48,25 +48,32 @@ namespace Oshi {
             return allow;
         }
 
+        // 滑冰终点检测(不考虑邻近格可推的情况):
+        // 1. 被可推动的物体 或墙 阻挡, 抵达物体前一格
+        // 2. 遇到未阻塞的门, 抵达门所在格
+        // 3. 被边界阻挡, 抵达边界前一格
         public static bool TryGetLastWalkableGrid(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out Vector2Int grid) {
-            var map = ctx.currentMapEntity;
-            var size = map.mapSize;
             grid = pos;
             while (true) {
-                // Constraint
-                bool allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, pos, axis);
                 grid += axis;
-                allow
-                &=
-                // No Prop
-                GridUtils_Has.HasNoProp(ctx, grid)
-                // Pushable Prop
-                || GridUtils_Has.HasPushableBlock(ctx, grid, axis)
+                // (Not Next) Grid Is Blocked By Wall / Block / Pushable Goal / Pushable Gate
+                var blocked = GridUtils_Has.HasBlock(ctx, grid)
                 || GridUtils_Has.HasPushableGoal(ctx, grid, axis)
                 || GridUtils_Has.HasPushableGate(ctx, grid, axis)
-                // Soft Prop
-                || GridUtils_Has.HasUnblockedGate(ctx, grid, axis)
-                || GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis);
+                || GridUtils_Has.HasWall(ctx, grid);
+                if (blocked) {
+                    grid -= axis;
+                    return true;
+                }
+
+                // Next Grid Is In Unblocked Gate
+                var inGate = GridUtils_Has.HasUnblockedGate(ctx, grid, axis);
+                if (inGate) {
+                    return true;
+                }
+
+                // Constraint
+                bool allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, grid - axis, axis);
                 if (!allow) {
                     grid -= axis;
                     return true;

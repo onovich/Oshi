@@ -35,6 +35,17 @@ namespace Oshi {
             return has;
         }
 
+        public static bool HasWall(GameBusinessContext ctx, Vector2Int pos) {
+            var has = ctx.wallRepo.Has(pos)
+            || ctx.currentMapEntity.Terrain_HasWall(pos);
+            return has;
+        }
+
+        public static bool HasBlock(GameBusinessContext ctx, Vector2Int pos) {
+            var has = ctx.blockRepo.Has(pos);
+            return has;
+        }
+
         public static bool HasPushableBlock(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis) {
             var has = ctx.blockRepo.TryGetBlockByPos(pos, out var block)
              && GridUtils_Pushable.CheckBlockPushable(ctx, pos, axis, block);

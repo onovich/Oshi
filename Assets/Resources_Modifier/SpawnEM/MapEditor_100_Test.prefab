@@ -665,7 +665,7 @@ MonoBehaviour:
   typeName: Test
   mapSize: {fileID: 7115896714514695303}
   mapTM: {fileID: 11400000, guid: 38ceff3ed261a463498624994b5f280c, type: 2}
-  weatherType: 0
+  weatherType: 1
   limitedByTime: 0
   gameTotalTime: 0
   limitedByStep: 0

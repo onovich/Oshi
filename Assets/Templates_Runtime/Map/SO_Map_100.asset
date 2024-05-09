@@ -16,7 +16,7 @@ MonoBehaviour:
   typeName: Test
   nextMapTypeID: 0
   isLastMap: 0
-  weatherType: 0
+  weatherType: 1
   limitedByTime: 0
   gameTotalTime: 0
   limitedByStep: 0

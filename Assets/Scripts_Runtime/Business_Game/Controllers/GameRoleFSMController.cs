@@ -45,9 +45,22 @@ namespace Oshi {
             var succ = false;
             var target = Vector2Int.zero;
             if (map.weatherType == WeatherType.Rain) {
-                succ = GridUtils.TryGetLastWalkableGrid(ctx, role.PosInt, role.Pos_GetDir(), out target);
-                if (!succ) {
-                    return;
+
+                var pushable = GridUtils_Has.HasPushableBlock(ctx, role.PosInt + role.Pos_GetDir(), role.inputCom.moveAxis)
+                            || GridUtils_Has.HasPushableGoal(ctx, role.PosInt + role.Pos_GetDir(), role.inputCom.moveAxis)
+                            || GridUtils_Has.HasPushableGate(ctx, role.PosInt + role.Pos_GetDir(), role.inputCom.moveAxis);
+                // Next Is Pushable
+                if (pushable) {
+                    succ = GridUtils.TryGetNextWalkableGrid(ctx, role.PosInt, role.Pos_GetDir(), out target);
+                    if (!succ) {
+                        return;
+                    }
+                } else {
+                    // Next Is Not Pushable
+                    succ = GridUtils.TryGetLastWalkableGrid(ctx, role.PosInt, role.Pos_GetDir(), out target);
+                    if (!succ) {
+                        return;
+                    }
                 }
             } else {
                 succ = GridUtils.TryGetNextWalkableGrid(ctx, role.PosInt, role.Pos_GetDir(), out target);
