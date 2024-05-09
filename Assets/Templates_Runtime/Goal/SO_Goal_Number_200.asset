@@ -18,7 +18,7 @@ MonoBehaviour:
   showNumber: 1
   numberMaterial: {fileID: 2100000, guid: 53e7422ec9caf46d68abbc371e4a5eac, type: 2}
   numberColor: {r: 1, g: 1, b: 1, a: 1}
-  typeName: Can Push Goal
+  typeName: Number Goal
   mesh: {fileID: 21300000, guid: 12544add50bbb4a08b9e06686edf2061, type: 3}
   meshColor: {r: 1, g: 1, b: 1, a: 1}
   meshMaterial: {fileID: 2100000, guid: 53e7422ec9caf46d68abbc371e4a5eac, type: 2}
