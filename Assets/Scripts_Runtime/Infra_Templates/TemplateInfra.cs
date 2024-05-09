@@ -104,10 +104,10 @@ namespace Oshi {
             }
 
             {
-                var handle = Addressables.LoadAssetAsync<SoundTable>("Table_Sound");
-                var soundTable = await handle.Task;
-                ctx.SoundTable_Set(soundTable);
-                ctx.soundTableHandle = handle;
+                var handle = Addressables.LoadAssetAsync<VFXTable>("Table_VFX");
+                var vfxTable = await handle.Task;
+                ctx.VFXTable_Set(vfxTable);
+                ctx.vfxTableHandle = handle;
             }
 
         }
