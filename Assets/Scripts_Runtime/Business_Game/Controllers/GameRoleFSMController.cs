@@ -58,24 +58,24 @@ namespace Oshi {
 
             // Push
             //// - Push Block
-            var hasBlock = GridUtils.TryGetNeighbourBlock(ctx, role.PosInt, role.Pos_GetDir(), out var block);
-            succ = hasBlock && GridUtils_Pushable.CheckBlockPushable(ctx, role.PosInt, role.Pos_GetDir(), block);
+            var hasBlock = ctx.blockRepo.TryGetBlockByPos(target, out var block);
+            succ = hasBlock && GridUtils_Has.HasPushableBlock(ctx, target, role.Pos_GetDir());
             if (succ) {
-                role.FSM_EnterMovingWithPush(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, EntityType.Block, block.entityIndex, block.PosInt);
+                role.FSM_EnterMovingWithPush(target, role.moveDurationSec, EntityType.Block, block.entityIndex, block.PosInt);
                 return;
             }
             //// - Push Goal
-            var hasGoal = GridUtils.TryGetNeighbourGoal(ctx, role.PosInt, role.Pos_GetDir(), out var goal);
-            succ = hasGoal && GridUtils_Pushable.CheckGoalPushable(ctx, role.PosInt, role.Pos_GetDir(), goal);
+            var hasGoal = ctx.goalRepo.TryGetGoalByPos(target, out var goal);
+            succ = hasGoal && GridUtils_Has.HasPushableGoal(ctx, target, role.Pos_GetDir());
             if (succ) {
-                role.FSM_EnterMovingWithPush(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, EntityType.Goal, goal.entityIndex, goal.PosInt);
+                role.FSM_EnterMovingWithPush(target, role.moveDurationSec, EntityType.Goal, goal.entityIndex, goal.PosInt);
                 return;
             }
             //// - Push Gate
-            var hasGate = GridUtils.TryGetNeighbourGate(ctx, role.PosInt, role.Pos_GetDir(), out var gate);
-            succ = hasGate && GridUtils_Pushable.CheckGatePushable(ctx, role.PosInt, role.Pos_GetDir(), gate);
+            var hasGate = ctx.gateRepo.TryGetGateByPos(target, out var gate);
+            succ = hasGate && GridUtils_Has.HasPushableGate(ctx, target, role.Pos_GetDir());
             if (succ) {
-                role.FSM_EnterMovingWithPush(role.PosInt + role.Pos_GetDir(), role.moveDurationSec, EntityType.Gate, gate.entityIndex, gate.PosInt);
+                role.FSM_EnterMovingWithPush(target, role.moveDurationSec, EntityType.Gate, gate.entityIndex, gate.PosInt);
                 return;
             }
 

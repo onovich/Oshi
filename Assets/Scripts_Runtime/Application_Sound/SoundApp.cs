@@ -45,18 +45,18 @@ namespace Oshi {
 
         public static void TearDown(SoundAppContext ctx) {
             foreach (var player in ctx.bgmPlayer) {
-                player.Stop();
+                player?.Stop();
                 GameObject.Destroy(player.gameObject);
             }
             foreach (var player in ctx.roleGenericPlayer) {
-                player.Stop();
+                player?.Stop();
                 GameObject.Destroy(player.gameObject);
             }
             foreach (var player in ctx.blockGenericPlayer) {
-                player.Stop();
+                player?.Stop();
                 GameObject.Destroy(player.gameObject);
             }
-            ctx.bgsPlayer.Stop();
+            ctx.bgsPlayer?.Stop();
             GameObject.Destroy(ctx.bgsPlayer.gameObject);
         }
 

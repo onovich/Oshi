@@ -30,11 +30,11 @@ namespace Oshi {
 
         public static void ApplyEasingMoveAndPush(GameBusinessContext ctx, RoleEntity role, float dt, Action onEnd) {
             var isEnd = false;
-            ApplyEasingMove(ctx, role, dt, () => {
-                isEnd = true;
-            });
             var fsm = role.fsmCom;
             var push = fsm.moving_pushTarget;
+            ApplyEasingMove(ctx, role, push, dt, () => {
+                isEnd = true;
+            });
             if (!push) {
                 if (isEnd) {
                     onEnd.Invoke();
@@ -100,7 +100,7 @@ namespace Oshi {
             }
         }
 
-        static void ApplyEasingMove(GameBusinessContext ctx, RoleEntity role, float dt, Action onEnd) {
+        static void ApplyEasingMove(GameBusinessContext ctx, RoleEntity role, bool push, float dt, Action onEnd) {
             var fsm = role.fsmCom;
             var start = fsm.moving_start;
             var end = fsm.moving_end;
@@ -111,8 +111,9 @@ namespace Oshi {
             role.Pos_SetPos(currentPos);
             if (currentSec >= durationSec) {
                 role.Pos_SetPos(end);
+
                 var inGate = CheckRoleInGate(ctx, role, out var gateEntity);
-                if (inGate) {
+                if (inGate && !push) {
                     var hasNext = GameGateDomain.TryGetNextGate(ctx, gateEntity, out var nextGate);
                     if (!hasNext) {
                         onEnd.Invoke();
@@ -120,9 +121,10 @@ namespace Oshi {
                     }
                     var target = nextGate.PosInt + (role.fsmCom.moving_end - role.fsmCom.moving_start).normalized;
                     role.Pos_SetPos(nextGate.PosInt);
-                    role.FSM_EnterMovingWithOutPush(target, durationSec);
+                    role.FSM_EnterMovingWithOutPush(target, fsm.moving_durationSec);
                     return;
                 }
+
                 onEnd.Invoke();
             }
         }

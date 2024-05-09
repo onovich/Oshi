@@ -5,8 +5,9 @@ namespace Oshi {
 
     public static class GridUtils_Movable {
 
+        // 门可穿越的条件
+        // 1. 下一个门前方没有物体, 但是可以有目标点
         public static bool CheckNextGateMovable(GameBusinessContext ctx, GateEntity gate, Vector2Int axis) {
-            var allow = true;
             var nextIndex = gate.nextGateIndex;
             if (nextIndex == -1) {
                 return true;
@@ -22,22 +23,16 @@ namespace Oshi {
             for (int i = 0; i < len; i++) {
                 var cell = cells[i];
                 var cellPos = cell.LocalPosInt + target;
-                // Wall
-                allow &= ctx.wallRepo.Has(cellPos) == false;
-                // Block
-                allow &= ctx.blockRepo.Has(cellPos) == false;
-                // Goal
-                allow &= ctx.goalRepo.Has(cellPos) == false;
-                // Gate
-                allow &= ctx.gateRepo.HasDifferent(cellPos, nextGate.entityIndex) == false;
-                // Terrain Goal
-                allow &= ctx.currentMapEntity.Terrain_HasGoal(cellPos) == false;
-                // Terrain Wall
-                allow &= ctx.currentMapEntity.Terrain_HasWall(cellPos) == false;
                 // Constraint
-                allow &= GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
+                var allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis)
+                // No Prop 
+                && (GridUtils_Has.HasNoProp(ctx, cellPos)
+                || GridUtils_Has.HasGoal(ctx, cellPos));
+                if (!allow) {
+                    return false;
+                }
             };
-            return allow;
+            return true;
         }
 
     }

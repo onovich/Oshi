@@ -27,17 +27,24 @@ namespace Oshi {
             return dir.x + dir.y;
         }
 
+        // 格子允许走的条件:
+        // 1. 全空, 或:
+        // 2. 有物体, 但是可推(门, 箱子, 目标点), 或:
+        // 3. 有物体, 但是可进入(门, 目标点)
         public static bool TryGetNextWalkableGrid(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out Vector2Int grid) {
             grid = pos + axis;
             // Constraint
             var allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, pos, axis)
-            // No Hard Prop
-            && !GridUtils_Has.HasHardProp(ctx, grid, axis)
-            // Has Soft Prop / Pushable Prop / No Prop
             &&
-            (GridUtils_Has.HasSoftProp(ctx, grid, axis)
-            || GridUtils_Has.HasPushableProp(ctx, grid, axis)
-            || GridUtils_Has.HasNoProp(ctx, grid));
+            // No Prop
+            (GridUtils_Has.HasNoProp(ctx, grid)
+            // Pushable Prop
+            || GridUtils_Has.HasPushableBlock(ctx, grid, axis)
+            || GridUtils_Has.HasPushableGoal(ctx, grid, axis)
+            || GridUtils_Has.HasPushableGate(ctx, grid, axis)
+            // Soft Prop
+            || GridUtils_Has.HasUnblockedGate(ctx, grid, axis)
+            || GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis));
             return allow;
         }
 
@@ -49,34 +56,22 @@ namespace Oshi {
                 // Constraint
                 bool allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, pos, axis);
                 grid += axis;
-                allow &=
-                // No Hard Prop
-                !GridUtils_Has.HasHardProp(ctx, grid, axis)
-                // Has Soft Prop / Pushable Prop / No Prop
-                &&
-                (GridUtils_Has.HasSoftProp(ctx, grid, axis)
-                || GridUtils_Has.HasPushableProp(ctx, grid, axis)
-                || GridUtils_Has.HasNoProp(ctx, grid));
+                allow
+                &=
+                // No Prop
+                GridUtils_Has.HasNoProp(ctx, grid)
+                // Pushable Prop
+                || GridUtils_Has.HasPushableBlock(ctx, grid, axis)
+                || GridUtils_Has.HasPushableGoal(ctx, grid, axis)
+                || GridUtils_Has.HasPushableGate(ctx, grid, axis)
+                // Soft Prop
+                || GridUtils_Has.HasUnblockedGate(ctx, grid, axis)
+                || GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis);
                 if (!allow) {
                     grid -= axis;
                     return true;
                 }
             }
-        }
-
-        public static bool TryGetNeighbourGate(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out GateEntity gate) {
-            var has = ctx.gateRepo.TryGetGateByPos(pos + axis, out gate);
-            return has;
-        }
-
-        public static bool TryGetNeighbourGoal(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out GoalEntity goal) {
-            var has = ctx.goalRepo.TryGetGoalByPos(pos + axis, out goal);
-            return has;
-        }
-
-        public static bool TryGetNeighbourBlock(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out BlockEntity block) {
-            var has = ctx.blockRepo.TryGetBlockByPos(pos + axis, out block);
-            return has;
         }
 
     }
