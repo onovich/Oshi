@@ -20,18 +20,21 @@ Bug
 7. Path
 8. 雨天地面变滑, 仅影响 Role
 9. 不计入 Goal 的 FakeBlock
-10. 可推动的 Goal
+10. 可推动的 Goal, 被阻塞时可穿透
 11. Block 和 Goal 带编号
+12. Gate 传送门: 出口被阻塞时入口可推; 仅传送人
 
 特殊玩法
-** 单局内, 抵达特定位置改变天气
+** 单局内的变化, 抵达特定位置改变天气
 ** 利用扫雷机制, 当组合的 Block 揭示必有雷时, 把 Cell 爆掉, 利用这一点进行 Block 裁剪
 
 未实现
-1. Gate 传送门: 入口不可推, 出口可推, 出口被堵死时入口可推, 出入口表现层用遮罩, 显示出隐藏的星空
-2. Enemy 可以被 Spike 杀死，仅在遇到 Wall 和 Block、看到 Role 时改变方向，杀死 Role
-3. Boss 可以杀死 Spike、Block、Role，遇到 Wall 、看到 Role时改变方向
-4. Role 多格
+1. Enemy 可以被 Spike 杀死，仅在遇到 Wall 和 Block、看到 Role 时改变方向，杀死 Role
+2. Boss 可以杀死 Spike、Block、Role，遇到 Wall 、看到 Role时改变方向
+3. Role 多格
+4. 雨天 Block 滑动
+5. 传送门传送物
+
 
 关卡策划
 1. 参考华容道
