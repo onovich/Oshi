@@ -88,6 +88,7 @@ namespace Oshi.Modifier {
             blockTM.meshMaterial_default = meshMaterial_default;
             blockTM.meshMaterial_bloom = meshMaterial_bloom;
             BakeShapes();
+            AddressableHelper.SetAddressable(blockTM, "TM_Block", "TM_Block", true);
             EditorUtility.SetDirty(blockTM);
             AssetDatabase.SaveAssets();
         }

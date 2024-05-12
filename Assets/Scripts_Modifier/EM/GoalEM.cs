@@ -48,6 +48,7 @@ namespace Oshi.Modifier {
             color = goalTM.meshColor;
             meshMaterial = goalTM.meshMaterial;
             GetShapes();
+            AddressableHelper.SetAddressable(goalTM, "TM_Goal", "TM_Goal", true);
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
         }

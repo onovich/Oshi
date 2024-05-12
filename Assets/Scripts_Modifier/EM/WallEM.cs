@@ -97,6 +97,7 @@ namespace Oshi.Modifier {
             wallTM.lineWidth = lineWidth;
             BakeShapes();
             BakeShapeNodes();
+            AddressableHelper.SetAddressable(wallTM, "TM_Wall", "TM_Wall", true);
             EditorUtility.SetDirty(wallTM);
             AssetDatabase.SaveAssets();
         }

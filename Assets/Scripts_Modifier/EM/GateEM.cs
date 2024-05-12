@@ -66,6 +66,7 @@ namespace Oshi.Modifier {
             gateTM.meshColor = color;
             gateTM.meshMaterial = meshMaterial;
             BakeShapes();
+            AddressableHelper.SetAddressable(gateTM, "TM_Gate", "TM_Gate", true);
             EditorUtility.SetDirty(gateTM);
             AssetDatabase.SaveAssets();
         }

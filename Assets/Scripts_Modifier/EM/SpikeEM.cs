@@ -66,6 +66,7 @@ namespace Oshi.Modifier {
             spikeTM.meshColor = color;
             spikeTM.meshMaterial = meshMaterial;
             BakeShapes();
+            AddressableHelper.SetAddressable(spikeTM, "TM_Spike", "TM_Spike", true);
             EditorUtility.SetDirty(spikeTM);
             AssetDatabase.SaveAssets();
         }
