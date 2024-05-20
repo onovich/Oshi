@@ -28,25 +28,25 @@ MonoBehaviour:
   blockTMArr:
   - {fileID: 11400000, guid: 1508424567f104ecc94aff14fec1fc94, type: 2}
   - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
-  - {fileID: 11400000, guid: 459b34d0c218242f58ceb0e54051e7c6, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
   blockPosArr:
   - {x: -4, y: 1}
   - {x: 0, y: -1}
   - {x: -2, y: 3}
   blockNumberArr: 000000000000000000000000
-  blockIsFakeArr: 000000
+  blockIsFakeArr: 000001
   wallIndexArr: 
   wallTMArr: []
   wallPosArr: []
   goalIndexArr: 0100000002000000
   goalTMArr:
   - {fileID: 11400000, guid: d025f642399bd4a2595a54d12dd08a16, type: 2}
-  - {fileID: 11400000, guid: 503dfa0f16cb249cea76b6420e9d29c6, type: 2}
+  - {fileID: 11400000, guid: 08f8bb6e5895d4c2cba006d18e5794c6, type: 2}
   goalPosArr:
   - {x: -4, y: 3}
   - {x: 1, y: 2}
-  goalNumberArr: 0000000000000000
-  goalCanPushArr: 0000
+  goalNumberArr: 0100000000000000
+  goalCanPushArr: 0001
   spikeIndexArr: 01000000
   spikeTMArr:
   - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}

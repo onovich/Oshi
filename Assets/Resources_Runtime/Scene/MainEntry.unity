@@ -556,7 +556,7 @@ MonoBehaviour:
   drawCameraGizmos: 0
   drawMapGizmos: 0
   isTestMode: 1
-  testMapTypeID: 5
+  testMapTypeID: 101
 --- !u!1 &1802965980
 GameObject:
   m_ObjectHideFlags: 0

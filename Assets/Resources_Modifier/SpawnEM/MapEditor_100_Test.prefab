@@ -1170,7 +1170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3673594614818156498, guid: ed960b20a79244d248aafba795ff01eb, type: 3}
       propertyPath: m_Name
-      value: Goal - Can Push Goal - 2
+      value: Goal - Goal - 2
       objectReference: {fileID: 0}
     - target: {fileID: 5096686070554343728, guid: ed960b20a79244d248aafba795ff01eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1219,7 +1219,11 @@ PrefabInstance:
     - target: {fileID: 6132702976700355143, guid: ed960b20a79244d248aafba795ff01eb, type: 3}
       propertyPath: goalTM
       value: 
-      objectReference: {fileID: 11400000, guid: 503dfa0f16cb249cea76b6420e9d29c6, type: 2}
+      objectReference: {fileID: 11400000, guid: 08f8bb6e5895d4c2cba006d18e5794c6, type: 2}
+    - target: {fileID: 6132702976700355143, guid: ed960b20a79244d248aafba795ff01eb, type: 3}
+      propertyPath: canPush
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1724,16 +1728,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5808850939668414603, guid: dad2d2b1a114548d6948c63e2fc564f1, type: 3}
       propertyPath: m_Name
-      value: Block - Fake - 3
+      value: Block - Block - 3
       objectReference: {fileID: 0}
     - target: {fileID: 6252454382719920350, guid: dad2d2b1a114548d6948c63e2fc564f1, type: 3}
       propertyPath: index
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6252454382719920350, guid: dad2d2b1a114548d6948c63e2fc564f1, type: 3}
+      propertyPath: isFake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252454382719920350, guid: dad2d2b1a114548d6948c63e2fc564f1, type: 3}
       propertyPath: blockTM
       value: 
-      objectReference: {fileID: 11400000, guid: 459b34d0c218242f58ceb0e54051e7c6, type: 2}
+      objectReference: {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1812,6 +1820,10 @@ PrefabInstance:
       propertyPath: goalTM
       value: 
       objectReference: {fileID: 11400000, guid: d025f642399bd4a2595a54d12dd08a16, type: 2}
+    - target: {fileID: 6132702976700355143, guid: ed960b20a79244d248aafba795ff01eb, type: 3}
+      propertyPath: number
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
