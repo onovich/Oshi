@@ -64,6 +64,12 @@ namespace Oshi {
             return has;
         }
 
+        public static bool HasSpike(GameBusinessContext ctx, Vector2Int pos) {
+            var has = ctx.currentMapEntity.Terrain_HasSpike(pos)
+            || ctx.currentMapEntity.Terrain_HasSpike(pos);
+            return has;
+        }
+
         // 静态或被阻塞的目标点
         // 1. 静态目标点, 且没被物体压着
         // 2. 动态目标点, 被阻塞, 且没被物体压着

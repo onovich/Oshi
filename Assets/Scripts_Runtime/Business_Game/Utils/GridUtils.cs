@@ -30,7 +30,8 @@ namespace Oshi {
         // 格子允许走的条件:
         // 1. 全空, 或:
         // 2. 有物体, 但是可推(门, 箱子, 目标点), 或:
-        // 3. 有物体, 但是可进入(门, 没别的东西的目标点)
+        // 3. 有物体, 但是可进入(门, 没别的东西的目标点), 或:
+        // 4. 有物体, 是刺
         public static bool TryGetNextWalkableGrid(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out Vector2Int grid) {
             grid = pos + axis;
             // Constraint
@@ -45,7 +46,9 @@ namespace Oshi {
             var isSoft = GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis)
             || GridUtils_Has.HasUnblockedGate(ctx, grid, axis)
             || GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis);
-            var allow = inConstraint && (noProp || isPushable || isSoft);
+            // Spike
+            var isSpike = GridUtils_Has.HasSpike(ctx, grid);
+            var allow = inConstraint && (noProp || isPushable || isSoft || isSpike);
             return allow;
         }
 
