@@ -46,18 +46,26 @@ namespace Oshi {
         public static void TearDown(SoundAppContext ctx) {
             foreach (var player in ctx.bgmPlayer) {
                 player?.Stop();
-                GameObject.Destroy(player.gameObject);
+                if (player != null && player.gameObject != null) {
+                    GameObject.Destroy(player.gameObject);
+                }
             }
             foreach (var player in ctx.roleGenericPlayer) {
                 player?.Stop();
-                GameObject.Destroy(player.gameObject);
+                if (player != null && player.gameObject != null) {
+                    GameObject.Destroy(player.gameObject);
+                }
             }
             foreach (var player in ctx.blockGenericPlayer) {
                 player?.Stop();
-                GameObject.Destroy(player.gameObject);
+                if (player != null && player.gameObject != null) {
+                    GameObject.Destroy(player.gameObject);
+                }
             }
             ctx.bgsPlayer?.Stop();
-            GameObject.Destroy(ctx.bgsPlayer.gameObject);
+            if (ctx.bgsPlayer != null && ctx.bgsPlayer.gameObject != null) {
+                GameObject.Destroy(ctx.bgsPlayer.gameObject);
+            }
         }
 
         public static void BGM_PlayLoop(SoundAppContext ctx, AudioClip clip, int layer, float volume, bool replay) {
