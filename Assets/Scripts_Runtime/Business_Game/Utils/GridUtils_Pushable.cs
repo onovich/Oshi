@@ -47,7 +47,7 @@ namespace Oshi {
                 var cellPos = cell.LocalPosInt + target;
                 // Constraint
                 var allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis)
-                // No Hard Prop
+                // No Prop
                 && GridUtils_Has.HasNoProp(ctx, cellPos);
                 if (!allow) {
                     return false;

@@ -30,22 +30,22 @@ namespace Oshi {
         // 格子允许走的条件:
         // 1. 全空, 或:
         // 2. 有物体, 但是可推(门, 箱子, 目标点), 或:
-        // 3. 有物体, 但是可进入(门, 目标点)
+        // 3. 有物体, 但是可进入(门, 没别的东西的目标点)
         public static bool TryGetNextWalkableGrid(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out Vector2Int grid) {
             grid = pos + axis;
             // Constraint
-            var allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, pos, axis)
-            &&
+            var inConstraint = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, pos, axis);
             // No Prop
-            (GridUtils_Has.HasNoProp(ctx, grid)
+            var noProp = GridUtils_Has.HasNoProp(ctx, grid);
             // Pushable Prop
-            || GridUtils_Has.HasPushableBlock(ctx, grid, axis)
+            var isPushable = GridUtils_Has.HasPushableBlock(ctx, grid, axis)
             || GridUtils_Has.HasPushableGoal(ctx, grid, axis)
-            || GridUtils_Has.HasPushableGate(ctx, grid, axis)
+            || GridUtils_Has.HasPushableGate(ctx, grid, axis);
             // Soft Prop
+            var isSoft = GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis)
             || GridUtils_Has.HasUnblockedGate(ctx, grid, axis)
-            || GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis));
-            return allow;
+            || GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis);
+            return inConstraint && (noProp || isPushable || isSoft);
         }
 
         // 滑冰终点检测(不考虑邻近格可推的情况):

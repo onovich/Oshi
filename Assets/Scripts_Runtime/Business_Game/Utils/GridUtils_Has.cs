@@ -52,14 +52,25 @@ namespace Oshi {
             return has;
         }
 
+        // 静态或被阻塞的目标点
+        // 1. 静态目标点, 且没被物体压着
+        // 2. 动态目标点, 被阻塞, 且没被物体压着
+        // 3. 地形目标点, 且没被物体压着
         public static bool HasStaticOrBlockedGoal(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis) {
-            var has =
+            var isStaticGoal =
             ctx.goalRepo.TryGetGoalByPos(pos, out var goal)
-            && (!goal.canPush
-            || !GridUtils_Pushable.CheckGoalPushable(ctx, pos, axis, goal))
+            && !goal.canPush
+            && !HasBlock(ctx, pos);
 
-            || ctx.currentMapEntity.Terrain_HasGoal(pos);
-            return has;
+            var isBlockedPushableGoal = goal != null && goal.canPush
+            && !GridUtils_Pushable.CheckGoalPushable(ctx, pos, axis, goal)
+            && !HasBlock(ctx, pos);
+
+            var isTerrainGoal = ctx.currentMapEntity.Terrain_HasGoal(pos)
+            && !HasBlock(ctx, pos);
+
+            var allow = isStaticGoal || isBlockedPushableGoal || isTerrainGoal;
+            return allow;
         }
 
         public static bool HasUnblockedGate(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis) {
