@@ -18,9 +18,11 @@ namespace Oshi {
 
         public void Add(BlockEntity block) {
             all.Add(block.entityIndex, block);
-            block.cellSlotComponent.ForEach((index, mod) => {
+            var len = block.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Add(mod.LocalPosInt + block.PosInt, block);
-            });
+            }
         }
 
         public bool Has(Vector2Int pos) {
@@ -43,19 +45,24 @@ namespace Oshi {
         }
 
         public void UpdatePos(Vector2Int oldPos, BlockEntity block) {
-            block.cellSlotComponent.ForEach((index, mod) => {
+            var len = block.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Remove(mod.LocalPosInt + oldPos);
-            });
-            block.cellSlotComponent.ForEach((index, mod) => {
+            }
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Add(mod.LocalPosInt + block.PosInt, block);
-            });
+            }
         }
 
         public void Remove(BlockEntity block) {
             all.Remove(block.entityIndex);
-            block.cellSlotComponent.ForEach((index, mod) => {
+            var len = block.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Remove(mod.LocalPosInt + block.PosInt);
-            });
+            }
         }
 
         public bool TryGetBlock(int index, out BlockEntity block) {

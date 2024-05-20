@@ -18,9 +18,11 @@ namespace Oshi {
 
         public void Add(GateEntity gate) {
             all.Add(gate.entityIndex, gate);
-            gate.cellSlotComponent.ForEach((index, mod) => {
+            var len = gate.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Add(mod.LocalPosInt + gate.PosInt, gate);
-            });
+            }
         }
 
         public bool Has(Vector2Int pos) {
@@ -43,19 +45,24 @@ namespace Oshi {
         }
 
         public void UpdatePos(Vector2Int oldPos, GateEntity gate) {
-            gate.cellSlotComponent.ForEach((index, mod) => {
+            var len = gate.cellSlotComponent.TakeAll(out var mods);
+            for(int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Remove(mod.LocalPosInt + oldPos);
-            });
-            gate.cellSlotComponent.ForEach((index, mod) => {
+            }
+            for(int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Add(mod.LocalPosInt + gate.PosInt, gate);
-            });
+            }
         }
 
         public void Remove(GateEntity gate) {
             all.Remove(gate.entityIndex);
-            gate.cellSlotComponent.ForEach((index, mod) => {
+            var len = gate.cellSlotComponent.TakeAll(out var mods);
+            for(int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Remove(mod.LocalPosInt + gate.PosInt);
-            });
+            }
         }
 
         public bool TryGetGate(int index, out GateEntity gate) {

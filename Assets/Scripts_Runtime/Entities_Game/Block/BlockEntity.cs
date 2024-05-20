@@ -53,19 +53,23 @@ namespace Oshi {
 
         // Render
         public void Render_Bloom(Func<Vector2Int, bool> isGoal) {
-            cellSlotComponent.ForEach((index, mod) => {
+            var len = cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 if (isGoal(mod.LocalPosInt + PosInt)) {
                     mod.SetSprMaterial(meshMaterial_bloom);
-                    return;
+                    continue;
                 }
                 mod.SetSprMaterial(meshMaterial_default);
-            });
+            }
         }
 
         public void TearDown() {
-            cellSlotComponent.ForEach((index, mod) => {
+            var len = cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 Destroy(mod.gameObject);
-            });
+            }
             cellSlotComponent.Clear();
             Destroy(gameObject);
         }

@@ -47,11 +47,13 @@ namespace Oshi {
                 return;
             }
             var number = block.number;
-            block.cellSlotComponent.ForEach((index, mod) => {
-                mod.SetNumber(number);
-                mod.SetNumberMaterial(block.numberMaterial);
-                mod.SetNumberColor(block.numberColor);
-            });
+            var len = block.cellSlotComponent.TakeAll(out var cells);
+            for (int i = 0; i < len; i++) {
+                var cell = cells[i];
+                cell.SetNumber(number);
+                cell.SetNumberMaterial(block.numberMaterial);
+                cell.SetNumberColor(block.numberColor);
+            }
         }
 
         public static void ApplyBloom(GameBusinessContext ctx, BlockEntity block) {
@@ -69,30 +71,37 @@ namespace Oshi {
 
         public static bool CheckAllInGoal(GameBusinessContext ctx, BlockEntity block) {
             var pos = block.PosInt;
-            var inGoal = true;
-            block.cellSlotComponent.ForEach((index, mod) => {
-                var allow = false;
+            var len = block.cellSlotComponent.TakeAll(out var cells);
+            for (int i = 0; i < len; i++) {
+                var cell = cells[i];
+                var allow = true;
+                allow &=
                 // Goal
-                allow |= (ctx.goalRepo.TryGetGoalByPos(mod.LocalPosInt + pos, out var goal));
+                (ctx.goalRepo.TryGetGoalByPos(cell.LocalPosInt + pos, out var goal)
+                && goal != null && goal.number == block.number
                 // Terrain Goal
-                allow |= (ctx.currentMapEntity.Terrain_HasGoal(mod.LocalPosInt + pos));
-                inGoal &= allow;
-                if (inGoal) {
-                    inGoal &= goal.number == block.number;
+                || (ctx.currentMapEntity.Terrain_HasGoal(cell.LocalPosInt + pos)));
+                if (!allow) {
+                    return false;
                 }
-            });
-            return inGoal;
+            }
+            return true;
         }
 
         static bool CheckInSpike(GameBusinessContext ctx, BlockEntity block) {
             var pos = block.PosInt;
             var inSpike = false;
-            block.cellSlotComponent.ForEach((index, mod) => {
+            var len = block.cellSlotComponent.TakeAll(out var cells);
+            for (int i = 0; i < len; i++) {
+                var cell = cells[i];
                 // Spike
-                inSpike |= (ctx.spikeRepo.Has(mod.LocalPosInt + pos));
+                inSpike |= (ctx.spikeRepo.Has(cell.LocalPosInt + pos));
                 // Terrain Spike
-                inSpike |= (ctx.currentMapEntity.Terrain_HasSpike(mod.LocalPosInt + pos));
-            });
+                inSpike |= (ctx.currentMapEntity.Terrain_HasSpike(cell.LocalPosInt + pos));
+                if (inSpike) {
+                    break;
+                }
+            }
             return inSpike;
         }
 

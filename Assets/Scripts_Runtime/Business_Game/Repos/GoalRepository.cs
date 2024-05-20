@@ -18,9 +18,11 @@ namespace Oshi {
 
         public void Add(GoalEntity goal) {
             all.Add(goal.entityIndex, goal);
-            goal.cellSlotComponent.ForEach((index, mod) => {
+            var len = goal.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Add(mod.LocalPosInt + goal.PosInt, goal);
-            });
+            }
         }
 
         public bool Has(Vector2Int pos) {
@@ -43,19 +45,24 @@ namespace Oshi {
         }
 
         public void UpdatePos(Vector2Int oldPos, GoalEntity goal) {
-            goal.cellSlotComponent.ForEach((index, mod) => {
+            var len = goal.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Remove(mod.LocalPosInt + oldPos);
-            });
-            goal.cellSlotComponent.ForEach((index, mod) => {
+            }
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Add(mod.LocalPosInt + goal.PosInt, goal);
-            });
+            }
         }
 
         public void Remove(GoalEntity goal) {
             all.Remove(goal.entityIndex);
-            goal.cellSlotComponent.ForEach((index, mod) => {
+            var len = goal.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Remove(mod.LocalPosInt + goal.PosInt);
-            });
+            }
         }
 
         public bool TryGetGoal(int entityID, out GoalEntity goal) {

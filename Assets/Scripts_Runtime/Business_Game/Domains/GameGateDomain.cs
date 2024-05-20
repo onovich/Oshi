@@ -49,12 +49,17 @@ namespace Oshi {
         static bool CheckInSpike(GameBusinessContext ctx, GateEntity gate) {
             var pos = gate.PosInt;
             var inSpike = false;
-            gate.cellSlotComponent.ForEach((index, mod) => {
+            var len = gate.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 // Spike
                 inSpike |= (ctx.spikeRepo.Has(mod.LocalPosInt + pos));
                 // Terrain Spike
                 inSpike |= (ctx.currentMapEntity.Terrain_HasSpike(mod.LocalPosInt + pos));
-            });
+                if (inSpike) {
+                    break;
+                }
+            }
             return inSpike;
         }
 

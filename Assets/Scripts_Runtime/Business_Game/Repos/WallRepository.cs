@@ -18,9 +18,11 @@ namespace Oshi {
 
         public void Add(WallEntity wall) {
             all.Add(wall.entityIndex, wall);
-            wall.cellSlotComponent.ForEach((index, mod) => {
+            var len = wall.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Add(mod.LocalPosInt + wall.PosInt, wall);
-            });
+            }
         }
 
         public bool Has(Vector2Int pos) {
@@ -43,19 +45,24 @@ namespace Oshi {
         }
 
         public void UpdatePos(Vector2Int oldPos, WallEntity wall) {
-            wall.cellSlotComponent.ForEach((index, mod) => {
+            var len = wall.cellSlotComponent.TakeAll(out var mods);
+            for(int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Remove(mod.LocalPosInt + oldPos);
-            });
-            wall.cellSlotComponent.ForEach((index, mod) => {
+            }
+            for(int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Add(mod.LocalPosInt + wall.PosInt, wall);
-            });
+            }
         }
 
         public void Remove(WallEntity wall) {
             all.Remove(wall.entityIndex);
-            wall.cellSlotComponent.ForEach((index, mod) => {
+            var len = wall.cellSlotComponent.TakeAll(out var mods);
+            for(int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Remove(mod.LocalPosInt + wall.PosInt);
-            });
+            }
         }
 
         public bool TryGetWall(int entityID, out WallEntity wall) {

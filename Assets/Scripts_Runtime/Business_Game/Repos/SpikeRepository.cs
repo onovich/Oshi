@@ -18,9 +18,11 @@ namespace Oshi {
 
         public void Add(SpikeEntity spike) {
             all.Add(spike.entityIndex, spike);
-            spike.cellSlotComponent.ForEach((index, mod) => {
+            var len = spike.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Add(mod.LocalPosInt + spike.PosInt, spike);
-            });
+            }
         }
 
         public bool Has(Vector2Int pos) {
@@ -43,19 +45,24 @@ namespace Oshi {
         }
 
         public void UpdatePos(Vector2Int oldPos, SpikeEntity spike) {
-            spike.cellSlotComponent.ForEach((index, mod) => {
+            var len = spike.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Remove(mod.LocalPosInt + oldPos);
-            });
-            spike.cellSlotComponent.ForEach((index, mod) => {
+            }
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Add(mod.LocalPosInt + spike.PosInt, spike);
-            });
+            }
         }
 
         public void Remove(SpikeEntity spike) {
             all.Remove(spike.entityIndex);
-            spike.cellSlotComponent.ForEach((index, mod) => {
+            var len = spike.cellSlotComponent.TakeAll(out var mods);
+            for (int i = 0; i < len; i++) {
+                var mod = mods[i];
                 posMap.Remove(mod.LocalPosInt + spike.PosInt);
-            });
+            }
         }
 
         public bool TryGetSpike(int entityID, out SpikeEntity spike) {

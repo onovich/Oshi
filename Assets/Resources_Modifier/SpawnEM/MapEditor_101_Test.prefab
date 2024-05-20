@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c0d60a5eb3445efbed17179971a9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeID: 100
+  typeID: 101
   typeName: Test
   mapSize: {fileID: 7115896714514695303}
   mapTM: {fileID: 11400000, guid: 039542473e4e0481ba5f1c87ee6915ea, type: 2}

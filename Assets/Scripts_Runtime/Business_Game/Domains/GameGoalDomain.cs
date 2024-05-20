@@ -46,22 +46,29 @@ namespace Oshi {
                 return;
             }
             var number = goal.number;
-            goal.cellSlotComponent.ForEach((index, mod) => {
-                mod.SetNumber(number);
-                mod.SetNumberMaterial(goal.numberMaterial);
-                mod.SetNumberColor(goal.numberColor);
-            });
+            var len = goal.cellSlotComponent.TakeAll(out var cells);
+            for (int i = 0; i < len; i++) {
+                var cell = cells[i];
+                cell.SetNumber(number);
+                cell.SetNumberMaterial(goal.numberMaterial);
+                cell.SetNumberColor(goal.numberColor);
+            }
         }
 
         static bool CheckInSpike(GameBusinessContext ctx, GoalEntity goal) {
             var pos = goal.PosInt;
             var inSpike = false;
-            goal.cellSlotComponent.ForEach((index, mod) => {
+            var len = goal.cellSlotComponent.TakeAll(out var cells);
+            for (int i = 0; i < len; i++) {
+                var cell = cells[i];
                 // Spike
-                inSpike |= (ctx.spikeRepo.Has(mod.LocalPosInt + pos));
+                inSpike |= (ctx.spikeRepo.Has(cell.LocalPosInt + pos));
                 // Terrain Spike
-                inSpike |= (ctx.currentMapEntity.Terrain_HasSpike(mod.LocalPosInt + pos));
-            });
+                inSpike |= (ctx.currentMapEntity.Terrain_HasSpike(cell.LocalPosInt + pos));
+                if (inSpike) {
+                    break;
+                }
+            }
             return inSpike;
         }
 

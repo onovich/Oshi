@@ -27,14 +27,6 @@ namespace Oshi {
             return count;
         }
 
-        public void ForEach(Action<int, CellMod> action) {
-            for (int i = 0; i < all.Count; i++) {
-                var index = all.Keys[i];
-                var mod = all.Values[i];
-                action(index, mod);
-            }
-        }
-
         public CellMod Get(int index) {
             if (all.ContainsKey(index)) {
                 return all[index];
