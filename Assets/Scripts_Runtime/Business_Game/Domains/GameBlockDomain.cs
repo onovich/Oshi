@@ -62,7 +62,7 @@ namespace Oshi {
             block.Render_Bloom((pos) => {
                 var allow = false;
                 // Goal
-                allow |= (ctx.goalRepo.Has(pos));
+                allow |= CheckAllInGoal(ctx, block);
                 // Terrain Goal
                 allow |= (ctx.currentMapEntity.Terrain_HasGoal(pos));
                 // Fake
