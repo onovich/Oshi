@@ -7,7 +7,7 @@ namespace Oshi {
 
         // 门可推的条件:
         // 1. 下一个门被阻塞
-        // 2. 门的下一个位置没有物体, 但是可以有目标点
+        // 2. 门的下一个位置没有物体, 但是可以有目标点或刺
         public static bool CheckGatePushable(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, GateEntity gate) {
             var target = pos + axis;
             // Next Gate Not Movable
@@ -21,9 +21,10 @@ namespace Oshi {
                 var cellPos = cell.LocalPosInt + target;
                 // Constraint
                 var allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis)
-                 // No Prop But Goal
+                 // No Prop But Goal Or Spike
                  && (GridUtils_Has.HasNoProp(ctx, cellPos)
-                 || GridUtils_Has.HasGoal(ctx, cellPos));
+                 || GridUtils_Has.HasGoal(ctx, cellPos))
+                 || GridUtils_Has.HasSpike(ctx, cellPos);
                 if (!allow) {
                     return false;
                 }
@@ -33,7 +34,7 @@ namespace Oshi {
 
         // 目标点可推的条件:
         // 1. 目标点是可推类型
-        // 2. 目标点的下一个位置为空
+        // 2. 目标点的下一个位置为空或刺
         public static bool CheckGoalPushable(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, GoalEntity goal) {
             var target = goal.PosInt + axis;
 
@@ -47,8 +48,9 @@ namespace Oshi {
                 var cellPos = cell.LocalPosInt + target;
                 // Constraint
                 var allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis)
-                // No Prop
-                && GridUtils_Has.HasNoProp(ctx, cellPos);
+                // No Prop But Spike
+                && GridUtils_Has.HasNoProp(ctx, cellPos)
+                || GridUtils_Has.HasSpike(ctx, cellPos);
                 if (!allow) {
                     return false;
                 }
@@ -57,7 +59,7 @@ namespace Oshi {
         }
 
         // 箱子可推的条件:
-        // 1. 箱子的下一个位置为空, 但是可以有目标点
+        // 1. 箱子的下一个位置为空, 但是可以有目标点或刺
         public static bool CheckBlockPushable(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, BlockEntity block) {
             var target = block.PosInt + axis;
 
@@ -67,10 +69,11 @@ namespace Oshi {
                 var cellPos = cell.LocalPosInt + target;
                 // Constraint
                 var inConstraint = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
-                // No Prop But Goal
+                // No Prop But Goal Or Spike
                 var noProp = GridUtils_Has.HasNoPropAndDifferentBlock(ctx, cellPos, block.entityIndex);
                 var hasGoal = GridUtils_Has.HasGoal(ctx, cellPos);
-                var allow = inConstraint && (noProp || hasGoal);
+                var allow = inConstraint && (noProp || hasGoal)
+                || GridUtils_Has.HasSpike(ctx, cellPos);
                 if (!allow) {
                     return false;
                 }
