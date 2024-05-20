@@ -8,6 +8,7 @@ namespace Oshi {
 
         public int typeID;
         public string typeName;
+        public Sprite fakeMesh;
         public Material fakeMaterial;
         public Color fakeColor;
         public Material numberMaterial;

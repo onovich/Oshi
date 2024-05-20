@@ -8,6 +8,7 @@ namespace Oshi {
 
         public int typeID;
         public Material canPushMaterial;
+        public Sprite canPushMesh;
         public Color canPushColor;
         public Material numberMaterial;
         public Color numberColor;
@@ -16,7 +17,7 @@ namespace Oshi {
         public Color meshColor;
         public Material meshMaterial;
         public ShapeTM[] shapeArr;
-        
+
     }
 
 }

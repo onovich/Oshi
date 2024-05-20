@@ -19,6 +19,7 @@ namespace Oshi.Modifier {
         public string typeName;
 
         [Header("Fake Block")]
+        public Sprite fakeMesh;
         public Material fakeMaterial;
         public UnityEngine.Color fakeColor;
 
@@ -39,6 +40,7 @@ namespace Oshi.Modifier {
         void Load() {
             typeID = blockTM.typeID;
             typeName = blockTM.typeName;
+            fakeMesh = blockTM.fakeMesh;
             fakeMaterial = blockTM.fakeMaterial;
             fakeColor = blockTM.fakeColor;
             numberMaterial = blockTM.numberMaterial;
@@ -76,6 +78,7 @@ namespace Oshi.Modifier {
         void Bake() {
             blockTM.typeID = typeID;
             blockTM.typeName = typeName;
+            blockTM.fakeMesh = fakeMesh;
             blockTM.fakeMaterial = fakeMaterial;
             blockTM.fakeColor = fakeColor;
             blockTM.numberMaterial = numberMaterial;

@@ -33,16 +33,22 @@ MonoBehaviour:
   - {x: 1, y: -2}
   - {x: 2, y: 1}
   - {x: -1, y: -1}
-  blockNumberArr: 000000000000000000000000
+  blockNumberArr: 020000000100000003000000
   blockIsFakeArr: 000000
   wallIndexArr: 
   wallTMArr: []
   wallPosArr: []
-  goalIndexArr: 
-  goalTMArr: []
-  goalPosArr: []
-  goalNumberArr: 
-  goalCanPushArr: 
+  goalIndexArr: 010000000200000003000000
+  goalTMArr:
+  - {fileID: 11400000, guid: df7a47281712845798ed4565588d236d, type: 2}
+  - {fileID: 11400000, guid: 08f8bb6e5895d4c2cba006d18e5794c6, type: 2}
+  - {fileID: 11400000, guid: 08f8bb6e5895d4c2cba006d18e5794c6, type: 2}
+  goalPosArr:
+  - {x: -3, y: 0}
+  - {x: -3, y: 0}
+  - {x: -2, y: 2}
+  goalNumberArr: 020000000300000001000000
+  goalCanPushArr: 000000
   spikeIndexArr: 
   spikeTMArr: []
   spikePosArr: []
@@ -74,17 +80,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
   terrainSpikeSpawnPosArr: []
   terrainSpikeTMArr: []
-  terrainGoalSpawnPosArr:
-  - {x: -3, y: 0, z: 0}
-  - {x: -3, y: 1, z: 0}
-  - {x: -2, y: 0, z: 0}
-  - {x: -2, y: 1, z: 0}
-  - {x: -2, y: 2, z: 0}
-  terrainGoalTMArr:
-  - {fileID: 11400000, guid: 6f6a38ec69ae34874aea5dce4070e428, type: 2}
-  - {fileID: 11400000, guid: 6f6a38ec69ae34874aea5dce4070e428, type: 2}
-  - {fileID: 11400000, guid: 6f6a38ec69ae34874aea5dce4070e428, type: 2}
-  - {fileID: 11400000, guid: 6f6a38ec69ae34874aea5dce4070e428, type: 2}
-  - {fileID: 11400000, guid: 6f6a38ec69ae34874aea5dce4070e428, type: 2}
+  terrainGoalSpawnPosArr: []
+  terrainGoalTMArr: []
   cameraConfinerWorldMax: {x: 30, y: 20}
   cameraConfinerWorldMin: {x: -30, y: -20}

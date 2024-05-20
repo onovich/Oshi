@@ -56,11 +56,14 @@ MonoBehaviour:
   blockTM: {fileID: 11400000, guid: e17ddd78ee21a432faccc3887d21867e, type: 2}
   typeID: 8
   typeName: Block
+  fakeMesh: {fileID: 21300000, guid: 77312400b0b8943d38a1ced06979e14a, type: 3}
+  fakeMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  fakeColor: {r: 0.42352942, g: 0.42352942, b: 0.42352942, a: 1}
+  numberMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  numberColor: {r: 1, g: 0.3483723, b: 0, a: 1}
   mesh: {fileID: 21300000, guid: 40eb3a4c3bff143cababfb54f86881bd, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   meshMaterial_default: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   meshMaterial_bloom: {fileID: 2100000, guid: 53e7422ec9caf46d68abbc371e4a5eac, type: 2}
   shapes:
   - {fileID: 11400000, guid: 25aa5d16f0e3e4ba188e66f1ebf7e0ba, type: 2}
-  deadVFX: {fileID: 1046417506903995189, guid: 4cc547ee9ad754a728a343efb6c300c0, type: 3}
-  deadVFXDuration: 2

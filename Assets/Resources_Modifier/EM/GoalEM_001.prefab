@@ -56,6 +56,11 @@ MonoBehaviour:
   goalTM: {fileID: 11400000, guid: 0e8401c5cafb24133817156681f17394, type: 2}
   typeID: 1
   typeName: Goal
+  canPushMesh: {fileID: 21300000, guid: d9bcf1a0937ff4b6d8c8c6b0fc26e53d, type: 3}
+  canPushMaterial: {fileID: 2100000, guid: 0de60ca1eebc54b4882c890d771d5162, type: 2}
+  canPushColor: {r: 1, g: 1, b: 1, a: 1}
+  numberMaterial: {fileID: 2100000, guid: 53e7422ec9caf46d68abbc371e4a5eac, type: 2}
+  numberColor: {r: 1, g: 1, b: 1, a: 1}
   mesh: {fileID: 21300000, guid: 12544add50bbb4a08b9e06686edf2061, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   meshMaterial: {fileID: 2100000, guid: 53e7422ec9caf46d68abbc371e4a5eac, type: 2}

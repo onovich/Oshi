@@ -24,7 +24,7 @@ namespace Oshi {
                 cellIndex++;
                 var cellPos = pos + localPos;
                 var cell = GameCellDomain.Spawn(ctx, number != 0, cellPos, block.cellRoot);
-                cell.SetSpr(blockTM.mesh);
+                cell.SetSpr(isFake ? blockTM.fakeMesh : blockTM.mesh);
                 cell.SetSortingLayer(SortingLayerConst.Block);
                 cell.SetSprColor(isFake ? blockTM.fakeColor : blockTM.meshColor);
                 cell.SetSprMaterial(isFake ? blockTM.fakeMaterial : blockTM.meshMaterial_bloom);
