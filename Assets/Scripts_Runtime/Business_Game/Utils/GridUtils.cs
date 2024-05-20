@@ -55,16 +55,18 @@ namespace Oshi {
         // 滑冰终点检测(不考虑邻近格可推的情况):
         // 1. 被可推动的物体 或墙 阻挡, 抵达物体前一格
         // 2. 遇到未阻塞的门, 抵达门所在格
-        // 3. 被边界阻挡, 抵达边界前一格
+        // 3. 遇到阻塞的门, 抵达门前一格
+        // 4. 被边界阻挡, 抵达边界前一格
         public static bool TryGetLastWalkableGrid(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis, out Vector2Int grid) {
             grid = pos;
             while (true) {
                 grid += axis;
                 // (Not Next) Grid Is Blocked By Wall / Block / Pushable Goal / Pushable Gate
-                var blocked = GridUtils_Has.HasBlock(ctx, grid)
-                || GridUtils_Has.HasPushableGoal(ctx, grid, axis)
-                || GridUtils_Has.HasPushableGate(ctx, grid, axis)
-                || GridUtils_Has.HasWall(ctx, grid);
+                var isBlock = GridUtils_Has.HasBlock(ctx, grid);
+                var isPushableGoal = GridUtils_Has.HasPushableGoal(ctx, grid, axis);
+                var isPushableGate = GridUtils_Has.HasPushableGate(ctx, grid, axis);
+                var isWall = GridUtils_Has.HasWall(ctx, grid);
+                var blocked = isBlock || isPushableGoal || isPushableGate || isWall;
                 if (blocked) {
                     grid -= axis;
                     return true;
@@ -73,6 +75,13 @@ namespace Oshi {
                 // Next Grid Is In Unblocked Gate
                 var inGate = GridUtils_Has.HasUnblockedGate(ctx, grid, axis);
                 if (inGate) {
+                    return true;
+                }
+
+                // Next Grid Is In Blocked Gate
+                var inBlockedGate = GridUtils_Has.HasBlockedGate(ctx, grid, axis);
+                if (inBlockedGate) {
+                    grid -= axis;
                     return true;
                 }
 

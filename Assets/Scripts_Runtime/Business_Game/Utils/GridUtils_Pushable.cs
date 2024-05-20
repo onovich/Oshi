@@ -20,15 +20,17 @@ namespace Oshi {
                 var cell = cells[i];
                 var cellPos = cell.LocalPosInt + target;
                 // Constraint
-                var allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis)
-                 // No Prop But Goal Or Spike
-                 && (GridUtils_Has.HasNoProp(ctx, cellPos)
-                 || GridUtils_Has.HasGoal(ctx, cellPos))
-                 || GridUtils_Has.HasSpike(ctx, cellPos);
+                var inConstraint = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
+                // No Prop But Goal Or Spike
+                var noProp = GridUtils_Has.HasNoProp(ctx, cellPos);
+                var isGoal = GridUtils_Has.HasGoal(ctx, cellPos);
+                var isSpike = GridUtils_Has.HasSpike(ctx, cellPos);
+                var allow = inConstraint && (noProp || isGoal || isSpike);
                 if (!allow) {
                     return false;
                 }
             };
+            Debug.Log($"Gate {gate.entityIndex} Pushable");
             return true;
         }
 
