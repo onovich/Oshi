@@ -33,6 +33,8 @@ MonoBehaviour:
   - {x: -4, y: 1}
   - {x: 0, y: -1}
   - {x: -2, y: 3}
+  blockNumberArr: 000000000000000000000000
+  blockIsFakeArr: 000000
   wallIndexArr: 
   wallTMArr: []
   wallPosArr: []
@@ -43,6 +45,8 @@ MonoBehaviour:
   goalPosArr:
   - {x: -4, y: 3}
   - {x: 1, y: 2}
+  goalNumberArr: 0000000000000000
+  goalCanPushArr: 0000
   spikeIndexArr: 01000000
   spikeTMArr:
   - {fileID: 11400000, guid: ad54a4f9fe71e492a8d7534cbc9f484c, type: 2}

@@ -31,15 +31,23 @@ MonoBehaviour:
   blockPosArr:
   - {x: -1, y: -1}
   - {x: 0, y: 0}
+  blockNumberArr: 0000000000000000
+  blockIsFakeArr: 0000
   wallIndexArr: 
   wallTMArr: []
   wallPosArr: []
   goalIndexArr: 
   goalTMArr: []
   goalPosArr: []
+  goalNumberArr: 
+  goalCanPushArr: 
   spikeIndexArr: 
   spikeTMArr: []
   spikePosArr: []
+  gateIndexArr: 
+  gateTMArr: []
+  gatePosArr: []
+  gateNextGateIndexArr: 
   pathIndexArr: 
   pathTMArr: []
   pathSpawnTMArr: []

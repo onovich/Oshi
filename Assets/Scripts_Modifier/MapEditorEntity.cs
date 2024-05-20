@@ -139,6 +139,9 @@ namespace Oshi.Modifier {
         }
 
         void BakePath() {
+            if (pathGroup == null) {
+                return;
+            }
             var editors = pathGroup.GetComponentsInChildren<PathEditorEntity>();
             if (editors == null || editors.Length == 0) {
                 mapTM.pathSpawnTMArr = null;
@@ -197,6 +200,9 @@ namespace Oshi.Modifier {
         }
 
         void BakeBlock() {
+            if (blockGroup == null) {
+                return;
+            }
             var editors = blockGroup.GetComponentsInChildren<BlockEditorEntity>();
             if (editors == null || editors.Length == 0) {
                 mapTM.blockTMArr = null;
@@ -227,6 +233,9 @@ namespace Oshi.Modifier {
         }
 
         void BakeWall() {
+            if (wallGroup == null) {
+                return;
+            }
             var editors = wallGroup.GetComponentsInChildren<WallEditorEntity>();
             if (editors == null || editors.Length == 0) {
                 mapTM.wallTMArr = null;
@@ -251,6 +260,9 @@ namespace Oshi.Modifier {
         }
 
         void BakeGate() {
+            if (gateGroup == null) {
+                return;
+            }
             var editors = gateGroup.GetComponentsInChildren<GateEditorEntity>();
             if (editors == null || editors.Length == 0) {
                 mapTM.gateTMArr = null;
@@ -281,6 +293,9 @@ namespace Oshi.Modifier {
         }
 
         void BakeGoal() {
+            if (goalGroup == null) {
+                return;
+            }
             var editors = goalGroup.GetComponentsInChildren<GoalEditorEntity>();
             var goalTMArr = new List<GoalTM>();
             var goalPosArr = new List<Vector2Int>();
@@ -305,6 +320,9 @@ namespace Oshi.Modifier {
         }
 
         void BakeSpike() {
+            if (spikeGroup == null) {
+                return;
+            }
             var editors = spikeGroup.GetComponentsInChildren<SpikeEditorEntity>();
             if (editors == null || editors.Length == 0) {
                 mapTM.spikeTMArr = null;

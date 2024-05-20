@@ -1440,7 +1440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3673594614818156498, guid: ed960b20a79244d248aafba795ff01eb, type: 3}
       propertyPath: m_Name
-      value: Goal - Can Push Goal - 1
+      value: Goal - Number Goal - 1
       objectReference: {fileID: 0}
     - target: {fileID: 5096686070554343728, guid: ed960b20a79244d248aafba795ff01eb, type: 3}
       propertyPath: m_LocalPosition.x

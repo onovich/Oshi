@@ -29,15 +29,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 469f4cfdb18d54283b6d3e64509319e0, type: 2}
   blockPosArr:
   - {x: -3, y: -1}
+  blockNumberArr: 00000000
+  blockIsFakeArr: 00
   wallIndexArr: 
   wallTMArr: []
   wallPosArr: []
   goalIndexArr: 
   goalTMArr: []
   goalPosArr: []
+  goalNumberArr: 
+  goalCanPushArr: 
   spikeIndexArr: 
   spikeTMArr: []
   spikePosArr: []
+  gateIndexArr: 
+  gateTMArr: []
+  gatePosArr: []
+  gateNextGateIndexArr: 
   pathIndexArr: 
   pathTMArr: []
   pathSpawnTMArr: []

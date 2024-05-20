@@ -29,6 +29,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
   blockPosArr:
   - {x: 0, y: 0}
+  blockNumberArr: 00000000
+  blockIsFakeArr: 00
   wallIndexArr: 
   wallTMArr: []
   wallPosArr: []
@@ -37,9 +39,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0e8401c5cafb24133817156681f17394, type: 2}
   goalPosArr:
   - {x: -1, y: -2}
+  goalNumberArr: 00000000
+  goalCanPushArr: 00
   spikeIndexArr: 
   spikeTMArr: []
   spikePosArr: []
+  gateIndexArr: 
+  gateTMArr: []
+  gatePosArr: []
+  gateNextGateIndexArr: 
   pathIndexArr: 
   pathTMArr: []
   pathSpawnTMArr: []

@@ -955,6 +955,7 @@ MonoBehaviour:
   goalGroup: {fileID: 1493230028731654426}
   spikeGroup: {fileID: 1135912169792734435}
   pathGroup: {fileID: 4841474027690527634}
+  gateGroup: {fileID: 0}
 --- !u!1 &7115896714514695303
 GameObject:
   m_ObjectHideFlags: 0
