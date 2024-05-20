@@ -138,7 +138,9 @@ namespace Oshi {
                                  AssetsInfraContext assetsInfraContext,
                                  int typeID,
                                  int index,
-                                 Vector2Int pos) {
+                                 Vector2Int pos,
+                                 bool canPush,
+                                 int number) {
 
             var has = templateInfraContext.Goal_TryGet(typeID, out var goalTM);
             if (!has) {
@@ -155,11 +157,11 @@ namespace Oshi {
             goal.typeName = goalTM.typeName;
 
             // Can Push
-            goal.canPush = goalTM.canPush;
+            goal.canPush = canPush;
 
             // Goal Number
-            goal.number = goalTM.number;
-            goal.showNumber = goalTM.showNumber;
+            goal.number = number;
+            goal.showNumber = number != 0;
             goal.numberMaterial = goalTM.numberMaterial;
             goal.numberColor = goalTM.numberColor;
 
@@ -291,7 +293,9 @@ namespace Oshi {
                                  AssetsInfraContext assetsInfraContext,
                                  int typeID,
                                  int index,
-                                 Vector2Int pos) {
+                                 Vector2Int pos,
+                                 bool isFake,
+                                 int number) {
 
             var has = templateInfraContext.Block_TryGet(typeID, out var blockTM);
             if (!has) {
@@ -308,11 +312,11 @@ namespace Oshi {
             block.typeName = blockTM.typeName;
 
             // Is Fake
-            block.isFake = blockTM.isFake;
+            block.isFake = isFake;
 
             // Block Number
-            block.number = blockTM.number;
-            block.showNumber = blockTM.showNumber;
+            block.number = number;
+            block.showNumber = number != 0;
             block.numberMaterial = blockTM.numberMaterial;
             block.numberColor = blockTM.numberColor;
 
@@ -324,8 +328,8 @@ namespace Oshi {
             block.originalPos = pos;
 
             // Set Material
-            block.meshMaterial_default = blockTM.meshMaterial_default;
-            block.meshMaterial_bloom = blockTM.meshMaterial_bloom;
+            block.meshMaterial_default = isFake ? blockTM.fakeMaterial : blockTM.meshMaterial_default;
+            block.meshMaterial_bloom = isFake ? blockTM.fakeMaterial : blockTM.meshMaterial_bloom;
 
             // Set Models
             for (int i = 0; i < blockTM.shapeArr.Length; i++) {

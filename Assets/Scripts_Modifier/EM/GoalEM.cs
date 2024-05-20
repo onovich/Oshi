@@ -18,12 +18,11 @@ namespace Oshi.Modifier {
         public int typeID;
         public string typeName;
 
-        [Header("Can Push")]
-        public bool canPush;
+        [Header("Pushable Goal")]
+        public Material canPushMaterial;
+        public UnityEngine.Color canPushColor;
 
         [Header("Goal Number")]
-        public int number;
-        public bool showNumber;
         public Material numberMaterial;
         public UnityEngine.Color numberColor;
 
@@ -39,9 +38,8 @@ namespace Oshi.Modifier {
         void Load() {
             typeID = goalTM.typeID;
             typeName = goalTM.typeName;
-            canPush = goalTM.canPush;
-            number = goalTM.number;
-            showNumber = goalTM.showNumber;
+            canPushMaterial = goalTM.canPushMaterial;
+            canPushColor = goalTM.canPushColor;
             numberMaterial = goalTM.numberMaterial;
             numberColor = goalTM.numberColor;
             mesh = goalTM.mesh;
@@ -77,9 +75,8 @@ namespace Oshi.Modifier {
         void Bake() {
             goalTM.typeID = typeID;
             goalTM.typeName = typeName;
-            goalTM.canPush = canPush;
-            goalTM.number = number;
-            goalTM.showNumber = showNumber;
+            goalTM.canPushMaterial = canPushMaterial;
+            goalTM.canPushColor = canPushColor;
             goalTM.numberMaterial = numberMaterial;
             goalTM.numberColor = numberColor;
             goalTM.mesh = mesh;

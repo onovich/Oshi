@@ -4,12 +4,14 @@ namespace Oshi {
 
     public static class GameBlockDomain {
 
-        public static BlockEntity Spawn(GameBusinessContext ctx, int typeID, int index, Vector2Int pos) {
+        public static BlockEntity Spawn(GameBusinessContext ctx, int typeID, int index, Vector2Int pos, int number, bool isFake) {
             var block = GameFactory.Block_Spawn(ctx.templateInfraContext,
                                               ctx.assetsInfraContext,
                                               typeID,
                                               index,
-                                              pos);
+                                              pos,
+                                              isFake,
+                                              number);
 
             var has = ctx.templateInfraContext.Block_TryGet(typeID, out var blockTM);
             if (!has) {
@@ -21,11 +23,11 @@ namespace Oshi {
             shape.ForEachCell((localPos) => {
                 cellIndex++;
                 var cellPos = pos + localPos;
-                var cell = GameCellDomain.Spawn(ctx, blockTM.showNumber, cellPos, block.cellRoot);
+                var cell = GameCellDomain.Spawn(ctx, number != 0, cellPos, block.cellRoot);
                 cell.SetSpr(blockTM.mesh);
                 cell.SetSortingLayer(SortingLayerConst.Block);
-                cell.SetSprColor(blockTM.meshColor);
-                cell.SetSprMaterial(blockTM.meshMaterial_bloom);
+                cell.SetSprColor(isFake ? blockTM.fakeColor : blockTM.meshColor);
+                cell.SetSprMaterial(isFake ? blockTM.fakeMaterial : blockTM.meshMaterial_bloom);
                 cell.index = cellIndex;
                 block.cellSlotComponent.Add(cell);
                 cell.SetParent(block.transform);

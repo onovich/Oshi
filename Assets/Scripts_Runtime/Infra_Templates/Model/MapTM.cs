@@ -34,6 +34,8 @@ namespace Oshi {
         public int[] blockIndexArr;
         public BlockTM[] blockTMArr;
         public Vector2Int[] blockPosArr;
+        public int[] blockNumberArr;
+        public bool[] blockIsFakeArr;
 
         [Header("Wall")]
         public int[] wallIndexArr;
@@ -44,6 +46,8 @@ namespace Oshi {
         public int[] goalIndexArr;
         public GoalTM[] goalTMArr;
         public Vector2Int[] goalPosArr;
+        public int[] goalNumberArr;
+        public bool[] goalCanPushArr;
 
         [Header("Spike")]
         public int[] spikeIndexArr;

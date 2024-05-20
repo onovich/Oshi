@@ -10,6 +10,9 @@ namespace Oshi.Modifier {
     public class BlockEditorEntity : MonoBehaviour {
 
         [SerializeField] public BlockTM blockTM;
+        [SerializeField] public bool isFake;
+        [SerializeField] public int number;
+
         public EntityType type => EntityType.Block;
         public int index;
 
@@ -33,12 +36,19 @@ namespace Oshi.Modifier {
                 var pos = GetPosInt();
                 foreach (var cell in shape.cells) {
                     Gizmos.DrawGUITexture(new Rect(cell.x + pos.x, cell.y + pos.y, 1, 1), blockTM.mesh.texture, 0, 0, 0, 0);
-                    if (blockTM.showNumber) {
+                    if (number != 0) {
                         GUIStyle labelStyle = new GUIStyle();
                         labelStyle.fontSize = 20;
                         labelStyle.normal.textColor = Color.black;
                         Vector3 labelPosition = transform.position + new Vector3(0.2f, .8f, 0f) + new Vector3(cell.x, cell.y, 0f);
-                        Handles.Label(labelPosition, blockTM.number.ToString(), labelStyle);
+                        Handles.Label(labelPosition, number.ToString(), labelStyle);
+                    }
+                    if (isFake) {
+                        GUIStyle labelStyle = new GUIStyle();
+                        labelStyle.fontSize = 20;
+                        labelStyle.normal.textColor = Color.red;
+                        Vector3 labelPosition = transform.position + new Vector3(0.2f, .8f, 0f) + new Vector3(cell.x, cell.y, 0f);
+                        Handles.Label(labelPosition, "Fake", labelStyle);
                     }
                 }
             }

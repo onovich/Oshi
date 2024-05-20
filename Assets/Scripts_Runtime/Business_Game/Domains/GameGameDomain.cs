@@ -62,11 +62,15 @@ namespace Oshi {
             var blockTMArr = mapTM.blockTMArr;
             var blockPosArr = mapTM.blockPosArr;
             var blockIndexArr = mapTM.blockIndexArr;
+            var blockNumberArr = mapTM.blockNumberArr;
+            var blockIsFakeArr = mapTM.blockIsFakeArr;
             for (int i = 0; i < blockTMArr.Length; i++) {
                 var blockTM = blockTMArr[i];
                 var pos = blockPosArr[i];
+                var number = blockNumberArr[i];
+                var isFake = blockIsFakeArr[i];
                 var index = blockIndexArr[i];
-                var _ = GameBlockDomain.Spawn(ctx, blockTM.typeID, index, pos);
+                var _ = GameBlockDomain.Spawn(ctx, blockTM.typeID, index, pos, number, isFake);
             }
 
             // Wall
@@ -86,11 +90,15 @@ namespace Oshi {
             var goalTMArr = mapTM.goalTMArr;
             var goalPosArr = mapTM.goalPosArr;
             var goalIndexArr = mapTM.goalIndexArr;
+            var goalNumberArr = mapTM.goalNumberArr;
+            var goalCanPushArr = mapTM.goalCanPushArr;
             for (int i = 0; i < goalTMArr.Length; i++) {
                 var goalTM = goalTMArr[i];
                 var pos = goalPosArr[i];
+                var number = goalNumberArr[i];
+                var canPush = goalCanPushArr[i];
                 var index = goalIndexArr[i];
-                var _ = GameGoalDomain.Spawn(ctx, goalTM.typeID, index, pos);
+                var _ = GameGoalDomain.Spawn(ctx, goalTM.typeID, index, pos, number, canPush);
             }
 
             // Spike

@@ -207,17 +207,23 @@ namespace Oshi.Modifier {
             var blockTMArr = new List<BlockTM>();
             var blockPosArr = new List<Vector2Int>();
             var blockIndexArr = new List<int>();
+            var blockNumberArr = new List<int>();
+            var blockIsFakeArr = new List<bool>();
             var index = 0;
             foreach (var editor in editors) {
                 index += 1;
                 blockTMArr.Add(editor.blockTM);
                 blockPosArr.Add(editor.GetPosInt());
                 blockIndexArr.Add(index);
+                blockNumberArr.Add(editor.number);
+                blockIsFakeArr.Add(editor.isFake);
                 editor.Rename(index);
             }
             mapTM.blockTMArr = blockTMArr.ToArray();
             mapTM.blockPosArr = blockPosArr.ToArray();
             mapTM.blockIndexArr = blockIndexArr.ToArray();
+            mapTM.blockNumberArr = blockNumberArr.ToArray();
+            mapTM.blockIsFakeArr = blockIsFakeArr.ToArray();
         }
 
         void BakeWall() {
@@ -279,17 +285,23 @@ namespace Oshi.Modifier {
             var goalTMArr = new List<GoalTM>();
             var goalPosArr = new List<Vector2Int>();
             var goalIndexArr = new List<int>();
+            var goalNumberArr = new List<int>();
+            var goalCanPushArr = new List<bool>();
             var index = 0;
             foreach (var editor in editors) {
                 index += 1;
                 goalTMArr.Add(editor.goalTM);
                 goalPosArr.Add(editor.GetPosInt());
                 goalIndexArr.Add(index);
+                goalNumberArr.Add(editor.number);
+                goalCanPushArr.Add(editor.canPush);
                 editor.Rename(index);
             }
             mapTM.goalTMArr = goalTMArr.ToArray();
             mapTM.goalPosArr = goalPosArr.ToArray();
             mapTM.goalIndexArr = goalIndexArr.ToArray();
+            mapTM.goalNumberArr = goalNumberArr.ToArray();
+            mapTM.goalCanPushArr = goalCanPushArr.ToArray();
         }
 
         void BakeSpike() {

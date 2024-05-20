@@ -4,12 +4,14 @@ namespace Oshi {
 
     public static class GameGoalDomain {
 
-        public static GoalEntity Spawn(GameBusinessContext ctx, int typeID, int index, Vector2Int pos) {
+        public static GoalEntity Spawn(GameBusinessContext ctx, int typeID, int index, Vector2Int pos, int number, bool canPush) {
             var goal = GameFactory.Goal_Spawn(ctx.templateInfraContext,
                                               ctx.assetsInfraContext,
                                               typeID,
                                               index,
-                                              pos);
+                                              pos,
+                                              canPush,
+                                              number);
 
             var has = ctx.templateInfraContext.Goal_TryGet(typeID, out var goalTM);
             if (!has) {
@@ -21,11 +23,11 @@ namespace Oshi {
             shape.ForEachCell((localPos) => {
                 cellIndex++;
                 var cellPos = pos + localPos;
-                var cell = GameCellDomain.Spawn(ctx, goalTM.showNumber, cellPos, goal.cellRoot);
+                var cell = GameCellDomain.Spawn(ctx, number != 0, cellPos, goal.cellRoot);
                 cell.SetSpr(goalTM.mesh);
                 cell.SetSortingLayer(SortingLayerConst.Goal);
-                cell.SetSprColor(goalTM.meshColor);
-                cell.SetSprMaterial(goalTM.meshMaterial);
+                cell.SetSprColor(canPush ? goalTM.canPushColor : goalTM.meshColor);
+                cell.SetSprMaterial(canPush ? goalTM.canPushMaterial : goalTM.meshMaterial);
                 cell.index = cellIndex;
                 goal.cellSlotComponent.Add(cell);
                 cell.SetParent(goal.transform);

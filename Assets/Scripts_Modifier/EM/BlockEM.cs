@@ -19,11 +19,10 @@ namespace Oshi.Modifier {
         public string typeName;
 
         [Header("Fake Block")]
-        public bool isFake;
+        public Material fakeMaterial;
+        public UnityEngine.Color fakeColor;
 
         [Header("Block Number")]
-        public int number;
-        public bool showNumber;
         public Material numberMaterial;
         public UnityEngine.Color numberColor;
 
@@ -40,9 +39,8 @@ namespace Oshi.Modifier {
         void Load() {
             typeID = blockTM.typeID;
             typeName = blockTM.typeName;
-            isFake = blockTM.isFake;
-            number = blockTM.number;
-            showNumber = blockTM.showNumber;
+            fakeMaterial = blockTM.fakeMaterial;
+            fakeColor = blockTM.fakeColor;
             numberMaterial = blockTM.numberMaterial;
             numberColor = blockTM.numberColor;
             mesh = blockTM.mesh;
@@ -78,9 +76,8 @@ namespace Oshi.Modifier {
         void Bake() {
             blockTM.typeID = typeID;
             blockTM.typeName = typeName;
-            blockTM.isFake = isFake;
-            blockTM.number = number;
-            blockTM.showNumber = showNumber;
+            blockTM.fakeMaterial = fakeMaterial;
+            blockTM.fakeColor = fakeColor;
             blockTM.numberMaterial = numberMaterial;
             blockTM.numberColor = numberColor;
             blockTM.mesh = mesh;
