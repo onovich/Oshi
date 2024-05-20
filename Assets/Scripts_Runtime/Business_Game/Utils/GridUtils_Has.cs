@@ -17,6 +17,18 @@ namespace Oshi {
             return !has;
         }
 
+        public static bool HasNoPropAndDifferentBlock(GameBusinessContext ctx, Vector2Int pos, int blockIndex) {
+            var has = ctx.wallRepo.Has(pos)
+            || ctx.blockRepo.HasDifferent(pos, blockIndex)
+            || ctx.goalRepo.Has(pos)
+            || ctx.gateRepo.Has(pos)
+
+            || ctx.currentMapEntity.Terrain_HasWall(pos)
+            || ctx.currentMapEntity.Terrain_HasGoal(pos)
+            || ctx.currentMapEntity.Terrain_HasSpike(pos);
+            return !has;
+        }
+
         public static bool HasPushableGate(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis) {
             var has = ctx.gateRepo.TryGetGateByPos(pos, out var gate)
             && GridUtils_Pushable.CheckGatePushable(ctx, pos, axis, gate);

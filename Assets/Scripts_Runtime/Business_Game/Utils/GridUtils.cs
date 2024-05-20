@@ -45,7 +45,8 @@ namespace Oshi {
             var isSoft = GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis)
             || GridUtils_Has.HasUnblockedGate(ctx, grid, axis)
             || GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis);
-            return inConstraint && (noProp || isPushable || isSoft);
+            var allow = inConstraint && (noProp || isPushable || isSoft);
+            return allow;
         }
 
         // 滑冰终点检测(不考虑邻近格可推的情况):

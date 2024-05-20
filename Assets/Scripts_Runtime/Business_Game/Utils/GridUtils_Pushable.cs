@@ -66,10 +66,11 @@ namespace Oshi {
                 var cell = cells[i];
                 var cellPos = cell.LocalPosInt + target;
                 // Constraint
-                var allow = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis)
+                var inConstraint = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
                 // No Prop But Goal
-                && (GridUtils_Has.HasNoProp(ctx, cellPos)
-                || GridUtils_Has.HasGoal(ctx, cellPos));
+                var noProp = GridUtils_Has.HasNoPropAndDifferentBlock(ctx, cellPos, block.entityIndex);
+                var hasGoal = GridUtils_Has.HasGoal(ctx, cellPos);
+                var allow = inConstraint && (noProp || hasGoal);
                 if (!allow) {
                     return false;
                 }
