@@ -101,6 +101,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - TM_Map
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa45c3aedd4ca462b8a0e7131c179f4c
+    m_Address: SO_Map_012
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Map
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 970247c18815a4d4a894fad86b7d33a6
+    m_Address: SO_Map_013
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Map
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bcda1c8e574105f42bf63fc8b4423c66, type: 2}
   m_SchemaSet:

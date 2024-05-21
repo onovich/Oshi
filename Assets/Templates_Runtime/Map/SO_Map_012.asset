@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1e22956f2334251b773b2a1967c65b, type: 3}
+  m_Name: SO_Map_012
+  m_EditorClassIdentifier: 
+  typeID: 12
+  typeName: BEFORE MY GRANDPA PASSED AWAY, WE LOVED TO PLAY AT THE WINDMILL BEHIND
+    HIS HOUSE.
+  nextMapTypeID: 13
+  isLastMap: 0
+  weatherType: 0
+  limitedByTime: 0
+  gameTotalTime: 0
+  limitedByStep: 0
+  gameTotalStep: 0
+  ownerRoleTypeID: 1
+  mapSize: {x: 7, y: 7}
+  spawnPoint: {x: 0, y: 0}
+  blockIndexArr: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
+  blockTMArr:
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  - {fileID: 11400000, guid: 1aae347cc370c444fa7ad603c757c803, type: 2}
+  blockPosArr:
+  - {x: 0, y: 2}
+  - {x: 1, y: 1}
+  - {x: -1, y: 1}
+  - {x: -1, y: -1}
+  - {x: 1, y: -1}
+  - {x: 0, y: -2}
+  - {x: 2, y: 0}
+  - {x: -2, y: 0}
+  - {x: -2, y: -2}
+  - {x: -2, y: 2}
+  - {x: 2, y: -2}
+  - {x: 2, y: 2}
+  blockNumberArr: 030000000000000000000000000000000000000001000000040000000200000000000000000000000000000000000000
+  blockIsFakeArr: 000101010100000001010101
+  wallIndexArr: 
+  wallTMArr: []
+  wallPosArr: []
+  goalIndexArr: 01000000020000000300000004000000
+  goalTMArr:
+  - {fileID: 11400000, guid: 08f8bb6e5895d4c2cba006d18e5794c6, type: 2}
+  - {fileID: 11400000, guid: 08f8bb6e5895d4c2cba006d18e5794c6, type: 2}
+  - {fileID: 11400000, guid: 08f8bb6e5895d4c2cba006d18e5794c6, type: 2}
+  - {fileID: 11400000, guid: 08f8bb6e5895d4c2cba006d18e5794c6, type: 2}
+  goalPosArr:
+  - {x: 2, y: 0}
+  - {x: 0, y: -2}
+  - {x: -2, y: 0}
+  - {x: 0, y: 2}
+  goalNumberArr: 03000000040000000100000002000000
+  goalCanPushArr: 00000000
+  spikeIndexArr: 
+  spikeTMArr: []
+  spikePosArr: []
+  gateIndexArr: 
+  gateTMArr: []
+  gatePosArr: []
+  gateNextGateIndexArr: 
+  pathIndexArr: 
+  pathTMArr: []
+  pathSpawnTMArr: []
+  pathTravelerTypeArr: 
+  pathTravelerIndexArr: 
+  pathIsCircleLoopArr: 
+  pathIsPingPongLoopArr: 
+  pathTravelerHalfSizeArr: []
+  terrainWallSpawnPosArr:
+  - {x: -3, y: 0, z: 0}
+  - {x: 0, y: -3, z: 0}
+  - {x: 0, y: 3, z: 0}
+  - {x: 3, y: 0, z: 0}
+  terrainWallTMArr:
+  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
+  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
+  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
+  - {fileID: 11400000, guid: 0e3729707d2a940498bfcfaec2559962, type: 2}
+  terrainSpikeSpawnPosArr: []
+  terrainSpikeTMArr: []
+  terrainGoalSpawnPosArr: []
+  terrainGoalTMArr: []
+  cameraConfinerWorldMax: {x: 30, y: 20}
+  cameraConfinerWorldMin: {x: -30, y: -20}

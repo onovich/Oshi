@@ -47,6 +47,21 @@ namespace Oshi {
             return has;
         }
 
+        public static bool HasNothingButGoal(GameBusinessContext ctx, Vector2Int pos) {
+            var has = ctx.goalRepo.Has(pos)
+            || ctx.currentMapEntity.Terrain_HasGoal(pos)
+
+            && !ctx.wallRepo.Has(pos)
+            && !ctx.currentMapEntity.Terrain_HasWall(pos)
+
+            && !ctx.blockRepo.Has(pos)
+            && !ctx.gateRepo.Has(pos)
+
+            && !ctx.spikeRepo.Has(pos)
+            && !ctx.currentMapEntity.Terrain_HasSpike(pos);
+            return has;
+        }
+
         public static bool HasWall(GameBusinessContext ctx, Vector2Int pos) {
             var has = ctx.wallRepo.Has(pos)
             || ctx.currentMapEntity.Terrain_HasWall(pos);
@@ -100,6 +115,11 @@ namespace Oshi {
         public static bool HasBlockedGate(GameBusinessContext ctx, Vector2Int pos, Vector2Int axis) {
             var has = ctx.gateRepo.TryGetGateByPos(pos, out var gate)
             && !GridUtils_Movable.CheckNextGateMovable(ctx, gate, axis);
+            return has;
+        }
+
+        public static bool HasGate(GameBusinessContext ctx, Vector2Int pos) {
+            var has = ctx.gateRepo.Has(pos);
             return has;
         }
 

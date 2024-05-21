@@ -45,7 +45,8 @@ namespace Oshi {
             // Soft Prop
             var isSoft = GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis)
             || GridUtils_Has.HasUnblockedGate(ctx, grid, axis)
-            || GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis);
+            || GridUtils_Has.HasStaticOrBlockedGoal(ctx, grid, axis)
+            && !GridUtils_Has.HasBlock(ctx, grid + axis);
             // Spike
             var isSpike = GridUtils_Has.HasSpike(ctx, grid);
             var allow = inConstraint && (noProp || isPushable || isSoft || isSpike);
