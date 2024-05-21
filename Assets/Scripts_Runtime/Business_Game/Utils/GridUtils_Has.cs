@@ -47,7 +47,7 @@ namespace Oshi {
             return has;
         }
 
-        public static bool HasNoPropButGoalAndSelf(GameBusinessContext ctx, Vector2Int pos) {
+        public static bool HasNoPropButGoal(GameBusinessContext ctx, Vector2Int pos) {
             var has = ctx.goalRepo.Has(pos)
             || ctx.currentMapEntity.Terrain_HasGoal(pos)
 
@@ -85,7 +85,7 @@ namespace Oshi {
         }
 
         public static bool HasSpike(GameBusinessContext ctx, Vector2Int pos) {
-            var has = ctx.currentMapEntity.Terrain_HasSpike(pos)
+            var has = ctx.spikeRepo.Has(pos)
             || ctx.currentMapEntity.Terrain_HasSpike(pos);
             return has;
         }

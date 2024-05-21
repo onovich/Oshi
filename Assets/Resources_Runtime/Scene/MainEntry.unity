@@ -555,8 +555,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawCameraGizmos: 0
   drawMapGizmos: 0
-  isTestMode: 0
-  testMapTypeID: 4
+  isTestMode: 1
+  testMapTypeID: 11
 --- !u!1 &1802965980
 GameObject:
   m_ObjectHideFlags: 0

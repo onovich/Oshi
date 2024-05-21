@@ -82,10 +82,11 @@ namespace Oshi {
 
                 // No Prop But Goal Or Spike
                 noProp &= GridUtils_Has.HasNoPropAndDifferentBlock(ctx, cellPos, block.entityIndex);
-                hasNothingButGoal |= GridUtils_Has.HasNoPropButGoalAndSelf(ctx, cellPos);
+                hasNothingButGoal |= GridUtils_Has.HasNoPropButGoal(ctx, cellPos);
                 hasSpike |= GridUtils_Has.HasSpike(ctx, cellPos);
                 var allow = inConstraint && (noProp || hasNothingButGoal || hasSpike);
                 if (!allow) {
+                    // Debug.Log($"{noProp} {hasNothingButGoal} {hasSpike} {cellPos} {block.entityIndex}");
                     return false;
                 }
             };
