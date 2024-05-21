@@ -47,14 +47,14 @@ namespace Oshi {
             return has;
         }
 
-        public static bool HasNoPropButGoalAndSelf(GameBusinessContext ctx, Vector2Int pos, int blockIndex) {
+        public static bool HasNoPropButGoalAndSelf(GameBusinessContext ctx, Vector2Int pos) {
             var has = ctx.goalRepo.Has(pos)
             || ctx.currentMapEntity.Terrain_HasGoal(pos)
 
             && !ctx.wallRepo.Has(pos)
             && !ctx.currentMapEntity.Terrain_HasWall(pos)
 
-            && !ctx.blockRepo.HasDifferent(pos, blockIndex)
+            && !ctx.blockRepo.Has(pos)
             && !ctx.gateRepo.Has(pos)
 
             && !ctx.spikeRepo.Has(pos)
@@ -70,6 +70,11 @@ namespace Oshi {
 
         public static bool HasBlock(GameBusinessContext ctx, Vector2Int pos) {
             var has = ctx.blockRepo.Has(pos);
+            return has;
+        }
+
+        public static bool HasDifferentBlock(GameBusinessContext ctx, Vector2Int pos, int blockIndex) {
+            var has = ctx.blockRepo.HasDifferent(pos, blockIndex);
             return has;
         }
 

@@ -67,18 +67,24 @@ namespace Oshi {
 
             var len = block.cellSlotComponent.TakeAll(out var cells);
             var noProp = true;
-            var hasNothingButGoalAndSelf = false;
+            var hasNothingButGoal = false;
             var hasSpike = false;
             for (int i = 0; i < len; i++) {
                 var cell = cells[i];
                 var cellPos = cell.LocalPosInt + target;
                 // Constraint
                 var inConstraint = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
+
+                // 如果 Block 的下一格还是自己，则跳过检测
+                if (GridUtils_Has.HasBlock(ctx, cellPos) && !GridUtils_Has.HasDifferentBlock(ctx, cellPos, block.entityIndex)) {
+                    continue;
+                }
+
                 // No Prop But Goal Or Spike
                 noProp &= GridUtils_Has.HasNoPropAndDifferentBlock(ctx, cellPos, block.entityIndex);
-                hasNothingButGoalAndSelf |= GridUtils_Has.HasNoPropButGoalAndSelf(ctx, cellPos, block.entityIndex);
+                hasNothingButGoal |= GridUtils_Has.HasNoPropButGoalAndSelf(ctx, cellPos);
                 hasSpike |= GridUtils_Has.HasSpike(ctx, cellPos);
-                var allow = inConstraint && (noProp || hasNothingButGoalAndSelf || hasSpike);
+                var allow = inConstraint && (noProp || hasNothingButGoal || hasSpike);
                 if (!allow) {
                     return false;
                 }
