@@ -67,7 +67,7 @@ namespace Oshi {
 
             var len = block.cellSlotComponent.TakeAll(out var cells);
             var noProp = true;
-            var hasNothingBugGoal = false;
+            var hasNothingButGoalAndSelf = false;
             var hasSpike = false;
             for (int i = 0; i < len; i++) {
                 var cell = cells[i];
@@ -76,9 +76,9 @@ namespace Oshi {
                 var inConstraint = GridUtils_Constraint.CheckConstraint(ctx.currentMapEntity.mapSize, ctx.currentMapEntity.Pos, cellPos - axis, axis);
                 // No Prop But Goal Or Spike
                 noProp &= GridUtils_Has.HasNoPropAndDifferentBlock(ctx, cellPos, block.entityIndex);
-                hasNothingBugGoal |= GridUtils_Has.HasNothingButGoal(ctx, cellPos);
+                hasNothingButGoalAndSelf |= GridUtils_Has.HasNoPropButGoalAndSelf(ctx, cellPos, block.entityIndex);
                 hasSpike |= GridUtils_Has.HasSpike(ctx, cellPos);
-                var allow = inConstraint && (noProp || hasNothingBugGoal || hasSpike);
+                var allow = inConstraint && (noProp || hasNothingButGoalAndSelf || hasSpike);
                 if (!allow) {
                     return false;
                 }

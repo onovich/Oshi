@@ -47,14 +47,14 @@ namespace Oshi {
             return has;
         }
 
-        public static bool HasNothingButGoal(GameBusinessContext ctx, Vector2Int pos) {
+        public static bool HasNoPropButGoalAndSelf(GameBusinessContext ctx, Vector2Int pos, int blockIndex) {
             var has = ctx.goalRepo.Has(pos)
             || ctx.currentMapEntity.Terrain_HasGoal(pos)
 
             && !ctx.wallRepo.Has(pos)
             && !ctx.currentMapEntity.Terrain_HasWall(pos)
 
-            && !ctx.blockRepo.Has(pos)
+            && !ctx.blockRepo.HasDifferent(pos, blockIndex)
             && !ctx.gateRepo.Has(pos)
 
             && !ctx.spikeRepo.Has(pos)
