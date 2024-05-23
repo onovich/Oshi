@@ -113,6 +113,11 @@ namespace Oshi {
             return nextIndex;
         }
 
+        public void Undo() {
+            currentPathNodeIndex -= nodeIndexDir;
+            currentPathNodeIndex = ClampIndex(currentPathNodeIndex);
+        }
+
         public void PushIndexToNext() {
             currentPathNodeIndex += nodeIndexDir;
             currentPathNodeIndex = ClampIndex(currentPathNodeIndex);

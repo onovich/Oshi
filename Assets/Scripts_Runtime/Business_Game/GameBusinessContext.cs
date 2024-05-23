@@ -20,6 +20,7 @@ namespace Oshi {
         public GoalRepository goalRepo;
         public GateRepository gateRepo;
         public PathRepository pathRepo;
+        public RecordRepository recordRepo;
 
         // App
         public UIAppContext uiContext;
@@ -60,6 +61,7 @@ namespace Oshi {
             goalRepo = new GoalRepository();
             gateRepo = new GateRepository();
             pathRepo = new PathRepository();
+            recordRepo = new RecordRepository();
             hitResults = new RaycastHit2D[100];
         }
 
@@ -72,6 +74,7 @@ namespace Oshi {
             goalRepo.Clear();
             pathRepo.Clear();
             gateRepo.Clear();
+            recordRepo.Clear();
         }
 
         // Role
