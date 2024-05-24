@@ -140,6 +140,13 @@ namespace Oshi {
             var game = ctx.gameEntity;
             game.fsmComponent.PlayerTurn_Enter();
 
+            // Block Bloom
+            len = ctx.blockRepo.TakeAll(out var blockArr);
+            for (int i = 0; i < len; i++) {
+                var block = blockArr[i];
+                GameBlockDomain.ApplyBloom(ctx, block);
+            }
+
         }
 
     }
