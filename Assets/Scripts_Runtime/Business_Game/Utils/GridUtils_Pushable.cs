@@ -30,7 +30,6 @@ namespace Oshi {
                     return false;
                 }
             };
-            Debug.Log($"Gate {gate.entityIndex} Pushable");
             return true;
         }
 
