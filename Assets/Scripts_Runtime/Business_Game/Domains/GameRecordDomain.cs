@@ -44,11 +44,22 @@ namespace Oshi {
                 model.spikePosArr[i] = spikes[i].PosInt;
             }
 
+            ctx.recordRepo.Push(model);
+
         }
 
         public static void UndoRecord(GameBusinessContext ctx) {
 
-            var record = ctx.recordRepo.Pop();
+            var input = ctx.inputEntity;
+            if (!input.isPressUndo) {
+                return;
+            }
+
+            var succ = ctx.recordRepo.TryPop(out var record);
+            if (succ == false) {
+                return;
+            }
+
             // Undo Roles
             var len = ctx.roleRepo.TakeAll(out var roles);
             for (int i = 0; i < len; i++) {

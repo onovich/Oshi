@@ -104,6 +104,7 @@ namespace Oshi {
             fadingIn_isEntering = false;
             fadingOut_isEntering = false;
             mapOver_isEntering = false;
+
             fadingIn_enterTime = 0;
             fadingOut_enterTime = 0;
             mapOver_enterTime = 0;

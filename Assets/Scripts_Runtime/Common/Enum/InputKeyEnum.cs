@@ -9,6 +9,7 @@ namespace Oshi {
         MoveDown = 130,
         Restart = 140,
         Exit = 150,
+        Undo = 160
 
     }
 

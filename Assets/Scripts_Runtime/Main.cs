@@ -122,6 +122,7 @@ namespace Oshi {
             inputEntity.Keybinding_Set(InputKeyEnum.MoveDown, new KeyCode[] { KeyCode.S, KeyCode.DownArrow });
             inputEntity.Keybinding_Set(InputKeyEnum.Restart, new KeyCode[] { KeyCode.R });
             inputEntity.Keybinding_Set(InputKeyEnum.Exit, new KeyCode[] { KeyCode.Escape });
+            inputEntity.Keybinding_Set(InputKeyEnum.Undo, new KeyCode[] { KeyCode.Z });
 
             GameBusiness.Init(gameBusinessContext);
 

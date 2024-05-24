@@ -86,14 +86,24 @@ namespace Oshi {
             var game = ctx.gameEntity;
             var status = game.fsmComponent.status;
             var map = ctx.currentMapEntity;
+            var owner = ctx.Role_GetOwner();
 
             if (status == GameStatus.PlayerTurn) {
+
+                if (game.fsmComponent.playerTurn_isEntering) {
+                    game.fsmComponent.playerTurn_isEntering = false;
+                }
+                // Record
+                GameRecordDomain.UndoRecord(ctx);
                 // Owner
-                var owner = ctx.Role_GetOwner();
-                GameRoleFSMController.FixedTickFSM(ctx, owner, dt, () => {
+                GameRoleFSMController.FixedTickFSM(ctx, owner, dt, (oldPos) => {
                     game.fsmComponent.EnvirTurn_Enter();
+                    ctx.roleRepo.UpdatePos(oldPos, owner);
                 });
             } else if (status == GameStatus.EnvirTurn) {
+                if (game.fsmComponent.envirTurn_isEntering) {
+                    game.fsmComponent.envirTurn_isEntering = false;
+                }
                 // Block
                 var blockLen = ctx.blockRepo.TakeAll(out var blockArr);
                 for (int i = 0; i < blockLen; i++) {

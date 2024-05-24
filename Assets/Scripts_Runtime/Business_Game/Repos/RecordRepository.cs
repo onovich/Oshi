@@ -16,8 +16,8 @@ namespace Oshi {
             all.Push(record);
         }
 
-        public RecordModel Pop() {
-            return all.Pop();
+        public bool TryPop(out RecordModel record) {
+            return all.TryPop(out record);
         }
 
         public void Clear() {
