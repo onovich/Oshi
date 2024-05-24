@@ -5,7 +5,7 @@ namespace Oshi {
 
     public static class GameRoleFSMController {
 
-        public static void FixedTickFSM(GameBusinessContext ctx, RoleEntity role, float fixdt, Action<Vector2Int> onEnd) {
+        public static void FixedTickFSM(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {
 
             if (role == null) {
                 return;
@@ -98,7 +98,7 @@ namespace Oshi {
             }
         }
 
-        static void FixedTickFSM_Moving(GameBusinessContext ctx, RoleEntity role, float fixdt, Action<Vector2Int> onEnd) {
+        static void FixedTickFSM_Moving(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {
             RoleFSMComponent fsm = role.FSM_GetComponent();
             if (fsm.moving_isEntering) {
                 fsm.moving_isEntering = false;
@@ -110,11 +110,11 @@ namespace Oshi {
                 role.State_IncStageCounter();
                 role.FSM_EnterIdle();
                 var start = role.fsmCom.moving_start.RoundToVector2Int();
-                onEnd?.Invoke(start);
+                onEnd?.Invoke();
             });
         }
 
-        static void FixedTickFSM_Dead(GameBusinessContext ctx, RoleEntity role, float fixdt, Action<Vector2Int> onEnd) {
+        static void FixedTickFSM_Dead(GameBusinessContext ctx, RoleEntity role, float fixdt, Action onEnd) {
             RoleFSMComponent fsm = role.FSM_GetComponent();
             if (fsm.dead_isEntering) {
                 fsm.dead_isEntering = false;
@@ -127,7 +127,7 @@ namespace Oshi {
                 GameCameraDomain.ShakeOnce(ctx);
                 role.needTearDown = true;
 
-                onEnd?.Invoke(role.PosInt);
+                onEnd?.Invoke();
             }
         }
 

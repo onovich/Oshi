@@ -38,6 +38,8 @@ namespace Oshi {
             if (!push) {
                 if (isEnd) {
                     onEnd.Invoke();
+                    var oldPos = role.fsmCom.moving_start.RoundToVector2Int();
+                    ctx.roleRepo.UpdatePos(oldPos, role);
                 }
                 return;
             }
@@ -64,6 +66,9 @@ namespace Oshi {
             if (isEnd) {
                 var oldPos = fsm.moving_pushTargetStartPos;
                 ctx.goalRepo.UpdatePos(oldPos, goalEntity);
+
+                var roleOldPos = fsm.moving_start.RoundToVector2Int();
+                ctx.roleRepo.UpdatePos(roleOldPos, role);
                 onEnd.Invoke();
             }
         }
@@ -80,6 +85,9 @@ namespace Oshi {
             if (isEnd) {
                 var oldPos = fsm.moving_pushTargetStartPos;
                 ctx.gateRepo.UpdatePos(oldPos, gateEntity);
+
+                var roleOldPos = fsm.moving_start.RoundToVector2Int();
+                ctx.roleRepo.UpdatePos(roleOldPos, role);
                 onEnd.Invoke();
             }
         }
@@ -96,6 +104,9 @@ namespace Oshi {
             if (isEnd) {
                 var oldPos = fsm.moving_pushTargetStartPos;
                 ctx.blockRepo.UpdatePos(oldPos, blockEntity);
+
+                var roleOldPos = fsm.moving_start.RoundToVector2Int();
+                ctx.roleRepo.UpdatePos(roleOldPos, role);
                 onEnd.Invoke();
             }
         }
@@ -121,10 +132,11 @@ namespace Oshi {
                     }
                     var target = nextGate.PosInt + (role.fsmCom.moving_end - role.fsmCom.moving_start).normalized;
                     role.Pos_SetPos(nextGate.PosInt);
+                    var oldPos = role.fsmCom.moving_start.RoundToVector2Int();
+                    ctx.roleRepo.UpdatePos(oldPos, role);
                     role.FSM_EnterMovingWithOutPush(target, fsm.moving_durationSec);
                     return;
                 }
-
                 onEnd.Invoke();
             }
         }

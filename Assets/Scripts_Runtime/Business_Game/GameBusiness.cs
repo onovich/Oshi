@@ -94,9 +94,8 @@ namespace Oshi {
                     game.fsmComponent.playerTurn_isEntering = false;
                 }
                 // Owner
-                GameRoleFSMController.FixedTickFSM(ctx, owner, dt, (oldPos) => {
+                GameRoleFSMController.FixedTickFSM(ctx, owner, dt, () => {
                     game.fsmComponent.EnvirTurn_Enter();
-                    ctx.roleRepo.UpdatePos(oldPos, owner);
                 });
             } else if (status == GameStatus.EnvirTurn) {
                 if (game.fsmComponent.envirTurn_isEntering) {
