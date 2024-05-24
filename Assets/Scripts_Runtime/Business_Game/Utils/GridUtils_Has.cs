@@ -107,7 +107,10 @@ namespace Oshi {
             var isTerrainGoal = ctx.currentMapEntity.Terrain_HasGoal(pos)
             && !HasBlock(ctx, pos);
 
+            var hasBlock = HasBlock(ctx, pos);
+
             var allow = isStaticGoal || isBlockedPushableGoal || isTerrainGoal;
+            allow &= !hasBlock;
             return allow;
         }
 
