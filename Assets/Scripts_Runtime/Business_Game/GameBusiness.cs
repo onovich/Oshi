@@ -211,8 +211,11 @@ namespace Oshi {
                 VFXApp.LateTick(ctx.vfxContext, dt);
             }
 
-            // Record
-            GameRecordDomain.UndoRecord(ctx);
+            if (status == GameStatus.PlayerTurn || status == GameStatus.EnvirTurn) {
+                // Record
+                GameRecordDomain.UndoRecord(ctx);
+            }
+
         }
 
         public static void TearDown(GameBusinessContext ctx) {
