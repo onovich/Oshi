@@ -119,14 +119,18 @@ namespace Oshi {
             }
 
             // Undo Path State
+            var owner = ctx.Role_GetOwner();
             len = ctx.pathRepo.TakeAll(out var paths);
             for (int i = 0; i < len; i++) {
                 var path = paths[i];
+                if (path.isMoving || owner.fsmCom.status == RoleFSMStatus.Moving) {
+                    path.ResetTimer();
+                    continue;
+                }
                 path.Undo();
             }
 
             // Undo Role FSM
-            var owner = ctx.Role_GetOwner();
             owner.FSM_EnterIdle();
 
             // Undo Game State

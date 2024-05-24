@@ -34,6 +34,9 @@ namespace Oshi {
         public float movingDuration;
         public float movingCurrentTime;
 
+        // State
+        public bool isMoving;
+
         // Render
         [SerializeField] LineRenderer lineRenderer;
 
@@ -95,10 +98,12 @@ namespace Oshi {
             var pos = EasingHelper.Easing2D(current, next, movingCurrentTime, movingDuration, easingType, easingMode);
             movingCurrentTime += dt;
             pathCarPos = pos;
+            isMoving = true;
             if (movingCurrentTime >= movingDuration) {
                 isEnd = true;
                 pathCarPos = next;
                 ResetMoveState();
+                isMoving = false;
             }
         }
 
@@ -116,12 +121,18 @@ namespace Oshi {
         public void Undo() {
             currentPathNodeIndex -= nodeIndexDir;
             currentPathNodeIndex = ClampIndex(currentPathNodeIndex);
+            movingCurrentTime = 0;
+        }
+
+        public void ResetTimer() {
+            movingCurrentTime = 0;
         }
 
         public void PushIndexToNext() {
             currentPathNodeIndex += nodeIndexDir;
             currentPathNodeIndex = ClampIndex(currentPathNodeIndex);
         }
+
         int ClampIndex(int index) {
             if (isCircleLoop) {
                 if (index >= pathNodeArr.Length) index = 0;
