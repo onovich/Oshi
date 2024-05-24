@@ -135,7 +135,11 @@ namespace Oshi {
                     var oldPos = role.fsmCom.moving_start.RoundToVector2Int();
                     ctx.roleRepo.UpdatePos(oldPos, role);
                     role.FSM_EnterMovingWithOutPush(target, fsm.moving_durationSec);
+                    role.isMovingByGate = true;
                     return;
+                }
+                if (role.isMovingByGate) {
+                    role.isMovingByGate = false;
                 }
                 onEnd.Invoke();
             }

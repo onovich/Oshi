@@ -28,6 +28,7 @@ namespace Oshi {
         // State
         public bool needTearDown;
         public int step;
+        public bool isMovingByGate;
 
         // FSM
         public RoleFSMComponent fsmCom;
@@ -52,6 +53,7 @@ namespace Oshi {
             animCom = new RoleAnimComponent();
             inputCom = new RoleInputComponent();
             step = 0;
+            isMovingByGate = false;
         }
 
         // Pos

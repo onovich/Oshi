@@ -13,6 +13,9 @@ namespace Oshi {
             var model = new RecordModel();
             model.rolePosArr = new Vector2Int[len];
             for (int i = 0; i < len; i++) {
+                if (roles[i].isMovingByGate) {
+                    continue;
+                }
                 model.rolePosArr[i] = roles[i].PosInt;
             }
 
@@ -68,7 +71,7 @@ namespace Oshi {
                 if (oldPos == record.rolePosArr[i]) {
                     continue;
                 }
-                if (roles[i].fsmCom.status == RoleFSMStatus.Moving) {
+                if (roles[i].fsmCom.status == RoleFSMStatus.Moving && !roles[i].isMovingByGate) {
                     continue;
                 }
                 ctx.roleRepo.UpdatePos(oldPos, roles[i]);
