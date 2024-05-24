@@ -93,8 +93,6 @@ namespace Oshi {
                 if (game.fsmComponent.playerTurn_isEntering) {
                     game.fsmComponent.playerTurn_isEntering = false;
                 }
-                // Record
-                GameRecordDomain.UndoRecord(ctx);
                 // Owner
                 GameRoleFSMController.FixedTickFSM(ctx, owner, dt, (oldPos) => {
                     game.fsmComponent.EnvirTurn_Enter();
@@ -213,6 +211,9 @@ namespace Oshi {
                 // VFX
                 VFXApp.LateTick(ctx.vfxContext, dt);
             }
+
+            // Record
+            GameRecordDomain.UndoRecord(ctx);
         }
 
         public static void TearDown(GameBusinessContext ctx) {

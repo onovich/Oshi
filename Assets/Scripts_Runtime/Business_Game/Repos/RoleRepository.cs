@@ -26,6 +26,7 @@ namespace Oshi {
         }
 
         public void UpdatePos(Vector2Int oldPos, RoleEntity role) {
+            Debug.Log($"RoleRepository.UpdatePos: {oldPos} -> {role.PosInt}");
             posMap.Remove(oldPos);
             posMap.Add(role.PosInt, role);
         }

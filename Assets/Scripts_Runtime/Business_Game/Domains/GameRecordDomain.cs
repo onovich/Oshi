@@ -65,6 +65,12 @@ namespace Oshi {
             for (int i = 0; i < len; i++) {
                 var oldPos = roles[i].PosInt;
                 roles[i].Pos_SetPos(record.rolePosArr[i]);
+                if (oldPos == record.rolePosArr[i]) {
+                    continue;
+                }
+                if (roles[i].fsmCom.status == RoleFSMStatus.Moving) {
+                    continue;
+                }
                 ctx.roleRepo.UpdatePos(oldPos, roles[i]);
             }
 
@@ -73,6 +79,9 @@ namespace Oshi {
             for (int i = 0; i < len; i++) {
                 var oldPos = blocks[i].PosInt;
                 blocks[i].Pos_SetPos(record.blockPosArr[i]);
+                if (oldPos == record.blockPosArr[i]) {
+                    continue;
+                }
                 ctx.blockRepo.UpdatePos(oldPos, blocks[i]);
             }
 
@@ -81,6 +90,9 @@ namespace Oshi {
             for (int i = 0; i < len; i++) {
                 var oldPos = gates[i].PosInt;
                 gates[i].Pos_SetPos(record.gatePosArr[i]);
+                if (oldPos == record.gatePosArr[i]) {
+                    continue;
+                }
                 ctx.gateRepo.UpdatePos(oldPos, gates[i]);
             }
 
@@ -89,6 +101,9 @@ namespace Oshi {
             for (int i = 0; i < len; i++) {
                 var oldPos = goals[i].PosInt;
                 goals[i].Pos_SetPos(record.goalPosArr[i]);
+                if (oldPos == record.goalPosArr[i]) {
+                    continue;
+                }
                 ctx.goalRepo.UpdatePos(oldPos, goals[i]);
             }
 
@@ -97,6 +112,9 @@ namespace Oshi {
             for (int i = 0; i < len; i++) {
                 var oldPos = spikes[i].PosInt;
                 spikes[i].Pos_SetPos(record.spikePosArr[i]);
+                if (oldPos == record.spikePosArr[i]) {
+                    continue;
+                }
                 ctx.spikeRepo.UpdatePos(oldPos, spikes[i]);
             }
 
@@ -106,6 +124,14 @@ namespace Oshi {
                 var path = paths[i];
                 path.Undo();
             }
+
+            // Undo Role FSM
+            var owner = ctx.Role_GetOwner();
+            owner.FSM_EnterIdle();
+
+            // Undo Game State
+            var game = ctx.gameEntity;
+            game.fsmComponent.PlayerTurn_Enter();
 
         }
 
