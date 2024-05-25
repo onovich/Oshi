@@ -36,7 +36,6 @@ namespace Oshi {
                 isEnd = true;
                 return;
             }
-
             path.Tick_MoveCarToNext(fixdt, out isEnd);
             if (isEnd) {
                 path.PushIndexToNext();
