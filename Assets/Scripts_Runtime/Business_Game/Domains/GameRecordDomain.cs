@@ -8,19 +8,17 @@ namespace Oshi {
 
         public static void RecordCurrentState(GameBusinessContext ctx) {
 
-            // Record Roles
-            var len = ctx.roleRepo.TakeAll(out var roles);
             var model = new RecordModel();
-            model.rolePosArr = new Vector2Int[len];
-            for (int i = 0; i < len; i++) {
-                if (roles[i].isMovingByGate) {
-                    continue;
-                }
-                model.rolePosArr[i] = roles[i].PosInt;
+
+            // Record Owner
+            var owner = ctx.Role_GetOwner();
+            if (owner.isMovingByGate) {
+                return;
             }
+            model.ownerPos = owner.PosInt;
 
             // Record Blocks
-            len = ctx.blockRepo.TakeAll(out var blocks);
+            var len = ctx.blockRepo.TakeAll(out var blocks);
             model.blockPosArr = new Vector2Int[len];
             for (int i = 0; i < len; i++) {
                 model.blockPosArr[i] = blocks[i].PosInt;
@@ -63,24 +61,19 @@ namespace Oshi {
                 return;
             }
 
-            // Undo Roles
-            var len = ctx.roleRepo.TakeAll(out var roles);
-            for (int i = 0; i < len; i++) {
-                var oldPos = roles[i].PosInt;
-                roles[i].Pos_SetPos(record.rolePosArr[i]);
-                if (oldPos == record.rolePosArr[i]) {
-                    continue;
-                }
-                if (roles[i].fsmCom.status == RoleFSMStatus.Moving && !roles[i].isMovingByGate) {
-                    continue;
-                }
-                ctx.roleRepo.UpdatePos(oldPos, roles[i]);
+            // Undo Owner
+            var owner = ctx.Role_GetOwner();
+            var oldPos = owner.PosInt;
+            owner.Pos_SetPos(record.ownerPos);
+            if (oldPos != record.ownerPos &&
+            !(owner.fsmCom.status == RoleFSMStatus.Moving && !owner.isMovingByGate)) {
+                ctx.roleRepo.UpdatePos(oldPos, owner);
             }
 
             // Undo Blocks
-            len = ctx.blockRepo.TakeAll(out var blocks);
+            var len = ctx.blockRepo.TakeAll(out var blocks);
             for (int i = 0; i < len; i++) {
-                var oldPos = blocks[i].PosInt;
+                oldPos = blocks[i].PosInt;
                 blocks[i].Pos_SetPos(record.blockPosArr[i]);
                 if (oldPos == record.blockPosArr[i]) {
                     continue;
@@ -91,7 +84,7 @@ namespace Oshi {
             // Undo Gates
             len = ctx.gateRepo.TakeAll(out var gates);
             for (int i = 0; i < len; i++) {
-                var oldPos = gates[i].PosInt;
+                oldPos = gates[i].PosInt;
                 gates[i].Pos_SetPos(record.gatePosArr[i]);
                 if (oldPos == record.gatePosArr[i]) {
                     continue;
@@ -102,7 +95,7 @@ namespace Oshi {
             // Undo Goals
             len = ctx.goalRepo.TakeAll(out var goals);
             for (int i = 0; i < len; i++) {
-                var oldPos = goals[i].PosInt;
+                oldPos = goals[i].PosInt;
                 goals[i].Pos_SetPos(record.goalPosArr[i]);
                 if (oldPos == record.goalPosArr[i]) {
                     continue;
@@ -113,7 +106,7 @@ namespace Oshi {
             // Undo Spikes
             len = ctx.spikeRepo.TakeAll(out var spikes);
             for (int i = 0; i < len; i++) {
-                var oldPos = spikes[i].PosInt;
+                oldPos = spikes[i].PosInt;
                 spikes[i].Pos_SetPos(record.spikePosArr[i]);
                 if (oldPos == record.spikePosArr[i]) {
                     continue;
@@ -122,7 +115,6 @@ namespace Oshi {
             }
 
             // Undo Path State
-            var owner = ctx.Role_GetOwner();
             len = ctx.pathRepo.TakeAll(out var paths);
             for (int i = 0; i < len; i++) {
                 var path = paths[i];
