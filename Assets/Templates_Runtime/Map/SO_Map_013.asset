@@ -16,7 +16,7 @@ MonoBehaviour:
   typeName: IN MY DREAM, I HAVE A PORTAL THAT CAN TAKE ME BACK TO MY CHILDHOOD.
   nextMapTypeID: 0
   isLastMap: 1
-  weatherType: 0
+  weatherType: 1
   limitedByTime: 0
   gameTotalTime: 0
   limitedByStep: 0

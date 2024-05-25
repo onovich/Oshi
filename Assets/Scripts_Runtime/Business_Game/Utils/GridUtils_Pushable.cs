@@ -65,9 +65,6 @@ namespace Oshi {
             var target = block.PosInt + axis;
 
             var len = block.cellSlotComponent.TakeAll(out var cells);
-            var noProp = true;
-            var hasNothingButGoal = false;
-            var hasSpike = false;
             for (int i = 0; i < len; i++) {
                 var cell = cells[i];
                 var cellPos = cell.LocalPosInt + target;
@@ -80,12 +77,11 @@ namespace Oshi {
                 }
 
                 // No Prop But Goal Or Spike
-                noProp &= GridUtils_Has.HasNoPropAndDifferentBlock(ctx, cellPos, block.entityIndex);
-                hasNothingButGoal |= GridUtils_Has.HasNoPropButGoal(ctx, cellPos);
-                hasSpike |= GridUtils_Has.HasSpike(ctx, cellPos);
+                var noProp = GridUtils_Has.HasNoPropAndDifferentBlock(ctx, cellPos, block.entityIndex);
+                var hasNothingButGoal = GridUtils_Has.HasNoPropButGoal(ctx, cellPos);
+                var hasSpike = GridUtils_Has.HasSpike(ctx, cellPos);
                 var allow = inConstraint && (noProp || hasNothingButGoal || hasSpike);
                 if (!allow) {
-                    // Debug.Log($"{noProp} {hasNothingButGoal} {hasSpike} {cellPos} {block.entityIndex}");
                     return false;
                 }
             };
